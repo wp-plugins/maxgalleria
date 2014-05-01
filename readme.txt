@@ -114,4 +114,4 @@ No. The MaxGalleria core plugin contains plenty of functionality to keep even th
 == Upgrade Notice ==
 
 = 2.0.0 =
-Nothing to see here. Move along, move along.
+This is a major release, please backup your WordPress files and database before upgrading!
