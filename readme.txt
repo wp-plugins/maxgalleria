@@ -1,6 +1,6 @@
 === MaxGalleria: WordPress Gallery Platform ===
 Contributors: maxfoundry, arcware, johnbhartley
-Tags: albums, gallery, image, images, media, flash, foto, fotoalbum, photo, photos, photo albums, picture, pictures, responsive wordpress gallery, thumbmail, thumbnails, wordpress gallery, wordpress gallery plugin, responsive wordpress gallery plusgin, responsive, slideshows, image slider, nivo, image slide plugin, javascript rotator, javascript slider, jquery slider, photo slider, responsive image slider, responsive image slider plugin, responsive slideshow, responsive slideshow slider, responsive slider plugin, slideshow plugin, template, wordpress picture slider, wordpress responsive slider, wordpress slider, wordpress gallery, website gallery, multiple pictures
+Tags: albums, gallery, image, images, media, flash, foto, fotoalbum, photo, photos, photo albums, picture, pictures, responsive wordpress gallery, thumbmail, thumbnails, wordpress gallery, wordpress gallery plugin, responsive wordpress gallery plugins, responsive, slideshows, image slider, nivo, image slide plugin, javascript rotator, javascript slider, jquery slider, photo slider, responsive image slider, responsive image slider plugin, responsive slideshow, responsive slideshow slider, responsive slider plugin, slideshow plugin, template, wordpress picture slider, wordpress responsive slider, wordpress slider, wordpress gallery, website gallery, multiple pictures
 Requires at least: 3.9
 Tested up to: 3.9
 Stable tag: 2.0.0
