@@ -78,7 +78,11 @@ MaxGalleria is stuffed full of all the features and functionality you need to ea
 * Developer hooks (actions and filters)
 * Multiple galleries on any post/page
 * Exclude galleries from search results
- 
+
+== Screenshots ==
+
+There are too many screenshots to list here, but you can [see all of them on the MaxGalleria website](http://maxgalleria.com/features/).
+
 == Installation ==
 
 For automatic installation:
