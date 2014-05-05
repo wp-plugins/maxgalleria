@@ -3,7 +3,7 @@ Contributors: maxfoundry, arcware, damonsharp, johnbhartley
 Tags: albums, gallery, image, images, media, flash, foto, fotoalbum, photo, photos, photo albums, picture, pictures, responsive wordpress gallery, thumbmail, thumbnails, wordpress gallery, wordpress gallery plugin, responsive wordpress gallery plugins, responsive, slideshows, image slider, nivo, image slide plugin, javascript rotator, javascript slider, jquery slider, photo slider, responsive image slider, responsive image slider plugin, responsive slideshow, responsive slideshow slider, responsive slider plugin, slideshow plugin, template, wordpress picture slider, wordpress responsive slider, wordpress slider, wordpress gallery, website gallery, multiple pictures
 Requires at least: 3.9
 Tested up to: 3.9
-Stable tag: 2.0.0
+Stable tag: 2.0.1
 
 Responsive, Easy to Use, Developer Friendly
 
@@ -111,11 +111,15 @@ Yes. All documentation, which includes QuickStart Guides and developer hooks ref
 No. The MaxGalleria core plugin contains plenty of functionality to keep even the most die-hard gallery user happy. But for those looking to enhance their gallery experience, [MaxGalleria addons](http://maxgalleria.com/shop/category/addons/) are the perfect choice.
 
 == Changelog ==
+= 2.0.1 =
+* Made the Image Tiles and Video Tiles templates the defaults for image and video galleries, respectively.
+* Added settings for default templates to the General Settings page.
+* Added margin-top and margin-bottom styles for LI elements in Image Tiles and Video Tiles templates.
 
 = 2.0.0 =
 * Initial version of the MaxGalleria WordPress Gallery Platform.
 
 == Upgrade Notice ==
 
-= 2.0.0 =
-This is a major release, please backup your WordPress files and database before upgrading!
+= 2.0.1 =
+Minor bug fixes and enhancements.

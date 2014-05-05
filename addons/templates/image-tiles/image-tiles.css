@@ -80,6 +80,8 @@
 	vertical-align: top !important;
 	display: inline-block !important;
 	position: relative !important;
+	margin-top: 0 !important;
+	margin-bottom: 0 !important;
 }
 .mg-image-tiles .mg-thumbs.mg-onecol ul li {
 	width: 100% !important;

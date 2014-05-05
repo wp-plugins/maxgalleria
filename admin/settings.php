@@ -6,7 +6,26 @@ $addons = $maxgalleria->get_all_addons();
 $templates = $maxgalleria->get_template_addons();
 $media_sources = $maxgalleria->get_media_source_addons();
 
+// Filter for image templates
+$image_templates = array('Image Tiles' => 'image-tiles');
+foreach ($templates as $template) {
+	if ($template['subtype'] == 'image') {
+		$image_templates = array_merge($image_templates, array($template['name'] => $template['key']));
+	}
+}
+
+// Filter for video templates
+$video_templates = array('Video Tiles' => 'video-tiles');
+foreach ($templates as $template) {
+	if ($template['subtype'] == 'video') {
+		$video_templates = array_merge($video_templates, array($template['name'] => $template['key']));
+	}
+}
+
+// Sort arrays
 asort($templates);
+asort($image_templates);
+asort($video_templates);
 asort($media_sources);
 
 $addon = isset($_GET['addon']) ? $_GET['addon'] : '';
@@ -18,11 +37,12 @@ $addon = isset($_GET['addon']) ? $_GET['addon'] : '';
 			jQuery("#save-general-settings-success").hide();
 			
 			var form_data = jQuery("#form-general-settings").serialize();
-
+			form_data += "&action=save_general_settings";
+			
 			jQuery.ajax({
 				type: "POST",
 				url: "<?php echo admin_url('admin-ajax.php') ?>",
-				data: form_data + "&action=save_general_settings",
+				data: form_data,
 				success: function(message) {
 					if (message == "success") {
 						jQuery("#save-general-settings-success").show();
@@ -98,22 +118,51 @@ $addon = isset($_GET['addon']) ? $_GET['addon'] : '';
 								<div class="settings-title">
 									<?php _e('Gallery Rewrite Slug', 'maxgalleria') ?>
 								</div>
-								
 								<div class="settings-options">
-									<p><?php _e('The rewrite slug is how WordPress knows to display your galleries.', 'maxgalleria') ?></p>
+									<p class="note"><?php _e('The rewrite slug is how WordPress knows to display your galleries.', 'maxgalleria') ?></p>
 									<p><?php echo home_url() ?>/<input type="text" id="<?php echo MAXGALLERIA_SETTING_REWRITE_SLUG ?>" name="<?php echo MAXGALLERIA_SETTING_REWRITE_SLUG ?>" value="<?php echo $maxgalleria->settings->get_rewrite_slug() ?>" style="font-size: 13px; width: 80px;" />/<?php _e('gallery-name', 'maxgalleria') ?></p>
 								</div>
 							
 								<div class="settings-title">
 									<?php _e('Searchable Galleries', 'maxgalleria') ?>
 								</div>
-								
 								<div class="settings-options">
-									<p><?php _e('By default all galleries will appear in your search results; you can disable this using the option below. This setting affects all galleries.', 'maxgalleria') ?></p>
+									<p class="note"><?php _e('By default all galleries will appear in your search results; you can disable this using the option below. This setting affects all galleries.', 'maxgalleria') ?></p>
 									<p>
 										<label for="<?php echo MAXGALLERIA_SETTING_EXCLUDE_GALLERIES_FROM_SEARCH ?>"><?php _e('Exclude from Search:', 'maxgalleria') ?></label>
 										<input type="checkbox" style="margin-left: 10px;" id="<?php echo MAXGALLERIA_SETTING_EXCLUDE_GALLERIES_FROM_SEARCH ?>" name="<?php echo MAXGALLERIA_SETTING_EXCLUDE_GALLERIES_FROM_SEARCH ?>" <?php echo (($maxgalleria->settings->get_exclude_galleries_from_search() == 'on') ? 'checked' : '') ?> />
 									</p>
+								</div>
+								
+								<div class="settings-title">
+									<?php _e('Default Templates', 'maxgalleria') ?>
+								</div>
+								<div class="settings-options">
+									<p class="note"><?php _e('Select the default template for image and video galleries. These can be changed per gallery.', 'maxgalleria') ?></p>
+									<table>
+										<tr>
+											<td><?php _e('Image Galleries:', 'maxgalleria') ?></td>
+											<td>
+												<select id="<?php echo MAXGALLERIA_SETTING_DEFAULT_IMAGE_GALLERY_TEMPLATE ?>" name="<?php echo MAXGALLERIA_SETTING_DEFAULT_IMAGE_GALLERY_TEMPLATE ?>">
+												<?php foreach ($image_templates as $name => $key) { ?>
+													<?php $selected = ($maxgalleria->settings->get_default_image_gallery_template() == $key) ? 'selected="selected"' : ''; ?>
+													<option value="<?php echo $key ?>" <?php echo $selected ?>><?php echo $name ?></option>
+												<?php } ?>
+												</select>
+											</td>
+										</tr>
+										<tr>
+											<td><?php _e('Video Galleries:', 'maxgalleria') ?></td>
+											<td>
+												<select id="<?php echo MAXGALLERIA_SETTING_DEFAULT_VIDEO_GALLERY_TEMPLATE ?>" name="<?php echo MAXGALLERIA_SETTING_DEFAULT_VIDEO_GALLERY_TEMPLATE ?>">
+												<?php foreach ($video_templates as $name => $key) { ?>
+													<?php $selected = ($maxgalleria->settings->get_default_video_gallery_template() == $key) ? 'selected="selected"' : ''; ?>
+													<option value="<?php echo $key ?>" <?php echo $selected ?>><?php echo $name ?></option>
+												<?php } ?>
+												</select>
+											</td>
+										</tr>
+									</table>
 								</div>
 								
 								<?php wp_nonce_field($settings->nonce_save_general_settings['action'], $settings->nonce_save_general_settings['name']) ?>

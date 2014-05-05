@@ -8,6 +8,7 @@ class MaxGalleriaNewGallery {
 	public function save_new_gallery_type() {	
 		$options = new MaxGalleryOptions($_POST['post_ID']);
 		$options->save_post_meta($options->type_key);
+		$options->save_post_meta($options->template_key);
 
 		echo $_POST['post_ID'];
 		die();

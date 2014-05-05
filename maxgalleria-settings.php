@@ -20,6 +20,14 @@ class MaxGalleriaSettings {
 		return get_option(MAXGALLERIA_SETTING_EXCLUDE_GALLERIES_FROM_SEARCH, '');
 	}
 	
+	public function get_default_image_gallery_template() {
+		return get_option(MAXGALLERIA_SETTING_DEFAULT_IMAGE_GALLERY_TEMPLATE, 'image-tiles');
+	}
+	
+	public function get_default_video_gallery_template() {
+		return get_option(MAXGALLERIA_SETTING_DEFAULT_VIDEO_GALLERY_TEMPLATE, 'video-tiles');
+	}
+	
 	public function save_general_settings() {
 		if (isset($_POST) && check_admin_referer($this->nonce_save_general_settings['action'], $this->nonce_save_general_settings['name'])) {
 			$message = '';
@@ -27,12 +35,29 @@ class MaxGalleriaSettings {
 			if (isset($_POST[MAXGALLERIA_SETTING_REWRITE_SLUG]) && $_POST[MAXGALLERIA_SETTING_REWRITE_SLUG] != '') {
 				update_option(MAXGALLERIA_SETTING_REWRITE_SLUG, $_POST[MAXGALLERIA_SETTING_REWRITE_SLUG]);
 			}
+			else {
+				update_option(MAXGALLERIA_SETTING_REWRITE_SLUG, 'gallery');
+			}
 			
 			if (isset($_POST[MAXGALLERIA_SETTING_EXCLUDE_GALLERIES_FROM_SEARCH]) && $_POST[MAXGALLERIA_SETTING_EXCLUDE_GALLERIES_FROM_SEARCH] == 'on') {
 				update_option(MAXGALLERIA_SETTING_EXCLUDE_GALLERIES_FROM_SEARCH, $_POST[MAXGALLERIA_SETTING_EXCLUDE_GALLERIES_FROM_SEARCH]);
 			}
 			else {
 				update_option(MAXGALLERIA_SETTING_EXCLUDE_GALLERIES_FROM_SEARCH, '');
+			}
+			
+			if (isset($_POST[MAXGALLERIA_SETTING_DEFAULT_IMAGE_GALLERY_TEMPLATE]) && $_POST[MAXGALLERIA_SETTING_DEFAULT_IMAGE_GALLERY_TEMPLATE] != '') {
+				update_option(MAXGALLERIA_SETTING_DEFAULT_IMAGE_GALLERY_TEMPLATE, $_POST[MAXGALLERIA_SETTING_DEFAULT_IMAGE_GALLERY_TEMPLATE]);
+			}
+			else {
+				update_option(MAXGALLERIA_SETTING_DEFAULT_IMAGE_GALLERY_TEMPLATE, 'image-tiles');
+			}
+			
+			if (isset($_POST[MAXGALLERIA_SETTING_DEFAULT_VIDEO_GALLERY_TEMPLATE]) && $_POST[MAXGALLERIA_SETTING_DEFAULT_VIDEO_GALLERY_TEMPLATE] != '') {
+				update_option(MAXGALLERIA_SETTING_DEFAULT_VIDEO_GALLERY_TEMPLATE, $_POST[MAXGALLERIA_SETTING_DEFAULT_VIDEO_GALLERY_TEMPLATE]);
+			}
+			else {
+				update_option(MAXGALLERIA_SETTING_DEFAULT_VIDEO_GALLERY_TEMPLATE, 'video-tiles');
 			}
 			
 			$message = 'success';

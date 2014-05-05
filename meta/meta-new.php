@@ -1,4 +1,5 @@
 <?php
+global $maxgalleria;
 global $post;
 $options = new MaxGalleryOptions($post->ID);
 ?>
@@ -25,6 +26,7 @@ $options = new MaxGalleryOptions($post->ID);
 			jQuery("#<?php echo $options->type_key ?>_image_icon").addClass("selected");
 			jQuery("#<?php echo $options->type_key ?>_video_icon").removeClass("selected");
 			jQuery("#<?php echo $options->type_key ?>").val("image");
+			jQuery("#<?php echo $options->template_key ?>").val("<?php echo $maxgalleria->settings->get_default_image_gallery_template() ?>");
 			submitForm();
 		});
 		
@@ -32,6 +34,7 @@ $options = new MaxGalleryOptions($post->ID);
 			jQuery("#<?php echo $options->type_key ?>_video_icon").addClass("selected");
 			jQuery("#<?php echo $options->type_key ?>_image_icon").removeClass("selected");
 			jQuery("#<?php echo $options->type_key ?>").val("video");
+			jQuery("#<?php echo $options->template_key ?>").val("<?php echo $maxgalleria->settings->get_default_video_gallery_template() ?>");
 			submitForm();
 		});
 	});
@@ -39,6 +42,7 @@ $options = new MaxGalleryOptions($post->ID);
 	function submitForm() {
 		var form_data = jQuery("#post").serialize();
 		form_data += "&<?php echo $options->type_key ?>=" + jQuery("#<?php echo $options->type_key ?>").val();
+		form_data += "&<?php echo $options->template_key ?>=" + jQuery("#<?php echo $options->template_key ?>").val();
 		form_data += "&action=save_new_gallery_type";
 		
 		jQuery.modal.close();
@@ -74,7 +78,9 @@ $options = new MaxGalleryOptions($post->ID);
 				</tr>
 			</table>
 			
+			<!-- Default to an image gallery with the Image Tiles template -->
 			<input type="hidden" id="<?php echo $options->type_key ?>" name="<?php echo $options->type_key ?>" value="image" />
+			<input type="hidden" id="<?php echo $options->template_key ?>" name="<?php echo $options->template_key ?>" value="image-tiles" />
 		</div>
 	</div>
 </div>
