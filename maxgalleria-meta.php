@@ -22,28 +22,22 @@ class MaxGalleriaMeta {
 			
 			if ($options->is_image_gallery()) {
 				$this->add_side_meta_box('meta-shortcodes', __('Shortcodes', 'maxgalleria'), array($image_gallery, 'show_meta_box_shortcodes'));
-				$this->add_side_meta_box('meta-template', __('Template', 'maxgalleria'), array($image_gallery, 'show_meta_box_template'));
 				
 				// Only show if a template has been chosen
 				if ($options->get_template() != '') {
 					do_action(MAXGALLERIA_ACTION_BEFORE_TEMPLATE_META_BOXES);
-					$this->add_side_meta_box('meta-description', __('Description', 'maxgalleria'), array($image_gallery, 'show_meta_box_description'));
-					$this->add_side_meta_box('meta-advanced', __('Advanced', 'maxgalleria'), array($image_gallery, 'show_meta_box_advanced'));
-					$this->add_normal_meta_box('meta-images', __('Images', 'maxgalleria'), array($image_gallery, 'show_meta_box_images'));
+					$this->add_normal_meta_box('meta-image-gallery', __('Gallery', 'maxgalleria'), array($image_gallery, 'show_meta_box_gallery'));
 					do_action(MAXGALLERIA_ACTION_AFTER_TEMPLATE_META_BOXES);
 				}
 			}
 			
 			if ($options->is_video_gallery()) {
 				$this->add_side_meta_box('meta-shortcodes', __('Shortcodes', 'maxgalleria'), array($video_gallery, 'show_meta_box_shortcodes'));
-				$this->add_side_meta_box('meta-template', __('Template', 'maxgalleria'), array($video_gallery, 'show_meta_box_template'));
 				
 				// Only show if a template has been chosen
 				if ($options->get_template() != '') {
 					do_action(MAXGALLERIA_ACTION_BEFORE_TEMPLATE_META_BOXES);
-					$this->add_side_meta_box('meta-description', __('Description', 'maxgalleria'), array($video_gallery, 'show_meta_box_description'));
-					$this->add_side_meta_box('meta-advanced', __('Advanced', 'maxgalleria'), array($video_gallery, 'show_meta_box_advanced'));
-					$this->add_normal_meta_box('meta-videos', __('Videos', 'maxgalleria'), array($video_gallery, 'show_meta_box_videos'));
+					$this->add_normal_meta_box('meta-video-gallery', __('Gallery', 'maxgalleria'), array($video_gallery, 'show_meta_box_gallery'));
 					do_action(MAXGALLERIA_ACTION_AFTER_TEMPLATE_META_BOXES);
 				}
 			}

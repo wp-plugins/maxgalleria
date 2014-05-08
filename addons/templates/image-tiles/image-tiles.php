@@ -5,27 +5,50 @@ class MaxGalleriaImageTiles {
 	public $addon_type;
 	public $addon_subtype;
 	public $addon_settings;
+	public $addon_image;
 	public $addon_output;
-	public $meta;
-	
+
 	public function __construct() {
 		$this->addon_key = 'image-tiles';
 		$this->addon_name = __('Image Tiles', 'maxgalleria');
 		$this->addon_type = 'template';
 		$this->addon_subtype = 'image';
 		$this->addon_settings = MAXGALLERIA_PLUGIN_DIR . '/addons/templates/image-tiles/image-tiles-settings.php';
+		$this->addon_image = MAXGALLERIA_PLUGIN_URL . '/addons/templates/image-tiles/images/image-tiles.png';
 		$this->addon_output = array($this, 'get_output');
 		
-		// Just include this one, no need to instantiate the MaxGalleriaImageTilesOptions class here
 		require_once 'image-tiles-options.php';
 		
-		// For the meta, include it and go ahead and instantiate the MaxGalleriaImageTilesMeta class
-		require_once 'image-tiles-meta.php';
-		$this->meta = new MaxGalleriaImageTilesMeta();
-		
-		// Ajax call for saving default settings
+		add_action('save_post', array($this, 'save_gallery_options'));
+		add_action('maxgalleria_template_options', array($this, 'show_template_options'));
 		add_action('wp_ajax_save_image_tiles_defaults', array($this, 'save_image_tiles_defaults'));
 		add_action('wp_ajax_nopriv_save_image_tiles_defaults', array($this, 'save_image_tiles_defaults'));
+	}
+
+	public function save_gallery_options() {
+		global $post;
+
+		if (isset($post)) {
+			if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+				return $post->ID;
+			}
+
+			if (!current_user_can('edit_post', $post->ID)) {
+				return $post->ID;
+			}
+			
+			$options = new MaxGalleriaImageTilesOptions($post->ID);
+			$options->save_options();
+		}
+	}
+	
+	public function show_template_options() {
+		global $post;
+		$options = new MaxGalleriaImageTilesOptions($post->ID);
+		
+		if ($options->get_template() == 'image-tiles') {
+			require_once 'image-tiles-meta.php';
+		}
 	}
 	
 	public function save_image_tiles_defaults() {

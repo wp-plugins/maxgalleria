@@ -308,25 +308,13 @@ class MaxGalleriaVideoGallery {
 			die();
 		}
 	}
-	
-	public function show_meta_box_advanced($post) {
-		require_once 'meta/meta-advanced.php';
-	}
-	
-	public function show_meta_box_description($post) {
-		require_once 'meta/meta-description.php';
+
+	public function show_meta_box_gallery($post) {
+		require_once 'meta/meta-video-gallery.php';
 	}
 	
 	public function show_meta_box_shortcodes($post) {
 		require_once 'meta/meta-shortcodes.php';
-	}
-	
-	public function show_meta_box_template($post) {
-		require_once 'meta/meta-template.php';
-	}
-
-	public function show_meta_box_videos($post) {
-		require_once 'meta/meta-videos.php';
 	}
 }
 ?>

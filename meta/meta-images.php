@@ -17,9 +17,6 @@ $attachments = get_posts($args);
 
 <script type="text/javascript">		
 	jQuery(document).ready(function() {
-		// To add the image count in the meta box title
-		jQuery("#meta-images h3.hndle span").html("<?php _e('Images', 'maxgalleria') ?> (<?php echo count($attachments) ?>)");
-		
 		// Image moving and re-ordering
 		jQuery("#gallery-media").dataTable({ bPaginate: false }).rowReordering({
 			fnAlert: function(message) {
@@ -231,132 +228,130 @@ $attachments = get_posts($args);
 	}
 </script>
 
-<div class="maxgalleria-meta">
-	<div class="add-media">
-		<input type="button" class="btn btn-primary maxgalleria-open-media" value="<?php _e('Add Images', 'maxgalleria') ?>" />
+<div class="add-media">
+	<input type="button" class="btn btn-primary maxgalleria-open-media" value="<?php _e('Add Images', 'maxgalleria') ?>" />
+</div>
+<?php if (count($attachments) > 0) { ?>
+	<div class="bulk-actions">
+		<select name="bulk-action-select" id="bulk-action-select">
+			<option value=""><?php _e('Bulk Actions', 'maxgalleria') ?></option>
+			<option value="edit"><?php _e('Edit', 'maxgalleria') ?></option>
+			<option value="exclude"><?php _e('Exclude', 'maxgalleria') ?></option>
+			<option value="include"><?php _e('Include', 'maxgalleria') ?></option>
+			<option value="remove"><?php _e('Remove', 'maxgalleria') ?></option>
+		</select>
+		<input type="button" id="bulk-action-apply" class="button" value="<?php _e('Apply', 'maxgalleria') ?>" />
 	</div>
-	<?php if (count($attachments) > 0) { ?>
-		<div class="bulk-actions">
-			<select name="bulk-action-select" id="bulk-action-select">
-				<option value=""><?php _e('Bulk Actions', 'maxgalleria') ?></option>
-				<option value="edit"><?php _e('Edit', 'maxgalleria') ?></option>
-				<option value="exclude"><?php _e('Exclude', 'maxgalleria') ?></option>
-				<option value="include"><?php _e('Include', 'maxgalleria') ?></option>
-				<option value="remove"><?php _e('Remove', 'maxgalleria') ?></option>
-			</select>
-			<input type="button" id="bulk-action-apply" class="button" value="<?php _e('Apply', 'maxgalleria') ?>" />
+	<ul class="views">
+		<li><a id="list-view" class="active"><?php _e('List', 'maxgalleria') ?></a></li>
+		<li><a id="rows-view"><?php _e('Rows', 'maxgalleria') ?></a></li>
+		<li><a id="grid-view"><?php _e('Grid', 'maxgalleria') ?></a></li>
+	</ul>
+<?php } ?>
+<div class="clear"></div>
+
+<div class="media">				
+	<div class="adding-media-library-images-note alert alert-info">
+		<div class="gif">
+			<img src="<?php echo MAXGALLERIA_PLUGIN_URL ?>/images/loading-small.gif" width="16" height="16" alt="" />
 		</div>
-		<ul class="views">
-			<li><a id="list-view" class="active"><?php _e('List', 'maxgalleria') ?></a></li>
-			<li><a id="rows-view"><?php _e('Rows', 'maxgalleria') ?></a></li>
-			<li><a id="grid-view"><?php _e('Grid', 'maxgalleria') ?></a></li>
-		</ul>
-	<?php } ?>
-	<div class="clear"></div>
+		<div class="text">
+			<h4><?php _e('Adding images from media library, this might take a few moments, please wait...', 'maxgalleria') ?></h4>
+		</div>
+		<div class="clear"></div>
+	</div>
 	
-	<div class="media">				
-		<div class="adding-media-library-images-note alert alert-info">
-			<div class="gif">
-				<img src="<?php echo MAXGALLERIA_PLUGIN_URL ?>/images/loading-small.gif" width="16" height="16" alt="" />
-			</div>
-			<div class="text">
-				<h4><?php _e('Adding images from media library, this might take a few moments, please wait...', 'maxgalleria') ?></h4>
-			</div>
-			<div class="clear"></div>
-		</div>
-		
-		<?php if (count($attachments) < 1) { ?>
-			<h4><?php _e('No images have been added to this gallery.', 'maxgalleria') ?></h4>
-		<?php } else { ?>
-			<table id="gallery-media" cellpadding="0" cellspacing="0">
-				<thead>
-					<tr>
-						<th class="order">&nbsp;</th>
-						<th class="checkbox"><input type="checkbox" name="select-all" id="select-all" /></th>
-						<th>&nbsp;</th>
-						<th>&nbsp;</th>
-						<th class="reorder"><?php _e('Reorder', 'maxgalleria') ?></th>
-					</tr>
-				</thead>
-				<tbody>
-				<?php foreach ($attachments as $attachment) { ?>
-					<?php $is_excluded = get_post_meta($attachment->ID, 'maxgallery_attachment_image_exclude', true) ?>
-					
-					<tr id="<?php echo $attachment->ID ?>">
-						<td class="order"><?php echo $attachment->menu_order ?></td>
-						<td class="checkbox">
-							<input type="checkbox" name="media-id[]" id="media-id-<?php echo $attachment->ID ?>" value="<?php echo $attachment->ID ?>" />
-							<input type="hidden" name="media-order[]" id="media-order-<?php echo $attachment->ID ?>" value="<?php echo $attachment->menu_order ?>" class="media-order-input" />
-							<input type="hidden" name="media-order-id[]" id="media-order-id-<?php echo $attachment->ID ?>" value="<?php echo $attachment->ID ?>" />
-						</td>
-						<td class="thumb image">
-							<a href="<?php echo $attachment->guid ?>" class="lightbox" rel="media">
-								<?php if ($is_excluded == true) { ?>
-									<div class="exclude">
-										<?php echo wp_get_attachment_image($attachment->ID, MAXGALLERIA_META_IMAGE_THUMB_SMALL) ?>
-									</div>
-								<?php } else { ?>
+	<?php if (count($attachments) < 1) { ?>
+		<h4><?php _e('No images have been added to this gallery.', 'maxgalleria') ?></h4>
+	<?php } else { ?>
+		<table id="gallery-media" cellpadding="0" cellspacing="0">
+			<thead>
+				<tr>
+					<th class="order">&nbsp;</th>
+					<th class="checkbox"><input type="checkbox" name="select-all" id="select-all" /></th>
+					<th>&nbsp;</th>
+					<th>&nbsp;</th>
+					<th class="reorder"><?php _e('Reorder', 'maxgalleria') ?></th>
+				</tr>
+			</thead>
+			<tbody>
+			<?php foreach ($attachments as $attachment) { ?>
+				<?php $is_excluded = get_post_meta($attachment->ID, 'maxgallery_attachment_image_exclude', true) ?>
+				
+				<tr id="<?php echo $attachment->ID ?>">
+					<td class="order"><?php echo $attachment->menu_order ?></td>
+					<td class="checkbox">
+						<input type="checkbox" name="media-id[]" id="media-id-<?php echo $attachment->ID ?>" value="<?php echo $attachment->ID ?>" />
+						<input type="hidden" name="media-order[]" id="media-order-<?php echo $attachment->ID ?>" value="<?php echo $attachment->menu_order ?>" class="media-order-input" />
+						<input type="hidden" name="media-order-id[]" id="media-order-id-<?php echo $attachment->ID ?>" value="<?php echo $attachment->ID ?>" />
+					</td>
+					<td class="thumb image">
+						<a href="<?php echo $attachment->guid ?>" class="lightbox" rel="media">
+							<?php if ($is_excluded == true) { ?>
+								<div class="exclude">
 									<?php echo wp_get_attachment_image($attachment->ID, MAXGALLERIA_META_IMAGE_THUMB_SMALL) ?>
-								<?php } ?>
-							</a>
-							<div class="actions">
-								<a href="#" title="<?php _e('Edit', 'maxgalleria') ?>" onclick="javascript:editImage(<?php echo $attachment->ID ?>); return false;"><?php _e('Edit', 'maxgalleria') ?></a> |
-								<a href="#" title="<?php _e('Remove', 'maxgalleria') ?>" onclick="javascript:removeImage(<?php echo $attachment->ID ?>); return false;"><?php _e('Remove', 'maxgalleria') ?></a> |
-								
-								<?php if ($is_excluded) { ?>
-									<a href="#" title="<?php _e('Include', 'maxgalleria') ?>" onclick="javascript:includeImage(<?php echo $attachment->ID ?>); return false;"><?php _e('Include', 'maxgalleria') ?></a>
-								<?php } else { ?>
-									<a href="#" title="<?php _e('Exclude', 'maxgalleria') ?>" onclick="javascript:excludeImage(<?php echo $attachment->ID ?>); return false;"><?php _e('Exclude', 'maxgalleria') ?></a>
-								<?php } ?>
-							</div>
-						</td>
-						<td class="text">
-							<div class="details">
-								<div class="detail-label"><?php _e('Title', 'maxgalleria') ?>:</div>
-								<div class="detail-value title-value"><?php echo $attachment->post_title ?></div>
-								<div class="clear"></div>
-								
-								<div class="detail-label"><?php _e('Alt Text', 'maxgalleria') ?>:</div>
-								<div class="detail-value"><?php echo get_post_meta($attachment->ID, '_wp_attachment_image_alt', true) ?></div>
-								<div class="clear"></div>
-								
-								<div class="detail-label"><?php _e('Caption', 'maxgalleria') ?>:</div>
-								<div class="detail-value"><?php echo $attachment->post_excerpt ?></div>
-								<div class="clear"></div>
-								
-								<div class="detail-label"><?php _e('Meta', 'maxgalleria') ?>:</div>
-								<div class="detail-value">
-									<?php echo $image_gallery->get_image_size_display($attachment) ?> |
-									<?php echo $attachment->post_mime_type ?> |
-									<?php echo date(get_option('date_format'), strtotime($attachment->post_date)) ?>
 								</div>
-								<div class="clear"></div>
-								
-								<div class="detail-label"><?php _e('Link', 'maxgalleria') ?>:</div>
-								<div class="detail-value">
-									<a href="<?php echo get_post_meta($attachment->ID, 'maxgallery_attachment_image_link', true) ?>" target="_blank">
-										<?php echo get_post_meta($attachment->ID, 'maxgallery_attachment_image_link', true) ?>
-									</a>
-								</div>
-								<div class="clear"></div>
+							<?php } else { ?>
+								<?php echo wp_get_attachment_image($attachment->ID, MAXGALLERIA_META_IMAGE_THUMB_SMALL) ?>
+							<?php } ?>
+						</a>
+						<div class="actions">
+							<a href="#" title="<?php _e('Edit', 'maxgalleria') ?>" onclick="javascript:editImage(<?php echo $attachment->ID ?>); return false;"><?php _e('Edit', 'maxgalleria') ?></a> |
+							<a href="#" title="<?php _e('Remove', 'maxgalleria') ?>" onclick="javascript:removeImage(<?php echo $attachment->ID ?>); return false;"><?php _e('Remove', 'maxgalleria') ?></a> |
+							
+							<?php if ($is_excluded) { ?>
+								<a href="#" title="<?php _e('Include', 'maxgalleria') ?>" onclick="javascript:includeImage(<?php echo $attachment->ID ?>); return false;"><?php _e('Include', 'maxgalleria') ?></a>
+							<?php } else { ?>
+								<a href="#" title="<?php _e('Exclude', 'maxgalleria') ?>" onclick="javascript:excludeImage(<?php echo $attachment->ID ?>); return false;"><?php _e('Exclude', 'maxgalleria') ?></a>
+							<?php } ?>
+						</div>
+					</td>
+					<td class="text">
+						<div class="details">
+							<div class="detail-label"><?php _e('Title', 'maxgalleria') ?>:</div>
+							<div class="detail-value title-value"><?php echo $attachment->post_title ?></div>
+							<div class="clear"></div>
+							
+							<div class="detail-label"><?php _e('Alt Text', 'maxgalleria') ?>:</div>
+							<div class="detail-value"><?php echo get_post_meta($attachment->ID, '_wp_attachment_image_alt', true) ?></div>
+							<div class="clear"></div>
+							
+							<div class="detail-label"><?php _e('Caption', 'maxgalleria') ?>:</div>
+							<div class="detail-value"><?php echo $attachment->post_excerpt ?></div>
+							<div class="clear"></div>
+							
+							<div class="detail-label"><?php _e('Meta', 'maxgalleria') ?>:</div>
+							<div class="detail-value">
+								<?php echo $image_gallery->get_image_size_display($attachment) ?> |
+								<?php echo $attachment->post_mime_type ?> |
+								<?php echo date(get_option('date_format'), strtotime($attachment->post_date)) ?>
 							</div>
-						</td>
-						<td class="reorder">
-							<div class="reorder-media">
+							<div class="clear"></div>
+							
+							<div class="detail-label"><?php _e('Link', 'maxgalleria') ?>:</div>
+							<div class="detail-value">
+								<a href="<?php echo get_post_meta($attachment->ID, 'maxgallery_attachment_image_link', true) ?>" target="_blank">
+									<?php echo get_post_meta($attachment->ID, 'maxgallery_attachment_image_link', true) ?>
+								</a>
 							</div>
-						</td>
-					</tr>
-				<?php } ?>
-				</tbody>
-			</table>
-			
-			<?php wp_nonce_field($image_gallery->nonce_image_exclude_single['action'], $image_gallery->nonce_image_exclude_single['name']) ?>
-			<?php wp_nonce_field($image_gallery->nonce_image_exclude_bulk['action'], $image_gallery->nonce_image_exclude_bulk['name']) ?>
-			<?php wp_nonce_field($image_gallery->nonce_image_include_single['action'], $image_gallery->nonce_image_include_single['name']) ?>
-			<?php wp_nonce_field($image_gallery->nonce_image_include_bulk['action'], $image_gallery->nonce_image_include_bulk['name']) ?>
-			<?php wp_nonce_field($image_gallery->nonce_image_remove_single['action'], $image_gallery->nonce_image_remove_single['name']) ?>
-			<?php wp_nonce_field($image_gallery->nonce_image_remove_bulk['action'], $image_gallery->nonce_image_remove_bulk['name']) ?>
-			<?php wp_nonce_field($image_gallery->nonce_image_reorder['action'], $image_gallery->nonce_image_reorder['name']) ?>
-		<?php } ?>
-	</div>
+							<div class="clear"></div>
+						</div>
+					</td>
+					<td class="reorder">
+						<div class="reorder-media">
+						</div>
+					</td>
+				</tr>
+			<?php } ?>
+			</tbody>
+		</table>
+		
+		<?php wp_nonce_field($image_gallery->nonce_image_exclude_single['action'], $image_gallery->nonce_image_exclude_single['name']) ?>
+		<?php wp_nonce_field($image_gallery->nonce_image_exclude_bulk['action'], $image_gallery->nonce_image_exclude_bulk['name']) ?>
+		<?php wp_nonce_field($image_gallery->nonce_image_include_single['action'], $image_gallery->nonce_image_include_single['name']) ?>
+		<?php wp_nonce_field($image_gallery->nonce_image_include_bulk['action'], $image_gallery->nonce_image_include_bulk['name']) ?>
+		<?php wp_nonce_field($image_gallery->nonce_image_remove_single['action'], $image_gallery->nonce_image_remove_single['name']) ?>
+		<?php wp_nonce_field($image_gallery->nonce_image_remove_bulk['action'], $image_gallery->nonce_image_remove_bulk['name']) ?>
+		<?php wp_nonce_field($image_gallery->nonce_image_reorder['action'], $image_gallery->nonce_image_reorder['name']) ?>
+	<?php } ?>
 </div>

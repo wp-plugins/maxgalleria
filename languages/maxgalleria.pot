@@ -1,362 +1,410 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: maxgalleria\n"
-"POT-Creation-Date: 2014-02-15 19:39-0500\n"
-"PO-Revision-Date: 2014-02-15 19:39-0500\n"
+"POT-Creation-Date: 2014-05-08 11:22-0500\n"
+"PO-Revision-Date: 2014-05-08 11:22-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.4\n"
+"X-Generator: Poedit 1.6.5\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../addons/media-sources/youtube/youtube-settings.php:6
+#: ../addons/media-sources/youtube/youtube-settings.php:2
 msgid "YouTube Settings"
 msgstr ""
 
-#: ../addons/media-sources/youtube/youtube-settings.php:10
-msgid "This is where the YouTube settings go."
+#: ../addons/media-sources/youtube/youtube-settings.php:6
+msgid "There are no YouTube settings at this time."
 msgstr ""
 
 #: ../addons/media-sources/youtube/youtube.php:12
 msgid "YouTube"
 msgstr ""
 
-#: ../addons/templates/image-tiles/image-tiles-meta.php:17
-#: ../addons/templates/image-tiles/meta/skin.php:10
-#: ../addons/templates/video-tiles/meta/skin.php:10
-#: ../addons/templates/video-tiles/video-tiles-meta.php:17
-msgid "Skin"
+#: ../addons/templates/image-tiles/image-tiles-meta.php:55
+#: ../addons/templates/image-tiles/image-tiles-settings.php:78
+#: ../addons/templates/video-tiles/video-tiles-meta.php:55
+#: ../addons/templates/video-tiles/video-tiles-settings.php:73
+msgid "Gallery Skin:"
 msgstr ""
 
-#: ../addons/templates/image-tiles/image-tiles-meta.php:18
-#: ../addons/templates/video-tiles/video-tiles-meta.php:18
-msgid "Thumbnails"
+#: ../addons/templates/image-tiles/image-tiles-meta.php:68
+#: ../addons/templates/image-tiles/image-tiles-settings.php:89
+#: ../addons/templates/video-tiles/video-tiles-meta.php:68
+#: ../addons/templates/video-tiles/video-tiles-settings.php:84
+msgid "Thumbnail Columns:"
 msgstr ""
 
-#: ../addons/templates/image-tiles/image-tiles-meta.php:19
-#: ../addons/templates/video-tiles/video-tiles-meta.php:19
-msgid "Lightbox"
+#: ../addons/templates/image-tiles/image-tiles-meta.php:81
+#: ../addons/templates/image-tiles/image-tiles-settings.php:100
+#: ../addons/templates/video-tiles/video-tiles-meta.php:81
+#: ../addons/templates/video-tiles/video-tiles-settings.php:95
+msgid "Thumbnail Shape:"
 msgstr ""
 
-#: ../addons/templates/image-tiles/image-tiles-options.php:15
-#: ../addons/templates/video-tiles/video-tiles-options.php:15
-msgid "Below Image"
+#: ../addons/templates/image-tiles/image-tiles-meta.php:94
+#: ../addons/templates/image-tiles/image-tiles-settings.php:111
+#: ../addons/templates/video-tiles/video-tiles-meta.php:94
+#: ../addons/templates/video-tiles/video-tiles-settings.php:106
+msgid "Thumbnail Captions Enabled:"
 msgstr ""
 
-#: ../addons/templates/image-tiles/image-tiles-options.php:16
-#: ../addons/templates/video-tiles/video-tiles-options.php:16
-msgid "Bottom of Image"
+#: ../addons/templates/image-tiles/image-tiles-meta.php:102
+#: ../addons/templates/image-tiles/image-tiles-settings.php:117
+#: ../addons/templates/video-tiles/video-tiles-meta.php:102
+#: ../addons/templates/video-tiles/video-tiles-settings.php:112
+msgid "Thumbnail Captions Position:"
 msgstr ""
 
-#: ../addons/templates/image-tiles/image-tiles-options.php:20
-#: ../addons/templates/video-tiles/video-tiles-options.php:20
-msgid "Full"
+#: ../addons/templates/image-tiles/image-tiles-meta.php:115
+#: ../addons/templates/image-tiles/image-tiles-settings.php:128
+#: ../addons/templates/video-tiles/video-tiles-meta.php:115
+#: ../addons/templates/video-tiles/video-tiles-settings.php:123
+msgid "Thumbnail Click Opens:"
+msgstr ""
+
+#: ../addons/templates/image-tiles/image-tiles-meta.php:128
+#: ../addons/templates/video-tiles/video-tiles-meta.php:128
+msgid "Thumbnail Click New Window:"
+msgstr ""
+
+#: ../addons/templates/image-tiles/image-tiles-meta.php:136
+#: ../addons/templates/image-tiles/image-tiles-settings.php:139
+#: ../addons/templates/video-tiles/video-tiles-meta.php:136
+#: ../addons/templates/video-tiles/video-tiles-settings.php:134
+msgid "Thumbnail Custom Image Class:"
+msgstr ""
+
+#: ../addons/templates/image-tiles/image-tiles-meta.php:144
+#: ../addons/templates/image-tiles/image-tiles-settings.php:145
+#: ../addons/templates/video-tiles/video-tiles-meta.php:144
+#: ../addons/templates/video-tiles/video-tiles-settings.php:140
+msgid "Thumbnail Custom Image Container Class:"
+msgstr ""
+
+#: ../addons/templates/image-tiles/image-tiles-meta.php:152
+#: ../addons/templates/image-tiles/image-tiles-settings.php:151
+#: ../addons/templates/video-tiles/video-tiles-meta.php:152
+#: ../addons/templates/video-tiles/video-tiles-settings.php:146
+msgid "Thumbnail Custom Rel Attribute:"
+msgstr ""
+
+#: ../addons/templates/image-tiles/image-tiles-meta.php:160
+#: ../addons/templates/image-tiles/image-tiles-settings.php:157
+msgid "Lightbox Captions Enabled:"
+msgstr ""
+
+#: ../addons/templates/image-tiles/image-tiles-meta.php:168
+#: ../addons/templates/image-tiles/image-tiles-settings.php:163
+msgid "Lightbox Captions Position:"
+msgstr ""
+
+#: ../addons/templates/image-tiles/image-tiles-meta.php:181
+#: ../addons/templates/image-tiles/image-tiles-settings.php:174
+msgid "Lightbox Image Size:"
+msgstr ""
+
+#: ../addons/templates/image-tiles/image-tiles-meta.php:194
+#: ../addons/templates/image-tiles/image-tiles-settings.php:185
+msgid "Lightbox Image Custom Width:"
+msgstr ""
+
+#: ../addons/templates/image-tiles/image-tiles-meta.php:202
+#: ../addons/templates/image-tiles/image-tiles-settings.php:191
+msgid "Lightbox Image Custom Height:"
 msgstr ""
 
 #: ../addons/templates/image-tiles/image-tiles-options.php:21
-#: ../addons/templates/image-tiles/meta/thumbnails.php:132
-#: ../addons/templates/video-tiles/meta/thumbnails.php:132
 #: ../addons/templates/video-tiles/video-tiles-options.php:21
-msgid "Custom"
+msgid "Below Image"
 msgstr ""
 
-#: ../addons/templates/image-tiles/image-tiles-options.php:25
-#: ../addons/templates/video-tiles/video-tiles-options.php:25
-msgid "No Border"
+#: ../addons/templates/image-tiles/image-tiles-options.php:22
+#: ../addons/templates/video-tiles/video-tiles-options.php:22
+msgid "Bottom of Image"
 msgstr ""
 
 #: ../addons/templates/image-tiles/image-tiles-options.php:26
 #: ../addons/templates/video-tiles/video-tiles-options.php:26
-msgid "Picture Frame"
+msgid "Full"
 msgstr ""
 
 #: ../addons/templates/image-tiles/image-tiles-options.php:27
 #: ../addons/templates/video-tiles/video-tiles-options.php:27
-msgid "Portal"
-msgstr ""
-
-#: ../addons/templates/image-tiles/image-tiles-options.php:28
-#: ../addons/templates/video-tiles/video-tiles-options.php:28
-msgid "Portal Dark"
-msgstr ""
-
-#: ../addons/templates/image-tiles/image-tiles-options.php:29
-#: ../addons/templates/video-tiles/video-tiles-options.php:29
-msgid "Standard"
-msgstr ""
-
-#: ../addons/templates/image-tiles/image-tiles-options.php:30
-#: ../addons/templates/video-tiles/video-tiles-options.php:30
-msgid "Standard Dark"
+msgid "Custom"
 msgstr ""
 
 #: ../addons/templates/image-tiles/image-tiles-options.php:31
 #: ../addons/templates/video-tiles/video-tiles-options.php:31
-msgid "Tightness"
+msgid "No Border"
 msgstr ""
 
 #: ../addons/templates/image-tiles/image-tiles-options.php:32
 #: ../addons/templates/video-tiles/video-tiles-options.php:32
-msgid "Tightness Dark"
+msgid "Picture Frame"
+msgstr ""
+
+#: ../addons/templates/image-tiles/image-tiles-options.php:33
+#: ../addons/templates/video-tiles/video-tiles-options.php:33
+msgid "Portal"
+msgstr ""
+
+#: ../addons/templates/image-tiles/image-tiles-options.php:34
+#: ../addons/templates/video-tiles/video-tiles-options.php:34
+msgid "Portal Dark"
+msgstr ""
+
+#: ../addons/templates/image-tiles/image-tiles-options.php:35
+#: ../addons/templates/video-tiles/video-tiles-options.php:35
+msgid "Standard"
 msgstr ""
 
 #: ../addons/templates/image-tiles/image-tiles-options.php:36
-msgid "Lightbox Image"
+#: ../addons/templates/video-tiles/video-tiles-options.php:36
+msgid "Standard Dark"
 msgstr ""
 
 #: ../addons/templates/image-tiles/image-tiles-options.php:37
-msgid "Image Page"
+#: ../addons/templates/video-tiles/video-tiles-options.php:37
+msgid "Tightness"
 msgstr ""
 
 #: ../addons/templates/image-tiles/image-tiles-options.php:38
-msgid "Image Link"
+#: ../addons/templates/video-tiles/video-tiles-options.php:38
+msgid "Tightness Dark"
 msgstr ""
 
-#: ../addons/templates/image-tiles/image-tiles-options.php:39
-msgid "Original Image"
+#: ../addons/templates/image-tiles/image-tiles-options.php:42
+msgid "Lightbox Image"
 msgstr ""
 
 #: ../addons/templates/image-tiles/image-tiles-options.php:43
-#: ../addons/templates/video-tiles/video-tiles-options.php:41
-msgid "Landscape"
+msgid "Image Page"
 msgstr ""
 
 #: ../addons/templates/image-tiles/image-tiles-options.php:44
-#: ../addons/templates/video-tiles/video-tiles-options.php:42
-msgid "Portrait"
+msgid "Image Link"
 msgstr ""
 
 #: ../addons/templates/image-tiles/image-tiles-options.php:45
-#: ../addons/templates/video-tiles/video-tiles-options.php:43
+msgid "Original Image"
+msgstr ""
+
+#: ../addons/templates/image-tiles/image-tiles-options.php:62
+#: ../addons/templates/video-tiles/video-tiles-options.php:60
+msgid "Landscape"
+msgstr ""
+
+#: ../addons/templates/image-tiles/image-tiles-options.php:63
+#: ../addons/templates/video-tiles/video-tiles-options.php:61
+msgid "Portrait"
+msgstr ""
+
+#: ../addons/templates/image-tiles/image-tiles-options.php:64
+#: ../addons/templates/video-tiles/video-tiles-options.php:62
 msgid "Square"
 msgstr ""
 
-#: ../addons/templates/image-tiles/image-tiles-settings.php:6
-msgid "Image Tile Settings"
+#: ../addons/templates/image-tiles/image-tiles-settings.php:65
+#: ../addons/templates/video-tiles/video-tiles-settings.php:60
+msgid "Settings saved."
 msgstr ""
 
-#: ../addons/templates/image-tiles/image-tiles-settings.php:10
-msgid "This is where the Image Tiles settings go."
+#: ../addons/templates/image-tiles/image-tiles-settings.php:69
+msgid "Image Tiles Defaults"
+msgstr ""
+
+#: ../addons/templates/image-tiles/image-tiles-settings.php:73
+msgid ""
+"These are the default settings that will be used every time you create a "
+"gallery with the Image Tiles template. Each of these settings can be changed "
+"per gallery."
+msgstr ""
+
+#: ../addons/templates/image-tiles/image-tiles-settings.php:202
+#: ../addons/templates/video-tiles/video-tiles-settings.php:180
+#: ../admin/settings.php:171
+msgid "Save Settings"
+msgstr ""
+
+#: ../addons/templates/image-tiles/image-tiles-settings.php:203
+#: ../addons/templates/video-tiles/video-tiles-settings.php:181
+msgid "Revert Defaults"
 msgstr ""
 
 #: ../addons/templates/image-tiles/image-tiles.php:13
 msgid "Image Tiles"
 msgstr ""
 
-#: ../addons/templates/image-tiles/meta/lightbox.php:38
-#: ../addons/templates/image-tiles/meta/thumbnails.php:70
-#: ../addons/templates/video-tiles/meta/thumbnails.php:70
-msgid "Captions"
+#: ../addons/templates/video-tiles/video-tiles-meta.php:160
+#: ../addons/templates/video-tiles/video-tiles-settings.php:152
+msgid "Lightbox Video Size:"
 msgstr ""
 
-#: ../addons/templates/image-tiles/meta/lightbox.php:43
-#: ../addons/templates/image-tiles/meta/thumbnails.php:75
-#: ../addons/templates/video-tiles/meta/thumbnails.php:75
-#: ../meta/meta-advanced.php:24 ../meta/meta-advanced.php:51
-#: ../meta/meta-description.php:24
-msgid "Enabled"
+#: ../addons/templates/video-tiles/video-tiles-meta.php:173
+#: ../addons/templates/video-tiles/video-tiles-settings.php:163
+msgid "Lightbox Video Custom Width:"
 msgstr ""
 
-#: ../addons/templates/image-tiles/meta/lightbox.php:51
-#: ../addons/templates/image-tiles/meta/thumbnails.php:83
-#: ../addons/templates/video-tiles/meta/thumbnails.php:83
-msgid "Position"
+#: ../addons/templates/video-tiles/video-tiles-meta.php:181
+#: ../addons/templates/video-tiles/video-tiles-settings.php:169
+msgid "Lightbox Video Custom Height:"
 msgstr ""
 
-#: ../addons/templates/image-tiles/meta/lightbox.php:65
-#: ../addons/templates/image-tiles/meta/lightbox.php:70
-msgid "Image Size"
-msgstr ""
-
-#: ../addons/templates/image-tiles/meta/lightbox.php:83
-#: ../addons/templates/video-tiles/meta/lightbox.php:58
-msgid "Custom Width"
-msgstr ""
-
-#: ../addons/templates/image-tiles/meta/lightbox.php:91
-#: ../addons/templates/video-tiles/meta/lightbox.php:66
-msgid "Custom Height"
-msgstr ""
-
-#: ../addons/templates/image-tiles/meta/thumbnails.php:49
-#: ../addons/templates/video-tiles/meta/thumbnails.php:49
-msgid "Columns"
-msgstr ""
-
-#: ../addons/templates/image-tiles/meta/thumbnails.php:58
-#: ../addons/templates/video-tiles/meta/thumbnails.php:58
-msgid "Shape"
-msgstr ""
-
-#: ../addons/templates/image-tiles/meta/thumbnails.php:97
-#: ../addons/templates/video-tiles/meta/thumbnails.php:97
-msgid "Click"
-msgstr ""
-
-#: ../addons/templates/image-tiles/meta/thumbnails.php:102
-#: ../addons/templates/video-tiles/meta/thumbnails.php:102
-msgid "Thumb Click Should Open"
-msgstr ""
-
-#: ../addons/templates/image-tiles/meta/thumbnails.php:120
-#: ../addons/templates/video-tiles/meta/thumbnails.php:120
-msgid "Open in New Window"
-msgstr ""
-
-#: ../addons/templates/image-tiles/meta/thumbnails.php:126
-msgid "Does not apply if Lightbox Image is selected."
-msgstr ""
-
-#: ../addons/templates/image-tiles/meta/thumbnails.php:137
-#: ../addons/templates/video-tiles/meta/thumbnails.php:137
-msgid "These options for developers only."
-msgstr ""
-
-#: ../addons/templates/image-tiles/meta/thumbnails.php:142
-#: ../addons/templates/video-tiles/meta/thumbnails.php:142
-msgid "Image Class"
-msgstr ""
-
-#: ../addons/templates/image-tiles/meta/thumbnails.php:152
-#: ../addons/templates/video-tiles/meta/thumbnails.php:152
-msgid "Image Container Class"
-msgstr ""
-
-#: ../addons/templates/image-tiles/meta/thumbnails.php:162
-#: ../addons/templates/video-tiles/meta/thumbnails.php:162
-msgid "Rel Attribute"
-msgstr ""
-
-#: ../addons/templates/video-tiles/meta/lightbox.php:37
-msgid ""
-"These settings apply only if the thumbnail click option is set to open a "
-"video lightbox."
-msgstr ""
-
-#: ../addons/templates/video-tiles/meta/lightbox.php:40
-#: ../addons/templates/video-tiles/meta/lightbox.php:45
-msgid "Video Size"
-msgstr ""
-
-#: ../addons/templates/video-tiles/meta/thumbnails.php:126
-msgid "Does not apply if Video Lightbox is selected."
-msgstr ""
-
-#: ../addons/templates/video-tiles/video-tiles-options.php:36
+#: ../addons/templates/video-tiles/video-tiles-options.php:42
 msgid "Video Lightbox"
 msgstr ""
 
-#: ../addons/templates/video-tiles/video-tiles-options.php:37
+#: ../addons/templates/video-tiles/video-tiles-options.php:43
 msgid "Video URL"
 msgstr ""
 
-#: ../addons/templates/video-tiles/video-tiles-settings.php:6
-msgid "Video Tile Settings"
+#: ../addons/templates/video-tiles/video-tiles-settings.php:64
+msgid "Video Tiles Defaults"
 msgstr ""
 
-#: ../addons/templates/video-tiles/video-tiles-settings.php:10
-msgid "This is where the Video Tiles settings go."
+#: ../addons/templates/video-tiles/video-tiles-settings.php:68
+msgid ""
+"These are the default settings that will be used every time you create a "
+"gallery with the Video Tiles template. Each of these settings can be changed "
+"per gallery."
 msgstr ""
 
 #: ../addons/templates/video-tiles/video-tiles.php:13
 msgid "Video Tiles"
 msgstr ""
 
-#: ../admin/nextgen-importer.php:80 ../maxgalleria-admin.php:13
+#: ../admin/nextgen-importer.php:81 ../maxgalleria-admin.php:13
 msgid "MaxGalleria: NextGEN Importer"
 msgstr ""
 
-#: ../admin/nextgen-importer.php:97
+#: ../admin/nextgen-importer.php:98
 msgid ""
 "Please wait while the images are imported from NextGEN. This may take a few "
 "minutes, depending on the number and size of the images."
 msgstr ""
 
-#: ../admin/nextgen-importer.php:115
+#: ../admin/nextgen-importer.php:116
 msgid "Which NextGEN gallery do you want to import?"
 msgstr ""
 
-#: ../admin/nextgen-importer.php:126 ../admin/nextgen-importer.php:167
-#: ../maxgalleria-media-button.php:43
+#: ../admin/nextgen-importer.php:127 ../admin/nextgen-importer.php:168
 msgid " (0 images)"
 msgstr ""
 
-#: ../admin/nextgen-importer.php:127 ../admin/nextgen-importer.php:168
-#: ../maxgalleria-media-button.php:44
+#: ../admin/nextgen-importer.php:128 ../admin/nextgen-importer.php:169
 msgid " (1 image)"
 msgstr ""
 
-#: ../admin/nextgen-importer.php:128 ../admin/nextgen-importer.php:169
-#: ../maxgalleria-media-button.php:45
+#: ../admin/nextgen-importer.php:129 ../admin/nextgen-importer.php:170
 #, php-format
 msgid " (%d images)"
 msgstr ""
 
-#: ../admin/nextgen-importer.php:141
+#: ../admin/nextgen-importer.php:142
 msgid "Where do you want to import it?"
 msgstr ""
 
-#: ../admin/nextgen-importer.php:147
+#: ../admin/nextgen-importer.php:148
 msgid "New MaxGalleria gallery"
 msgstr ""
 
-#: ../admin/nextgen-importer.php:149
+#: ../admin/nextgen-importer.php:150
 msgid "Enter gallery title"
 msgstr ""
 
-#: ../admin/nextgen-importer.php:154
+#: ../admin/nextgen-importer.php:155
 msgid "Existing MaxGalleria gallery"
 msgstr ""
 
-#: ../admin/nextgen-importer.php:183
+#: ../admin/nextgen-importer.php:184
 msgid "Import NextGEN Gallery"
 msgstr ""
 
-#: ../admin/nextgen-importer.php:191
+#: ../admin/nextgen-importer.php:192
 msgid "You do not have any NextGEN galleries."
 msgstr ""
 
-#: ../admin/nextgen-importer.php:194
+#: ../admin/nextgen-importer.php:195
 msgid "You do not have the NextGEN Gallery plugin installed."
 msgstr ""
 
-#: ../admin/settings.php:20 ../maxgalleria-admin.php:21
+#: ../admin/settings.php:64 ../maxgalleria-admin.php:21
 msgid "MaxGalleria: Settings"
 msgstr ""
 
-#: ../admin/settings.php:32 ../admin/settings.php:34
+#: ../admin/settings.php:76 ../admin/settings.php:78
 msgid "General"
 msgstr ""
 
-#: ../admin/settings.php:38
+#: ../admin/settings.php:83 ../admin/settings.php:85
+msgid "Albums"
+msgstr ""
+
+#: ../admin/settings.php:90
 msgid "Templates"
 msgstr ""
 
-#: ../admin/settings.php:47
+#: ../admin/settings.php:99
 msgid "Media Sources"
 msgstr ""
 
-#: ../admin/settings.php:62
-msgid "Rewrite Slug"
+#: ../admin/settings.php:114
+#, php-format
+msgid ""
+"Settings saved. %sRe-save your permalinks%s to avoid \"page not found\" "
+"errors."
 msgstr ""
 
-#: ../admin/settings.php:66
+#: ../admin/settings.php:119
+msgid "Gallery Rewrite Slug"
+msgstr ""
+
+#: ../admin/settings.php:122
 msgid "The rewrite slug is how WordPress knows to display your galleries."
 msgstr ""
 
-#: ../admin/settings.php:70
-msgid "Slug:"
+#: ../admin/settings.php:123
+msgid "gallery-name"
 msgstr ""
 
-#: ../admin/settings.php:77
-msgid "Save Settings"
+#: ../admin/settings.php:127
+msgid "Searchable Galleries"
+msgstr ""
+
+#: ../admin/settings.php:130
+msgid ""
+"By default all galleries will appear in your search results; you can disable "
+"this using the option below. This setting affects all galleries."
+msgstr ""
+
+#: ../admin/settings.php:132
+msgid "Exclude from Search:"
+msgstr ""
+
+#: ../admin/settings.php:138
+msgid "Default Templates"
+msgstr ""
+
+#: ../admin/settings.php:141
+msgid ""
+"Select the default template for image and video galleries. These can be "
+"changed per gallery."
+msgstr ""
+
+#: ../admin/settings.php:144
+msgid "Image Galleries:"
+msgstr ""
+
+#: ../admin/settings.php:155
+msgid "Video Galleries:"
 msgstr ""
 
 #: ../admin/support.php:15 ../maxgalleria-admin.php:29
@@ -386,7 +434,7 @@ msgstr ""
 msgid "NextGEN Importer"
 msgstr ""
 
-#: ../maxgalleria-admin.php:22
+#: ../maxgalleria-admin.php:22 ../maxgalleria.php:199
 msgid "Settings"
 msgstr ""
 
@@ -394,101 +442,114 @@ msgstr ""
 msgid "Support"
 msgstr ""
 
-#: ../maxgalleria-image-gallery.php:171
+#: ../maxgalleria-image-gallery.php:200
 msgid "Included the image in this gallery."
 msgstr ""
 
-#: ../maxgalleria-image-gallery.php:197
+#: ../maxgalleria-image-gallery.php:233
 msgid "Included 1 image in this gallery."
 msgstr ""
 
-#: ../maxgalleria-image-gallery.php:201
+#: ../maxgalleria-image-gallery.php:237
 #, php-format
 msgid "Included %d images in this gallery."
 msgstr ""
 
-#: ../maxgalleria-image-gallery.php:219
+#: ../maxgalleria-image-gallery.php:258
 msgid "Excluded the image from this gallery."
 msgstr ""
 
-#: ../maxgalleria-image-gallery.php:245
+#: ../maxgalleria-image-gallery.php:291
 msgid "Excluded 1 image from this gallery."
 msgstr ""
 
-#: ../maxgalleria-image-gallery.php:249
+#: ../maxgalleria-image-gallery.php:295
 #, php-format
 msgid "Excluded %d images from this gallery."
 msgstr ""
 
-#: ../maxgalleria-image-gallery.php:271
+#: ../maxgalleria-image-gallery.php:321
 msgid ""
 "Removed the image from this gallery. To delete it permanently, use the Media "
 "Library."
 msgstr ""
 
-#: ../maxgalleria-image-gallery.php:301
+#: ../maxgalleria-image-gallery.php:359
 msgid ""
 "Removed 1 image from this gallery. To delete it permanently, use the Media "
 "Library."
 msgstr ""
 
-#: ../maxgalleria-image-gallery.php:305
+#: ../maxgalleria-image-gallery.php:363
 #, php-format
 msgid ""
 "Removed %d images from this gallery. To delete them permanently, use the "
 "Media Library."
 msgstr ""
 
-#: ../maxgalleria-media-button.php:15
+#: ../maxgalleria-media-button.php:18
 msgid "Please select a gallery."
 msgstr ""
 
-#: ../maxgalleria-media-button.php:27
+#: ../maxgalleria-media-button.php:30
 msgid "Insert Gallery into Editor"
 msgstr ""
 
-#: ../maxgalleria-media-button.php:30
+#: ../maxgalleria-media-button.php:33
 msgid ""
 "Select a gallery from the list below, then click \"Insert Gallery\" to place "
 "the gallery shortcode in the editor."
 msgstr ""
 
-#: ../maxgalleria-media-button.php:33
+#: ../maxgalleria-media-button.php:36
 msgid "Select Gallery"
 msgstr ""
 
-#: ../maxgalleria-media-button.php:34
+#: ../maxgalleria-media-button.php:37
 msgid "Image Galleries"
 msgstr ""
 
-#: ../maxgalleria-media-button.php:53
+#: ../maxgalleria-media-button.php:49 ../maxgalleria.php:167
+msgid "0 images"
+msgstr ""
+
+#: ../maxgalleria-media-button.php:50 ../maxgalleria.php:168
+msgid "1 image"
+msgstr ""
+
+#: ../maxgalleria-media-button.php:51 ../maxgalleria.php:169
+#, php-format
+msgid "%d images"
+msgstr ""
+
+#: ../maxgalleria-media-button.php:59
 msgid "Video Galleries"
 msgstr ""
 
-#: ../maxgalleria-media-button.php:62
-msgid " (0 videos)"
+#: ../maxgalleria-media-button.php:71 ../maxgalleria.php:173
+msgid "0 videos"
 msgstr ""
 
-#: ../maxgalleria-media-button.php:63
-msgid " (1 video)"
+#: ../maxgalleria-media-button.php:72 ../maxgalleria.php:174
+msgid "1 video"
 msgstr ""
 
-#: ../maxgalleria-media-button.php:64
+#: ../maxgalleria-media-button.php:73 ../maxgalleria.php:175
 #, php-format
-msgid " (%d videos)"
+msgid "%d videos"
 msgstr ""
 
-#: ../maxgalleria-media-button.php:73
+#: ../maxgalleria-media-button.php:82
 msgid "Insert Gallery"
 msgstr ""
 
-#: ../maxgalleria-media-button.php:74 ../meta/image-edit-bulk.php:139
-#: ../meta/image-edit.php:121 ../meta/video-add.php:145
+#: ../maxgalleria-media-button.php:83 ../meta/image-edit-bulk.php:141
+#: ../meta/image-edit.php:121 ../meta/video-add.php:167
 #: ../meta/video-edit-bulk.php:167 ../meta/video-edit.php:148
 msgid "Cancel"
 msgstr ""
 
-#: ../maxgalleria-meta.php:20 ../maxgalleria.php:406
+#: ../maxgalleria-meta.php:20 ../maxgalleria.php:420
 msgid "New Gallery"
 msgstr ""
 
@@ -496,242 +557,200 @@ msgstr ""
 msgid "Shortcodes"
 msgstr ""
 
-#: ../maxgalleria-meta.php:25 ../maxgalleria-meta.php:36
-#: ../maxgalleria.php:243 ../meta/meta-template.php:49
-msgid "Template"
-msgstr ""
-
 #: ../maxgalleria-meta.php:29 ../maxgalleria-meta.php:40
-#: ../meta/meta-description.php:19
-msgid "Description"
+#: ../maxgalleria.php:416
+msgid "Gallery"
 msgstr ""
 
-#: ../maxgalleria-meta.php:30 ../maxgalleria-meta.php:41
-msgid "Advanced"
-msgstr ""
-
-#: ../maxgalleria-meta.php:31 ../meta/meta-images.php:21
-msgid "Images"
-msgstr ""
-
-#: ../maxgalleria-meta.php:42 ../meta/meta-videos.php:22
-msgid "Videos"
-msgstr ""
-
-#: ../maxgalleria-nextgen.php:106
+#: ../maxgalleria-nextgen.php:114
 #, php-format
 msgid ""
 "%sSuccessfully imported %d of %d images from NextGEN into the \"%s%s%s\" "
 "gallery.%s"
 msgstr ""
 
-#: ../maxgalleria-video-gallery.php:110
+#: ../maxgalleria-video-gallery.php:113
 msgid "Included the video in this gallery."
 msgstr ""
 
-#: ../maxgalleria-video-gallery.php:136
+#: ../maxgalleria-video-gallery.php:143
 msgid "Included 1 video in this gallery."
 msgstr ""
 
-#: ../maxgalleria-video-gallery.php:140
+#: ../maxgalleria-video-gallery.php:147
 #, php-format
 msgid "Included %d videos in this gallery."
 msgstr ""
 
-#: ../maxgalleria-video-gallery.php:158
+#: ../maxgalleria-video-gallery.php:168
 msgid "Excluded the video from this gallery."
 msgstr ""
 
-#: ../maxgalleria-video-gallery.php:184
+#: ../maxgalleria-video-gallery.php:198
 msgid "Excluded 1 video from this gallery."
 msgstr ""
 
-#: ../maxgalleria-video-gallery.php:188
+#: ../maxgalleria-video-gallery.php:202
 #, php-format
 msgid "Excluded %d videos from this gallery."
 msgstr ""
 
-#: ../maxgalleria-video-gallery.php:210
+#: ../maxgalleria-video-gallery.php:228
 msgid ""
 "Removed the video from this gallery. To delete it permanently, use the Media "
 "Library."
 msgstr ""
 
-#: ../maxgalleria-video-gallery.php:240
+#: ../maxgalleria-video-gallery.php:266
 msgid ""
 "Removed 1 video from this gallery. To delete it permanently, use the Media "
 "Library."
 msgstr ""
 
-#: ../maxgalleria-video-gallery.php:244
+#: ../maxgalleria-video-gallery.php:270
 #, php-format
 msgid ""
 "Removed %d videos from this gallery. To delete them permanently, use the "
 "Media Library."
 msgstr ""
 
-#: ../maxgalleria.php:142 ../maxgalleria.php:605 ../meta/meta-new.php:65
-#: ../meta/meta-new.php:67
+#: ../maxgalleria.php:140 ../maxgalleria.php:622 ../meta/meta-new.php:69
+#: ../meta/meta-new.php:71
 msgid "Image"
 msgstr ""
 
-#: ../maxgalleria.php:146 ../meta/meta-new.php:70 ../meta/meta-new.php:72
+#: ../maxgalleria.php:144 ../meta/meta-new.php:74 ../meta/meta-new.php:76
 msgid "Video"
 msgstr ""
 
-#: ../maxgalleria.php:173
-msgid "0 images"
-msgstr ""
-
-#: ../maxgalleria.php:174
-msgid "1 image"
-msgstr ""
-
-#: ../maxgalleria.php:175
-#, php-format
-msgid "%d images"
-msgstr ""
-
-#: ../maxgalleria.php:179
-msgid "0 videos"
-msgstr ""
-
-#: ../maxgalleria.php:180
-msgid "1 video"
-msgstr ""
-
-#: ../maxgalleria.php:181
-#, php-format
-msgid "%d videos"
-msgstr ""
-
-#: ../maxgalleria.php:205 ../maxgalleria.php:401
+#: ../maxgalleria.php:202 ../maxgalleria.php:415
 msgid "Galleries"
 msgstr ""
 
-#: ../maxgalleria.php:240 ../meta/image-edit-bulk.php:88
-#: ../meta/image-edit.php:73 ../meta/meta-images.php:315
-#: ../meta/meta-videos.php:342 ../meta/video-edit-bulk.php:96
+#: ../maxgalleria.php:237 ../meta/image-edit-bulk.php:90
+#: ../meta/image-edit.php:73 ../meta/meta-images.php:311
+#: ../meta/meta-videos.php:352 ../meta/video-edit-bulk.php:96
 #: ../meta/video-edit.php:81
 msgid "Title"
 msgstr ""
 
-#: ../maxgalleria.php:241
+#: ../maxgalleria.php:238
 msgid "Thumbnail"
 msgstr ""
 
-#: ../maxgalleria.php:242
+#: ../maxgalleria.php:239
 msgid "Type"
 msgstr ""
 
-#: ../maxgalleria.php:244
+#: ../maxgalleria.php:240 ../meta/meta-image-gallery.php:11
+#: ../meta/meta-video-gallery.php:11
+msgid "Template"
+msgstr ""
+
+#: ../maxgalleria.php:241
 msgid "Number of Media"
 msgstr ""
 
-#: ../maxgalleria.php:245
+#: ../maxgalleria.php:242
 msgid "Shortcode"
 msgstr ""
 
-#: ../maxgalleria.php:246
+#: ../maxgalleria.php:243
 msgid "Date"
 msgstr ""
 
-#: ../maxgalleria.php:384
+#: ../maxgalleria.php:396
 msgid "Add Gallery"
 msgstr ""
 
-#: ../maxgalleria.php:402
-msgid "Gallery"
-msgstr ""
-
-#: ../maxgalleria.php:403
+#: ../maxgalleria.php:417
 msgid "Add New"
 msgstr ""
 
-#: ../maxgalleria.php:404
+#: ../maxgalleria.php:418
 msgid "Add New Gallery"
 msgstr ""
 
-#: ../maxgalleria.php:405
+#: ../maxgalleria.php:419
 msgid "Edit Gallery"
 msgstr ""
 
-#: ../maxgalleria.php:407
+#: ../maxgalleria.php:421
 msgid "View Gallery"
 msgstr ""
 
-#: ../maxgalleria.php:408
+#: ../maxgalleria.php:422
 msgid "Search Galleries"
 msgstr ""
 
-#: ../maxgalleria.php:409
+#: ../maxgalleria.php:423
 msgid "No galleries found"
 msgstr ""
 
-#: ../maxgalleria.php:410
+#: ../maxgalleria.php:424
 msgid "No galleries found in trash"
 msgstr ""
 
-#: ../maxgalleria.php:561 ../meta/meta-images.php:236
+#: ../maxgalleria.php:578 ../meta/meta-images.php:232
 msgid "Add Images"
 msgstr ""
 
-#: ../maxgalleria.php:562 ../meta/video-add.php:142
+#: ../maxgalleria.php:579 ../meta/video-add.php:164
 msgid "Add to Gallery"
 msgstr ""
 
-#: ../maxgalleria.php:563
+#: ../maxgalleria.php:580
 msgid "Added to this gallery"
 msgstr ""
 
-#: ../maxgalleria.php:603
+#: ../maxgalleria.php:620
 msgid "Next >"
 msgstr ""
 
-#: ../maxgalleria.php:604
+#: ../maxgalleria.php:621
 msgid "< Prev"
 msgstr ""
 
-#: ../maxgalleria.php:606
+#: ../maxgalleria.php:623
 msgid "of"
 msgstr ""
 
-#: ../maxgalleria.php:607
+#: ../maxgalleria.php:624 ../meta/video-add.php:135
 msgid "Close"
 msgstr ""
 
-#: ../maxgalleria.php:608
+#: ../maxgalleria.php:625
 msgid ""
 "This feature requires inline frames. You have iframes disabled or your "
 "browser does not support them."
 msgstr ""
 
-#: ../meta/image-edit-bulk.php:44 ../meta/meta-images.php:69
+#: ../meta/image-edit-bulk.php:46 ../meta/meta-images.php:66
 msgid "Edit Bulk Images"
 msgstr ""
 
-#: ../meta/image-edit-bulk.php:98 ../meta/meta-images.php:319
-#: ../meta/meta-videos.php:346 ../meta/video-edit-bulk.php:106
+#: ../meta/image-edit-bulk.php:100 ../meta/meta-images.php:315
+#: ../meta/meta-videos.php:356 ../meta/video-edit-bulk.php:106
 msgid "Alt Text"
 msgstr ""
 
-#: ../meta/image-edit-bulk.php:108 ../meta/image-edit.php:91
-#: ../meta/meta-images.php:323 ../meta/meta-videos.php:350
+#: ../meta/image-edit-bulk.php:110 ../meta/image-edit.php:91
+#: ../meta/meta-images.php:319 ../meta/meta-videos.php:360
 #: ../meta/video-edit-bulk.php:116 ../meta/video-edit.php:99
 msgid "Caption"
 msgstr ""
 
-#: ../meta/image-edit-bulk.php:118 ../meta/image-edit.php:100
-#: ../meta/meta-images.php:335
+#: ../meta/image-edit-bulk.php:120 ../meta/image-edit.php:100
+#: ../meta/meta-images.php:331
 msgid "Link"
 msgstr ""
 
-#: ../meta/image-edit-bulk.php:136 ../meta/image-edit.php:118
+#: ../meta/image-edit-bulk.php:138 ../meta/image-edit.php:118
 #: ../meta/video-edit-bulk.php:164 ../meta/video-edit.php:145
 msgid "Save Changes"
 msgstr ""
 
-#: ../meta/image-edit.php:40 ../meta/meta-images.php:133
+#: ../meta/image-edit.php:40 ../meta/meta-images.php:130
 msgid "Edit Image"
 msgstr ""
 
@@ -739,19 +758,23 @@ msgstr ""
 msgid "Alternate Text"
 msgstr ""
 
-#: ../meta/meta-advanced.php:14
+#: ../meta/meta-advanced.php:10
 msgid "Custom Styles"
 msgstr ""
 
-#: ../meta/meta-advanced.php:19
+#: ../meta/meta-advanced.php:15
 msgid ""
 "Add custom styles by using another stylesheet. This stylesheet will be "
 "loaded after all other gallery styles."
 msgstr ""
 
-#: ../meta/meta-advanced.php:32 ../meta/meta-advanced.php:59
-#: ../meta/meta-videos.php:361
-msgid "URL"
+#: ../meta/meta-advanced.php:20 ../meta/meta-advanced.php:51
+#: ../meta/meta-description.php:15
+msgid "Enabled:"
+msgstr ""
+
+#: ../meta/meta-advanced.php:28 ../meta/meta-advanced.php:59
+msgid "URL:"
 msgstr ""
 
 #: ../meta/meta-advanced.php:41
@@ -764,17 +787,17 @@ msgid ""
 "loaded after all other gallery scripts."
 msgstr ""
 
-#: ../meta/meta-advanced.php:68
+#: ../meta/meta-advanced.php:72
 msgid "Reset"
 msgstr ""
 
-#: ../meta/meta-advanced.php:70
+#: ../meta/meta-advanced.php:77
 msgid ""
 "Reset all gallery options to their default values. This action cannot be "
 "undone."
 msgstr ""
 
-#: ../meta/meta-advanced.php:72
+#: ../meta/meta-advanced.php:83
 msgid "Yes, I understand"
 msgstr ""
 
@@ -786,89 +809,105 @@ msgstr ""
 msgid "Below Gallery"
 msgstr ""
 
-#: ../meta/meta-description.php:32
-msgid "Location"
+#: ../meta/meta-description.php:23
+msgid "Location:"
 msgstr ""
 
-#: ../meta/meta-description.php:45
-msgid "Text"
+#: ../meta/meta-description.php:36
+msgid "Text:"
 msgstr ""
 
-#: ../meta/meta-description.php:46
+#: ../meta/meta-description.php:37
 msgid "HTML is allowed"
 msgstr ""
 
-#: ../meta/meta-images.php:138
+#: ../meta/meta-image-gallery.php:10
+msgid "Images"
+msgstr ""
+
+#: ../meta/meta-image-gallery.php:12 ../meta/meta-video-gallery.php:12
+msgid "Options"
+msgstr ""
+
+#: ../meta/meta-image-gallery.php:13 ../meta/meta-video-gallery.php:13
+msgid "Description"
+msgstr ""
+
+#: ../meta/meta-image-gallery.php:14 ../meta/meta-video-gallery.php:14
+msgid "Advanced"
+msgstr ""
+
+#: ../meta/meta-images.php:135
 msgid "Are you sure you want to exclude this image from the gallery?"
 msgstr ""
 
-#: ../meta/meta-images.php:163
+#: ../meta/meta-images.php:160
 msgid "Are you sure you want to include this image in the gallery?"
 msgstr ""
 
-#: ../meta/meta-images.php:188
+#: ../meta/meta-images.php:185
 msgid "Are you sure you want to remove this image from the gallery?"
 msgstr ""
 
-#: ../meta/meta-images.php:241 ../meta/meta-videos.php:262
+#: ../meta/meta-images.php:237 ../meta/meta-videos.php:262
 msgid "Bulk Actions"
 msgstr ""
 
-#: ../meta/meta-images.php:242 ../meta/meta-images.php:303
-#: ../meta/meta-videos.php:263 ../meta/meta-videos.php:314
+#: ../meta/meta-images.php:238 ../meta/meta-images.php:299
+#: ../meta/meta-videos.php:263 ../meta/meta-videos.php:324
 msgid "Edit"
 msgstr ""
 
-#: ../meta/meta-images.php:243 ../meta/meta-images.php:309
-#: ../meta/meta-videos.php:264 ../meta/meta-videos.php:320
+#: ../meta/meta-images.php:239 ../meta/meta-images.php:305
+#: ../meta/meta-videos.php:264 ../meta/meta-videos.php:330
 msgid "Exclude"
 msgstr ""
 
-#: ../meta/meta-images.php:244 ../meta/meta-images.php:307
-#: ../meta/meta-videos.php:265 ../meta/meta-videos.php:318
+#: ../meta/meta-images.php:240 ../meta/meta-images.php:303
+#: ../meta/meta-videos.php:265 ../meta/meta-videos.php:328
 msgid "Include"
 msgstr ""
 
-#: ../meta/meta-images.php:245 ../meta/meta-images.php:304
-#: ../meta/meta-videos.php:266 ../meta/meta-videos.php:315
+#: ../meta/meta-images.php:241 ../meta/meta-images.php:300
+#: ../meta/meta-videos.php:266 ../meta/meta-videos.php:325
 msgid "Remove"
 msgstr ""
 
-#: ../meta/meta-images.php:247 ../meta/meta-videos.php:268
+#: ../meta/meta-images.php:243 ../meta/meta-videos.php:268
 msgid "Apply"
 msgstr ""
 
-#: ../meta/meta-images.php:250 ../meta/meta-videos.php:271
+#: ../meta/meta-images.php:246 ../meta/meta-videos.php:271
 msgid "List"
 msgstr ""
 
-#: ../meta/meta-images.php:251 ../meta/meta-videos.php:272
+#: ../meta/meta-images.php:247 ../meta/meta-videos.php:272
 msgid "Rows"
 msgstr ""
 
-#: ../meta/meta-images.php:252 ../meta/meta-videos.php:273
+#: ../meta/meta-images.php:248 ../meta/meta-videos.php:273
 msgid "Grid"
 msgstr ""
 
-#: ../meta/meta-images.php:263
+#: ../meta/meta-images.php:259
 msgid ""
 "Adding images from media library, this might take a few moments, please "
 "wait..."
 msgstr ""
 
-#: ../meta/meta-images.php:269
+#: ../meta/meta-images.php:265
 msgid "No images have been added to this gallery."
 msgstr ""
 
-#: ../meta/meta-images.php:278 ../meta/meta-videos.php:289
+#: ../meta/meta-images.php:274 ../meta/meta-videos.php:299
 msgid "Reorder"
 msgstr ""
 
-#: ../meta/meta-images.php:327 ../meta/meta-videos.php:354
+#: ../meta/meta-images.php:323 ../meta/meta-videos.php:364
 msgid "Meta"
 msgstr ""
 
-#: ../meta/meta-new.php:60
+#: ../meta/meta-new.php:64
 msgid "What type of gallery do you want to create?"
 msgstr ""
 
@@ -876,63 +915,84 @@ msgstr ""
 msgid "Use either of the following shortcodes to display this gallery:"
 msgstr ""
 
-#: ../meta/meta-template.php:64
+#: ../meta/meta-template.php:67
 msgid "You do not have any image gallery templates installed."
 msgstr ""
 
-#: ../meta/meta-template.php:68
+#: ../meta/meta-template.php:71
 msgid "You do not have any video gallery templates installed."
 msgstr ""
 
-#: ../meta/meta-videos.php:40 ../meta/meta-videos.php:257
-#: ../meta/video-add.php:88
+#: ../meta/meta-video-gallery.php:10
+msgid "Videos"
+msgstr ""
+
+#: ../meta/meta-videos.php:37 ../meta/meta-videos.php:257
+#: ../meta/video-add.php:100
 msgid "Add Videos"
 msgstr ""
 
-#: ../meta/meta-videos.php:77 ../meta/video-edit-bulk.php:52
+#: ../meta/meta-videos.php:74 ../meta/video-edit-bulk.php:52
 msgid "Edit Bulk Videos"
 msgstr ""
 
-#: ../meta/meta-videos.php:154 ../meta/video-edit.php:48
+#: ../meta/meta-videos.php:151 ../meta/video-edit.php:48
 msgid "Edit Video"
 msgstr ""
 
-#: ../meta/meta-videos.php:159
+#: ../meta/meta-videos.php:156
 msgid "Are you sure you want to exclude this video from the gallery?"
 msgstr ""
 
-#: ../meta/meta-videos.php:184
+#: ../meta/meta-videos.php:181
 msgid "Are you sure you want to include this video in the gallery?"
 msgstr ""
 
-#: ../meta/meta-videos.php:209
+#: ../meta/meta-videos.php:206
 msgid "Are you sure you want to remove this video from the gallery?"
 msgstr ""
 
-#: ../meta/meta-videos.php:280
+#: ../meta/meta-videos.php:284
+msgid "Adding videos, one moment..."
+msgstr ""
+
+#: ../meta/meta-videos.php:290
 msgid "No videos have been added to this gallery."
 msgstr ""
 
-#: ../meta/video-add.php:118
+#: ../meta/meta-videos.php:371
+msgid "URL"
+msgstr ""
+
+#: ../meta/video-add.php:131
+msgid "You do not have any video addons installed."
+msgstr ""
+
+#: ../meta/video-add.php:132
+#, php-format
+msgid "You can get video addons from the %sMaxGalleria website%s."
+msgstr ""
+
+#: ../meta/video-add.php:140
 msgid ""
 "You can add as many videos to this gallery as you like. Simply enter the URL "
 "of each video in the box, and data about each video will be retrieved "
 "automatically."
 msgstr ""
 
-#: ../meta/video-add.php:119
+#: ../meta/video-add.php:141
 msgid "Video URLs from the following sites are currently supported:"
 msgstr ""
 
-#: ../meta/video-add.php:132
+#: ../meta/video-add.php:154
 msgid "Video URLs"
 msgstr ""
 
-#: ../meta/video-add.php:132
+#: ../meta/video-add.php:154
 msgid "Multiple URLs accepted, one per line"
 msgstr ""
 
-#: ../meta/video-add.php:152
+#: ../meta/video-add.php:174
 msgid "Adding media to gallery..."
 msgstr ""
 

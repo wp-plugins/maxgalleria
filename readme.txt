@@ -1,9 +1,9 @@
 === MaxGalleria: WordPress Gallery Platform ===
 Contributors: maxfoundry, arcware, damonsharp, johnbhartley
-Tags: albums, gallery, image, images, media, flash, foto, fotoalbum, photo, photos, photo albums, picture, pictures, responsive wordpress gallery, thumbmail, thumbnails, wordpress gallery, wordpress gallery plugin, responsive wordpress gallery plugins, responsive, slideshows, image slider, nivo, image slide plugin, javascript rotator, javascript slider, jquery slider, photo slider, responsive image slider, responsive image slider plugin, responsive slideshow, responsive slideshow slider, responsive slider plugin, slideshow plugin, template, wordpress picture slider, wordpress responsive slider, wordpress slider, wordpress gallery, website gallery, multiple pictures
+Tags: albums, gallery, image, images, media, flash, foto, fotoalbum, photo, photos, photo albums, picture, pictures, responsive wordpress gallery, thumbmail, thumbnails, wordpress gallery, wordpress gallery plugin, responsive wordpress gallery plugins, responsive, slideshows, image slider, nivo, image slide plugin, javascript rotator, javascript slider, jquery slider, photo slider, responsive image slider, responsive image slider plugin, responsive slideshow, responsive slideshow slider, responsive slider plugin, slideshow plugin, template, wordpress picture slider, wordpress responsive slider, wordpress slider, wordpress gallery, website gallery, multiple pictures, youtube, youtube video, youtube videos, youtube gallery, youtube galleries, youtube video gallery, youtube video galleries
 Requires at least: 3.9
 Tested up to: 3.9
-Stable tag: 2.0.1
+Stable tag: 2.1.0
 
 Responsive, Easy to Use, Developer Friendly
 
@@ -42,7 +42,6 @@ Many people will find the core MaxGalleria plugin all they will ever need; howev
 * [MaxGalleria Instagram](http://maxgalleria.com/shop/maxgalleria-instagram/) - Add Instagram images to your galleries
 * [MaxGalleria Video Showcase](http://maxgalleria.com/shop/maxgalleria-video-showcase/) - Showcase your videos
 * [MaxGalleria Vimeo](http://maxgalleria.com/shop/maxgalleria-vimeo/) - Add Vimeo videos to your galleries
-* [MaxGalleria YouTube](http://maxgalleria.com/shop/maxgalleria-youtube/) - Add YouTube videos to your galleries
 
 = Features at a Glance =
 MaxGalleria is stuffed full of all the features and functionality you need to easily create and manage your image and video galleries in WordPress.
@@ -54,6 +53,7 @@ MaxGalleria is stuffed full of all the features and functionality you need to ea
 * Add images from your computer
 * Import galleries from NextGEN
 * Featured images for gallery thumbnail
+* YouTube video support
 * Lightbox effects with captions and custom sizes
 * Custom classes and rel attribute for thumbnails
 * Bulk edit functionality
@@ -111,6 +111,11 @@ Yes. All documentation, which includes QuickStart Guides and developer hooks ref
 No. The MaxGalleria core plugin contains plenty of functionality to keep even the most die-hard gallery user happy. But for those looking to enhance their gallery experience, [MaxGalleria addons](http://maxgalleria.com/shop/category/addons/) are the perfect choice.
 
 == Changelog ==
+
+= 2.1.0 =
+* Added support for YouTube videos (a separate addon is no longer required).
+* Improved user experience by using tabs for gallery options instead of accordions.
+
 = 2.0.1 =
 * Made the Image Tiles and Video Tiles templates the defaults for image and video galleries, respectively.
 * Added settings for default templates to the General Settings page.
@@ -121,5 +126,5 @@ No. The MaxGalleria core plugin contains plenty of functionality to keep even th
 
 == Upgrade Notice ==
 
-= 2.0.1 =
-Minor bug fixes and enhancements.
+= 2.1.0 =
+YouTube video support and tabs for gallery options.

@@ -518,22 +518,29 @@ Meta Styles
 	margin-right: 50px;
 	margin-top: 3px;
 }
-.maxgalleria-meta .adding-media-library-images-note {
+.maxgalleria-meta .adding-media-library-images-note,
+.maxgalleria-meta .adding-videos-note {
 	display: none;
 	margin-top: 15px;
+	padding-left: 5px;
 }
-.maxgalleria-meta .adding-media-library-images-note .gif img {
+.maxgalleria-meta .adding-media-library-images-note .gif img,
+.maxgalleria-meta .adding-videos-note .gif img {
 	border: none;
 	background-color: transparent;
 }
 .maxgalleria-meta .adding-media-library-images-note .gif,
-.maxgalleria-meta .adding-media-library-images-note .text {
+.maxgalleria-meta .adding-media-library-images-note .text,
+.maxgalleria-meta .adding-videos-note .gif,
+.maxgalleria-meta .adding-videos-note .text {
 	float: left;
 }
-.maxgalleria-meta .adding-media-library-images-note .gif {
+.maxgalleria-meta .adding-media-library-images-note .gif,
+.maxgalleria-meta .adding-videos-note .gif {
 	padding-top: 3px;
 }
-.maxgalleria-meta .adding-media-library-images-note .text {
+.maxgalleria-meta .adding-media-library-images-note .text,
+.maxgalleria-meta .adding-videos-note .text {
 	padding-top: 5px;
 	margin-left: 5px;
 }
@@ -544,44 +551,8 @@ Meta Styles
 	margin: 0px;
 	padding: 0px 2px 5px 2px;
 }
-.maxgalleria-meta .accordion h4 {
-	text-shadow: 0px 1px 0px #ffffff;
-	margin: 2px 0px 0px 0px;
-	line-height: 1.0em;
-}
-.maxgalleria-meta .accordion select {
-	width: 150px;
-	font-family: "Open Sans", sans-serif;
-}
-.maxgalleria-meta .accordion select.small {
-	width: 100px;
-}
-.maxgalleria-meta .accordion select.medium {
-	width: 120px;
-}
-.maxgalleria-meta .accordion select.large {
-	width: 200px;
-}
-.maxgalleria-meta .accordion input[type="text"].small {
-	width: 50px;
-}
-.maxgalleria-meta .accordion input[type="checkbox"] {
-	margin: 3px 3px 0px 2px;
-}
-.maxgalleria-meta .accordion textarea {
-	width: 210px;
-	height: 160px;
-}
-.maxgalleria-meta .accordion .template-chosen,
-.maxgalleria-meta .accordion .skin-chosen,
-.maxgalleria-meta .accordion .thumb-shape-chosen {
-	margin-top: 5px;
-}
 .maxgalleria-meta .ui-widget, h3.media-title {
 	font-family: "Open Sans", sans-serif;
-}
-.maxgalleria-meta .accordion.thumbnails .ui-slider-horizontal {
-	height: 0.8em;
 }
 .maxgalleria-meta .media img,
 .maxgalleria-meta .media img.attachment-maxgallery-meta-image-thumb-small,
@@ -1132,6 +1103,48 @@ Meta Styles
 	background-image: linear-gradient(top, #0088cc, #0055cc);
 	background-repeat: repeat-x;
 }
+.maxgalleria-meta #maxgalleria-tabs {
+	border: none;
+}
+.maxgalleria-meta .meta-options textarea {
+	font-family: "Open Sans", sans-serif;
+	width: 600px;
+	height: 200px;
+}
+.maxgalleria-meta .meta-options input[type='text'],
+.maxgalleria-meta .meta-options select {
+	font-family: "Open Sans", sans-serif;
+	width: 150px;
+}
+.maxgalleria-meta .meta-options input[type='text'].small {
+	width: 50px;
+}
+.maxgalleria-meta .meta-options input[type='text'].wide {
+	width: 450px;
+}
+.maxgalleria-meta .meta-options input[type='checkbox'] {
+	margin: 8px 10px 5px 2px !important;
+}
+.maxgalleria-meta .meta-options .meta-template {
+	text-align: center;
+	display: inline-block;
+	vertical-align: top;
+	margin: 5px 10px 10px 0px;
+}
+.maxgalleria-meta .meta-options .meta-template img {
+	padding: 2px;
+	border: solid 4px #ffffff;
+}
+.maxgalleria-meta .meta-options .meta-template img:hover {
+	cursor: pointer;
+}
+.maxgalleria-meta .meta-options .meta-template img.selected {
+	border: solid 4px #21759b;
+}
+.maxgalleria-meta .meta-options .meta-template input[type='radio'] {
+	display: none;
+}
+
 /* Toggle button styles borrowed from http://acidjs.wemakesites.net/css3-iphone-buttons.html */
 .maxgalleria-meta .toggle-buttons input[type="checkbox"] + div::after {
 	content: "No";

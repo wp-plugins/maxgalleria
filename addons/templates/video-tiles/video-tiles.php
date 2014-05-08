@@ -5,27 +5,50 @@ class MaxGalleriaVideoTiles {
 	public $addon_type;
 	public $addon_subtype;
 	public $addon_settings;
+	public $addon_image;
 	public $addon_output;
-	public $meta;
-	
+
 	public function __construct() {
 		$this->addon_key = 'video-tiles';
 		$this->addon_name = __('Video Tiles', 'maxgalleria');
 		$this->addon_type = 'template';
 		$this->addon_subtype = 'video';
 		$this->addon_settings = MAXGALLERIA_PLUGIN_DIR . '/addons/templates/video-tiles/video-tiles-settings.php';
+		$this->addon_image = MAXGALLERIA_PLUGIN_URL . '/addons/templates/video-tiles/images/video-tiles.png';
 		$this->addon_output = array($this, 'get_output');
 		
-		// Just include this one, no need to instantiate the MGVideoTilesOptions class here
 		require_once 'video-tiles-options.php';
 		
-		// For the meta, include it and go ahead and instantiate the MGVideoTilesMeta class
-		require_once 'video-tiles-meta.php';
-		$this->meta = new MaxGalleriaVideoTilesMeta();
-		
-		// Ajax call for saving default settings
+		add_action('save_post', array($this, 'save_gallery_options'));
+		add_action('maxgalleria_template_options', array($this, 'show_template_options'));
 		add_action('wp_ajax_save_video_tiles_defaults', array($this, 'save_video_tiles_defaults'));
 		add_action('wp_ajax_nopriv_save_video_tiles_defaults', array($this, 'save_video_tiles_defaults'));
+	}
+	
+	public function save_gallery_options() {
+		global $post;
+
+		if (isset($post)) {
+			if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+				return $post->ID;
+			}
+
+			if (!current_user_can('edit_post', $post->ID)) {
+				return $post->ID;
+			}
+			
+			$options = new MaxGalleriaVideoTilesOptions($post->ID);
+			$options->save_options();
+		}
+	}
+	
+	public function show_template_options() {
+		global $post;
+		$options = new MaxGalleriaVideoTilesOptions($post->ID);
+		
+		if ($options->get_template() == 'video-tiles') {
+			require_once 'video-tiles-meta.php';
+		}
 	}
 	
 	public function save_video_tiles_defaults() {

@@ -104,6 +104,7 @@ if ($_POST && check_admin_referer($video_gallery->nonce_video_add['action'], $vi
 	<script type="text/javascript" src="<?php echo admin_url() ?>load-scripts.php?load=jquery-core,thickbox,wp-ajax-response"></script>
 	<script type="text/javascript">
 		<?php if ($updated) { ?>
+			parent.eval("showAddingVideosNote()");
 			parent.eval("reloadPage()");
 		<?php } ?>
 		

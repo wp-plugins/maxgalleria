@@ -3,7 +3,7 @@
 Plugin Name: MaxGalleria
 Plugin URI: http://maxgalleria.com
 Description: The gallery platform for WordPress.
-Version: 2.0.1
+Version: 2.1.0
 Author: Max Foundry
 Author URI: http://maxfoundry.com
 
@@ -32,6 +32,7 @@ class MaxGalleria {
 		$this->initialize_properties();
 		$this->add_thumb_sizes();
 		$this->setup_hooks();
+		$this->register_media_sources();
 		$this->register_templates();
 	}
 	
@@ -284,8 +285,7 @@ class MaxGalleria {
 
 			// Other stuff
 			wp_enqueue_script('jquery-ui-core');
-			wp_enqueue_script('jquery-ui-slider');
-			wp_enqueue_script('jquery-ui-accordion');
+			wp_enqueue_script('jquery-ui-tabs');
 			wp_enqueue_script('maxgalleria-datatables', MAXGALLERIA_PLUGIN_URL . '/libs/datatables/jquery.dataTables.min.js', array('jquery'));
 			wp_enqueue_script('maxgalleria-datatables-row-reordering', MAXGALLERIA_PLUGIN_URL . '/libs/datatables/jquery.dataTables.rowReordering.js', array('jquery'));
 			wp_enqueue_script('maxgalleria-fancybox', MAXGALLERIA_PLUGIN_URL . '/libs/fancybox/jquery.fancybox-1.3.4.pack.js', array('jquery'));
@@ -448,6 +448,21 @@ class MaxGalleria {
 		array_push($this->_addons, $addon);
 	}
 	
+
+	public function register_media_sources() {
+		// YouTube
+		require_once MAXGALLERIA_PLUGIN_DIR . '/addons/media-sources/youtube/youtube.php';
+		$youtube = new MaxGalleriaYouTube();
+		$youtube_addon = array(
+			'key' => $youtube->addon_key,
+			'name' => $youtube->addon_name,
+			'type' => $youtube->addon_type,
+			'subtype' => $youtube->addon_subtype,
+			'settings' => $youtube->addon_settings
+		);
+		$this->register_addon($youtube_addon);
+	}
+ 
 	public function register_templates() {
 		// Image Tiles template
 		require_once MAXGALLERIA_PLUGIN_DIR . '/addons/templates/image-tiles/image-tiles.php';
@@ -458,6 +473,7 @@ class MaxGalleria {
 			'type' => $image_tiles->addon_type,
 			'subtype' => $image_tiles->addon_subtype,
 			'settings' => $image_tiles->addon_settings,
+			'image' => $image_tiles->addon_image,
 			'output' => $image_tiles->addon_output
 		);
 		$this->register_addon($image_tiles_addon);
@@ -471,6 +487,7 @@ class MaxGalleria {
 			'type' => $video_tiles->addon_type,
 			'subtype' => $video_tiles->addon_subtype,
 			'settings' => $video_tiles->addon_settings,
+			'image' => $video_tiles->addon_image,
 			'output' => $video_tiles->addon_output
 		);
 		$this->register_addon($video_tiles_addon);
@@ -483,7 +500,7 @@ class MaxGalleria {
 	
 	public function set_global_constants() {	
 		define('MAXGALLERIA_VERSION_KEY', 'maxgalleria_version');
-		define('MAXGALLERIA_VERSION_NUM', '2.0.1');
+		define('MAXGALLERIA_VERSION_NUM', '2.1.0');
 		define('MAXGALLERIA_PLUGIN_NAME', trim(dirname(plugin_basename(__FILE__)), '/'));
 		define('MAXGALLERIA_PLUGIN_DIR', WP_PLUGIN_DIR . '/' . MAXGALLERIA_PLUGIN_NAME);
 		define('MAXGALLERIA_PLUGIN_URL', WP_PLUGIN_URL . '/' . MAXGALLERIA_PLUGIN_NAME);

@@ -18,9 +18,6 @@ $attachments = get_posts($args);
 
 <script type="text/javascript">		
 	jQuery(document).ready(function() {
-		// To add the video count in the meta box title
-		jQuery("#meta-videos h3.hndle span").html("<?php _e('Videos', 'maxgalleria') ?> (<?php echo count($attachments) ?>)");
-		
 		// Video moving and re-ordering
 		jQuery("#gallery-media").dataTable({ bPaginate: false }).rowReordering({
 			fnAlert: function(message) {
@@ -246,143 +243,155 @@ $attachments = get_posts($args);
 		return false;
 	}
 	
+	function showAddingVideosNote() {
+		jQuery(".maxgalleria-meta .adding-videos-note").show();
+	}
+	
 	function reloadPage() {
 		tb_remove();
 		window.location = "<?php echo admin_url() ?>post.php?post=<?php echo $post->ID ?>&action=edit";
 	}
 </script>
 
-<div class="maxgalleria-meta">
-	<div class="add-media">
-		<input type="button" class="btn btn-primary" id="gallery_media_select_button" name="gallery_media_select_button" value="<?php _e('Add Videos', 'maxgalleria') ?>" />
+<div class="add-media">
+	<input type="button" class="btn btn-primary" id="gallery_media_select_button" name="gallery_media_select_button" value="<?php _e('Add Videos', 'maxgalleria') ?>" />
+</div>
+<?php if (count($attachments) > 0) { ?>
+	<div class="bulk-actions">
+		<select name="bulk-action-select" id="bulk-action-select">
+			<option value=""><?php _e('Bulk Actions', 'maxgalleria') ?></option>
+			<option value="edit"><?php _e('Edit', 'maxgalleria') ?></option>
+			<option value="exclude"><?php _e('Exclude', 'maxgalleria') ?></option>
+			<option value="include"><?php _e('Include', 'maxgalleria') ?></option>
+			<option value="remove"><?php _e('Remove', 'maxgalleria') ?></option>
+		</select>
+		<input type="button" id="bulk-action-apply" class="button" value="<?php _e('Apply', 'maxgalleria') ?>" />
 	</div>
-	<?php if (count($attachments) > 0) { ?>
-		<div class="bulk-actions">
-			<select name="bulk-action-select" id="bulk-action-select">
-				<option value=""><?php _e('Bulk Actions', 'maxgalleria') ?></option>
-				<option value="edit"><?php _e('Edit', 'maxgalleria') ?></option>
-				<option value="exclude"><?php _e('Exclude', 'maxgalleria') ?></option>
-				<option value="include"><?php _e('Include', 'maxgalleria') ?></option>
-				<option value="remove"><?php _e('Remove', 'maxgalleria') ?></option>
-			</select>
-			<input type="button" id="bulk-action-apply" class="button" value="<?php _e('Apply', 'maxgalleria') ?>" />
+	<ul class="views">
+		<li><a id="list-view" class="active"><?php _e('List', 'maxgalleria') ?></a></li>
+		<li><a id="rows-view"><?php _e('Rows', 'maxgalleria') ?></a></li>
+		<li><a id="grid-view"><?php _e('Grid', 'maxgalleria') ?></a></li>
+	</ul>
+<?php } ?>
+<div class="clear"></div>
+
+<div class="media">
+	<div class="adding-videos-note alert alert-info">
+		<div class="gif">
+			<img src="<?php echo MAXGALLERIA_PLUGIN_URL ?>/images/loading-small.gif" width="16" height="16" alt="" />
 		</div>
-		<ul class="views">
-			<li><a id="list-view" class="active"><?php _e('List', 'maxgalleria') ?></a></li>
-			<li><a id="rows-view"><?php _e('Rows', 'maxgalleria') ?></a></li>
-			<li><a id="grid-view"><?php _e('Grid', 'maxgalleria') ?></a></li>
-		</ul>
-	<?php } ?>
-	<div class="clear"></div>
-	
-	<div class="media">				
-		<?php if (count($attachments) < 1) { ?>
-			<h4><?php _e('No videos have been added to this gallery.', 'maxgalleria') ?></h4>
-		<?php } else { ?>
-			<table id="gallery-media" cellpadding="0" cellspacing="0">
-				<thead>
-					<tr>
-						<th class="order">&nbsp;</th>
-						<th class="checkbox"><input type="checkbox" name="select-all" id="select-all" /></th>
-						<th>&nbsp;</th>
-						<th>&nbsp;</th>
-						<th class="reorder"><?php _e('Reorder', 'maxgalleria') ?></th>
-					</tr>
-				</thead>
-				<tbody>
-				<?php foreach ($attachments as $attachment) { ?>
-					<?php $is_excluded = get_post_meta($attachment->ID, 'maxgallery_attachment_video_exclude', true) ?>
-					
-					<tr id="<?php echo $attachment->ID ?>">
-						<td class="order"><?php echo $attachment->menu_order ?></td>
-						<td class="checkbox">
-							<input type="checkbox" name="media-id[]" id="media-id-<?php echo $attachment->ID ?>" value="<?php echo $attachment->ID ?>" />
-							<input type="hidden" name="media-order[]" id="media-order-<?php echo $attachment->ID ?>" value="<?php echo $attachment->menu_order ?>" class="media-order-input" />
-							<input type="hidden" name="media-order-id[]" id="media-order-id-<?php echo $attachment->ID ?>" value="<?php echo $attachment->ID ?>" />
-						</td>
-						<td class="thumb video">
-							<a href="#" onclick="javascript:viewVideo(<?php echo $attachment->ID ?>); return false;">
-								<?php if ($is_excluded == true) { ?>
-									<div class="exclude">
-										<?php echo wp_get_attachment_image($attachment->ID, MAXGALLERIA_META_VIDEO_THUMB_SMALL) ?>
-									</div>
-								<?php } else { ?>
-									<?php echo wp_get_attachment_image($attachment->ID, MAXGALLERIA_META_VIDEO_THUMB_SMALL) ?>
-								<?php } ?>
-							</a>
-							<div class="actions">
-								<a href="#" title="<?php _e('Edit', 'maxgalleria') ?>" onclick="javascript:editVideo(<?php echo $attachment->ID ?>); return false;"><?php _e('Edit', 'maxgalleria') ?></a> |
-								<a href="#" title="<?php _e('Remove', 'maxgalleria') ?>" onclick="javascript:removeVideo(<?php echo $attachment->ID ?>); return false;"><?php _e('Remove', 'maxgalleria') ?></a> |
-								
-								<?php if ($is_excluded) { ?>
-									<a href="#" title="<?php _e('Include', 'maxgalleria') ?>" onclick="javascript:includeVideo(<?php echo $attachment->ID ?>); return false;"><?php _e('Include', 'maxgalleria') ?></a>
-								<?php } else { ?>
-									<a href="#" title="<?php _e('Exclude', 'maxgalleria') ?>" onclick="javascript:excludeVideo(<?php echo $attachment->ID ?>); return false;"><?php _e('Exclude', 'maxgalleria') ?></a>
-								<?php } ?>
-							</div>
-							
-							<?php
-								$video_url = str_replace('https://', 'http://', get_post_meta($attachment->ID, 'maxgallery_attachment_video_url', true));
-								$enable_related_videos = get_post_meta($attachment->ID, 'maxgallery_attachment_video_enable_related_videos', true);
-								$enable_hd_playback = get_post_meta($attachment->ID, 'maxgallery_attachment_video_enable_hd_playback', true);
-								
-								// Initialize the embed code and then pass it to the filter to be populated
-								$embed_code = '';
-								$embed_code = apply_filters(MAXGALLERIA_FILTER_VIDEO_EMBED_CODE, $embed_code, $video_url, $enable_related_videos, $enable_hd_playback);
-								
-								echo '<div id="video-' . $attachment->ID . '" style="display: none;">';
-								echo '	<div align="center">';
-								echo $embed_code;
-								echo '	</div>';
-								echo '</div>';
-							?>
-						</td>
-						<td class="text">
-							<div class="details">
-								<div class="detail-label"><?php _e('Title', 'maxgalleria') ?>:</div>
-								<div class="detail-value title-value"><?php echo $attachment->post_title ?></div>
-								<div class="clear"></div>
-								
-								<div class="detail-label"><?php _e('Alt Text', 'maxgalleria') ?>:</div>
-								<div class="detail-value"><?php echo get_post_meta($attachment->ID, '_wp_attachment_image_alt', true) ?></div>
-								<div class="clear"></div>
-								
-								<div class="detail-label"><?php _e('Caption', 'maxgalleria') ?>:</div>
-								<div class="detail-value"><?php echo $attachment->post_excerpt ?></div>
-								<div class="clear"></div>
-								
-								<div class="detail-label"><?php _e('Meta', 'maxgalleria') ?>:</div>
-								<div class="detail-value">
-									<?php echo $common->format_seconds_to_time(get_post_meta($attachment->ID, 'maxgallery_attachment_video_seconds', true)) ?> |
-									<?php echo date(get_option('date_format'), strtotime($attachment->post_date)) ?>
-								</div>
-								<div class="clear"></div>
-								
-								<div class="detail-label"><?php _e('URL', 'maxgalleria') ?>:</div>
-								<div class="detail-value">
-									<a href="<?php echo get_post_meta($attachment->ID, 'maxgallery_attachment_video_url', true) ?>" target="_blank">
-										<?php echo get_post_meta($attachment->ID, 'maxgallery_attachment_video_url', true) ?>
-									</a>
-								</div>
-								<div class="clear"></div>
-							</div>
-						</td>
-						<td class="reorder">
-							<div class="reorder-media">
-							</div>
-						</td>
-					</tr>
-				<?php } ?>
-				</tbody>
-			</table>
-			
-			<?php wp_nonce_field($video_gallery->nonce_video_exclude_single['action'], $video_gallery->nonce_video_exclude_single['name']) ?>
-			<?php wp_nonce_field($video_gallery->nonce_video_exclude_bulk['action'], $video_gallery->nonce_video_exclude_bulk['name']) ?>
-			<?php wp_nonce_field($video_gallery->nonce_video_include_single['action'], $video_gallery->nonce_video_include_single['name']) ?>
-			<?php wp_nonce_field($video_gallery->nonce_video_include_bulk['action'], $video_gallery->nonce_video_include_bulk['name']) ?>
-			<?php wp_nonce_field($video_gallery->nonce_video_remove_single['action'], $video_gallery->nonce_video_remove_single['name']) ?>
-			<?php wp_nonce_field($video_gallery->nonce_video_remove_bulk['action'], $video_gallery->nonce_video_remove_bulk['name']) ?>
-			<?php wp_nonce_field($video_gallery->nonce_video_reorder['action'], $video_gallery->nonce_video_reorder['name']) ?>
-		<?php } ?>
+		<div class="text">
+			<h4><?php _e('Adding videos, one moment...', 'maxgalleria') ?></h4>
+		</div>
+		<div class="clear"></div>
 	</div>
+	
+	<?php if (count($attachments) < 1) { ?>
+		<h4><?php _e('No videos have been added to this gallery.', 'maxgalleria') ?></h4>
+	<?php } else { ?>
+		<table id="gallery-media" cellpadding="0" cellspacing="0">
+			<thead>
+				<tr>
+					<th class="order">&nbsp;</th>
+					<th class="checkbox"><input type="checkbox" name="select-all" id="select-all" /></th>
+					<th>&nbsp;</th>
+					<th>&nbsp;</th>
+					<th class="reorder"><?php _e('Reorder', 'maxgalleria') ?></th>
+				</tr>
+			</thead>
+			<tbody>
+			<?php foreach ($attachments as $attachment) { ?>
+				<?php $is_excluded = get_post_meta($attachment->ID, 'maxgallery_attachment_video_exclude', true) ?>
+				
+				<tr id="<?php echo $attachment->ID ?>">
+					<td class="order"><?php echo $attachment->menu_order ?></td>
+					<td class="checkbox">
+						<input type="checkbox" name="media-id[]" id="media-id-<?php echo $attachment->ID ?>" value="<?php echo $attachment->ID ?>" />
+						<input type="hidden" name="media-order[]" id="media-order-<?php echo $attachment->ID ?>" value="<?php echo $attachment->menu_order ?>" class="media-order-input" />
+						<input type="hidden" name="media-order-id[]" id="media-order-id-<?php echo $attachment->ID ?>" value="<?php echo $attachment->ID ?>" />
+					</td>
+					<td class="thumb video">
+						<a href="#" onclick="javascript:viewVideo(<?php echo $attachment->ID ?>); return false;">
+							<?php if ($is_excluded == true) { ?>
+								<div class="exclude">
+									<?php echo wp_get_attachment_image($attachment->ID, MAXGALLERIA_META_VIDEO_THUMB_SMALL) ?>
+								</div>
+							<?php } else { ?>
+								<?php echo wp_get_attachment_image($attachment->ID, MAXGALLERIA_META_VIDEO_THUMB_SMALL) ?>
+							<?php } ?>
+						</a>
+						<div class="actions">
+							<a href="#" title="<?php _e('Edit', 'maxgalleria') ?>" onclick="javascript:editVideo(<?php echo $attachment->ID ?>); return false;"><?php _e('Edit', 'maxgalleria') ?></a> |
+							<a href="#" title="<?php _e('Remove', 'maxgalleria') ?>" onclick="javascript:removeVideo(<?php echo $attachment->ID ?>); return false;"><?php _e('Remove', 'maxgalleria') ?></a> |
+							
+							<?php if ($is_excluded) { ?>
+								<a href="#" title="<?php _e('Include', 'maxgalleria') ?>" onclick="javascript:includeVideo(<?php echo $attachment->ID ?>); return false;"><?php _e('Include', 'maxgalleria') ?></a>
+							<?php } else { ?>
+								<a href="#" title="<?php _e('Exclude', 'maxgalleria') ?>" onclick="javascript:excludeVideo(<?php echo $attachment->ID ?>); return false;"><?php _e('Exclude', 'maxgalleria') ?></a>
+							<?php } ?>
+						</div>
+						
+						<?php
+							$video_url = str_replace('https://', 'http://', get_post_meta($attachment->ID, 'maxgallery_attachment_video_url', true));
+							$enable_related_videos = get_post_meta($attachment->ID, 'maxgallery_attachment_video_enable_related_videos', true);
+							$enable_hd_playback = get_post_meta($attachment->ID, 'maxgallery_attachment_video_enable_hd_playback', true);
+							
+							// Initialize the embed code and then pass it to the filter to be populated
+							$embed_code = '';
+							$embed_code = apply_filters(MAXGALLERIA_FILTER_VIDEO_EMBED_CODE, $embed_code, $video_url, $enable_related_videos, $enable_hd_playback);
+							
+							echo '<div id="video-' . $attachment->ID . '" style="display: none;">';
+							echo '	<div align="center">';
+							echo $embed_code;
+							echo '	</div>';
+							echo '</div>';
+						?>
+					</td>
+					<td class="text">
+						<div class="details">
+							<div class="detail-label"><?php _e('Title', 'maxgalleria') ?>:</div>
+							<div class="detail-value title-value"><?php echo $attachment->post_title ?></div>
+							<div class="clear"></div>
+							
+							<div class="detail-label"><?php _e('Alt Text', 'maxgalleria') ?>:</div>
+							<div class="detail-value"><?php echo get_post_meta($attachment->ID, '_wp_attachment_image_alt', true) ?></div>
+							<div class="clear"></div>
+							
+							<div class="detail-label"><?php _e('Caption', 'maxgalleria') ?>:</div>
+							<div class="detail-value"><?php echo $attachment->post_excerpt ?></div>
+							<div class="clear"></div>
+							
+							<div class="detail-label"><?php _e('Meta', 'maxgalleria') ?>:</div>
+							<div class="detail-value">
+								<?php echo $common->format_seconds_to_time(get_post_meta($attachment->ID, 'maxgallery_attachment_video_seconds', true)) ?> |
+								<?php echo date(get_option('date_format'), strtotime($attachment->post_date)) ?>
+							</div>
+							<div class="clear"></div>
+							
+							<div class="detail-label"><?php _e('URL', 'maxgalleria') ?>:</div>
+							<div class="detail-value">
+								<a href="<?php echo get_post_meta($attachment->ID, 'maxgallery_attachment_video_url', true) ?>" target="_blank">
+									<?php echo get_post_meta($attachment->ID, 'maxgallery_attachment_video_url', true) ?>
+								</a>
+							</div>
+							<div class="clear"></div>
+						</div>
+					</td>
+					<td class="reorder">
+						<div class="reorder-media">
+						</div>
+					</td>
+				</tr>
+			<?php } ?>
+			</tbody>
+		</table>
+		
+		<?php wp_nonce_field($video_gallery->nonce_video_exclude_single['action'], $video_gallery->nonce_video_exclude_single['name']) ?>
+		<?php wp_nonce_field($video_gallery->nonce_video_exclude_bulk['action'], $video_gallery->nonce_video_exclude_bulk['name']) ?>
+		<?php wp_nonce_field($video_gallery->nonce_video_include_single['action'], $video_gallery->nonce_video_include_single['name']) ?>
+		<?php wp_nonce_field($video_gallery->nonce_video_include_bulk['action'], $video_gallery->nonce_video_include_bulk['name']) ?>
+		<?php wp_nonce_field($video_gallery->nonce_video_remove_single['action'], $video_gallery->nonce_video_remove_single['name']) ?>
+		<?php wp_nonce_field($video_gallery->nonce_video_remove_bulk['action'], $video_gallery->nonce_video_remove_bulk['name']) ?>
+		<?php wp_nonce_field($video_gallery->nonce_video_reorder['action'], $video_gallery->nonce_video_reorder['name']) ?>
+	<?php } ?>
 </div>

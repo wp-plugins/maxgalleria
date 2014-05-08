@@ -55,6 +55,7 @@ define('MAXGALLERIA_ACTION_AFTER_ADMIN_MENU_PAGES', 'maxgalleria_after_admin_men
 define('MAXGALLERIA_ACTION_BEFORE_TEMPLATE_META_BOXES', 'maxgalleria_before_template_meta_boxes');
 define('MAXGALLERIA_ACTION_AFTER_TEMPLATE_META_BOXES', 'maxgalleria_after_template_meta_boxes');
 define('MAXGALLERIA_ACTION_VIDEO_ATTACHMENT_POST_META', 'maxgalleria_video_attachment_post_meta');
+define('MAXGALLERIA_ACTION_TEMPLATE_OPTIONS', 'maxgalleria_template_options');
 
 // Filters
 define('MAXGALLERIA_FILTER_GALLERY_POST_TYPE_LABELS', 'maxgalleria_gallery_post_type_labels');
@@ -87,6 +88,7 @@ define('MAXGALLERIA_FILTER_VIDEO_API_URL', 'maxgalleria_video_api_url');
 define('MAXGALLERIA_FILTER_VIDEO_ATTACHMENT', 'maxgalleria_video_attachment');
 define('MAXGALLERIA_FILTER_VIDEO_EMBED_CODE', 'maxgalleria_video_embed_code');
 define('MAXGALLERIA_FILTER_VIDEO_THUMB_URL', 'maxgalleria_video_thumb_url');
+define('MAXGALLERIA_FILTER_YOUTUBE_REGEX_PATTERNS', 'maxgalleria_youtube_regex_patterns');
 define('MAXGALLERIA_FILTER_BEFORE_GALLERY_THUMB', 'maxgalleria_before_gallery_thumb');
 define('MAXGALLERIA_FILTER_AFTER_GALLERY_THUMB', 'maxgalleria_after_gallery_thumb');
 define('MAXGALLERIA_FILTER_GALLERY_THUMB', 'maxgalleria_gallery_thumb');
