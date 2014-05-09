@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: maxgalleria\n"
-"POT-Creation-Date: 2014-05-08 11:22-0500\n"
-"PO-Revision-Date: 2014-05-08 11:22-0500\n"
+"POT-Creation-Date: 2014-05-09 10:40-0500\n"
+"PO-Revision-Date: 2014-05-09 10:40-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -199,16 +199,19 @@ msgstr ""
 
 #: ../addons/templates/image-tiles/image-tiles-options.php:62
 #: ../addons/templates/video-tiles/video-tiles-options.php:60
+#: ../widgets/gallery-widget.php:46
 msgid "Landscape"
 msgstr ""
 
 #: ../addons/templates/image-tiles/image-tiles-options.php:63
 #: ../addons/templates/video-tiles/video-tiles-options.php:61
+#: ../widgets/gallery-widget.php:47
 msgid "Portrait"
 msgstr ""
 
 #: ../addons/templates/image-tiles/image-tiles-options.php:64
 #: ../addons/templates/video-tiles/video-tiles-options.php:62
+#: ../widgets/gallery-widget.php:48
 msgid "Square"
 msgstr ""
 
@@ -434,7 +437,7 @@ msgstr ""
 msgid "NextGEN Importer"
 msgstr ""
 
-#: ../maxgalleria-admin.php:22 ../maxgalleria.php:199
+#: ../maxgalleria-admin.php:22 ../maxgalleria.php:201
 msgid "Settings"
 msgstr ""
 
@@ -501,7 +504,8 @@ msgid ""
 "the gallery shortcode in the editor."
 msgstr ""
 
-#: ../maxgalleria-media-button.php:36
+#: ../maxgalleria-media-button.php:36 ../widgets/gallery-thumb-widget.php:62
+#: ../widgets/gallery-widget.php:72
 msgid "Select Gallery"
 msgstr ""
 
@@ -509,15 +513,15 @@ msgstr ""
 msgid "Image Galleries"
 msgstr ""
 
-#: ../maxgalleria-media-button.php:49 ../maxgalleria.php:167
+#: ../maxgalleria-media-button.php:49 ../maxgalleria.php:169
 msgid "0 images"
 msgstr ""
 
-#: ../maxgalleria-media-button.php:50 ../maxgalleria.php:168
+#: ../maxgalleria-media-button.php:50 ../maxgalleria.php:170
 msgid "1 image"
 msgstr ""
 
-#: ../maxgalleria-media-button.php:51 ../maxgalleria.php:169
+#: ../maxgalleria-media-button.php:51 ../maxgalleria.php:171
 #, php-format
 msgid "%d images"
 msgstr ""
@@ -526,15 +530,15 @@ msgstr ""
 msgid "Video Galleries"
 msgstr ""
 
-#: ../maxgalleria-media-button.php:71 ../maxgalleria.php:173
+#: ../maxgalleria-media-button.php:71 ../maxgalleria.php:175
 msgid "0 videos"
 msgstr ""
 
-#: ../maxgalleria-media-button.php:72 ../maxgalleria.php:174
+#: ../maxgalleria-media-button.php:72 ../maxgalleria.php:176
 msgid "1 video"
 msgstr ""
 
-#: ../maxgalleria-media-button.php:73 ../maxgalleria.php:175
+#: ../maxgalleria-media-button.php:73 ../maxgalleria.php:177
 #, php-format
 msgid "%d videos"
 msgstr ""
@@ -549,7 +553,7 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: ../maxgalleria-meta.php:20 ../maxgalleria.php:420
+#: ../maxgalleria-meta.php:20 ../maxgalleria.php:426
 msgid "New Gallery"
 msgstr ""
 
@@ -558,7 +562,7 @@ msgid "Shortcodes"
 msgstr ""
 
 #: ../maxgalleria-meta.php:29 ../maxgalleria-meta.php:40
-#: ../maxgalleria.php:416
+#: ../maxgalleria.php:422
 msgid "Gallery"
 msgstr ""
 
@@ -614,112 +618,112 @@ msgid ""
 "Media Library."
 msgstr ""
 
-#: ../maxgalleria.php:140 ../maxgalleria.php:622 ../meta/meta-new.php:69
+#: ../maxgalleria.php:142 ../maxgalleria.php:634 ../meta/meta-new.php:69
 #: ../meta/meta-new.php:71
 msgid "Image"
 msgstr ""
 
-#: ../maxgalleria.php:144 ../meta/meta-new.php:74 ../meta/meta-new.php:76
+#: ../maxgalleria.php:146 ../meta/meta-new.php:74 ../meta/meta-new.php:76
 msgid "Video"
 msgstr ""
 
-#: ../maxgalleria.php:202 ../maxgalleria.php:415
+#: ../maxgalleria.php:204 ../maxgalleria.php:421
 msgid "Galleries"
 msgstr ""
 
-#: ../maxgalleria.php:237 ../meta/image-edit-bulk.php:90
+#: ../maxgalleria.php:239 ../meta/image-edit-bulk.php:90
 #: ../meta/image-edit.php:73 ../meta/meta-images.php:311
 #: ../meta/meta-videos.php:352 ../meta/video-edit-bulk.php:96
 #: ../meta/video-edit.php:81
 msgid "Title"
 msgstr ""
 
-#: ../maxgalleria.php:238
+#: ../maxgalleria.php:240
 msgid "Thumbnail"
 msgstr ""
 
-#: ../maxgalleria.php:239
+#: ../maxgalleria.php:241
 msgid "Type"
 msgstr ""
 
-#: ../maxgalleria.php:240 ../meta/meta-image-gallery.php:11
+#: ../maxgalleria.php:242 ../meta/meta-image-gallery.php:11
 #: ../meta/meta-video-gallery.php:11
 msgid "Template"
 msgstr ""
 
-#: ../maxgalleria.php:241
+#: ../maxgalleria.php:243
 msgid "Number of Media"
 msgstr ""
 
-#: ../maxgalleria.php:242
+#: ../maxgalleria.php:244
 msgid "Shortcode"
 msgstr ""
 
-#: ../maxgalleria.php:243
+#: ../maxgalleria.php:245
 msgid "Date"
 msgstr ""
 
-#: ../maxgalleria.php:396
+#: ../maxgalleria.php:402
 msgid "Add Gallery"
 msgstr ""
 
-#: ../maxgalleria.php:417
+#: ../maxgalleria.php:423
 msgid "Add New"
 msgstr ""
 
-#: ../maxgalleria.php:418
+#: ../maxgalleria.php:424
 msgid "Add New Gallery"
 msgstr ""
 
-#: ../maxgalleria.php:419
+#: ../maxgalleria.php:425
 msgid "Edit Gallery"
 msgstr ""
 
-#: ../maxgalleria.php:421
+#: ../maxgalleria.php:427
 msgid "View Gallery"
 msgstr ""
 
-#: ../maxgalleria.php:422
+#: ../maxgalleria.php:428
 msgid "Search Galleries"
 msgstr ""
 
-#: ../maxgalleria.php:423
+#: ../maxgalleria.php:429
 msgid "No galleries found"
 msgstr ""
 
-#: ../maxgalleria.php:424
+#: ../maxgalleria.php:430
 msgid "No galleries found in trash"
 msgstr ""
 
-#: ../maxgalleria.php:578 ../meta/meta-images.php:232
+#: ../maxgalleria.php:590 ../meta/meta-images.php:232
 msgid "Add Images"
 msgstr ""
 
-#: ../maxgalleria.php:579 ../meta/video-add.php:164
+#: ../maxgalleria.php:591 ../meta/video-add.php:164
 msgid "Add to Gallery"
 msgstr ""
 
-#: ../maxgalleria.php:580
+#: ../maxgalleria.php:592
 msgid "Added to this gallery"
 msgstr ""
 
-#: ../maxgalleria.php:620
+#: ../maxgalleria.php:632
 msgid "Next >"
 msgstr ""
 
-#: ../maxgalleria.php:621
+#: ../maxgalleria.php:633
 msgid "< Prev"
 msgstr ""
 
-#: ../maxgalleria.php:623
+#: ../maxgalleria.php:635
 msgid "of"
 msgstr ""
 
-#: ../maxgalleria.php:624 ../meta/video-add.php:135
+#: ../maxgalleria.php:636 ../meta/video-add.php:135
 msgid "Close"
 msgstr ""
 
-#: ../maxgalleria.php:625
+#: ../maxgalleria.php:637
 msgid ""
 "This feature requires inline frames. You have iframes disabled or your "
 "browser does not support them."
@@ -1002,4 +1006,84 @@ msgstr ""
 
 #: ../meta/video-edit-bulk.php:149 ../meta/video-edit.php:130
 msgid "Enable HD Playback"
+msgstr ""
+
+#: ../widgets/gallery-thumb-widget.php:5
+msgid "MaxGalleria Gallery Thumbnail"
+msgstr ""
+
+#: ../widgets/gallery-thumb-widget.php:6
+msgid "Show thumbnail for a MaxGalleria gallery."
+msgstr ""
+
+#: ../widgets/gallery-thumb-widget.php:44
+msgid "Gallery Thumb Widget"
+msgstr ""
+
+#: ../widgets/gallery-thumb-widget.php:53 ../widgets/gallery-widget.php:63
+msgid "Title: "
+msgstr ""
+
+#: ../widgets/gallery-thumb-widget.php:59 ../widgets/gallery-widget.php:69
+msgid "Gallery: "
+msgstr ""
+
+#: ../widgets/gallery-thumb-widget.php:71
+msgid "Thumb Width: "
+msgstr ""
+
+#: ../widgets/gallery-thumb-widget.php:77
+msgid "Thumb Height: "
+msgstr ""
+
+#: ../widgets/gallery-thumb-widget.php:83
+msgid "URL: "
+msgstr ""
+
+#: ../widgets/gallery-widget.php:5
+msgid "MaxGalleria Gallery"
+msgstr ""
+
+#: ../widgets/gallery-widget.php:6
+msgid "Show images from a MaxGalleria gallery."
+msgstr ""
+
+#: ../widgets/gallery-widget.php:52
+msgid "Gallery Widget"
+msgstr ""
+
+#: ../widgets/gallery-widget.php:57 ../widgets/gallery-widget.php:158
+msgid "View More"
+msgstr ""
+
+#: ../widgets/gallery-widget.php:81
+msgid "Thumbs/Row: "
+msgstr ""
+
+#: ../widgets/gallery-widget.php:84
+msgid "Select Thumbs per Row"
+msgstr ""
+
+#: ../widgets/gallery-widget.php:93
+msgid "# of Rows: "
+msgstr ""
+
+#: ../widgets/gallery-widget.php:96
+msgid "Select # of Rows"
+msgstr ""
+
+#: ../widgets/gallery-widget.php:105
+msgid "Thumb Shape: "
+msgstr ""
+
+#: ../widgets/gallery-widget.php:108
+msgid "Select Thumb Shape"
+msgstr ""
+
+#: ../widgets/gallery-widget.php:117
+msgid "View More Text: "
+msgstr ""
+
+#: ../widgets/gallery-widget.php:123
+msgid "View More URL: "
 msgstr ""

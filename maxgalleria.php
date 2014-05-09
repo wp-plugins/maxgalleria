@@ -3,7 +3,7 @@
 Plugin Name: MaxGalleria
 Plugin URI: http://maxgalleria.com
 Description: The gallery platform for WordPress.
-Version: 2.1.0
+Version: 2.2.0
 Author: Max Foundry
 Author URI: http://maxfoundry.com
 
@@ -23,6 +23,8 @@ class MaxGalleria {
 	public $new_gallery;
 	public $image_gallery;
 	public $video_gallery;
+	public $gallery_widget;
+	public $gallery_thumb_widget;
 	
 	public function __construct() {
 		$this->_addons = array();
@@ -370,6 +372,8 @@ class MaxGalleria {
 		require_once 'maxgalleria-new-gallery.php';
 		require_once 'maxgalleria-image-gallery.php';
 		require_once 'maxgalleria-video-gallery.php';
+		require_once 'widgets/gallery-widget.php';
+		require_once 'widgets/gallery-thumb-widget.php';
 		
 		$this->admin = new MaxGalleriaAdmin();
 		$this->common = new MaxGalleriaCommon();
@@ -381,6 +385,8 @@ class MaxGalleria {
 		$this->new_gallery = new MaxGalleriaNewGallery();
 		$this->image_gallery = new MaxGalleriaImageGallery();
 		$this->video_gallery = new MaxGalleriaVideoGallery();
+		$this->gallery_widget = new MaxGalleriaGalleryWidget();
+		$this->gallery_thumb_widget = new MaxGalleriaGalleryThumbWidget();
 	}
 	
 	public function load_textdomain() {
@@ -493,6 +499,11 @@ class MaxGalleria {
 		$this->register_addon($video_tiles_addon);
 	}
 	
+	public function register_widgets() {
+		register_widget('MaxGalleriaGalleryWidget');
+		register_widget('MaxGalleriaGalleryThumbWidget');
+	}
+	
 	public function set_activation_hooks() {
 		register_activation_hook(__FILE__, array($this, 'do_activation'));
 		register_deactivation_hook(__FILE__, array($this, 'do_deactivation'));
@@ -500,7 +511,7 @@ class MaxGalleria {
 	
 	public function set_global_constants() {	
 		define('MAXGALLERIA_VERSION_KEY', 'maxgalleria_version');
-		define('MAXGALLERIA_VERSION_NUM', '2.1.0');
+		define('MAXGALLERIA_VERSION_NUM', '2.2.0');
 		define('MAXGALLERIA_PLUGIN_NAME', trim(dirname(plugin_basename(__FILE__)), '/'));
 		define('MAXGALLERIA_PLUGIN_DIR', WP_PLUGIN_DIR . '/' . MAXGALLERIA_PLUGIN_NAME);
 		define('MAXGALLERIA_PLUGIN_URL', WP_PLUGIN_URL . '/' . MAXGALLERIA_PLUGIN_NAME);
@@ -550,6 +561,7 @@ class MaxGalleria {
 		add_filter('upload_mimes', array($this, 'set_upload_mimes'), 50, 1);
 		add_action('media_buttons_context', array($this, 'media_button'));
 		add_action('admin_footer', array($this, 'media_button_admin_footer'));
+		add_action('widgets_init', array($this, 'register_widgets'));
 	}
 	
 	public function set_media_upload_tabs($tabs) {

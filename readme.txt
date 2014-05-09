@@ -2,8 +2,8 @@
 Contributors: maxfoundry, arcware, damonsharp, johnbhartley
 Tags: albums, gallery, gallery platform, image, images, media, flash, foto, fotoalbum, photo, photos, photo albums, picture, pictures, responsive wordpress gallery, thumbmail, thumbnails, wordpress gallery, wordpress gallery platform, wordpress gallery plugin, responsive wordpress gallery plugins, responsive, slideshows, image slider, nivo, image slide plugin, javascript rotator, javascript slider, jquery slider, photo slider, responsive image slider, responsive image slider plugin, responsive slideshow, responsive slideshow slider, responsive slider plugin, slideshow plugin, template, wordpress picture slider, wordpress responsive slider, wordpress slider, website gallery, multiple pictures, youtube, youtube video, youtube videos, youtube gallery, youtube galleries, youtube video gallery, youtube video galleries
 Requires at least: 3.9
-Tested up to: 3.9
-Stable tag: 2.1.0
+Tested up to: 3.9.1
+Stable tag: 2.2.0
 
 Responsive, Easy to Use, Developer Friendly
 
@@ -33,9 +33,7 @@ The MaxGalleria gallery platform was created with developers in mind. You'll fin
 Many people will find the core MaxGalleria plugin all they will ever need; however, some people will want to take their gallery experience further. And to do help them do that, there are several addons available:
 
 * [MaxGalleria Albums](http://maxgalleria.com/shop/maxgalleria-albums/) - Organize your galleries into albums
-* [MaxGalleria Album Widgets](http://maxgalleria.com/shop/maxgalleria-album-widgets/) - Add album widgets to your sidebars
 * [MaxGalleria Facebook](http://maxgalleria.com/shop/maxgalleria-facebook/) - Add Facebook photos to your galleries
-* [MaxGalleria Gallery Widgets](http://maxgalleria.com/shop/maxgalleria-gallery-widgets/) - Add gallery widgets to your sidebars
 * [MaxGalleria Image Carousel](http://maxgalleria.com/shop/maxgalleria-image-carousel/) - Turn your galleries into carousels
 * [MaxGalleria Image Showcase](http://maxgalleria.com/shop/maxgalleria-image-showcase/) - Showcase your high-resolution images
 * [MaxGalleria Image Slider](http://maxgalleria.com/shop/maxgalleria-image-slider/) - Turn your galleries into sliders
@@ -78,6 +76,7 @@ MaxGalleria is stuffed full of all the features and functionality you need to ea
 * Developer hooks (actions and filters)
 * Multiple galleries on any post/page
 * Exclude galleries from search results
+* Widgets for galleries and gallery thumbnails
 
 == Screenshots ==
 
@@ -112,6 +111,9 @@ No. The MaxGalleria core plugin contains plenty of functionality to keep even th
 
 == Changelog ==
 
+= 2.2.0 =
+* Added gallery and gallery thumbnail widgets (a separate addon is no longer required).
+
 = 2.1.0 =
 * Added support for YouTube videos (a separate addon is no longer required).
 * Improved user experience by using tabs for gallery options instead of accordions.
@@ -126,5 +128,5 @@ No. The MaxGalleria core plugin contains plenty of functionality to keep even th
 
 == Upgrade Notice ==
 
-= 2.1.0 =
-YouTube video support and tabs for gallery options.
+= 2.2.0 =
+Added gallery and gallery thumbnail widgets.

@@ -122,4 +122,16 @@ define('MAXGALLERIA_FILTER_THUMB_SIZE_SQUARE_SEVEN_COLUMN', 'maxgalleria_thumb_s
 define('MAXGALLERIA_FILTER_THUMB_SIZE_SQUARE_EIGHT_COLUMN', 'maxgalleria_thumb_size_square_eight_column');
 define('MAXGALLERIA_FILTER_THUMB_SIZE_SQUARE_NINE_COLUMN', 'maxgalleria_thumb_size_square_nine_column');
 define('MAXGALLERIA_FILTER_THUMB_SIZE_SQUARE_TEN_COLUMN', 'maxgalleria_thumb_size_square_ten_column');
+define('MAXGALLERIA_FILTER_GALLERY_WIDGET_STYLESHEET', 'maxgalleria_gallery_widget_stylesheet');
+define('MAXGALLERIA_FILTER_GALLERY_WIDGET_BEFORE_OUTPUT', 'maxgalleria_gallery_widget_before_output');
+define('MAXGALLERIA_FILTER_GALLERY_WIDGET_AFTER_OUTPUT', 'maxgalleria_gallery_widget_after_output');
+define('MAXGALLERIA_FILTER_GALLERY_WIDGET_OUTPUT', 'maxgalleria_gallery_widget_output');
+define('MAXGALLERIA_FILTER_GALLERY_WIDGET_BEFORE_THUMB', 'maxgalleria_gallery_widget_before_thumb');
+define('MAXGALLERIA_FILTER_GALLERY_WIDGET_AFTER_THUMB', 'maxgalleria_gallery_widget_after_thumb');
+define('MAXGALLERIA_FILTER_GALLERY_WIDGET_THUMB', 'maxgalleria_gallery_widget_thumb');
+define('MAXGALLERIA_FILTER_GALLERY_WIDGET_BEFORE_VIEW_MORE', 'maxgalleria_gallery_widget_before_view_more');
+define('MAXGALLERIA_FILTER_GALLERY_WIDGET_AFTER_VIEW_MORE', 'maxgalleria_gallery_widget_after_view_more');
+define('MAXGALLERIA_FILTER_GALLERY_WIDGET_VIEW_MORE', 'maxgalleria_gallery_widget_view_more');
+define('MAXGALLERIA_FILTER_GALLERY_WIDGET_BEFORE_THUMB_OUTPUT', 'maxgalleria_gallery_widget_before_thumb_output');
+define('MAXGALLERIA_FILTER_GALLERY_WIDGET_AFTER_THUMB_OUTPUT', 'maxgalleria_gallery_widget_after_thumb_output');
 ?>
