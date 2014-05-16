@@ -3,7 +3,7 @@
 Plugin Name: MaxGalleria
 Plugin URI: http://maxgalleria.com
 Description: The gallery platform for WordPress.
-Version: 2.2.0
+Version: 2.2.1
 Author: Max Foundry
 Author URI: http://maxfoundry.com
 
@@ -454,7 +454,6 @@ class MaxGalleria {
 		array_push($this->_addons, $addon);
 	}
 	
-
 	public function register_media_sources() {
 		// YouTube
 		require_once MAXGALLERIA_PLUGIN_DIR . '/addons/media-sources/youtube/youtube.php';
@@ -511,7 +510,7 @@ class MaxGalleria {
 	
 	public function set_global_constants() {	
 		define('MAXGALLERIA_VERSION_KEY', 'maxgalleria_version');
-		define('MAXGALLERIA_VERSION_NUM', '2.2.0');
+		define('MAXGALLERIA_VERSION_NUM', '2.2.1');
 		define('MAXGALLERIA_PLUGIN_NAME', trim(dirname(plugin_basename(__FILE__)), '/'));
 		define('MAXGALLERIA_PLUGIN_DIR', WP_PLUGIN_DIR . '/' . MAXGALLERIA_PLUGIN_NAME);
 		define('MAXGALLERIA_PLUGIN_URL', WP_PLUGIN_URL . '/' . MAXGALLERIA_PLUGIN_NAME);

@@ -42,9 +42,10 @@ class MaxGalleriaNextGen {
 					// First create the gallery post itself
 					$new_id = wp_insert_post(array('post_title' => stripslashes($_POST['maxgalleria_gallery_title']), 'post_type' => MAXGALLERIA_POST_TYPE));
 					
-					// Then save the gallery type
+					// Then save the gallery type and set template to Image Tiles
 					$options = new MaxGalleryOptions($new_id);
 					add_post_meta($new_id, $options->type_key, 'image', true);
+					add_post_meta($new_id, $options->template_key, 'image-tiles', true);
 					
 					// And finally get the full gallery post back
 					$maxgalleria_gallery = get_post($new_id);

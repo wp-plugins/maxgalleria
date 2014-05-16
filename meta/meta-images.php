@@ -17,6 +17,9 @@ $attachments = get_posts($args);
 
 <script type="text/javascript">		
 	jQuery(document).ready(function() {
+		// To add the image count in the meta box title
+		jQuery("#meta-image-gallery h3.hndle span").html("<?php _e('Gallery', 'maxgalleria') ?> (<?php echo count($attachments) ?> <?php _e('images', 'maxgalleria') ?>)");
+		
 		// Image moving and re-ordering
 		jQuery("#gallery-media").dataTable({ bPaginate: false }).rowReordering({
 			fnAlert: function(message) {

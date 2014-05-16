@@ -21,10 +21,8 @@ class MaxGalleryOptions {
 	public function save_post_meta($meta_key) {
 		$post_id = $this->get_post_id();
 		
-		// Get old and new values. If the option doesn't exist in the $_POST, then set new
-		// value equal to old value. This helps keep values intact when switching templates.
 		$meta_old_value = get_post_meta($post_id, $meta_key, true);
-		$meta_new_value = isset($_POST[$meta_key]) ? stripslashes($_POST[$meta_key]) : $meta_old_value;
+		$meta_new_value = isset($_POST[$meta_key]) ? stripslashes($_POST[$meta_key]) : '';
 		
 		// If the option is the saves count, we need to check if we have a template value. If we do, then
 		// we increment the saves count; otherwise, we reset the saves count back to -1 to ensure gallery

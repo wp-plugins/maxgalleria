@@ -2,7 +2,6 @@
 global $post;
 global $maxgalleria;
 
-$common = $maxgalleria->common;
 $video_gallery = $maxgalleria->video_gallery;
 
 $args = array(
@@ -18,6 +17,9 @@ $attachments = get_posts($args);
 
 <script type="text/javascript">		
 	jQuery(document).ready(function() {
+		// To add the video count in the meta box title
+		jQuery("#meta-video-gallery h3.hndle span").html("<?php _e('Gallery', 'maxgalleria') ?> (<?php echo count($attachments) ?> <?php _e('videos', 'maxgalleria') ?>)");
+		
 		// Video moving and re-ordering
 		jQuery("#gallery-media").dataTable({ bPaginate: false }).rowReordering({
 			fnAlert: function(message) {
@@ -363,7 +365,7 @@ $attachments = get_posts($args);
 							
 							<div class="detail-label"><?php _e('Meta', 'maxgalleria') ?>:</div>
 							<div class="detail-value">
-								<?php echo $common->format_seconds_to_time(get_post_meta($attachment->ID, 'maxgallery_attachment_video_seconds', true)) ?> |
+								<?php echo $maxgalleria->common->format_seconds_to_time(get_post_meta($attachment->ID, 'maxgallery_attachment_video_seconds', true)) ?> |
 								<?php echo date(get_option('date_format'), strtotime($attachment->post_date)) ?>
 							</div>
 							<div class="clear"></div>

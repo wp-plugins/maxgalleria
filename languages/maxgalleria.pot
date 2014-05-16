@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: maxgalleria\n"
-"POT-Creation-Date: 2014-05-09 10:40-0500\n"
-"PO-Revision-Date: 2014-05-09 10:40-0500\n"
+"POT-Creation-Date: 2014-05-15 22:48-0500\n"
+"PO-Revision-Date: 2014-05-15 22:48-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -562,11 +562,12 @@ msgid "Shortcodes"
 msgstr ""
 
 #: ../maxgalleria-meta.php:29 ../maxgalleria-meta.php:40
-#: ../maxgalleria.php:422
+#: ../maxgalleria.php:422 ../meta/meta-images.php:21
+#: ../meta/meta-videos.php:21
 msgid "Gallery"
 msgstr ""
 
-#: ../maxgalleria-nextgen.php:114
+#: ../maxgalleria-nextgen.php:115
 #, php-format
 msgid ""
 "%sSuccessfully imported %d of %d images from NextGEN into the \"%s%s%s\" "
@@ -618,7 +619,7 @@ msgid ""
 "Media Library."
 msgstr ""
 
-#: ../maxgalleria.php:142 ../maxgalleria.php:634 ../meta/meta-new.php:69
+#: ../maxgalleria.php:142 ../maxgalleria.php:633 ../meta/meta-new.php:69
 #: ../meta/meta-new.php:71
 msgid "Image"
 msgstr ""
@@ -632,8 +633,8 @@ msgid "Galleries"
 msgstr ""
 
 #: ../maxgalleria.php:239 ../meta/image-edit-bulk.php:90
-#: ../meta/image-edit.php:73 ../meta/meta-images.php:311
-#: ../meta/meta-videos.php:352 ../meta/video-edit-bulk.php:96
+#: ../meta/image-edit.php:73 ../meta/meta-images.php:314
+#: ../meta/meta-videos.php:354 ../meta/video-edit-bulk.php:96
 #: ../meta/video-edit.php:81
 msgid "Title"
 msgstr ""
@@ -695,57 +696,57 @@ msgstr ""
 msgid "No galleries found in trash"
 msgstr ""
 
-#: ../maxgalleria.php:590 ../meta/meta-images.php:232
+#: ../maxgalleria.php:589 ../meta/meta-images.php:235
 msgid "Add Images"
 msgstr ""
 
-#: ../maxgalleria.php:591 ../meta/video-add.php:164
+#: ../maxgalleria.php:590 ../meta/video-add.php:164
 msgid "Add to Gallery"
 msgstr ""
 
-#: ../maxgalleria.php:592
+#: ../maxgalleria.php:591
 msgid "Added to this gallery"
 msgstr ""
 
-#: ../maxgalleria.php:632
+#: ../maxgalleria.php:631
 msgid "Next >"
 msgstr ""
 
-#: ../maxgalleria.php:633
+#: ../maxgalleria.php:632
 msgid "< Prev"
 msgstr ""
 
-#: ../maxgalleria.php:635
+#: ../maxgalleria.php:634
 msgid "of"
 msgstr ""
 
-#: ../maxgalleria.php:636 ../meta/video-add.php:135
+#: ../maxgalleria.php:635 ../meta/video-add.php:135
 msgid "Close"
 msgstr ""
 
-#: ../maxgalleria.php:637
+#: ../maxgalleria.php:636
 msgid ""
 "This feature requires inline frames. You have iframes disabled or your "
 "browser does not support them."
 msgstr ""
 
-#: ../meta/image-edit-bulk.php:46 ../meta/meta-images.php:66
+#: ../meta/image-edit-bulk.php:46 ../meta/meta-images.php:69
 msgid "Edit Bulk Images"
 msgstr ""
 
-#: ../meta/image-edit-bulk.php:100 ../meta/meta-images.php:315
-#: ../meta/meta-videos.php:356 ../meta/video-edit-bulk.php:106
+#: ../meta/image-edit-bulk.php:100 ../meta/meta-images.php:318
+#: ../meta/meta-videos.php:358 ../meta/video-edit-bulk.php:106
 msgid "Alt Text"
 msgstr ""
 
 #: ../meta/image-edit-bulk.php:110 ../meta/image-edit.php:91
-#: ../meta/meta-images.php:319 ../meta/meta-videos.php:360
+#: ../meta/meta-images.php:322 ../meta/meta-videos.php:362
 #: ../meta/video-edit-bulk.php:116 ../meta/video-edit.php:99
 msgid "Caption"
 msgstr ""
 
 #: ../meta/image-edit-bulk.php:120 ../meta/image-edit.php:100
-#: ../meta/meta-images.php:331
+#: ../meta/meta-images.php:334
 msgid "Link"
 msgstr ""
 
@@ -754,7 +755,7 @@ msgstr ""
 msgid "Save Changes"
 msgstr ""
 
-#: ../meta/image-edit.php:40 ../meta/meta-images.php:130
+#: ../meta/image-edit.php:40 ../meta/meta-images.php:133
 msgid "Edit Image"
 msgstr ""
 
@@ -841,73 +842,77 @@ msgstr ""
 msgid "Advanced"
 msgstr ""
 
-#: ../meta/meta-images.php:135
+#: ../meta/meta-images.php:21
+msgid "images"
+msgstr ""
+
+#: ../meta/meta-images.php:138
 msgid "Are you sure you want to exclude this image from the gallery?"
 msgstr ""
 
-#: ../meta/meta-images.php:160
+#: ../meta/meta-images.php:163
 msgid "Are you sure you want to include this image in the gallery?"
 msgstr ""
 
-#: ../meta/meta-images.php:185
+#: ../meta/meta-images.php:188
 msgid "Are you sure you want to remove this image from the gallery?"
 msgstr ""
 
-#: ../meta/meta-images.php:237 ../meta/meta-videos.php:262
+#: ../meta/meta-images.php:240 ../meta/meta-videos.php:264
 msgid "Bulk Actions"
 msgstr ""
 
-#: ../meta/meta-images.php:238 ../meta/meta-images.php:299
-#: ../meta/meta-videos.php:263 ../meta/meta-videos.php:324
+#: ../meta/meta-images.php:241 ../meta/meta-images.php:302
+#: ../meta/meta-videos.php:265 ../meta/meta-videos.php:326
 msgid "Edit"
 msgstr ""
 
-#: ../meta/meta-images.php:239 ../meta/meta-images.php:305
-#: ../meta/meta-videos.php:264 ../meta/meta-videos.php:330
+#: ../meta/meta-images.php:242 ../meta/meta-images.php:308
+#: ../meta/meta-videos.php:266 ../meta/meta-videos.php:332
 msgid "Exclude"
 msgstr ""
 
-#: ../meta/meta-images.php:240 ../meta/meta-images.php:303
-#: ../meta/meta-videos.php:265 ../meta/meta-videos.php:328
+#: ../meta/meta-images.php:243 ../meta/meta-images.php:306
+#: ../meta/meta-videos.php:267 ../meta/meta-videos.php:330
 msgid "Include"
 msgstr ""
 
-#: ../meta/meta-images.php:241 ../meta/meta-images.php:300
-#: ../meta/meta-videos.php:266 ../meta/meta-videos.php:325
+#: ../meta/meta-images.php:244 ../meta/meta-images.php:303
+#: ../meta/meta-videos.php:268 ../meta/meta-videos.php:327
 msgid "Remove"
 msgstr ""
 
-#: ../meta/meta-images.php:243 ../meta/meta-videos.php:268
+#: ../meta/meta-images.php:246 ../meta/meta-videos.php:270
 msgid "Apply"
 msgstr ""
 
-#: ../meta/meta-images.php:246 ../meta/meta-videos.php:271
+#: ../meta/meta-images.php:249 ../meta/meta-videos.php:273
 msgid "List"
 msgstr ""
 
-#: ../meta/meta-images.php:247 ../meta/meta-videos.php:272
+#: ../meta/meta-images.php:250 ../meta/meta-videos.php:274
 msgid "Rows"
 msgstr ""
 
-#: ../meta/meta-images.php:248 ../meta/meta-videos.php:273
+#: ../meta/meta-images.php:251 ../meta/meta-videos.php:275
 msgid "Grid"
 msgstr ""
 
-#: ../meta/meta-images.php:259
+#: ../meta/meta-images.php:262
 msgid ""
 "Adding images from media library, this might take a few moments, please "
 "wait..."
 msgstr ""
 
-#: ../meta/meta-images.php:265
+#: ../meta/meta-images.php:268
 msgid "No images have been added to this gallery."
 msgstr ""
 
-#: ../meta/meta-images.php:274 ../meta/meta-videos.php:299
+#: ../meta/meta-images.php:277 ../meta/meta-videos.php:301
 msgid "Reorder"
 msgstr ""
 
-#: ../meta/meta-images.php:323 ../meta/meta-videos.php:364
+#: ../meta/meta-images.php:326 ../meta/meta-videos.php:366
 msgid "Meta"
 msgstr ""
 
@@ -931,40 +936,44 @@ msgstr ""
 msgid "Videos"
 msgstr ""
 
-#: ../meta/meta-videos.php:37 ../meta/meta-videos.php:257
+#: ../meta/meta-videos.php:21
+msgid "videos"
+msgstr ""
+
+#: ../meta/meta-videos.php:39 ../meta/meta-videos.php:259
 #: ../meta/video-add.php:100
 msgid "Add Videos"
 msgstr ""
 
-#: ../meta/meta-videos.php:74 ../meta/video-edit-bulk.php:52
+#: ../meta/meta-videos.php:76 ../meta/video-edit-bulk.php:52
 msgid "Edit Bulk Videos"
 msgstr ""
 
-#: ../meta/meta-videos.php:151 ../meta/video-edit.php:48
+#: ../meta/meta-videos.php:153 ../meta/video-edit.php:48
 msgid "Edit Video"
 msgstr ""
 
-#: ../meta/meta-videos.php:156
+#: ../meta/meta-videos.php:158
 msgid "Are you sure you want to exclude this video from the gallery?"
 msgstr ""
 
-#: ../meta/meta-videos.php:181
+#: ../meta/meta-videos.php:183
 msgid "Are you sure you want to include this video in the gallery?"
 msgstr ""
 
-#: ../meta/meta-videos.php:206
+#: ../meta/meta-videos.php:208
 msgid "Are you sure you want to remove this video from the gallery?"
 msgstr ""
 
-#: ../meta/meta-videos.php:284
+#: ../meta/meta-videos.php:286
 msgid "Adding videos, one moment..."
 msgstr ""
 
-#: ../meta/meta-videos.php:290
+#: ../meta/meta-videos.php:292
 msgid "No videos have been added to this gallery."
 msgstr ""
 
-#: ../meta/meta-videos.php:371
+#: ../meta/meta-videos.php:373
 msgid "URL"
 msgstr ""
 
