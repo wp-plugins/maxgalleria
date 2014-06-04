@@ -3,7 +3,7 @@
 Plugin Name: MaxGalleria
 Plugin URI: http://maxgalleria.com
 Description: The gallery platform for WordPress.
-Version: 2.2.1
+Version: 2.2.2
 Author: Max Foundry
 Author URI: http://maxfoundry.com
 
@@ -113,7 +113,7 @@ class MaxGalleria {
 		$current_blog = $wpdb->blogid;
 		
 		// Get all the blogs/sites in the network and invoke the function for each one
-		$blog_ids = $wpdb->get_col($wpdb->prepare("SELECT blog_id FROM $wpdb->blogs"));
+		$blog_ids = $wpdb->get_col("SELECT blog_id FROM $wpdb->blogs");
 		foreach ($blog_ids as $blog_id) {
 			switch_to_blog($blog_id);
 			call_user_func($function);
@@ -510,7 +510,7 @@ class MaxGalleria {
 	
 	public function set_global_constants() {	
 		define('MAXGALLERIA_VERSION_KEY', 'maxgalleria_version');
-		define('MAXGALLERIA_VERSION_NUM', '2.2.1');
+		define('MAXGALLERIA_VERSION_NUM', '2.2.2');
 		define('MAXGALLERIA_PLUGIN_NAME', trim(dirname(plugin_basename(__FILE__)), '/'));
 		define('MAXGALLERIA_PLUGIN_DIR', WP_PLUGIN_DIR . '/' . MAXGALLERIA_PLUGIN_NAME);
 		define('MAXGALLERIA_PLUGIN_URL', WP_PLUGIN_URL . '/' . MAXGALLERIA_PLUGIN_NAME);

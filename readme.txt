@@ -3,13 +3,17 @@ Contributors: maxfoundry, arcware, damonsharp, johnbhartley
 Tags: albums, gallery, gallery platform, image, images, media, flash, foto, fotoalbum, photo, photos, photo albums, picture, pictures, responsive wordpress gallery, thumbmail, thumbnails, wordpress gallery, wordpress gallery platform, wordpress gallery plugin, responsive wordpress gallery plugins, responsive, slideshows, image slider, nivo, image slide plugin, javascript rotator, javascript slider, jquery slider, photo slider, responsive image slider, responsive image slider plugin, responsive slideshow, responsive slideshow slider, responsive slider plugin, slideshow plugin, template, wordpress picture slider, wordpress responsive slider, wordpress slider, website gallery, multiple pictures, youtube, youtube video, youtube videos, youtube gallery, youtube galleries, youtube video gallery, youtube video galleries
 Requires at least: 3.9
 Tested up to: 3.9.1
-Stable tag: 2.2.1
+Stable tag: 2.2.2
 
 Responsive, Easy to Use, Developer Friendly
 
 == Description ==
 
 WordPress users deserve a gallery plugin that doesn't frustrate them as they use it - they want a gallery plugin that is actually a joy to use. Other gallery plugins claim to be the best simply because they've been around the longest and have the most downloads. But we know better. MaxGalleria helps change the game by giving users a streamlined experience for creating and managing responsive WordPress galleries that look great on any device.
+
+= Useful Info =
+* [What Is a WordPress Gallery Platform?](http://maxgalleria.com/blog/what-is-a-wordpress-gallery-platform/?utm_source=wordpress&utm_medium=mgrepo&utm_content=what-is-wordpress-gallery-platform&utm_campaign=plugin)
+* [How to Upgrade to MaxGalleria 2.0](http://maxgalleria.com/blog/upgrade-maxgalleria-2-0/?utm_source=wordpress&utm_medium=mgrepo&utm_content=how-to-upgrade-maxgalleria-2&utm_campaign=plugin)
 
 = Responsive for All Devices =
 From iPhones to iPads to Androids to desktops, MaxGalleria provides a great viewing experience no matter the device your galleries are seen on.
@@ -21,25 +25,25 @@ MaxGalleria provides a highly streamlined user interface that makes it as straig
 Frustrated with the NextGEN Gallery plugin? You're not alone. Import your NextGEN galleries into MaxGalleria with just a couple clicks.
 
 = Use Only What You Need =
-Don't get bogged down with useless features. MaxGalleria gives you all the essentials, then lets you pick and choose [enhanced functionality](http://maxgalleria.com/shop/category/addons/).
+Don't get bogged down with useless features. MaxGalleria gives you all the essentials, then lets you pick and choose [enhanced functionality](http://maxgalleria.com/shop/category/addons/?utm_source=wordpress&utm_medium=mgrepo&utm_content=enhanced-functionality&utm_campaign=plugin).
 
 = Ready-Made Templates =
-MaxGalleria includes several [gallery layouts and skins](http://maxgalleria.com/shop/category/addons/), each with plenty of options to customize your galleries just how you like.
+MaxGalleria includes several [gallery layouts and skins](http://maxgalleria.com/shop/category/addons/?utm_source=wordpress&utm_medium=mgrepo&utm_content=gallery-layouts-skins&utm_campaign=plugin), each with plenty of options to customize your galleries just how you like.
 
 = Built for Developers =
-The MaxGalleria gallery platform was created with developers in mind. You'll find countless [actions and filters](http://maxgalleria.com/documentation/) to make your heart sing.
+The MaxGalleria gallery platform was created with developers in mind. You'll find countless [actions and filters](http://maxgalleria.com/documentation/?utm_source=wordpress&utm_medium=mgrepo&utm_content=actions-filters&utm_campaign=plugin) to make your heart sing.
 
 = Addons to Enhance Your Gallery Experience =
 Many people will find the core MaxGalleria plugin all they will ever need; however, some people will want to take their gallery experience further. And to do help them do that, there are several addons available:
 
-* [MaxGalleria Albums](http://maxgalleria.com/shop/maxgalleria-albums/) - Organize your galleries into albums
-* [MaxGalleria Facebook](http://maxgalleria.com/shop/maxgalleria-facebook/) - Add Facebook photos to your galleries
-* [MaxGalleria Image Carousel](http://maxgalleria.com/shop/maxgalleria-image-carousel/) - Turn your galleries into carousels
-* [MaxGalleria Image Showcase](http://maxgalleria.com/shop/maxgalleria-image-showcase/) - Showcase your high-resolution images
-* [MaxGalleria Image Slider](http://maxgalleria.com/shop/maxgalleria-image-slider/) - Turn your galleries into sliders
-* [MaxGalleria Instagram](http://maxgalleria.com/shop/maxgalleria-instagram/) - Add Instagram images to your galleries
-* [MaxGalleria Video Showcase](http://maxgalleria.com/shop/maxgalleria-video-showcase/) - Showcase your videos
-* [MaxGalleria Vimeo](http://maxgalleria.com/shop/maxgalleria-vimeo/) - Add Vimeo videos to your galleries
+* [MaxGalleria Albums](http://maxgalleria.com/shop/maxgalleria-albums/?utm_source=wordpress&utm_medium=mgrepo&utm_content=maxgalleria-albums&utm_campaign=plugin) - Organize your galleries into albums
+* [MaxGalleria Facebook](http://maxgalleria.com/shop/maxgalleria-facebook/?utm_source=wordpress&utm_medium=mgrepo&utm_content=maxgalleria-facebook&utm_campaign=plugin) - Add Facebook photos to your galleries
+* [MaxGalleria Image Carousel](http://maxgalleria.com/shop/maxgalleria-image-carousel/?utm_source=wordpress&utm_medium=mgrepo&utm_content=maxgalleria-image-carousel&utm_campaign=plugin) - Turn your galleries into carousels
+* [MaxGalleria Image Showcase](http://maxgalleria.com/shop/maxgalleria-image-showcase/?utm_source=wordpress&utm_medium=mgrepo&utm_content=maxgalleria-image-showcase&utm_campaign=plugin) - Showcase your high-resolution images
+* [MaxGalleria Image Slider](http://maxgalleria.com/shop/maxgalleria-image-slider/?utm_source=wordpress&utm_medium=mgrepo&utm_content=maxgalleria-image-slider&utm_campaign=plugin) - Turn your galleries into sliders
+* [MaxGalleria Instagram](http://maxgalleria.com/shop/maxgalleria-instagram/?utm_source=wordpress&utm_medium=mgrepo&utm_content=maxgalleria-instagram&utm_campaign=plugin) - Add Instagram images to your galleries
+* [MaxGalleria Video Showcase](http://maxgalleria.com/shop/maxgalleria-video-showcase/?utm_source=wordpress&utm_medium=mgrepo&utm_content=maxgalleria-video-showcase&utm_campaign=plugin) - Showcase your videos
+* [MaxGalleria Vimeo](http://maxgalleria.com/shop/maxgalleria-vimeo/?utm_source=wordpress&utm_medium=mgrepo&utm_content=maxgalleria-vimeo&utm_campaign=plugin) - Add Vimeo videos to your galleries
 
 = Features at a Glance =
 MaxGalleria is stuffed full of all the features and functionality you need to easily create and manage your image and video galleries in WordPress.
@@ -80,7 +84,7 @@ MaxGalleria is stuffed full of all the features and functionality you need to ea
 
 == Screenshots ==
 
-There are too many screenshots to list here, but you can [see all of them on the MaxGalleria website](http://maxgalleria.com/features/).
+There are too many screenshots to list here, but you can [see all of them on the MaxGalleria website](http://maxgalleria.com/features/?utm_source=wordpress&utm_medium=mgrepo&utm_content=see-all-on-maxgalleria-website&utm_campaign=plugin).
 
 == Installation ==
 
@@ -104,12 +108,17 @@ For manual installation:
 == Frequently Asked Questions ==
 
 = Does MaxGalleria come with documentation? =
-Yes. All documentation, which includes QuickStart Guides and developer hooks references, [can be found here](http://maxgalleria.com/documentation/).
+Yes. All documentation, which includes QuickStart Guides and developer hooks references, [can be found here](http://maxgalleria.com/documentation/?utm_source=wordpress&utm_medium=mgrepo&utm_content=found-here&utm_campaign=plugin).
 
 = Do I have to buy any of the addons to fully enjoy MaxGalleria? =
-No. The MaxGalleria core plugin contains plenty of functionality to keep even the most die-hard gallery user happy. But for those looking to enhance their gallery experience, [MaxGalleria addons](http://maxgalleria.com/shop/category/addons/) are the perfect choice.
+No. The MaxGalleria core plugin contains plenty of functionality to keep even the most die-hard gallery user happy. But for those looking to enhance their gallery experience, [MaxGalleria addons](http://maxgalleria.com/shop/category/addons/?utm_source=wordpress&utm_medium=mgrepo&utm_content=maxgalleria-addons&utm_campaign=plugin) are the perfect choice.
 
 == Changelog ==
+
+= 2.2.2 =
+* Added hidden saves_count field back in with the template option.
+* Removed unnecessary wpdb->prepare statement when activating with multisite.
+* Used esc_attr in Image Tiles and Video Tiles templates for alt and title attributes.
 
 = 2.2.1 =
 * Fixed issue where importing galleries from NextGEN resulted in no images being displayed.
@@ -133,5 +142,5 @@ No. The MaxGalleria core plugin contains plenty of functionality to keep even th
 
 == Upgrade Notice ==
 
-= 2.2.1 =
-Fixed NextGEN import issue.
+= 2.2.2 =
+Minor fixes.

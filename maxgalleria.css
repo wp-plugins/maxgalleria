@@ -157,6 +157,12 @@ Styles from Twitter Bootstrap
 	/* Darken IE7 buttons by default so they stand out more given they won't have borders */
 	filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
+.maxgalleria-meta .btn-primary.maxgalleria-open-media {
+	font-family: "Open Sans", sans-serif;
+}
+.maxgalleria-meta #galleries_select_button {
+	font-family: "Open Sans", sans-serif;
+}
 .maxgalleria-meta .btn-primary:hover,
 .maxgalleria-meta .btn-primary:active,
 .maxgalleria-meta .btn-primary.active,
@@ -447,7 +453,12 @@ Meta Styles
 	font-size: 14px;
 }
 .maxgalleria-meta select {
+	font-family: "Open Sans", sans-serif;
 	font-size: 13px;
+}
+.maxgalleria-meta #bulk-action-select,
+.maxgalleria-meta #bulk-action-apply {
+	font-family: "Open Sans", sans-serif;
 }
 .maxgalleria-meta .clear {
 	clear: both;

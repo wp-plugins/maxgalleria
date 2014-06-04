@@ -197,7 +197,7 @@ class MaxGalleriaVideoTiles {
 				}
 				
 				$thumb_image = $this->get_thumb_image($options, $attachment);
-				$thumb_image_element = '<img class="' . $image_class . '" src="' . $thumb_image['url'] . '" width="' . $thumb_image['width'] . '" height="' . $thumb_image['height'] . '" alt="' . $alt . '" title="' . $title . '" />';
+				$thumb_image_element = '<img class="' . $image_class . '" src="' . $thumb_image['url'] . '" width="' . $thumb_image['width'] . '" height="' . $thumb_image['height'] . '" alt="' . esc_attr($alt) . '" title="' . esc_attr($title) . '" />';
 				
 				$output .= '<li>';
 				$output .= '	<a data-video-thumb-id="' . $attachment->ID . '" href="' . $href . '" target="' . $target . '" rel="' . $image_rel . '">';

@@ -62,6 +62,9 @@ asort($templates);
 				<?php echo $template['name'] ?>			
 			</div>
 		<?php } ?>
+		
+		<!-- Saves count is for internal use only -->
+		<input type="hidden" id="<?php echo $options->saves_count_key ?>" name="<?php echo $options->saves_count_key ?>" value="<?php echo $options->get_saves_count() ?>" />
 	<?php } else { ?>
 		<?php if ($options->is_image_gallery()) { ?>
 			<p class="no-templates"><?php _e('You do not have any image gallery templates installed.', 'maxgalleria')?></p>
