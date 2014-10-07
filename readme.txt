@@ -115,6 +115,13 @@ No. The MaxGalleria core plugin contains plenty of functionality to keep even th
 
 == Changelog ==
 
+= 2.3 = 
+* Fixed the jQuery Fancybox issue
+* Updated CSS for odd line-breaks
+* Added pagination
+* Some plugin_url cleanup
+* Fixed YouTube HTTP, HTTPS issues
+
 = 2.2.2 =
 * Added hidden saves_count field back in with the template option.
 * Removed unnecessary wpdb->prepare statement when activating with multisite.

@@ -63,6 +63,9 @@ class MaxGalleriaVideoTilesOptions extends MaxGalleryOptions {
 		);
 	}
 
+	public $videos_per_page_key = 'maxgallery_videos_per_page';
+	public $videos_per_page_default = '';
+	public $videos_per_page_default_key = 'maxgallery_videos_per_page';
 	public $lightbox_video_size_custom_height_key = 'maxgallery_lightbox_video_size_custom_height';
 	public $lightbox_video_size_custom_height_default = '';
 	public $lightbox_video_size_custom_height_default_key = 'maxgallery_lightbox_video_size_custom_height_video_tiles_default';
@@ -128,7 +131,20 @@ class MaxGalleriaVideoTilesOptions extends MaxGalleryOptions {
 	public function get_lightbox_video_size_custom_height_default() {
 		return get_option($this->lightbox_video_size_custom_height_default_key, $this->lightbox_video_size_custom_height_default);
 	}
-
+  
+  	public function get_videos_per_page() {
+		$value = $this->get_post_meta($this->videos_per_page_key);
+		if ($value == '' && $this->get_saves_count() < 1) {
+			$value = $this->get_videos_per_page_default();
+		}
+		
+		return $value;
+	}
+	
+	public function get_videos_per_page_default() {
+		return get_option($this->videos_per_page_default_key, $this->videos_per_page_default);
+	}
+  
 	public function get_lightbox_video_size_custom_width() {
 		$value = $this->get_post_meta($this->lightbox_video_size_custom_width_key);
 		if ($value == '' && $this->get_saves_count() < 1) {
@@ -307,7 +323,8 @@ class MaxGalleriaVideoTilesOptions extends MaxGalleryOptions {
 			$this->thumb_image_class_key,
 			$this->thumb_image_container_class_key,
 			$this->thumb_image_rel_attribute_key,
-			$this->thumb_shape_key
+			$this->thumb_shape_key,
+			$this->videos_per_page_key
 		);
 	}
 }

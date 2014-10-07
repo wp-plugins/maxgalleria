@@ -3,7 +3,7 @@
 Plugin Name: MaxGalleria
 Plugin URI: http://maxgalleria.com
 Description: The gallery platform for WordPress.
-Version: 2.2.2
+Version: 2.3
 Author: Max Foundry
 Author URI: http://maxfoundry.com
 
@@ -510,10 +510,10 @@ class MaxGalleria {
 	
 	public function set_global_constants() {	
 		define('MAXGALLERIA_VERSION_KEY', 'maxgalleria_version');
-		define('MAXGALLERIA_VERSION_NUM', '2.2.2');
+		define('MAXGALLERIA_VERSION_NUM', '2.3');
 		define('MAXGALLERIA_PLUGIN_NAME', trim(dirname(plugin_basename(__FILE__)), '/'));
 		define('MAXGALLERIA_PLUGIN_DIR', WP_PLUGIN_DIR . '/' . MAXGALLERIA_PLUGIN_NAME);
-		define('MAXGALLERIA_PLUGIN_URL', WP_PLUGIN_URL . '/' . MAXGALLERIA_PLUGIN_NAME);
+		define('MAXGALLERIA_PLUGIN_URL', plugin_dir_url('') . '/' . MAXGALLERIA_PLUGIN_NAME);
 		define('MAXGALLERIA_POST_TYPE', 'maxgallery');
 		define('MAXGALLERIA_SETTINGS', admin_url() . 'edit.php?post_type=' . MAXGALLERIA_POST_TYPE . '&page=maxgalleria-settings');
 		define('MAXGALLERIA_META_IMAGE_THUMB_SMALL', 'maxgallery-meta-image-thumb-small');
@@ -638,7 +638,11 @@ class MaxGalleria {
 			'closeImage' => includes_url('js/thickbox/tb-close.png')));
 		echo '</script>';
 	}
+        
 }
+  
+
+
 
 // Let's get this party started
 $maxgalleria = new MaxGalleria();

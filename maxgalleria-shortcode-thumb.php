@@ -90,7 +90,7 @@ class MaxGalleriaShortcodeThumb {
 		
 		$output .= '</a>';
 		$output .= apply_filters(MAXGALLERIA_FILTER_AFTER_GALLERY_THUMB, '');
-		
+      
 		return apply_filters(MAXGALLERIA_FILTER_GALLERY_THUMB, $output);
 	}
 	

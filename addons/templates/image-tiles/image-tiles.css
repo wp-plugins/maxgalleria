@@ -61,10 +61,10 @@
 	margin-bottom: 10px !important;
 }
 .mg-image-tiles .mg-thumbs .caption {
-	word-break: break-all !important;
-	word-break: break-word !important; /* Non-standard for webkit */
-	-ms-word-break: break-all !important;
-	-o-word-break: break-all !important;
+	word-break: normal !important;
+	word-break: normal !important; /* Non-standard for webkit */
+	-ms-word-break: normal !important;
+	-o-word-break: normal !important;
 	-webkit-hyphens: auto !important;
 	-moz-hyphens: auto !important;
 	-o-hypens: auto !important;
@@ -169,6 +169,12 @@
 	margin-left: 0 !important;
 	margin-right: 0 !important;
 }
+.mg-pagination .mg-page-next {
+  float:right;
+}
+.mg-pagination .mg-page-previous {
+  float:left;
+}  
 @media handheld, screen and (max-width: 800px) {
 	/*----------------------------------------------------------
 	At this device size, 8 columns is about right in terms of 
@@ -363,3 +369,4 @@
 		margin-right: 3% !important;
 	}
 }
+

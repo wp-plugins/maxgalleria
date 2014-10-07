@@ -65,6 +65,9 @@ class MaxGalleriaImageTilesOptions extends MaxGalleryOptions {
 		);
 	}
 	
+	public $images_per_page_key = 'maxgallery_images_per_page';
+	public $images_per_page_default = '';
+	public $images_per_page_default_key = 'maxgallery_images_per_page';
 	public $lightbox_caption_enabled_default = '';
 	public $lightbox_caption_enabled_default_key = 'maxgallery_lightbox_caption_enabled_image_tiles_default';
 	public $lightbox_caption_enabled_key = 'maxgallery_lightbox_caption_enabled';
@@ -161,7 +164,20 @@ class MaxGalleriaImageTilesOptions extends MaxGalleryOptions {
 	public function get_lightbox_image_size_custom_height_default() {
 		return get_option($this->lightbox_image_size_custom_height_default_key, $this->lightbox_image_size_custom_height_default);
 	}
-
+  
+  public function get_images_per_page() {
+		$value = $this->get_post_meta($this->images_per_page_key);
+		if ($value == '' && $this->get_saves_count() < 1) {
+			$value = $this->get_images_per_page_default();
+		}
+		
+		return $value;
+	}
+	
+	public function get_images_per_page_default() {
+		return get_option($this->images_per_page_default_key, $this->images_per_page_default);
+	}
+  
 	public function get_lightbox_image_size_custom_width() {
 		$value = $this->get_post_meta($this->lightbox_image_size_custom_width_key);
 		if ($value == '' && $this->get_saves_count() < 1) {
@@ -342,7 +358,8 @@ class MaxGalleriaImageTilesOptions extends MaxGalleryOptions {
 			$this->thumb_image_class_key,
 			$this->thumb_image_container_class_key,
 			$this->thumb_image_rel_attribute_key,
-			$this->thumb_shape_key
+			$this->thumb_shape_key,
+      		$this->images_per_page_key
 		);
 	}
 }

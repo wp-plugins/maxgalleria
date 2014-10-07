@@ -81,6 +81,7 @@ class MaxGalleriaImageGallery {
 		// Ajax call to reorder images
 		add_action('wp_ajax_reorder_images', array($this, 'reorder_images'));
 		add_action('wp_ajax_nopriv_reorder_images', array($this, 'reorder_images'));
+        
 	}
 	
 	public function add_media_library_images_to_gallery() {
@@ -536,5 +537,6 @@ class MaxGalleriaImageGallery {
 		// Default output, no resizing
 		return array('url' => $image_src[0], 'width' => $image_src[1], 'height' => $image_src[2]);
 	}
+    
 }
 ?>

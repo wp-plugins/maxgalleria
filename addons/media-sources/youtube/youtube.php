@@ -82,7 +82,12 @@ class MaxGalleriaYouTube {
 					$video_id = $this->get_video_id($video_url);
 					$embed_code = '<iframe src="http://www.youtube.com/embed/' . $video_id . '?feature=oembed" width="' . $width . '" height="' . $height . '" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
 				}
-
+        
+        //check for SSL on the server, iso change to https
+        if ($_SERVER["HTTPS"] == "on") {
+          $embed_code = str_replace('http:', 'https:', $embed_code);
+        }
+          
 				// We always add support for fullscreen mode and javascript API access on YouTube videos
 				$embed_code = str_replace('feature=oembed', 'feature=oembed&fs=1&enablejsapi=1', $embed_code);
 

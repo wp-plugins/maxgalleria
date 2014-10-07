@@ -85,6 +85,9 @@ class MaxGalleriaVideoGallery {
 		
 		// Adds wmode=transparent to videos
 		add_filter('embed_oembed_html', array($this, 'add_video_wmode_transparent'), 10, 3);
+    add_filter('next_posts_link_attributes', array($this, 'posts_next_link_attributes'));
+    add_filter('previous_posts_link_attributes', array($this, 'posts_previous_link_attributes'));    
+    
 	}
 	
 	public function add_video_wmode_transparent($html, $url, $attr) {
@@ -316,5 +319,14 @@ class MaxGalleriaVideoGallery {
 	public function show_meta_box_shortcodes($post) {
 		require_once 'meta/meta-shortcodes.php';
 	}
+  
+  public function posts_next_link_attributes() {
+    return 'class="mg-page-next"';
+  }  
+
+  public function posts_previous_link_attributes() {
+    return 'class="mg-page-previous"';
+  }  
+  
 }
 ?>

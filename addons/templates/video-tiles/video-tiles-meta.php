@@ -184,5 +184,14 @@ $options = new MaxGalleriaVideoTilesOptions($post->ID);
 				<input type="text" class="small" id="<?php echo $options->lightbox_video_size_custom_height_key ?>" name="<?php echo $options->lightbox_video_size_custom_height_key ?>" value="<?php echo $options->get_lightbox_video_size_custom_height() ?>" /> px
 			</td>
 		</tr>
+		<tr>
+			<td>
+				<?php _e('Videos Per Page:', 'maxgalleria') ?>
+			</td>
+			<td>
+				<input type="text" class="small" id="<?php echo $options->videos_per_page_key ?>" name="<?php echo $options->videos_per_page_key ?>" value="<?php echo $options->get_videos_per_page() ?>" />
+			</td>
+		</tr>
+    
 	</table>
 </div>

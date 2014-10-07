@@ -205,5 +205,13 @@ $options = new MaxGalleriaImageTilesOptions($post->ID);
 				<input type="text" class="small" id="<?php echo $options->lightbox_image_size_custom_height_key ?>" name="<?php echo $options->lightbox_image_size_custom_height_key ?>" value="<?php echo $options->get_lightbox_image_size_custom_height() ?>" /> px
 			</td>
 		</tr>
+		<tr>
+			<td>
+				<?php _e('Images Per Page:', 'maxgalleria') ?>
+			</td>
+			<td>
+				<input type="text" class="small" id="<?php echo $options->images_per_page_key ?>" name="<?php echo $options->images_per_page_key ?>" value="<?php echo $options->get_images_per_page() ?>" />
+			</td>
+		</tr>
 	</table>
 </div>

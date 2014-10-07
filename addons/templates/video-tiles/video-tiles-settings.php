@@ -171,6 +171,13 @@ $options = new MaxGalleriaVideoTilesOptions();
 					<input data-default="<?php echo $options->lightbox_video_size_custom_height_default ?>" type="text" class="small" id="<?php echo $options->lightbox_video_size_custom_height_default_key ?>" name="<?php echo $options->lightbox_video_size_custom_height_default_key ?>" value="<?php echo $options->get_lightbox_video_size_custom_height_default() ?>" /> px
 				</td>
 			</tr>
+			<tr>
+				<td><?php _e('Number of Vidoes Per Page:', 'maxgalleria') ?></td>
+				<td>
+					<input data-default="<?php echo $options->videos_per_page_default; ?>" type="text" class="small" id="<?php echo $options->videos_per_page_default_key ?>" name="<?php echo $options->videos_per_page_default_key ?>" value="<?php echo $options->get_videos_per_page_default() ?>" />
+				</td>
+			</tr>
+           
 		</table>
 		
 		<?php wp_nonce_field($options->nonce_save_video_tiles_defaults['action'], $options->nonce_save_video_tiles_defaults['name']) ?>

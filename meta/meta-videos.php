@@ -334,7 +334,8 @@ $attachments = get_posts($args);
 						</div>
 						
 						<?php
-							$video_url = str_replace('https://', 'http://', get_post_meta($attachment->ID, 'maxgallery_attachment_video_url', true));
+							//$video_url = str_replace('https://', 'http://', get_post_meta($attachment->ID, 'maxgallery_attachment_video_url', true));
+              				$video_url = get_post_meta($attachment->ID, 'maxgallery_attachment_video_url', true);
 							$enable_related_videos = get_post_meta($attachment->ID, 'maxgallery_attachment_video_enable_related_videos', true);
 							$enable_hd_playback = get_post_meta($attachment->ID, 'maxgallery_attachment_video_enable_hd_playback', true);
 							
