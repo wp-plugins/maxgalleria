@@ -2,8 +2,8 @@
 Contributors: maxfoundry, arcware, damonsharp, johnbhartley
 Tags: albums, gallery, gallery platform, image, images, media, flash, foto, fotoalbum, photo, photos, photo albums, picture, pictures, responsive wordpress gallery, thumbmail, thumbnails, wordpress gallery, wordpress gallery platform, wordpress gallery plugin, responsive wordpress gallery plugins, responsive, slideshows, image slider, nivo, image slide plugin, javascript rotator, javascript slider, jquery slider, photo slider, responsive image slider, responsive image slider plugin, responsive slideshow, responsive slideshow slider, responsive slider plugin, slideshow plugin, template, wordpress picture slider, wordpress responsive slider, wordpress slider, website gallery, multiple pictures, youtube, youtube video, youtube videos, youtube gallery, youtube galleries, youtube video gallery, youtube video galleries
 Requires at least: 3.9
-Tested up to: 3.9.1
-Stable tag: 2.2.2
+Tested up to: 4.0
+Stable tag: 2.3
 
 Responsive, Easy to Use, Developer Friendly
 
@@ -149,5 +149,5 @@ No. The MaxGalleria core plugin contains plenty of functionality to keep even th
 
 == Upgrade Notice ==
 
-= 2.2.2 =
-Minor fixes.
+= 2.3 =
+Pagination added along with some smaller tweaks.
