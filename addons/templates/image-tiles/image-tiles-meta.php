@@ -213,5 +213,23 @@ $options = new MaxGalleriaImageTilesOptions($post->ID);
 				<input type="text" class="small" id="<?php echo $options->images_per_page_key ?>" name="<?php echo $options->images_per_page_key ?>" value="<?php echo $options->get_images_per_page() ?>" />
 			</td>
 		</tr>
+		<tr>
+			<td>
+				<label for="<?php echo $options->lazy_load_enabled_key ?>"><?php _e('Lazy Load Enabled:', 'maxgalleria') ?></label>
+			</td>
+			<td>
+				<input type="checkbox" id="<?php echo $options->lazy_load_enabled_key ?>" name="<?php echo $options->lazy_load_enabled_key ?>" <?php echo (($options->get_lazy_load_enabled() == 'on') ? 'checked' : '') ?> />
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<?php _e('Lazy Load Threshold:', 'maxgalleria') ?>
+			</td>
+			<td>
+				<input type="text" class="small" id="<?php echo $options->lazy_load_threshold_key ?>" name="<?php echo $options->lazy_load_threshold_key ?>" value="<?php echo $options->get_lazy_load_threshold() ?>" />
+			</td>
+		</tr>
+		<tr>
+    
 	</table>
 </div>

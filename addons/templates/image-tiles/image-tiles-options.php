@@ -112,7 +112,42 @@ class MaxGalleriaImageTilesOptions extends MaxGalleryOptions {
 	public $thumb_shape_default = 'square';
 	public $thumb_shape_default_key = 'maxgallery_thumb_shape_image_tiles_default';
 	public $thumb_shape_key = 'maxgallery_thumb_shape';
+  
+	public $lazy_load_enabled_default = '';
+	public $lazy_load_enabled_default_key = 'maxgallery_lazy_load_enabled_image_tiles_default';
+	public $lazy_load_enabled_key = 'maxgallery_lazy_load_enabled';
+  
+	public $lazy_load_threshold_default = '';
+	public $lazy_load_threshold_default_key = 'maxgallery_lazy_load_threshold_image_tiles_default';
+	public $lazy_load_threshold_key = 'maxgallery_lazy_load_threshold';
 
+  
+	public function get_lazy_load_threshold() {
+		$value = $this->get_post_meta($this->lazy_load_threshold_key);
+		if ($value == '' && $this->get_saves_count() < 1) {
+			$value = $this->get_lazy_load_threshold_default();
+		}
+		
+		return $value;
+	}
+	
+	public function get_lazy_load_threshold_default() {
+		return get_option($this->lazy_load_threshold_default_key, $this->lazy_load_threshold_default);
+	}
+  
+	public function get_lazy_load_enabled() {
+		$value = $this->get_post_meta($this->lazy_load_enabled_key);
+		if ($value == '' && $this->get_saves_count() < 1) {
+			$value = $this->get_lazy_load_enabled_default();
+		}
+		
+		return $value;
+	}
+	
+	public function get_lazy_load_enabled_default() {
+		return get_option($this->lazy_load_enabled_default_key, $this->lazy_load_enabled_default);
+	}
+  
 	public function get_lightbox_caption_enabled() {
 		$value = $this->get_post_meta($this->lightbox_caption_enabled_key);
 		if ($value == '' && $this->get_saves_count() < 1) {
@@ -359,7 +394,9 @@ class MaxGalleriaImageTilesOptions extends MaxGalleryOptions {
 			$this->thumb_image_container_class_key,
 			$this->thumb_image_rel_attribute_key,
 			$this->thumb_shape_key,
-      		$this->images_per_page_key
+      $this->images_per_page_key,
+      $this->lazy_load_enabled_key,
+      $this->lazy_load_threshold_key
 		);
 	}
 }

@@ -134,4 +134,6 @@ define('MAXGALLERIA_FILTER_GALLERY_WIDGET_AFTER_VIEW_MORE', 'maxgalleria_gallery
 define('MAXGALLERIA_FILTER_GALLERY_WIDGET_VIEW_MORE', 'maxgalleria_gallery_widget_view_more');
 define('MAXGALLERIA_FILTER_GALLERY_WIDGET_BEFORE_THUMB_OUTPUT', 'maxgalleria_gallery_widget_before_thumb_output');
 define('MAXGALLERIA_FILTER_GALLERY_WIDGET_AFTER_THUMB_OUTPUT', 'maxgalleria_gallery_widget_after_thumb_output');
+define('MAXGALLERIA_FILTER_IMAGE_TILES_LAZY_LOAD_SCRIPT', 'maxgalleria_image_tiles_lazy_load_script');
+
 ?>

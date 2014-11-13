@@ -199,6 +199,20 @@ $options = new MaxGalleriaImageTilesOptions();
 					<input data-default="<?php echo $options->images_per_page_default; ?>" type="text" class="small" id="<?php echo $options->images_per_page_default_key ?>" name="<?php echo $options->images_per_page_default_key ?>" value="<?php echo $options->get_images_per_page_default() ?>" />
 				</td>
 			</tr>
+      <tr>
+				<td><?php _e('Lazy Load Enabled:', 'maxgalleria') ?></td>
+				<td>
+					<input data-default="<?php echo $options->lazy_load_enabled_default ?>" type="checkbox" id="<?php echo $options->lazy_load_enabled_default_key ?>" name="<?php echo $options->lazy_load_enabled_default_key ?>" <?php echo (($options->get_lazy_load_enabled_default() == 'on') ? 'checked' : '') ?> />
+				</td>
+      </tr>  
+			<tr>
+				<td><?php _e('Lazy Load Threshold:', 'maxgalleria') ?></td>
+				<td>
+					<input data-default="<?php echo $options->lazy_load_threshold_default; ?>" type="text" class="small" id="<?php echo $options->lazy_load_threshold_default_key ?>" name="<?php echo $options->images_per_page_default_key ?>" value="<?php echo $options->get_lazy_load_threshold_default() ?>" />
+				</td>
+			</tr>
+      <tr>
+      
 		</table>
 		
 		<?php wp_nonce_field($options->nonce_save_image_tiles_defaults['action'], $options->nonce_save_image_tiles_defaults['name']) ?>

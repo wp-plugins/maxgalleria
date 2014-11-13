@@ -106,6 +106,12 @@ class MaxGalleriaImageTiles {
 			$main_script = apply_filters(MAXGALLERIA_FILTER_IMAGE_TILES_MAIN_SCRIPT, MAXGALLERIA_PLUGIN_URL . '/addons/templates/image-tiles/image-tiles.js');
 			wp_enqueue_script('maxgalleria-image-tiles', $main_script, array('jquery'));
 		}
+    
+		if ($options->get_lazy_load_enabled() == 'on') {
+			//$lazyload_script = apply_filters(MAXGALLERIA_FILTER_IMAGE_TILES_LAZY_LOAD_SCRIPT, MAXGALLERIA_PLUGIN_URL . '/libs/unveil/jquery.unveil.js');
+			$lazyload_script = apply_filters(MAXGALLERIA_FILTER_IMAGE_TILES_LAZY_LOAD_SCRIPT, MAXGALLERIA_PLUGIN_URL . '/libs/lazyload/jquery.lazyload.min.js');
+			wp_enqueue_script('maxgalleria-unveil', $lazyload_script, array('jquery'));
+    }    
 		
 		// Check to load custom scripts
 		if ($options->get_custom_scripts_enabled() == 'on' && $options->get_custom_scripts_url() != '') {
@@ -205,7 +211,17 @@ class MaxGalleriaImageTiles {
 				}
 				
 				$thumb_image = $this->get_thumb_image($options, $attachment);
-				$thumb_image_element = '<img class="' . $image_class . '" src="' . $thumb_image['url'] . '" width="' . $thumb_image['width'] . '" height="' . $thumb_image['height'] . '" alt="' . esc_attr($alt) . '" title="' . esc_attr($title) . '" />';
+
+		    if ($options->get_lazy_load_enabled() == 'on') { //data-unveil="true" style="opacity: 1;" data-src <noscript>&lt;img src="' . $thumb_image['url'] . '" /&gt;</noscript>
+          if(strlen(trim($image_class))>0)
+            $image_class .= ' mg_lazy';
+          else        
+            $image_class = 'mg_lazy';
+                  
+				  $thumb_image_element = '<img class="lazy ' . $image_class . '" data-original="' . $thumb_image['url'] . '" width="' . $thumb_image['width'] . '" height="' . $thumb_image['height'] . '" alt="' . esc_attr($alt) . '" title="' . esc_attr($title) . '" /><noscript><img src="' . $thumb_image['url'] . '" width="' . $thumb_image['width'] . '" height="' . $thumb_image['height'] . '" /></noscript>';
+        }  
+        else  
+				  $thumb_image_element = '<img class="' . $image_class . '" src="' . $thumb_image['url'] . '" width="' . $thumb_image['width'] . '" height="' . $thumb_image['height'] . '" alt="' . esc_attr($alt) . '" title="' . esc_attr($title) . '" />';
 				
 				$output .= '<li>';
 				$output .= "	<a href='" . $href . "' target='" . $target . "' rel='$image_rel' title='" . esc_attr($caption) . "'>";
@@ -213,7 +229,7 @@ class MaxGalleriaImageTiles {
 				$output .= 				apply_filters(MAXGALLERIA_FILTER_IMAGE_TILES_BEFORE_THUMB, '', $options);
 				$output .=				apply_filters(MAXGALLERIA_FILTER_IMAGE_TILES_THUMB, $thumb_image_element, $thumb_image, $image_class, $alt, $title);
 				$output .= 				apply_filters(MAXGALLERIA_FILTER_IMAGE_TILES_AFTER_THUMB, '', $options);
-				
+        
 				if ($options->get_thumb_caption_enabled() == 'on' && $options->get_thumb_caption_position() == 'bottom') {
 					$output .= '		<div class="caption-bottom-container">';
 					$output .= '			<p class="caption bottom">' . $caption . '</p>';
@@ -248,7 +264,20 @@ class MaxGalleriaImageTiles {
 		$output .= '	<span style="display: none;" class="hidden-image-tiles-lightbox-caption-position">' . $options->get_lightbox_caption_position() . '</span>';
 		$output .= '</div>';
 		$output .= apply_filters(MAXGALLERIA_FILTER_IMAGE_TILES_AFTER_GALLERY_OUTPUT, '', $gallery, $attachments, $options);
-		
+        
+		if ($options->get_lazy_load_enabled() == 'on') {
+      $output .= '<script>';
+      $output .= 'jQuery(document).ready(function() {';
+      $lazy_load_threshold = $options->get_lazy_load_threshold();
+      if($lazy_load_threshold != '' && $lazy_load_threshold != 0)
+        $output .=  'jQuery("img.mg_lazy").lazyload({threshold : ' . $lazy_load_threshold . '});';
+      else
+        $output .=  'jQuery("img.mg_lazy").lazyload();';
+      $output .= '});';
+      $output .= '</script>';
+    }
+    		
+    
 		return apply_filters(MAXGALLERIA_FILTER_IMAGE_TILES_GALLERY_OUTPUT, $output, $gallery, $attachments, $options);
 	}
 }
