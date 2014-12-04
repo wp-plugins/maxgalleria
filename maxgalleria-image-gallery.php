@@ -116,17 +116,19 @@ class MaxGalleriaImageGallery {
 			// the images to get added to the gallery twice - once with menu_order of 0 and another with
 			// menu_order equal to whatever the next menu_order is supposed to be. The latter image is
 			// the one we want, which means the image with menu_order of 0 can be safely deleted.
-			$bad_children = get_children(array(
-				'post_parent' => $gallery_id,
-				'post_type' => 'attachment',
-				'post_status' => 'inherit',
-				'menu_order' => 0
-			));
-
-			$force_delete = true; // Bypass trash and do hard delete
-			foreach ($bad_children as $child) {
-				wp_delete_attachment($child->ID, $force_delete);
-			}
+      
+      // menu_order is not a valid parameter so this code does not work
+//			$bad_children = get_children(array(
+//				'post_parent' => $gallery_id,
+//				'post_type' => 'attachment',
+//				'post_status' => 'inherit',
+//				'menu_order' => 0
+//			));
+//
+//			$force_delete = true; // Bypass trash and do hard delete
+//			foreach ($bad_children as $child) {
+//				wp_delete_attachment($child->ID, $force_delete);
+//			}
 
 			do_action(MAXGALLERIA_ACTION_AFTER_ADD_IMAGES_TO_GALLERY, $gallery_id, $_POST['url']);
 
@@ -134,55 +136,115 @@ class MaxGalleriaImageGallery {
 			die();
 		}
 	}
+    
+  // check if the image is already an attachment and get the attachment ID;
+  public function check_for_duplicate_attachment($image_url) {
+    global $wpdb;
+    
+    $current_site_url = site_url();
+    if( strpos($image_url, $current_site_url) == 0) {
+      
+      $sql = "select * from " . $wpdb->prefix . "posts where post_type = 'attachment' and guid = '$image_url'";
+      $row = $wpdb->get_row($sql);
+      if($row)
+        return $row->ID;
+      else
+        return false;      
+    }
+    else
+      return false;
+  }
 	
 	public function download_image_attach_to_gallery($gallery_id, $image_url, $title = '', $caption = '', $description = '', $alt_text = '') {		
 		global $maxgalleria;
 		
 		$result = 0;
 		$download_success = true;
-		
-		// Download the image into a temp file
-		$temp_file = download_url($image_url);
+    
+    
+    $is_duplicate = $this->check_for_duplicate_attachment($image_url); 
+    if( !$is_duplicate ) {
+      // this image is not already on the site
 
-		// Parse the url and use the temp file to form the file array (used in media_handle_sideload below)
-		preg_match('/[^\?]+\.(jpg|JPG|jpe|JPE|jpeg|JPEG|gif|GIF|png|PNG)/', $image_url, $matches);
-		$file_array['name'] = basename($matches[0]);
-		$file_array['tmp_name'] = $temp_file;
-		
-		// If we got an error or the file is not a valid image, delete the temp file
-		if (is_wp_error($temp_file) || !file_is_valid_image($temp_file)) {
-			@unlink($temp_file);
-			$download_success = false;
-		}
-		
-		if ($download_success) {
-			// Get the next menu order value for the gallery
-			$menu_order = $maxgalleria->common->get_next_menu_order($gallery_id);
+      // Download the image into a temp file
+      $temp_file = download_url($image_url);
 
-			// Set post data; the empty post_date ensures it gets today's date
-			$post_data = array(
-				'post_date' => '',
-				'post_parent' => $gallery_id,
-				'post_title' => $title,
-				'post_excerpt' => $caption,
-				'post_content' => $description,
-				'menu_order' => $menu_order,
-				'ancestors' => array()
-			);
+      // Parse the url and use the temp file to form the file array (used in media_handle_sideload below)
+      preg_match('/[^\?]+\.(jpg|JPG|jpe|JPE|jpeg|JPEG|gif|GIF|png|PNG)/', $image_url, $matches);
+      $file_array['name'] = basename($matches[0]);
+      $file_array['tmp_name'] = $temp_file;
 
-			// Sideload the image to create its attachment to the gallery
-			$attachment_id = media_handle_sideload($file_array, $gallery_id, $description, $post_data);
+      // If we got an error or the file is not a valid image, delete the temp file
+      if (is_wp_error($temp_file) || !file_is_valid_image($temp_file)) {
+        @unlink($temp_file);
+        $download_success = false;
+      }
 
-			if (!is_wp_error($attachment_id)) {
-				$result = $attachment_id;
-				
-				// Add the alt text
-				update_post_meta($attachment_id, '_wp_attachment_image_alt', $alt_text);
-			}
-			
-			// Delete the temp file
-			@unlink($temp_file);
-		}
+      if ($download_success) {
+        // Get the next menu order value for the gallery
+        $menu_order = $maxgalleria->common->get_next_menu_order($gallery_id);
+
+        // Set post data; the empty post_date ensures it gets today's date
+        $post_data = array(
+          'post_date' => '',
+          'post_parent' => $gallery_id,
+          'post_title' => $title,
+          'post_excerpt' => $caption,
+          'post_content' => $description,
+          'menu_order' => $menu_order,
+          'ancestors' => array()
+        );
+
+        // Sideload the image to create its attachment to the gallery
+        $attachment_id = media_handle_sideload($file_array, $gallery_id, $description, $post_data);
+
+        if (!is_wp_error($attachment_id)) {
+          $result = $attachment_id;
+
+          // Add the alt text
+          update_post_meta($attachment_id, '_wp_attachment_image_alt', $alt_text);
+        }
+
+        // Delete the temp file
+        @unlink($temp_file);
+      }
+    } else {
+
+      // the image is already on the site so copy the attachment; code from BDN Duplicate Images plugin      
+      $attachment_id = $is_duplicate;
+      $attachment = get_post( $attachment_id, ARRAY_A );
+        
+      //If the attachment doesn't have a post parent, simply change it to the attachment we're working with and be done with it      
+      if( empty( $attachment[ 'post_parent' ] ) ) {
+        wp_update_post(
+          array(
+            'ID' => $attachment[ 'ID' ],
+            'post_parent' => $gallery_id
+          )
+        );
+      } else {
+        //Else, unset the attachment ID, change the post parent and insert a new attachment
+        unset( $attachment[ 'ID' ] );
+        $attachment[ 'post_parent' ] = $gallery_id;
+        $new_attachment_id = wp_insert_post( $attachment );
+
+
+        //Now, duplicate all the custom fields. (There's probably a better way to do this)
+        $custom_fields = get_post_custom( $attachment_id );
+
+        foreach( $custom_fields as $key => $value ) {
+          //The attachment metadata wasn't duplicating correctly so we do that below instead
+          if( $key != '_wp_attachment_metadata' )
+            update_post_meta( $new_attachment_id, $key, $value[0] );
+        }
+
+        //Carry over the attachment metadata
+        $data = wp_get_attachment_metadata( $attachment_id );
+        wp_update_attachment_metadata( $new_attachment_id, $data );
+
+        $result = $new_attachment_id;
+      }      
+    }
 
 		return $result;
 	}
@@ -527,7 +589,11 @@ class MaxGalleriaImageGallery {
 
 			// Getting this far means that neither the cropped resized image nor the proportional
 			// resized image exists, so we use a WP_Image_Editor to do the resizing and save to disk
-			$image_editor = wp_get_image_editor($file_path);
+      
+      // code added to deal with Gantry Template Framework & WP 4.0
+			//$image_editor = wp_get_image_editor($file_path);
+      $upload_dir = wp_upload_dir();
+      $image_editor = wp_get_image_editor($upload_dir['baseurl'] . '/' . $file_path);
 			$resized = $image_editor->resize($width, $height, $crop);
 			$new_image = $image_editor->save($resized_image_path);
 			

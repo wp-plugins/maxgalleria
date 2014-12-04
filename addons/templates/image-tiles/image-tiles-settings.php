@@ -208,7 +208,7 @@ $options = new MaxGalleriaImageTilesOptions();
 			<tr>
 				<td><?php _e('Lazy Load Threshold:', 'maxgalleria') ?></td>
 				<td>
-					<input data-default="<?php echo $options->lazy_load_threshold_default; ?>" type="text" class="small" id="<?php echo $options->lazy_load_threshold_default_key ?>" name="<?php echo $options->images_per_page_default_key ?>" value="<?php echo $options->get_lazy_load_threshold_default() ?>" />
+					<input data-default="<?php echo $options->lazy_load_threshold_default; ?>" type="text" class="small" id="<?php echo $options->lazy_load_threshold_default_key ?>" name="<?php echo $options->lazy_load_threshold_default_key ?>" value="<?php echo $options->get_lazy_load_threshold_default() ?>" />
 				</td>
 			</tr>
       <tr>

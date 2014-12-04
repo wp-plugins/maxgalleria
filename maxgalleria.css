@@ -1534,10 +1534,73 @@ Admin Page Styles
 	margin: 5px 10px 5px 2px !important;
 }
 
-*/
+/*
 /*-----------------------------------------------
 Media Manager Styles and Overrides
 -----------------------------------------------*/
 .attachment-display-settings {
 	display: none;
+}
+
+/*.wrap h2 {
+  float: left;
+}
+
+.wrap h2:after {
+  clear: both;
+}*/
+
+.mg-logo {
+  font-style: italic;
+  font-size: 14px;
+  font-weight: bold;
+  margin-left: 30px;
+
+  display: block;
+  margin: -33px 0 0 210px;
+}
+
+.mg-logo a img {
+  vertical-align: middle;
+  padding: 0 5px;
+  width: 90px;
+  height: auto;
+}
+
+.mg-promo {
+  border: 1px solid #ccc;
+  background: none repeat scroll 0 0 #fff;
+  display: block;
+  margin-top: 10px;
+  box-sizing: border-box;
+  overflow: hidden;
+  padding: 10px;
+  width: 100%;
+}
+
+.mg-promo p.mg-promo-title {
+  font-size: 15px;
+  font-style: italic;
+  font-weight: 700;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.mg-promo p:not(.mg-promo-title) {
+  font-size: 12px;
+  margin: 25px 0 5px;
+  width: 23.5%;
+  margin-right: 2%;
+  float: left;
+  text-align: center;
+}
+
+.mg-promo p:nth-child(4n+1) {
+	margin-right: 0;
+}
+
+.mg-promo p a {
+	font-weight: bold;
+	font-size: 14px;
 }

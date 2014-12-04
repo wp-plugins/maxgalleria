@@ -3,7 +3,7 @@
 Plugin Name: MaxGalleria
 Plugin URI: http://maxgalleria.com
 Description: The gallery platform for WordPress.
-Version: 2.5
+Version: 2.6
 Author: Max Foundry
 Author URI: http://maxfoundry.com
 
@@ -47,6 +47,8 @@ class MaxGalleria {
 		copy($source, $destination);
 		
 		flush_rewrite_rules();
+
+    //add_action('wp_head', 'create_promo_js');
 	}
 	
 	public function add_thumb_sizes() {
@@ -293,6 +295,11 @@ class MaxGalleria {
 			wp_enqueue_script('maxgalleria-fancybox', MAXGALLERIA_PLUGIN_URL . '/libs/fancybox/jquery.fancybox-1.3.4.pack.js', array('jquery'));
 			wp_enqueue_script('maxgalleria-easing', MAXGALLERIA_PLUGIN_URL . '/libs/fancybox/jquery.easing-1.3.pack.js', array('jquery'));
 			wp_enqueue_script('maxgalleria-simplemodal', MAXGALLERIA_PLUGIN_URL . '/libs/simplemodal/jquery.simplemodal-1.4.3.min.js', array('jquery'));
+              
+      $screen = get_current_screen();
+      if($screen->id == 'edit-maxgallery') {
+        wp_enqueue_script('maxgalleria-promo', MAXGALLERIA_PLUGIN_URL . '/js/promo.js', array('jquery'));                            
+      }  
 		}
 	}
 
@@ -510,7 +517,7 @@ class MaxGalleria {
 	
 	public function set_global_constants() {	
 		define('MAXGALLERIA_VERSION_KEY', 'maxgalleria_version');
-		define('MAXGALLERIA_VERSION_NUM', '2.5');
+		define('MAXGALLERIA_VERSION_NUM', '2.6');
 		define('MAXGALLERIA_PLUGIN_NAME', trim(dirname(plugin_basename(__FILE__)), '/'));
 		define('MAXGALLERIA_PLUGIN_DIR', WP_PLUGIN_DIR . '/' . MAXGALLERIA_PLUGIN_NAME);
 		define('MAXGALLERIA_PLUGIN_URL', plugin_dir_url('') . '/' . MAXGALLERIA_PLUGIN_NAME);
@@ -640,9 +647,6 @@ class MaxGalleria {
 	}
         
 }
-  
-
-
 
 // Let's get this party started
 $maxgalleria = new MaxGalleria();
