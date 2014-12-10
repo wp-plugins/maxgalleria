@@ -1509,6 +1509,9 @@ Admin Page Styles
 #maxgalleria-admin .settings .settings-content input[type='text'].small {
 	width: 50px;
 }
+#maxgalleria-admin .settings .settings-content input[type='text'].wide {
+	width: 450px;
+}
 #maxgalleria-admin .settings .settings-content .settings-title {
 	padding: 10px;
 	border: solid 1px #e1e1e1;

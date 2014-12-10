@@ -592,8 +592,10 @@ class MaxGalleriaImageGallery {
       
       // code added to deal with Gantry Template Framework & WP 4.0
 			//$image_editor = wp_get_image_editor($file_path);
-      $upload_dir = wp_upload_dir();
-      $image_editor = wp_get_image_editor($upload_dir['baseurl'] . '/' . $file_path);
+      $image_editor = wp_get_image_editor($file_path);
+	  // needs further testing for Gantry
+      // $upload_dir = wp_upload_dir();
+      // $image_editor = wp_get_image_editor($upload_dir['baseurl'] . '/' . $file_path);
 			$resized = $image_editor->resize($width, $height, $crop);
 			$new_image = $image_editor->save($resized_image_path);
 			
