@@ -1,9 +1,9 @@
 === MaxGalleria: WordPress Gallery Platform ===
-Contributors: maxfoundry, arcware, damonsharp, johnbhartley
-Tags: albums, gallery, gallery platform, image, images, media, flash, foto, fotoalbum, photo, photos, photo albums, picture, pictures, responsive wordpress gallery, thumbmail, thumbnails, wordpress gallery, wordpress gallery platform, wordpress gallery plugin, responsive wordpress gallery plugins, responsive, slideshows, image slider, nivo, image slide plugin, javascript rotator, javascript slider, jquery slider, photo slider, responsive image slider, responsive image slider plugin, responsive slideshow, responsive slideshow slider, responsive slider plugin, slideshow plugin, template, wordpress picture slider, wordpress responsive slider, wordpress slider, website gallery, multiple pictures, youtube, youtube video, youtube videos, youtube gallery, youtube galleries, youtube video gallery, youtube video galleries
+Contributors: maxfoundry, arcware, johnbhartley
+Tags: albums, gallery, gallery platform, image, images, media, flash, foto, fotoalbum, photo, photos, photo albums, picture, pictures, responsive wordpress gallery, thumbmail, thumbnails, wordpress gallery, wordpress gallery platform, wordpress gallery plugin, responsive wordpress gallery plugins, responsive, slideshows, image slider, nivo, image slide plugin, javascript rotator, javascript slider, jquery slider, photo slider, responsive image slider, responsive image slider plugin, responsive slideshow, responsive slideshow slider, responsive slider plugin, slideshow plugin, template, wordpress picture slider, wordpress responsive slider, wordpress slider, website gallery, multiple pictures, youtube, youtube video, youtube videos, youtube gallery, youtube galleries, youtube video gallery, youtube video galleries, nextgen, nextgen galleries, nextgen gallery
 Requires at least: 3.9
 Tested up to: 4.0
-Stable tag: 2.6.1
+Stable tag: 3.0.0
 
 Responsive, Easy to Use, Developer Friendly
 
@@ -115,8 +115,10 @@ No. The MaxGalleria core plugin contains plenty of functionality to keep even th
 
 == Changelog ==
 
-= 2.6.1 =
-* Pulled Gantry fix as it was causing extra issues. Looking into it again, but reverted with patch for now
+= 3.0.0 =
+* Fixed the duplicate pointer issues
+* Added a class check for Gantry issue
+* Removed position relaitve from simplemodal for videos
 
 = 2.6 =
 * Added information about addons

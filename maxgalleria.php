@@ -3,7 +3,7 @@
 Plugin Name: MaxGalleria
 Plugin URI: http://maxgalleria.com
 Description: The gallery platform for WordPress.
-Version: 2.6.1
+Version: 3.0.0
 Author: Max Foundry
 Author URI: http://maxfoundry.com
 
@@ -517,10 +517,10 @@ class MaxGalleria {
 	
 	public function set_global_constants() {	
 		define('MAXGALLERIA_VERSION_KEY', 'maxgalleria_version');
-		define('MAXGALLERIA_VERSION_NUM', '2.6.1');
+		define('MAXGALLERIA_VERSION_NUM', '3.0.0');
 		define('MAXGALLERIA_PLUGIN_NAME', trim(dirname(plugin_basename(__FILE__)), '/'));
 		define('MAXGALLERIA_PLUGIN_DIR', WP_PLUGIN_DIR . '/' . MAXGALLERIA_PLUGIN_NAME);
-		define('MAXGALLERIA_PLUGIN_URL', plugin_dir_url('') . '/' . MAXGALLERIA_PLUGIN_NAME);
+		define('MAXGALLERIA_PLUGIN_URL', plugin_dir_url('') . MAXGALLERIA_PLUGIN_NAME);
 		define('MAXGALLERIA_POST_TYPE', 'maxgallery');
 		define('MAXGALLERIA_SETTINGS', admin_url() . 'edit.php?post_type=' . MAXGALLERIA_POST_TYPE . '&page=maxgalleria-settings');
 		define('MAXGALLERIA_META_IMAGE_THUMB_SMALL', 'maxgallery-meta-image-thumb-small');
@@ -568,8 +568,24 @@ class MaxGalleria {
 		add_action('media_buttons_context', array($this, 'media_button'));
 		add_action('admin_footer', array($this, 'media_button_admin_footer'));
 		add_action('widgets_init', array($this, 'register_widgets'));
+    add_action( 'pre_get_posts', array($this, 'modify_attachments'));
+
 	}
-	
+  
+  
+  public function modify_attachments( $query ) {
+    
+    if ( is_admin() && strpos( $_SERVER[ 'REQUEST_URI' ], 'admin-ajax.php' ) !== false ) {      
+      add_filter( 'posts_groupby', array($this, 'group_attachments') );
+    }
+    return $query;
+  }
+    
+  public function group_attachments($groupby) {  
+    $groupby .= " guid";
+    return $groupby;        
+  }
+      
 	public function set_media_upload_tabs($tabs) {
 		// Remove the "From URL", "Gallery", and "NextGEN" tabs from the media library popup.
 		// Only the tabs "From Computer" and "Media Library" should be shown.

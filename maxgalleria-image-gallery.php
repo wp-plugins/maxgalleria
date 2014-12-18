@@ -117,19 +117,21 @@ class MaxGalleriaImageGallery {
 			// menu_order equal to whatever the next menu_order is supposed to be. The latter image is
 			// the one we want, which means the image with menu_order of 0 can be safely deleted.
       
-      // menu_order is not a valid parameter so this code does not work
-//			$bad_children = get_children(array(
-//				'post_parent' => $gallery_id,
-//				'post_type' => 'attachment',
-//				'post_status' => 'inherit',
-//				'menu_order' => 0
-//			));
-//
-//			$force_delete = true; // Bypass trash and do hard delete
-//			foreach ($bad_children as $child) {
-//				wp_delete_attachment($child->ID, $force_delete);
-//			}
-
+			$bad_children = get_children(array(
+				'post_parent' => $gallery_id,
+				'post_type' => 'attachment',
+				'post_status' => 'inherit',
+				'menu_order' => 0
+			));
+      
+			$force_delete = true; // Bypass trash and do hard delete
+			foreach ($bad_children as $child) {
+        if($child->ID !== $attachment_id) {
+          $this->mg_delete_attachment($child->ID, $force_delete);
+          delete_post_meta($post_id, '_wp_trash_meta_status');
+        }
+			}
+      
 			do_action(MAXGALLERIA_ACTION_AFTER_ADD_IMAGES_TO_GALLERY, $gallery_id, $_POST['url']);
 
 			echo $result;
@@ -161,8 +163,20 @@ class MaxGalleriaImageGallery {
 		$result = 0;
 		$download_success = true;
     
+    // Get the next menu order value for the gallery
+    $menu_order = $maxgalleria->common->get_next_menu_order($gallery_id);
     
     $is_duplicate = $this->check_for_duplicate_attachment($image_url); 
+
+//    if($is_duplicate) {
+//      
+//      $existing_attachment = get_post( $is_duplicate, ARRAY_A );
+//
+//      if( empty( $existing_attachment[ 'post_parent' ] ) ) {
+//        $is_duplicate = false;                
+//      }
+//    }
+    
     if( !$is_duplicate ) {
       // this image is not already on the site
 
@@ -181,8 +195,6 @@ class MaxGalleriaImageGallery {
       }
 
       if ($download_success) {
-        // Get the next menu order value for the gallery
-        $menu_order = $maxgalleria->common->get_next_menu_order($gallery_id);
 
         // Set post data; the empty post_date ensures it gets today's date
         $post_data = array(
@@ -213,15 +225,22 @@ class MaxGalleriaImageGallery {
       // the image is already on the site so copy the attachment; code from BDN Duplicate Images plugin      
       $attachment_id = $is_duplicate;
       $attachment = get_post( $attachment_id, ARRAY_A );
-        
+
+      // assign a new value for menu_order
+      //$menu_order = $maxgalleria->common->get_next_menu_order($gallery_id);
+      $attachment[ 'menu_order' ] = $menu_order;
+              
       //If the attachment doesn't have a post parent, simply change it to the attachment we're working with and be done with it      
+      // assign a new value for menu_order
       if( empty( $attachment[ 'post_parent' ] ) ) {
         wp_update_post(
           array(
             'ID' => $attachment[ 'ID' ],
-            'post_parent' => $gallery_id
+            'post_parent' => $gallery_id,
+            'menu_order' => $menu_order
           )
         );
+        $result = $attachment[ 'ID' ];
       } else {
         //Else, unset the attachment ID, change the post parent and insert a new attachment
         unset( $attachment[ 'ID' ] );
@@ -591,11 +610,16 @@ class MaxGalleriaImageGallery {
 			// resized image exists, so we use a WP_Image_Editor to do the resizing and save to disk
       
       // code added to deal with Gantry Template Framework & WP 4.0
-			//$image_editor = wp_get_image_editor($file_path);
-      $image_editor = wp_get_image_editor($file_path);
-	  // needs further testing for Gantry
-      // $upload_dir = wp_upload_dir();
-      // $image_editor = wp_get_image_editor($upload_dir['baseurl'] . '/' . $file_path);
+      
+      
+      if(class_exists('Gantry') ) {
+        $upload_dir = wp_upload_dir();
+        $image_editor = wp_get_image_editor($upload_dir['baseurl'] . '/' . $file_path);
+        
+      } else {
+			  $image_editor = wp_get_image_editor($file_path);        
+      }
+      
 			$resized = $image_editor->resize($width, $height, $crop);
 			$new_image = $image_editor->save($resized_image_path);
 			
@@ -605,6 +629,76 @@ class MaxGalleriaImageGallery {
 		// Default output, no resizing
 		return array('url' => $image_src[0], 'width' => $image_src[1], 'height' => $image_src[2]);
 	}
+ 
+  
+  /* this is a copy of the wp_delete_attachment. It will delete an attachment but
+   * not its attached files.
+   */
+  function mg_delete_attachment( $post_id, $force_delete = false ) {
+    global $wpdb;
+
+    if ( !$post = $wpdb->get_row( $wpdb->prepare("SELECT * FROM $wpdb->posts WHERE ID = %d", $post_id) ) )
+      return $post;
+
+    if ( 'attachment' != $post->post_type )
+      return false;
+
+    if ( !$force_delete && EMPTY_TRASH_DAYS && MEDIA_TRASH && 'trash' != $post->post_status )
+      return wp_trash_post( $post_id );
+
+    delete_post_meta($post_id, '_wp_trash_meta_status');
+    delete_post_meta($post_id, '_wp_trash_meta_time');
+
+    $meta = wp_get_attachment_metadata( $post_id );
+    $backup_sizes = get_post_meta( $post->ID, '_wp_attachment_backup_sizes', true );
+    $file = get_attached_file( $post_id );
+
+    $intermediate_sizes = array();
+    foreach ( get_intermediate_image_sizes() as $size ) {
+      if ( $intermediate = image_get_intermediate_size( $post_id, $size ) )
+        $intermediate_sizes[] = $intermediate;
+    }
+
+    if ( is_multisite() )
+      delete_transient( 'dirsize_cache' );
+
+    /**
+     * Fires before an attachment is deleted, at the start of wp_delete_attachment().
+     *
+     * @since 2.0.0
+     *
+     * @param int $post_id Attachment ID.
+     */
+    do_action( 'delete_attachment', $post_id );
+
+    wp_delete_object_term_relationships($post_id, array('category', 'post_tag'));
+    wp_delete_object_term_relationships($post_id, get_object_taxonomies($post->post_type));
+
+    // Delete all for any posts.
+    delete_metadata( 'post', null, '_thumbnail_id', $post_id, true );
+
+    $comment_ids = $wpdb->get_col( $wpdb->prepare( "SELECT comment_ID FROM $wpdb->comments WHERE comment_post_ID = %d", $post_id ));
+    foreach ( $comment_ids as $comment_id )
+      wp_delete_comment( $comment_id, true );
+
+    $post_meta_ids = $wpdb->get_col( $wpdb->prepare( "SELECT meta_id FROM $wpdb->postmeta WHERE post_id = %d ", $post_id ));
+    foreach ( $post_meta_ids as $mid )
+      delete_metadata_by_mid( 'post', $mid );
+
+    /** This action is documented in wp-includes/post.php */
+    do_action( 'delete_post', $post_id );
+    $result = $wpdb->delete( $wpdb->posts, array( 'ID' => $post_id ) );
+    if ( ! $result ) {
+      return false;
+    }
+    /** This action is documented in wp-includes/post.php */
+    do_action( 'deleted_post', $post_id );
+
+    clean_post_cache( $post );
+
+    return $post;
+  }
+  
     
 }
 ?>
