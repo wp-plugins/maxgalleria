@@ -369,4 +369,12 @@
 		margin-right: 3% !important;
 	}
 }
-
+.mg-thumbs li:before
+{
+  content:none!important;
+}
+.mg-thumbs li
+{
+  margin:0!important;
+  padding-left:0!important;
+}

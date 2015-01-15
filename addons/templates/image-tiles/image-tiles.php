@@ -224,7 +224,10 @@ class MaxGalleriaImageTiles {
 				  $thumb_image_element = '<img class="' . $image_class . '" src="' . $thumb_image['url'] . '" width="' . $thumb_image['width'] . '" height="' . $thumb_image['height'] . '" alt="' . esc_attr($alt) . '" title="' . esc_attr($title) . '" />';
 				
 				$output .= '<li>';
-				$output .= "	<a href='" . $href . "' target='" . $target . "' rel='$image_rel' title='" . esc_attr($caption) . "'>";
+        if($options->get_thumb_click() === 'lightbox')
+				  $output .= "	<a class='fancybox' href='" . $href . "' target='" . $target . "' rel='$image_rel' title='" . esc_attr($caption) . "'>";
+        else
+				  $output .= "	<a href='" . $href . "' target='" . $target . "' rel='$image_rel' title='" . esc_attr($caption) . "'>";
 				$output .= '		<div class="' . $image_container_class . '">';
 				$output .= 				apply_filters(MAXGALLERIA_FILTER_IMAGE_TILES_BEFORE_THUMB, '', $options);
 				$output .=				apply_filters(MAXGALLERIA_FILTER_IMAGE_TILES_THUMB, $thumb_image_element, $thumb_image, $image_class, $alt, $title);

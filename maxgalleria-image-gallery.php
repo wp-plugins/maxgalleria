@@ -145,8 +145,21 @@ class MaxGalleriaImageGallery {
     
     $current_site_url = site_url();
     if( strpos($image_url, $current_site_url) == 0) {
+ 
+      // without prepare
+      //$sql = "select * from " . $wpdb->prefix . "posts where post_type = 'attachment' and guid = '$image_url'";
       
-      $sql = "select * from " . $wpdb->prefix . "posts where post_type = 'attachment' and guid = '$image_url'";
+      // use perpare to make it more secure
+      // if uploads_use_yearmonth_folders is set query for the whole page url
+      if ( get_option( 'uploads_use_yearmonth_folders' ) ) {
+        $sql = $wpdb->prepare("select * from " . $wpdb->prefix . "posts where post_type = 'attachment' and guid = '%s'", $image_url );        
+      }
+      // if uploads_use_yearmonth_folders not set query for the file name using LIKE
+      else {
+        $image_file = basename($image_url);
+        $sql = $wpdb->prepare("select * from " . $wpdb->prefix . "posts where post_type = 'attachment' and guid LIKE '%%%s%%'", $image_file );        
+      }  
+      
       $row = $wpdb->get_row($sql);
       if($row)
         return $row->ID;

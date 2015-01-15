@@ -351,3 +351,12 @@
 	width: 100%;
 	height: 100%;
 }
+.mg-thumbs li:before
+{
+  content:none!important;
+}
+.mg-thumbs li
+{
+  margin:0!important;
+  padding-left:0!important;
+}

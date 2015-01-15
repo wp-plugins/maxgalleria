@@ -6,15 +6,15 @@ jQuery(document).ready(function() {
 
 		if (lightbox_caption_enabled == "on") {
 			if (lightbox_caption_position == "bottom") {
-				jQuery("#maxgallery-" + gallery_id + " .mg-thumbs a").fancybox({ "titleShow": true, "titlePosition": "over" });
+				jQuery("#maxgallery-" + gallery_id + " .mg-thumbs a.fancybox").fancybox({ "titleShow": true, "titlePosition": "over" });
 			}
 			
 			if (lightbox_caption_position == "below") {
-				jQuery("#maxgallery-" + gallery_id + " .mg-thumbs a").fancybox({ "titleShow": true, "titlePosition": "inside" });
+				jQuery("#maxgallery-" + gallery_id + " .mg-thumbs a.fancybox").fancybox({ "titleShow": true, "titlePosition": "inside" });
 			}
 		}
 		else {
-			jQuery("#maxgallery-" + gallery_id + " .mg-thumbs a").fancybox({ "titleShow": false });
+			jQuery("#maxgallery-" + gallery_id + " .mg-thumbs a.fancybox").fancybox({ "titleShow": false });
 		}
 	});
 });

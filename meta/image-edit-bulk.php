@@ -44,6 +44,7 @@ if ($_POST && check_admin_referer($image_gallery->nonce_image_edit_bulk['action'
 
 <head>
 	<title><?php _e('Edit Bulk Images', 'maxgalleria') ?></title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
 	<link rel="stylesheet" type="text/css" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700" />
 	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo MAXGALLERIA_PLUGIN_URL ?>/maxgalleria.css" />
 	<?php $maxgalleria->thickbox_l10n_fix() ?>
