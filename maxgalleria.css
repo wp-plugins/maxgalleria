@@ -1593,8 +1593,8 @@ Media Manager Styles and Overrides
 .mg-promo p:not(.mg-promo-title) {
   font-size: 12px;
   margin: 25px 0 5px;
-  width: 23.5%;
-  margin-right: 2%;
+  width: 31.5%;
+  margin-right: 1%;
   float: left;
   text-align: center;
 }
