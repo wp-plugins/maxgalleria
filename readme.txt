@@ -3,7 +3,7 @@ Contributors: maxfoundry, arcware, johnbhartley, AlanP57
 Tags: albums, gallery, gallery platform, image, images, media, flash, foto, fotoalbum, photo, photos, photo albums, picture, pictures, responsive wordpress gallery, thumbmail, thumbnails, wordpress gallery, wordpress gallery platform, wordpress gallery plugin, responsive wordpress gallery plugins, responsive, slideshows, image slider, nivo, image slide plugin, javascript rotator, javascript slider, jquery slider, photo slider, responsive image slider, responsive image slider plugin, responsive slideshow, responsive slideshow slider, responsive slider plugin, slideshow plugin, template, wordpress picture slider, wordpress responsive slider, wordpress slider, website gallery, multiple pictures, youtube, youtube video, youtube videos, youtube gallery, youtube galleries, youtube video gallery, youtube video galleries, nextgen, nextgen galleries, nextgen gallery
 Requires at least: 3.9
 Tested up to: 4.1
-Stable tag: 3.0.2
+Stable tag: 3.0.3
 
 Responsive, Easy to Use, Developer Friendly
 
@@ -115,7 +115,11 @@ No. The MaxGalleria core plugin contains plenty of functionality to keep even th
 
 == Changelog ==
 
-<<<<<<< .mine
+= 3.0.3 =
+
+* Fixed uninitialized variable
+* Fixed incorrect value in deleting unneed postmeta record 
+
 = 3.0.2 =
 
 * Added Slick for Wordpress to the MaxGalleria dashboard promo
@@ -129,11 +133,6 @@ No. The MaxGalleria core plugin contains plenty of functionality to keep even th
 * Updated .pot and .mo languages files
 
 
-=======
-= 3.0.1 =
-* Updates for Media gallery attachments
-
->>>>>>> .r1072948
 = 3.0.0 =
 * Fixed the duplicate pointer issues
 * Added a class check for Gantry issue
