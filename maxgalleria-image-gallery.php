@@ -123,12 +123,12 @@ class MaxGalleriaImageGallery {
 				'post_status' => 'inherit',
 				'menu_order' => 0
 			));
-            
+      
 			$force_delete = true; // Bypass trash and do hard delete
 			foreach ($bad_children as $child) {
         if($child->ID !== $attachment_id) {
           $this->mg_delete_attachment($child->ID, $force_delete);
-          delete_post_meta($child->ID, '_wp_trash_meta_status');
+          delete_post_meta($post_id, '_wp_trash_meta_status');
         }
 			}
       

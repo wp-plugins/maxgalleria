@@ -369,6 +369,11 @@
 		margin-right: 3% !important;
 	}
 }
+
+p.caption.below {
+  text-align: center;
+}
+
 .mg-thumbs li:before
 {
   content:none!important;

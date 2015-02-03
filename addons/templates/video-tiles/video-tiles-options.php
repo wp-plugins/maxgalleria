@@ -13,6 +13,8 @@ class MaxGalleriaVideoTilesOptions extends MaxGalleryOptions {
 	public $thumb_clicks = array();
 	public $thumb_columns = array();
 	public $thumb_shapes = array();
+	public $content_positions = array();
+  public $overflow_y_settings = array();
 	
 	public function __construct($post_id = 0) {
 		parent::__construct($post_id);
@@ -21,7 +23,19 @@ class MaxGalleriaVideoTilesOptions extends MaxGalleryOptions {
 			'below' => __('Below Image', 'maxgalleria'),
 			'bottom' => __('Bottom of Image', 'maxgalleria')
 		);
-		
+    
+		$this->content_positions = array(
+			'auto' => __('Auto', 'maxgalleria'),
+			'true' => __('On', 'maxgalleria'),
+			'false' => __('Off', 'maxgalleria')
+		);
+            
+		$this->overflow_y_settings = array(
+			'auto' => __('Auto', 'maxgalleria'),
+			'scroll' => __('Scroll', 'maxgalleria'),
+			'hidden' => __('Hidden', 'maxgalleria')
+		);
+    		
 		$this->lightbox_sizes = array(
 			'full' => __('Full', 'maxgalleria'),
 			'custom' => __('Custom', 'maxgalleria')
@@ -66,15 +80,6 @@ class MaxGalleriaVideoTilesOptions extends MaxGalleryOptions {
 	public $videos_per_page_key = 'maxgallery_videos_per_page';
 	public $videos_per_page_default = '';
 	public $videos_per_page_default_key = 'maxgallery_videos_per_page';
-	public $lightbox_video_size_custom_height_key = 'maxgallery_lightbox_video_size_custom_height';
-	public $lightbox_video_size_custom_height_default = '';
-	public $lightbox_video_size_custom_height_default_key = 'maxgallery_lightbox_video_size_custom_height_video_tiles_default';
-	public $lightbox_video_size_custom_width_key = 'maxgallery_lightbox_video_size_custom_width';
-	public $lightbox_video_size_custom_width_default = '';
-	public $lightbox_video_size_custom_width_default_key = 'maxgallery_lightbox_video_size_custom_width_video_tiles_default';
-	public $lightbox_video_size_default = 'full';
-	public $lightbox_video_size_default_key = 'maxgallery_video_size_video_tiles_default';
-	public $lightbox_video_size_key = 'maxgallery_lightbox_video_size';
 	public $skin_default = 'standard';
 	public $skin_default_key = 'maxgallery_skin_video_tiles_default';
 	public $skin_key = 'maxgallery_skin';
@@ -105,7 +110,246 @@ class MaxGalleriaVideoTilesOptions extends MaxGalleryOptions {
 	public $thumb_shape_default = 'square';
 	public $thumb_shape_default_key = 'maxgallery_thumb_shape_video_tiles_default';
 	public $thumb_shape_key = 'maxgallery_thumb_shape';
+  
+	public $vertical_fit_enabled_default = '';
+	public $vertical_fit_enabled_default_key = 'maxgallery_vertical_fit_enabled_video_tiles_default';
+	public $vertical_fit_enabled_key = 'maxgallery_vertical_fit_enabled';
+  
+	public $escape_key_enabled_default = '';
+	public $escape_key_enabled_default_key = 'maxgallery_escape_key_enabled_video_tiles_default';
+	public $escape_key_enabled_key = 'maxgallery_escape_key_enabled';
+  
+	public $align_top_enabled_default = '';
+	public $align_top_enabled_default_key = 'maxgallery_align_top_enabled_video_tiles_default';
+	public $align_top_enabled_key = 'maxgallery_align_top_enabled';
+  
+ 	public $hide_close_btn_enabled_default = '';
+	public $hide_close_btn_enabled_default_key = 'maxgallery_hide_close_btn_enabled_video_tiles_default';
+	public $hide_close_btn_enabled_key = 'maxgallery_hide_close_btn_enabled';
+  
+  public $bg_click_close_enabled_default = '';
+	public $bg_click_close_enabled_default_key = 'maxgallery_bg_click_close_enabled_video_tiles_default';
+	public $bg_click_close_enabled_key = 'maxgallery_bg_click_close_enabled';
+
+	public $fixed_content_position_default = 'auto';
+	public $fixed_content_position_default_key = 'maxgallery_fixed_content_position_enabled_video_tiles_default';
+	public $fixed_content_position_key = 'maxgallery_fixed_content_position_enabled';
+  
+	public $overflow_y_default = 'auto';
+	public $overflow_y_default_key = 'maxgallery_overflow_y_video_tiles_default';
+	public $overflow_y_key = 'maxgallery_overflow_y';
+  
+	public $removal_delay_default = '0';
+	public $removal_delay_default_key = 'maxgallery_removal_delay_video_tiles_default';
+	public $removal_delay_key = 'maxgallery_removal_delay';
+
+	public $main_class_default = '';
+	public $main_class_default_key = 'maxgallery_main_class_video_tiles_default';
+	public $main_class_key = 'maxgallery_main_class';
+  
+	public $gallery_enabled_default = '';
+	public $gallery_enabled_default_key = 'maxgallery_gallery_enabled_video_tiles_default';
+	public $gallery_enabled_key = 'maxgallery_gallery_enabled';
+  
+	public $arrow_markup_default = "<button title='%title%' type='button' class='mfp-arrow mfp-arrow-%dir%'></button>";
+	public $arrow_markup_default_key = 'maxgallery_arrow_markup_video_tiles_default';
+	public $arrow_markup_key = 'maxgallery_arrow_markup';
+
+	public $prev_button_title_default = "Previous (Left arrow key)";
+	public $prev_button_title_default_key = 'maxgallery_prev_button_title_video_tiles_default';
+	public $prev_button_title_key = 'maxgallery_prev_button_title';
+  
+	public $next_button_title_default = "Next (Right arrow key)";
+	public $next_button_title_default_key = 'maxgallery_next_button_title_video_tiles_default';
+	public $next_button_title_key = 'maxgallery_next_button_title';
+  
+  public $counter_markup_default = "<div class='mfp-counter'>%curr% of %total%</div>";
+	public $counter_markup_default_key = 'maxgallery_counter_markup_video_tiles_default';
+	public $counter_markup_key = 'maxgallery_counter_markup';
+
+	public function get_counter_markup() {
+		$value = $this->get_post_meta($this->counter_markup_key);
+		if ($value == '' && $this->get_saves_count() < 1) {
+			$value = $this->get_counter_markup_default();
+		}
+		
+		return $value;
+	}
 	
+	public function get_counter_markup_default() {
+		return get_option($this->counter_markup_default_key, $this->counter_markup_default);
+	}
+    
+  public function get_next_button_title() {
+		$value = $this->get_post_meta($this->next_button_title_key);
+		if ($value == '' && $this->get_saves_count() < 1) {
+			$value = $this->get_next_button_title_default();
+		}
+		
+		return $value;
+	}
+	
+	public function get_next_button_title_default() {
+		return get_option($this->next_button_title_default_key, $this->next_button_title_default);
+	}
+
+	public function get_prev_button_title() {
+		$value = $this->get_post_meta($this->prev_button_title_key);
+		if ($value == '' && $this->get_saves_count() < 1) {
+			$value = $this->get_prev_button_title_default();
+		}
+		
+		return $value;
+	}
+	
+	public function get_prev_button_title_default() {
+		return get_option($this->prev_button_title_default_key, $this->prev_button_title_default);
+	}
+
+	public function get_arrow_markup() {
+		$value = $this->get_post_meta($this->arrow_markup_key);
+		if ($value == '' && $this->get_saves_count() < 1) {
+			$value = $this->get_arrow_markup_default();
+		}
+		
+		return $value;
+	}
+	
+	public function get_arrow_markup_default() {
+		return get_option($this->arrow_markup_default_key, $this->arrow_markup_default);
+	}
+  
+	public function get_gallery_enabled() {
+		$value = $this->get_post_meta($this->gallery_enabled_key);
+		if ($value == '' && $this->get_saves_count() < 1) {
+			$value = $this->get_gallery_enabled_default();
+		}
+		
+		return $value;
+	}
+	
+	public function get_gallery_enabled_default() {
+		return get_option($this->gallery_enabled_default_key, $this->gallery_enabled_default);
+	}
+    
+	public function get_main_class() {
+		$value = $this->get_post_meta($this->main_class_key);
+		if ($value == '' && $this->get_saves_count() < 1) {
+			$value = $this->get_main_class_default();
+		}
+		
+		return $value;
+	}
+	
+	public function get_main_class_default() {
+		return get_option($this->main_class_default_key, $this->main_class_default);
+	}
+  
+	public function get_removal_delay() {
+		$value = $this->get_post_meta($this->removal_delay_key);
+		if ($value == '' && $this->get_saves_count() < 1) {
+			$value = $this->get_removal_delay_default();
+		}
+		
+		return $value;
+	}
+	
+	public function get_removal_delay_default() {
+		return get_option($this->removal_delay_default_key, $this->removal_delay_default);
+	}
+  
+	public function get_overflow_y() {
+		$value = $this->get_post_meta($this->overflow_y_key);
+		if ($value == '' && $this->get_saves_count() < 1) {
+			$value = $this->get_overflow_y_default();
+		}
+		
+		return $value;
+	}
+	
+	public function get_overflow_y_default() {
+		return get_option($this->overflow_y_default_key, $this->overflow_y_default);
+	}
+  
+  
+  public function get_fixed_content_position() {
+		$value = $this->get_post_meta($this->fixed_content_position_key);
+		if ($value == '' && $this->get_saves_count() < 1) {
+			$value = $this->get_fixed_content_position_default();
+		}
+		
+		return $value;
+	}
+	
+	public function get_fixed_content_position_default() {
+		return get_option($this->fixed_content_position_default_key, $this->fixed_content_position_default);
+	}
+  
+	public function get_bg_click_close_enabled() {
+		$value = $this->get_post_meta($this->bg_click_close_enabled_key);
+		if ($value == '' && $this->get_saves_count() < 1) {
+			$value = $this->get_bg_click_close_enabled_default();
+		}
+		
+		return $value;
+	}
+	
+	public function get_bg_click_close_enabled_default() {
+		return get_option($this->bg_click_close_enabled_default_key, $this->bg_click_close_enabled_default);
+	}  
+  
+ 	public function get_hide_close_btn_enabled() {
+		$value = $this->get_post_meta($this->hide_close_btn_enabled_key);
+		if ($value == '' && $this->get_saves_count() < 1) {
+			$value = $this->get_hide_close_btn_enabled_default();
+		}
+		
+		return $value;
+	}
+	
+	public function get_hide_close_btn_enabled_default() {
+		return get_option($this->hide_close_btn_enabled_default_key, $this->hide_close_btn_enabled_default);
+	}
+
+	public function get_align_top_enabled() {
+		$value = $this->get_post_meta($this->align_top_enabled_key);
+		if ($value == '' && $this->get_saves_count() < 1) {
+			$value = $this->get_align_top_enabled_default();
+		}
+		
+		return $value;
+	}
+	
+	public function get_align_top_enabled_default() {
+		return get_option($this->align_top_enabled_default_key, $this->align_top_enabled_default);
+	}
+    
+  public function get_escape_key_enabled() {
+		$value = $this->get_post_meta($this->escape_key_enabled_key);
+		if ($value == '' && $this->get_saves_count() < 1) {
+			$value = $this->get_escape_key_enabled_default();
+		}
+		
+		return $value;
+	}
+	
+	public function get_escape_key_enabled_default() {
+		return get_option($this->escape_key_enabled_default_key, $this->escape_key_enabled_default);
+	}
+     
+	public function get_vertical_fit_enabled() {
+		$value = $this->get_post_meta($this->vertical_fit_enabled_key);
+		if ($value == '' && $this->get_saves_count() < 1) {
+			$value = $this->get_vertical_fit_enabled_default();
+		}
+		
+		return $value;
+	}
+	
+	public function get_vertical_fit_enabled_default() {
+		return get_option($this->vertical_fit_enabled_default_key, $this->vertical_fit_enabled_default);
+	}
+  	
 	public function get_lightbox_video_size() {
 		$value = $this->get_post_meta($this->lightbox_video_size_key);
 		if ($value == '' && $this->get_saves_count() < 1) {
@@ -311,9 +555,6 @@ class MaxGalleriaVideoTilesOptions extends MaxGalleryOptions {
 	
 	private function get_options() {
 		return array(
-			$this->lightbox_video_size_custom_height_key,
-			$this->lightbox_video_size_custom_width_key,
-			$this->lightbox_video_size_key,
 			$this->skin_key,
 			$this->thumb_caption_enabled_key,
 			$this->thumb_caption_position_key,
@@ -324,7 +565,21 @@ class MaxGalleriaVideoTilesOptions extends MaxGalleryOptions {
 			$this->thumb_image_container_class_key,
 			$this->thumb_image_rel_attribute_key,
 			$this->thumb_shape_key,
-			$this->videos_per_page_key
+			$this->videos_per_page_key,
+      $this->vertical_fit_enabled_key,
+      $this->escape_key_enabled_key,
+      $this->align_top_enabled_key,
+      $this->hide_close_btn_enabled_key,
+      $this->bg_click_close_enabled_key,
+      $this->fixed_content_position_key,
+      $this->overflow_y_key,
+      $this->removal_delay_key,
+      $this->main_class_key,
+      $this->gallery_enabled_key,
+      $this->arrow_markup_key,
+      $this->prev_button_title_key,
+      $this->next_button_title_key,
+      $this->counter_markup_key
 		);
 	}
 }

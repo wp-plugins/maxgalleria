@@ -134,19 +134,30 @@ $attachments = get_posts($args);
 			jQuery("#gallery-media_wrapper").addClass("grid");
 			jQuery(".maxgalleria-meta .bulk-actions").hide();
 		});
+         
+    jQuery("td.thumb.video a").magnificPopup({
+        type: 'iframe',
+        removalDelay: 160,
+        fixedContentPos: false
+    });                 
+    
 	});
 	
 	function viewVideo(video_id) {
-		var video = jQuery("#video-" + video_id);
-		var iframe_width = parseInt(jQuery(video).find("iframe").attr("width"));
-		var iframe_height = parseInt(jQuery(video).find("iframe").attr("height"));
-		
-		jQuery(video).modal({
-			minWidth: iframe_width + 20,
-			minHeight: iframe_height + 20,
-			overlayClose: true,
-			autoResize: true
-		});
+    
+    
+    
+    
+//		var video = jQuery("#video-" + video_id);
+//		var iframe_width = parseInt(jQuery(video).find("iframe").attr("width"));
+//		var iframe_height = parseInt(jQuery(video).find("iframe").attr("height"));
+//		
+//		jQuery(video).modal({
+//			minWidth: iframe_width + 20,
+//			minHeight: iframe_height + 20,
+//			overlayClose: true,
+//			autoResize: true
+//		});
 	}
 	
 	function editVideo(video_id) {
@@ -312,8 +323,9 @@ $attachments = get_posts($args);
 						<input type="hidden" name="media-order[]" id="media-order-<?php echo $attachment->ID ?>" value="<?php echo $attachment->menu_order ?>" class="media-order-input" />
 						<input type="hidden" name="media-order-id[]" id="media-order-id-<?php echo $attachment->ID ?>" value="<?php echo $attachment->ID ?>" />
 					</td>
-					<td class="thumb video">
-						<a href="#" onclick="javascript:viewVideo(<?php echo $attachment->ID ?>); return false;">
+					<td class="thumb video">            
+            <a href="<?php echo get_post_meta($attachment->ID, 'maxgallery_attachment_video_url', true); ?>">
+						<!--<a href="#" onclick="javascript:viewVideo(<?php echo $attachment->ID ?>); return false;">-->
 							<?php if ($is_excluded == true) { ?>
 								<div class="exclude">
 									<?php echo wp_get_attachment_image($attachment->ID, MAXGALLERIA_META_VIDEO_THUMB_SMALL) ?>
@@ -335,7 +347,7 @@ $attachments = get_posts($args);
 						
 						<?php
 							//$video_url = str_replace('https://', 'http://', get_post_meta($attachment->ID, 'maxgallery_attachment_video_url', true));
-              				$video_url = get_post_meta($attachment->ID, 'maxgallery_attachment_video_url', true);
+              $video_url = get_post_meta($attachment->ID, 'maxgallery_attachment_video_url', true);
 							$enable_related_videos = get_post_meta($attachment->ID, 'maxgallery_attachment_video_enable_related_videos', true);
 							$enable_hd_playback = get_post_meta($attachment->ID, 'maxgallery_attachment_video_enable_hd_playback', true);
 							

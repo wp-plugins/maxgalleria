@@ -29,9 +29,12 @@ class MaxGalleriaAdmin {
 		$page_title = __('MaxGalleria: Support', 'maxgalleria');
 		$sub_menu_title = __('Support', 'maxgalleria');
 		$capability = 'manage_options';
-		$menu_slug = 'maxgalleria-support';
-		$function = array($this, 'add_support_page');
+		$menu_slug = 'mg-admin-notice';
+		$function = array($this, 'set_admin_notice_true');
 		add_submenu_page($parent_slug, $page_title, $sub_menu_title, $capability, $menu_slug, $function);
+    
+		add_submenu_page($parent_slug, '', '', $capability, $menu_slug, $function);
+    
 		
 		do_action(MAXGALLERIA_ACTION_AFTER_ADMIN_MENU_PAGES, $edit_page);
 	}
@@ -47,5 +50,18 @@ class MaxGalleriaAdmin {
 	public function add_support_page() {
 		require_once 'admin/support.php';
 	}
+  
+	public function set_admin_notice_true() {
+    
+    $current_user_id = get_current_user_id(); 
+    
+    update_user_meta( $current_user_id, MAXGALLERIA_ADMIN_NOTICE, "off" );
+    
+    $request = $_SERVER["HTTP_REFERER"];
+    
+    echo "<script>window.location.href = '" . $request . "'</script>";             
+    
+	}
+  
 }
 ?>

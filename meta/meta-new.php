@@ -14,7 +14,7 @@ $options = new MaxGalleryOptions($post->ID);
 		jQuery("#simplemodal-container").css("background-color", "#ffffff");
 		jQuery("#simplemodal-container").css("border-width", "2px");
 		jQuery("#simplemodal-container").css("color", "#222222");
-		jQuery("#simplemodal-container").css("width", "400px");
+		jQuery("#simplemodal-container").css("width", "auto");
 		jQuery("#simplemodal-container").css("height", "200px");
 		
 		jQuery("#simplemodal-container a.simplemodal-close").click(function() {

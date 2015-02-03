@@ -1125,7 +1125,7 @@ Meta Styles
 .maxgalleria-meta .meta-options input[type='text'],
 .maxgalleria-meta .meta-options select {
 	font-family: "Open Sans", sans-serif;
-	width: 150px;
+	width: 160px;
 }
 .maxgalleria-meta .meta-options input[type='text'].small {
 	width: 50px;
@@ -1509,6 +1509,11 @@ Admin Page Styles
 #maxgalleria-admin .settings .settings-content input[type='text'].small {
 	width: 50px;
 }
+.maxgalleria-meta input#maxgallery_next_button_title.medium,
+.maxgalleria-meta input#maxgallery_prev_button_title.medium,
+#maxgalleria-admin .settings .settings-content input[type='text'].medium {
+	width: 250px;
+}
 #maxgalleria-admin .settings .settings-content input[type='text'].wide {
 	width: 450px;
 }
@@ -1606,4 +1611,9 @@ Media Manager Styles and Overrides
 .mg-promo p a {
 	font-weight: bold;
 	font-size: 14px;
+}
+
+.mg-bold {
+  font-weight:700;
+  text-decoration: underline;
 }

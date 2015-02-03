@@ -60,6 +60,10 @@ class MaxGalleriaImageTiles {
 
 			foreach ($_POST as $key => $value) {
 				if ($maxgalleria->common->string_starts_with($key, 'maxgallery_')) {
+          if($key === $options->arrow_markup_default_key)
+            $value = stripslashes($value);
+          if($key === $options->counter_markup_default_key)
+            $value = stripslashes($value);
 					update_option($key, $value);
 				}
 			}
@@ -74,8 +78,11 @@ class MaxGalleriaImageTiles {
 	public function enqueue_styles($options) {
 		// Check to add lightbox styles
 		if ($options->get_thumb_click() == 'lightbox') {
-			$lightbox_stylesheet = apply_filters(MAXGALLERIA_FILTER_IMAGE_TILES_LIGHTBOX_STYLESHEET, MAXGALLERIA_PLUGIN_URL . '/libs/fancybox/jquery.fancybox-1.3.4.css');
-			wp_enqueue_style('maxgalleria-fancybox', $lightbox_stylesheet);
+			//$lightbox_stylesheet = apply_filters(MAXGALLERIA_FILTER_IMAGE_TILES_LIGHTBOX_STYLESHEET, MAXGALLERIA_PLUGIN_URL . '/libs/fancybox/jquery.fancybox-1.3.4.css');
+			//wp_enqueue_style('maxgalleria-fancybox', $lightbox_stylesheet);
+      
+			$lightbox_stylesheet = apply_filters(MAXGALLERIA_FILTER_IMAGE_TILES_LIGHTBOX_STYLESHEET, MAXGALLERIA_PLUGIN_URL . '/libs/magnific/magnific-popup.css');
+			wp_enqueue_style('maxgalleria-magnific', $lightbox_stylesheet);
 		}
 		
 		// The main styles for this template
@@ -95,11 +102,12 @@ class MaxGalleriaImageTiles {
 
 	public function enqueue_scripts($options) {
 		wp_enqueue_script('jquery');
-		
+    
 		if ($options->get_thumb_click() == 'lightbox') {
-			$lightbox_script = apply_filters(MAXGALLERIA_FILTER_IMAGE_TILES_LIGHTBOX_SCRIPT, MAXGALLERIA_PLUGIN_URL . '/libs/fancybox/jquery.fancybox-1.3.4.pack.js');
-			wp_enqueue_script('maxgalleria-fancybox', $lightbox_script, array('jquery'));
-			
+      //$lightbox_script = apply_filters(MAXGALLERIA_FILTER_IMAGE_TILES_LIGHTBOX_SCRIPT, MAXGALLERIA_PLUGIN_URL . '/libs/magnific/jquery.magnific-popup.min.js');
+      $lightbox_script = apply_filters(MAXGALLERIA_FILTER_IMAGE_TILES_LIGHTBOX_SCRIPT, MAXGALLERIA_PLUGIN_URL . '/libs/magnific/jquery.magnific-popup.js');
+      wp_enqueue_script('maxgalleria-magnific', $lightbox_script, array('jquery'));
+            						
 			$easing_script = apply_filters(MAXGALLERIA_FILTER_IMAGE_TILES_EASING_SCRIPT, MAXGALLERIA_PLUGIN_URL . '/libs/fancybox/jquery.easing-1.3.pack.js');
 			wp_enqueue_script('maxgalleria-easing', $easing_script, array('jquery'));
 			
@@ -108,7 +116,6 @@ class MaxGalleriaImageTiles {
 		}
     
 		if ($options->get_lazy_load_enabled() == 'on') {
-			//$lazyload_script = apply_filters(MAXGALLERIA_FILTER_IMAGE_TILES_LAZY_LOAD_SCRIPT, MAXGALLERIA_PLUGIN_URL . '/libs/unveil/jquery.unveil.js');
 			$lazyload_script = apply_filters(MAXGALLERIA_FILTER_IMAGE_TILES_LAZY_LOAD_SCRIPT, MAXGALLERIA_PLUGIN_URL . '/libs/lazyload/jquery.lazyload.min.js');
 			wp_enqueue_script('maxgalleria-unveil', $lazyload_script, array('jquery'));
     }    
@@ -189,12 +196,12 @@ class MaxGalleriaImageTiles {
 				$href = $attachment->guid;
 				$target = '';
 				
-				if ($options->get_thumb_click() == 'lightbox') {
-					if ($options->get_lightbox_image_size() == 'custom') {
-						$lightbox_image = $this->get_lightbox_image($options, $attachment);
-						$href = $lightbox_image['url'];
-					}
-				}
+//				if ($options->get_thumb_click() == 'lightbox') {
+//					if ($options->get_lightbox_image_size() == 'custom') {
+//						$lightbox_image = $this->get_lightbox_image($options, $attachment);
+//						$href = $lightbox_image['url'];
+//					}
+//				}
 				
 				if ($options->get_thumb_click() == 'attachment_image_page') {
 					$href = get_attachment_link($attachment->ID);
@@ -209,8 +216,14 @@ class MaxGalleriaImageTiles {
 				if ($options->get_thumb_click_new_window() == 'on') {
 					$target = '_blank';
 				}
+                        
+        if($options->get_lightbox_caption_enabled() == 'on')
+          $image_caption = $caption;
+        else
+          $image_caption = "";
 				
 				$thumb_image = $this->get_thumb_image($options, $attachment);
+        //$image_container_class = 'mg-magnific';
 
 		    if ($options->get_lazy_load_enabled() == 'on') { //data-unveil="true" style="opacity: 1;" data-src <noscript>&lt;img src="' . $thumb_image['url'] . '" /&gt;</noscript>
           if(strlen(trim($image_class))>0)
@@ -225,9 +238,9 @@ class MaxGalleriaImageTiles {
 				
 				$output .= '<li>';
         if($options->get_thumb_click() === 'lightbox')
-				  $output .= "	<a class='fancybox' href='" . $href . "' target='" . $target . "' rel='$image_rel' title='" . esc_attr($caption) . "'>";
+				  $output .= "	<a class='mg-magnific' href='" . $href . "' target='" . $target . "' rel='$image_rel' title='" . esc_attr($image_caption) . "'>";
         else
-				  $output .= "	<a href='" . $href . "' target='" . $target . "' rel='$image_rel' title='" . esc_attr($caption) . "'>";
+				  $output .= "	<a href='" . $href . "' target='" . $target . "' rel='$image_rel' title='" . esc_attr($image_caption) . "'>";
 				$output .= '		<div class="' . $image_container_class . '">';
 				$output .= 				apply_filters(MAXGALLERIA_FILTER_IMAGE_TILES_BEFORE_THUMB, '', $options);
 				$output .=				apply_filters(MAXGALLERIA_FILTER_IMAGE_TILES_THUMB, $thumb_image_element, $thumb_image, $image_class, $alt, $title);
@@ -263,8 +276,28 @@ class MaxGalleriaImageTiles {
 		
 		// Hidden elements used by image-tiles.js
 		$output .= '	<span style="display: none;" class="hidden-image-tiles-gallery-id">' . $gallery->ID . '</span>';
-		$output .= '	<span style="display: none;" class="hidden-image-tiles-lightbox-caption-enabled">' . $options->get_lightbox_caption_enabled() . '</span>';
-		$output .= '	<span style="display: none;" class="hidden-image-tiles-lightbox-caption-position">' . $options->get_lightbox_caption_position() . '</span>';
+		$output .= '	<span style="display: none;" class="hidden-image-tiles-vertical-fit-enabled">' . (($options->get_vertical_fit_enabled()== 'on') ? 'true' : 'false' ) . '</span>';
+		$output .= '	<span style="display: none;" class="hidden-image-tiles-content-click-close-enabled">' . (($options->get_content_click_close_enabled()== 'on') ? 'true' : 'false' ) . '</span>';
+		$output .= '	<span style="display: none;" class="hidden-image-tiles-bg-click-close-enabled">' . (($options->get_bg_click_close_enabled()== 'on') ? 'true' : 'false' ) . '</span>';
+		$output .= '	<span style="display: none;" class="hidden-image-tiles-close-btn-inside-enabled">' . (($options->get_close_btn_inside_enabled()== 'on') ? 'true' : 'false' ) . '</span>';
+		$output .= '	<span style="display: none;" class="hidden-image-tiles-hide-close-btn-enabled">' . (($options->get_hide_close_btn_enabled()== 'on') ? 'false' : 'true' ) . '</span>';
+		$output .= '	<span style="display: none;" class="hidden-image-tiles-escape-key-enabled">' . (($options->get_escape_key_enabled()== 'on') ? 'true' : 'false' ) . '</span>';
+		$output .= '	<span style="display: none;" class="hidden-image-tiles-align-top-enabled">' . (($options->get_align_top_enabled()== 'on') ? 'true' : 'false' ) . '</span>';
+		$output .= '	<span style="display: none;" class="hidden-image-tiles-fixed-content-position">' . $options->get_fixed_content_position() . '</span>';
+		$output .= '	<span style="display: none;" class="hidden-image-tiles-zoom-enabled">' . (($options->get_zoom_enabled()== 'on') ? 'true' : 'false' ) . '</span>';
+		$output .= '	<span style="display: none;" class="hidden-image-tiles-popup-main-class">' . $options->get_main_class()  . '</span>';
+		$output .= '	<span style="display: none;" class="hidden-image-tiles-easing-type">' . $options->get_easing_type() . '</span>';
+		$output .= '	<span style="display: none;" class="hidden-image-tiles-zoom-duration">' . $options->get_zoom_duration() . '</span>';
+		$output .= '	<span style="display: none;" class="hidden-image-tiles-overflow-y">' . $options->get_overflow_y() . '</span>';
+		$output .= '	<span style="display: none;" class="hidden-image-tiles-retina-enabled">' . (($options->get_retina_enabled()== 'on') ? 'true' : 'false' ) . '</span>';
+		$output .= '	<span style="display: none;" class="hidden-image-tiles-removal-delay">' . $options->get_removal_delay() . '</span>';
+		$output .= '	<span style="display: none;" class="hidden-image-tiles-gallery-enabled">' . (($options->get_gallery_enabled()== 'on') ? 'true' : 'false' ) . '</span>';
+		$output .= '	<span style="display: none;" class="hidden-image-tiles-navigate-by-img-click-enabled">' . (($options->get_navigate_by_img_click_enabled()== 'on') ? 'true' : 'false' ) . '</span>';
+		$output .= '	<span style="display: none;" class="hidden-image-tiles-arrow-markup">' . $options->get_arrow_markup() . '</span>';
+		$output .= '	<span style="display: none;" class="hidden-image-tiles-prev-button-title">' . $options->get_prev_button_title() . '</span>';
+		$output .= '	<span style="display: none;" class="hidden-image-tiles-next-button-title">' . $options->get_next_button_title() . '</span>';
+		$output .= '	<span style="display: none;" class="hidden-image-tiles-counter-markup">' . $options->get_counter_markup() . '</span>';
+
 		$output .= '</div>';
 		$output .= apply_filters(MAXGALLERIA_FILTER_IMAGE_TILES_AFTER_GALLERY_OUTPUT, '', $gallery, $attachments, $options);
         

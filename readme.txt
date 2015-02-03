@@ -115,6 +115,18 @@ No. The MaxGalleria core plugin contains plenty of functionality to keep even th
 
 == Changelog ==
 
+= 3.1.0 =
+
+* Added Magnific Popup in place of FancyBox
+* Added ATTACHMENT_QUERY_OFF to shut off media attachment query modification. To use put 
+  define('ATTACHMENT_QUERY_OFF', true); 
+  in your wp-config.php above the line that says /* That's all, stop editing! Happy blogging. */
+* Added PRESERVE_MAXGALLERIA_TEMPLATE to (1) prevent the coping of the file single-maxgalleria.php
+  to the site's current theme folder when MaxGalleria is activated and (2) prevent single-maxgalleria.php
+  from being deleted when MaxGalleria is deactivated. To us put
+  define('PRESERVE_MAXGALLERIA_TEMPLATE', true);
+  in your wp-config.php above the line that says /* That's all, stop editing! Happy blogging. */
+
 = 3.0.3 =
 
 * Fixed uninitialized variable

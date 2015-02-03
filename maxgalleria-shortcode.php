@@ -16,7 +16,7 @@ class MaxGalleriaShortcode {
 		$output = '';
 		$gallery = null;
     $total_posts = 1;
-		
+    		
 		if ($gallery_id != '' && $gallery_name != '') {
 			// If both given, the id wins
 			$gallery = get_post($gallery_id);

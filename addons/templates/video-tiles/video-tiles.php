@@ -60,6 +60,10 @@ class MaxGalleriaVideoTiles {
 
 			foreach ($_POST as $key => $value) {
 				if ($maxgalleria->common->string_starts_with($key, 'maxgallery_')) {
+          if($key === $options->arrow_markup_default_key)
+            $value = stripslashes($value);
+          if($key === $options->counter_markup_default_key)
+            $value = stripslashes($value);
 					update_option($key, $value);
 				}
 			}
@@ -74,8 +78,12 @@ class MaxGalleriaVideoTiles {
 	public function enqueue_styles($options) {
 		// Check to add lightbox styles
 		if ($options->get_thumb_click() == 'lightbox') {
-			$lightbox_stylesheet = apply_filters(MAXGALLERIA_FILTER_VIDEO_TILES_LIGHTBOX_STYLESHEET, MAXGALLERIA_PLUGIN_URL . '/libs/simplemodal/simplemodal.css');
-			wp_enqueue_style('maxgalleria-simplemodal', $lightbox_stylesheet);
+			//$lightbox_stylesheet = apply_filters(MAXGALLERIA_FILTER_VIDEO_TILES_LIGHTBOX_STYLESHEET, MAXGALLERIA_PLUGIN_URL . '/libs/simplemodal/simplemodal.css');
+			//wp_enqueue_style('maxgalleria-simplemodal', $lightbox_stylesheet);
+      
+			$lightbox_stylesheet = apply_filters(MAXGALLERIA_FILTER_IMAGE_TILES_LIGHTBOX_STYLESHEET, MAXGALLERIA_PLUGIN_URL . '/libs/magnific/magnific-popup.css');
+			wp_enqueue_style('maxgalleria-magnific', $lightbox_stylesheet);
+      
 		}
 		
 		// The main styles for this template
@@ -97,9 +105,12 @@ class MaxGalleriaVideoTiles {
 		wp_enqueue_script('jquery');
 		
 		if ($options->get_thumb_click() == 'lightbox') {
-			$lightbox_script = apply_filters(MAXGALLERIA_FILTER_VIDEO_TILES_LIGHTBOX_SCRIPT, MAXGALLERIA_PLUGIN_URL . '/libs/simplemodal/jquery.simplemodal-1.4.3.min.js');
-			wp_enqueue_script('maxgalleria-simplemodal', $lightbox_script, array('jquery'));
-			
+			//$lightbox_script = apply_filters(MAXGALLERIA_FILTER_VIDEO_TILES_LIGHTBOX_SCRIPT, MAXGALLERIA_PLUGIN_URL . '/libs/simplemodal/jquery.simplemodal-1.4.3.min.js');
+			//wp_enqueue_script('maxgalleria-simplemodal', $lightbox_script, array('jquery'));
+      
+      $lightbox_script = apply_filters(MAXGALLERIA_FILTER_IMAGE_TILES_LIGHTBOX_SCRIPT, MAXGALLERIA_PLUGIN_URL . '/libs/magnific/jquery.magnific-popup.js');
+      wp_enqueue_script('maxgalleria-magnific', $lightbox_script, array('jquery'));
+      			
 			$main_script = apply_filters(MAXGALLERIA_FILTER_VIDEO_TILES_MAIN_SCRIPT, MAXGALLERIA_PLUGIN_URL . '/addons/templates/video-tiles/video-tiles.js');
 			wp_enqueue_script('maxgalleria-video-tiles', $main_script, array('jquery'));
 		}
@@ -189,9 +200,9 @@ class MaxGalleriaVideoTiles {
 				$image_rel = $options->get_thumb_image_rel_attribute();
 				$target = '';
 				
-				if ($options->get_thumb_click() == 'lightbox') {
-					$href = '#';
-				}
+//				if ($options->get_thumb_click() == 'lightbox') {
+//					$href = '#';
+//				}
 				
 				if ($options->get_thumb_click_new_window() == 'on') {
 					$target = '_blank';
@@ -199,9 +210,9 @@ class MaxGalleriaVideoTiles {
 				
 				$thumb_image = $this->get_thumb_image($options, $attachment);
 				$thumb_image_element = '<img class="' . $image_class . '" src="' . $thumb_image['url'] . '" width="' . $thumb_image['width'] . '" height="' . $thumb_image['height'] . '" alt="' . esc_attr($alt) . '" title="' . esc_attr($title) . '" />';
-				
+				        
 				$output .= '<li>';
-				$output .= '	<a data-video-thumb-id="' . $attachment->ID . '" href="' . $href . '" target="' . $target . '" rel="' . $image_rel . '">';
+				$output .= '	<a class="video" data-video-thumb-id="' . $attachment->ID . '" href="' . $href . '" target="' . $target . '" rel="' . $image_rel . '">';
 				$output .= '		<div class="' . $image_container_class . '">';
 				$output .= 				apply_filters(MAXGALLERIA_FILTER_VIDEO_TILES_BEFORE_THUMB, '', $options);
 				$output .=				apply_filters(MAXGALLERIA_FILTER_VIDEO_TILES_THUMB, $thumb_image_element, $thumb_image, $image_class, $alt, $title);
@@ -233,10 +244,25 @@ class MaxGalleriaVideoTiles {
 				$output .= '<p class="mg-description">' . $options->get_description_text() . '</p>';
 			}
 		}
-		
+        
 		// Hidden elements used by video-tiles.js
 		$output .= '	<span style="display: none;" class="hidden-video-tiles-gallery-id">' . $gallery->ID . '</span>';
 		$output .= '	<span style="display: none;" class="hidden-video-tiles-thumb-click">' . $options->get_thumb_click() . '</span>';
+		$output .= '	<span style="display: none;" class="hidden-video-tiles-vertical-fit-enabled">' . (($options->get_vertical_fit_enabled()== 'on') ? 'true' : 'false' ) . '</span>';
+		$output .= '	<span style="display: none;" class="hidden-video-tiles-escape-key-enabled">' . (($options->get_escape_key_enabled()== 'on') ? 'true' : 'false' ) . '</span>';
+		$output .= '	<span style="display: none;" class="hidden-video-tiles-align-top-enabled">' . (($options->get_align_top_enabled()== 'on') ? 'true' : 'false' ) . '</span>';
+		$output .= '	<span style="display: none;" class="hidden-video-tiles-hide-close-btn-enabled">' . (($options->get_hide_close_btn_enabled()== 'on') ? 'false' : 'true' ) . '</span>';
+		$output .= '	<span style="display: none;" class="hidden-video-tiles-bg-click-close-enabled">' . (($options->get_bg_click_close_enabled()== 'on') ? 'true' : 'false' ) . '</span>';
+		$output .= '	<span style="display: none;" class="hidden-video-tiles-fixed-content-position">' . $options->get_fixed_content_position() . '</span>';
+		$output .= '	<span style="display: none;" class="hidden-video-tiles-overflow-y">' . $options->get_overflow_y() . '</span>';
+		$output .= '	<span style="display: none;" class="hidden-video-tiles-removal-delay">' . $options->get_removal_delay() . '</span>';
+		$output .= '	<span style="display: none;" class="hidden-video-tiles-popup-main-class">' . $options->get_main_class()  . '</span>';
+  	$output .= '	<span style="display: none;" class="hidden-video-tiles-gallery-enabled">' . (($options->get_gallery_enabled()== 'on') ? 'true' : 'false' ) . '</span>';
+		$output .= '	<span style="display: none;" class="hidden-video-tiles-arrow-markup">' . $options->get_arrow_markup() . '</span>';
+		$output .= '	<span style="display: none;" class="hidden-video-tiles-prev-button-title">' . $options->get_prev_button_title() . '</span>';
+		$output .= '	<span style="display: none;" class="hidden-video-tiles-next-button-title">' . $options->get_next_button_title() . '</span>';
+		$output .= '	<span style="display: none;" class="hidden-video-tiles-counter-markup">' . $options->get_counter_markup() . '</span>';
+
 		$output .= '</div>';
 		$output .= apply_filters(MAXGALLERIA_FILTER_VIDEO_TILES_AFTER_GALLERY_OUTPUT, '', $gallery, $attachments, $options);
 		

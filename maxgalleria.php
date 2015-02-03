@@ -3,7 +3,7 @@
 Plugin Name: MaxGalleria
 Plugin URI: http://maxgalleria.com
 Description: The gallery platform for WordPress.
-Version: 3.0.3
+Version: 3.1.0
 Author: Max Foundry
 Author URI: http://maxfoundry.com
 
@@ -42,9 +42,14 @@ class MaxGalleria {
 		update_option(MAXGALLERIA_VERSION_KEY, MAXGALLERIA_VERSION_NUM);
 		
 		// Copy gallery post type template file to theme directory
-		$source = MAXGALLERIA_PLUGIN_DIR . '/single-maxgallery.php';
-		$destination = $this->get_theme_dir() . '/single-maxgallery.php';
-		copy($source, $destination);
+    $source = MAXGALLERIA_PLUGIN_DIR . '/single-maxgallery.php';
+    $destination = $this->get_theme_dir() . '/single-maxgallery.php';
+    if(!defined('PRESERVE_MAXGALLERIA_TEMPLATE')) {
+      copy($source, $destination);
+    }  
+    else if(!file_exists($destination)) {
+      copy($source, $destination);
+    }
 		
 		flush_rewrite_rules();
 
@@ -228,9 +233,11 @@ class MaxGalleria {
 	function deactivate() {
 		delete_option(MAXGALLERIA_VERSION_KEY);
 		
-		// Delete the gallery post type template file from the theme directory
-		$file = $this->get_theme_dir() . '/single-maxgallery.php';
-		unlink($file);
+    if(!defined('PRESERVE_MAXGALLERIA_TEMPLATE')) {
+      // Delete the gallery post type template file from the theme directory
+      $file = $this->get_theme_dir() . '/single-maxgallery.php';
+      unlink($file);
+    }
 		
 		flush_rewrite_rules();
 	}
@@ -291,11 +298,12 @@ class MaxGalleria {
 			wp_enqueue_script('jquery-ui-core');
 			wp_enqueue_script('jquery-ui-tabs');
 			wp_enqueue_script('maxgalleria-datatables', MAXGALLERIA_PLUGIN_URL . '/libs/datatables/jquery.dataTables.min.js', array('jquery'));
-			wp_enqueue_script('maxgalleria-datatables-row-reordering', MAXGALLERIA_PLUGIN_URL . '/libs/datatables/jquery.dataTables.rowReordering.js', array('jquery'));
-			wp_enqueue_script('maxgalleria-fancybox', MAXGALLERIA_PLUGIN_URL . '/libs/fancybox/jquery.fancybox-1.3.4.pack.js', array('jquery'));
+			wp_enqueue_script('maxgalleria-datatables-row-reordering', MAXGALLERIA_PLUGIN_URL . '/libs/datatables/jquery.dataTables.rowReordering.js', array('jquery'));      
+			//wp_enqueue_script('maxgalleria-fancybox', MAXGALLERIA_PLUGIN_URL . '/libs/fancybox/jquery.fancybox-1.3.4.pack.js', array('jquery'));
 			wp_enqueue_script('maxgalleria-easing', MAXGALLERIA_PLUGIN_URL . '/libs/fancybox/jquery.easing-1.3.pack.js', array('jquery'));
 			wp_enqueue_script('maxgalleria-simplemodal', MAXGALLERIA_PLUGIN_URL . '/libs/simplemodal/jquery.simplemodal-1.4.3.min.js', array('jquery'));
-         
+			wp_enqueue_script('maxgalleria-magnific', MAXGALLERIA_PLUGIN_URL . '/libs/magnific/jquery.magnific-popup.min.js', array('jquery'));
+            
       $screen = get_current_screen();
       if($screen->id == 'edit-maxgallery') {
         wp_enqueue_script('maxgalleria-promo', MAXGALLERIA_PLUGIN_URL . '/js/promo.js', array('jquery'));                            
@@ -307,12 +315,13 @@ class MaxGalleria {
 		if ($this->admin_page_is_maxgallery_post_type()) {
 			wp_enqueue_style('thickbox');
 			wp_enqueue_style('maxgalleria-jquery-ui', MAXGALLERIA_PLUGIN_URL . '/libs/jquery-ui/jquery-ui.css');
-			wp_enqueue_style('maxgalleria-fancybox', MAXGALLERIA_PLUGIN_URL . '/libs/fancybox/jquery.fancybox-1.3.4.css');
+			//wp_enqueue_style('maxgalleria-fancybox', MAXGALLERIA_PLUGIN_URL . '/libs/fancybox/jquery.fancybox-1.3.4.css');
 			wp_enqueue_style('maxgalleria-simplemodal', MAXGALLERIA_PLUGIN_URL . '/libs/simplemodal/simplemodal.css');
+			wp_enqueue_style('maxgalleria-magnific', MAXGALLERIA_PLUGIN_URL . '/libs/magnific/magnific-popup.css');
 			wp_enqueue_style('maxgalleria', MAXGALLERIA_PLUGIN_URL . '/maxgalleria.css');
 		}
 	}
-	
+	  
 	public function get_all_addons() {
 		return $this->_addons;
 	}
@@ -517,7 +526,7 @@ class MaxGalleria {
 	
 	public function set_global_constants() {	
 		define('MAXGALLERIA_VERSION_KEY', 'maxgalleria_version');
-		define('MAXGALLERIA_VERSION_NUM', '3.0.3');
+		define('MAXGALLERIA_VERSION_NUM', '3.1.0');
 		define('MAXGALLERIA_PLUGIN_NAME', trim(dirname(plugin_basename(__FILE__)), '/'));
 		define('MAXGALLERIA_PLUGIN_DIR', WP_PLUGIN_DIR . '/' . MAXGALLERIA_PLUGIN_NAME);
 		define('MAXGALLERIA_PLUGIN_URL', plugin_dir_url('') . MAXGALLERIA_PLUGIN_NAME);
@@ -536,6 +545,7 @@ class MaxGalleria {
 		define('MAXGALLERIA_SETTING_EXCLUDE_GALLERIES_FROM_SEARCH', 'maxgalleria_setting_exlude_galleries_from_search');
 		define('MAXGALLERIA_SETTING_DEFAULT_IMAGE_GALLERY_TEMPLATE', 'maxgalleria_setting_default_image_gallery_template');
 		define('MAXGALLERIA_SETTING_DEFAULT_VIDEO_GALLERY_TEMPLATE', 'maxgalleria_setting_default_video_gallery_template');
+    define('MAXGALLERIA_ADMIN_NOTICE', 'maxgalleria_admin_notice-1');
 		
 		// Bring in all the actions and filters
 		require_once 'maxgalleria-hooks.php';
@@ -552,6 +562,7 @@ class MaxGalleria {
 	public function setup_hooks() {
 		add_action('init', array($this, 'load_textdomain'));
 		add_action('init', array($this, 'register_gallery_post_type'));
+		add_action('init', array($this, 'display_mg_admin_notice'));
 		add_filter('plugin_action_links', array($this, 'create_plugin_action_links'), 10, 2);
 		add_action('admin_print_scripts', array($this, 'enqueue_admin_print_scripts'));
 		add_action('admin_print_styles', array($this, 'enqueue_admin_print_styles'));
@@ -568,8 +579,10 @@ class MaxGalleria {
 		add_action('media_buttons_context', array($this, 'media_button'));
 		add_action('admin_footer', array($this, 'media_button_admin_footer'));
 		add_action('widgets_init', array($this, 'register_widgets'));
-    add_action( 'pre_get_posts', array($this, 'modify_attachments'));
-
+    
+    if(!defined('ATTACHMENT_QUERY_OFF'))    
+      add_action( 'pre_get_posts', array($this, 'modify_attachments'));
+         
 	}
   
   
@@ -661,7 +674,25 @@ class MaxGalleria {
 			'closeImage' => includes_url('js/thickbox/tb-close.png')));
 		echo '</script>';
 	}
+  
+  public function display_mg_admin_notice () {
         
+    $current_user_id = get_current_user_id(); 
+
+    $notice = get_user_meta( $current_user_id, MAXGALLERIA_ADMIN_NOTICE, true );
+    if( $notice !== 'off' )
+      add_action( 'admin_notices', array($this, 'mg_admin_notice' ));      
+  }
+  
+  public function mg_admin_notice() {
+      ?>
+      <div class="update-nag">
+          <p><?php _e( 'Attention: Maxgalleria 3.1 now uses Magnific Popup for lightboxes.  Please check you galleries after upgrading.  The Image Carousel Add-on requires updating to use with this new version.', 'maxgalleria' ); ?></p>
+          <p><a href="<?php echo admin_url() . 'edit.php?post_type=maxgallery&page=mg-admin-notice'; ?>">Dismiss</a></p>
+      </div>
+      <?php
+  }
+    
 }
 
 // Let's get this party started

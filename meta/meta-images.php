@@ -31,7 +31,8 @@ $attachments = get_posts($args);
 		});
 
 		// Lightbox
-		jQuery("a.lightbox").fancybox();
+    jQuery('a.lightbox').magnificPopup({type:'image'});  
+
 		
 		// Need the menu order table cell, but don't need to show it
 		jQuery("th.order").css("display", "none");
