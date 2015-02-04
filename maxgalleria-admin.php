@@ -24,18 +24,21 @@ class MaxGalleriaAdmin {
 		$menu_slug = 'maxgalleria-settings';
 		$function = array($this, 'add_settings_page');
 		add_submenu_page($parent_slug, $page_title, $sub_menu_title, $capability, $menu_slug, $function);
-		
+        
 		$parent_slug = $edit_page;
 		$page_title = __('MaxGalleria: Support', 'maxgalleria');
 		$sub_menu_title = __('Support', 'maxgalleria');
 		$capability = 'manage_options';
-		$menu_slug = 'mg-admin-notice';
-		$function = array($this, 'set_admin_notice_true');
+		$menu_slug = 'maxgalleria-support';
+		$function = array($this, 'add_support_page');
 		add_submenu_page($parent_slug, $page_title, $sub_menu_title, $capability, $menu_slug, $function);
-    
+    		
+		$parent_slug = $edit_page;
+		$capability = 'manage_options';
+		$menu_slug = 'mg-admin-notice';
+		$function = array($this, 'set_admin_notice_true');    
 		add_submenu_page($parent_slug, '', '', $capability, $menu_slug, $function);
-    
-		
+    		
 		do_action(MAXGALLERIA_ACTION_AFTER_ADMIN_MENU_PAGES, $edit_page);
 	}
 
