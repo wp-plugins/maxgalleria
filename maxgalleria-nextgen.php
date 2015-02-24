@@ -60,45 +60,49 @@ class MaxGalleriaNextGen {
 				foreach ($nextgen_gallery_pics as $picture) {
 					do_action(MAXGALLERIA_ACTION_BEFORE_NEXTGEN_IMPORT_PICTURE, $picture);
 					
-					$url = trailingslashit(site_url()) . trailingslashit($nextgen_gallery->path) . $picture->filename;
-					
-					// Get the contents of the picture
-					$response = wp_remote_get($url);
-					$contents = wp_remote_retrieve_body($response);
+					$url = site_url() . trailingslashit($nextgen_gallery->path) . $picture->filename;
+          
+          $temp_file = get_home_path() . trailingslashit($nextgen_gallery->path) . $picture->filename;
+                    
+          $download_success = true;
+          
+          $file_array = array();
+          
+          preg_match('/[^\?]+\.(jpg|JPG|jpe|JPE|jpeg|JPEG|gif|GIF|png|PNG)/', $url, $matches);
+          $file_array['name'] = basename($matches[0]);
+          $file_array['tmp_name'] = $temp_file;
 
-					// Upload and get file data
-					$upload = wp_upload_bits(basename($url), null, $contents);
-					$guid = $upload['url'];
-					$file = $upload['file'];
-					$file_type = wp_check_filetype(basename($file), null);
+          // If we got an error or the file is not a valid image, delete the temp file
+          if (is_wp_error($temp_file) || !file_is_valid_image($temp_file)) {
+            @unlink($temp_file);
+            $download_success = false;
+          }
 
-					// Get menu order
-					$menu_order = $common->get_next_menu_order($maxgalleria_gallery->ID);
-					
-					// Create attachment
-					$attachment = array(
-						'ID' => 0,
-						'guid' => $upload['url'],
-						'post_title' => $picture->alttext != '' ? $picture->alttext : $picture->image_slug,
-						'post_excerpt' => $picture->description,
-						'post_content' => $picture->description,
-						'post_date' => '', // Ensures it gets today's date
-						'post_parent' => $maxgalleria_gallery->ID,
-						'post_mime_type' => $file_type['type'],
-						'ancestors' => array(),
-						'menu_order' => $menu_order
-					);
-					
-					// Include image.php so we can call wp_generate_attachment_metadata()
-					require_once(ABSPATH . 'wp-admin/includes/image.php');
-					
-					// Insert the attachment
-					$attachment_id = wp_insert_attachment($attachment, $file, $maxgalleria_gallery->ID);
-					$attachment_data = wp_generate_attachment_metadata($attachment_id, $file);
-					wp_update_attachment_metadata($attachment_id, $attachment_data);
-					
-					// Save alt text in the post meta and increment counter
-					update_post_meta($attachment_id, '_wp_attachment_image_alt', $picture->alttext);
+          if ($download_success) {
+
+            // Set post data; the empty post_date ensures it gets today's date
+            $post_data = array(
+              'post_date' => '',
+              'post_parent' => $maxgalleria_gallery->ID,
+              'post_title' => $picture->alttext != '' ? $picture->alttext : $picture->image_slug,
+              'post_excerpt' => $picture->description,
+              'post_content' => $picture->description,
+              'menu_order' => $menu_order,
+              'ancestors' => array()
+            );
+
+            // Sideload the image to create its attachment to the gallery
+            $attachment_id = media_handle_sideload($file_array, $maxgalleria_gallery->ID, $picture->description, $post_data);
+
+            if (!is_wp_error($attachment_id)) {
+              $result = $attachment_id;
+
+              // Add the alt text
+              update_post_meta($attachment_id, '_wp_attachment_image_alt', $alt_text);
+            }
+                        
+          }
+
 					$nextgen_import_count++;
 					
 					// Increment chunks for progress bar
@@ -117,7 +121,7 @@ class MaxGalleriaNextGen {
 			die();
 		}
 	}
-	
+  
 	public function get_nextgen_import_percent() {
 		$import_percent = get_option('maxgalleria_nextgen_import_percent');
 		$percentage = ($import_percent > 100) ? 100 : $import_percent;	

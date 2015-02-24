@@ -3,7 +3,7 @@
 Plugin Name: MaxGalleria
 Plugin URI: http://maxgalleria.com
 Description: The gallery platform for WordPress.
-Version: 3.1.1
+Version: 3.1.2
 Author: Max Foundry
 Author URI: http://maxfoundry.com
 
@@ -41,20 +41,35 @@ class MaxGalleria {
 	function activate() {
 		update_option(MAXGALLERIA_VERSION_KEY, MAXGALLERIA_VERSION_NUM);
 		
+    $this->copy_template();
+
+    //add_action('wp_head', 'create_promo_js');
+	}
+  
+  function copy_template() {
+    
+    $fh = fopen("maxgalleria.txt", "w");
+    $date = date('m/d/Y h:i:s a', time());
+    
 		// Copy gallery post type template file to theme directory
     $source = MAXGALLERIA_PLUGIN_DIR . '/single-maxgallery.php';
     $destination = $this->get_theme_dir() . '/single-maxgallery.php';
     if(!defined('PRESERVE_MAXGALLERIA_TEMPLATE')) {
-      copy($source, $destination);
+      if(copy($source, $destination))
+        fwrite ($fh, "$date - copy to $destination successful\n");
+      else
+        fwrite ($fh, "$date - copy to $destination failed\n");
     }  
     else if(!file_exists($destination)) {
-      copy($source, $destination);
+      if(copy($source, $destination))
+        fwrite ($fh, "$date - copy to $destination successful\n");
+      else
+        fwrite ($fh, "$date - copy to $destination failed\n");
     }
-		
-		flush_rewrite_rules();
-
-    //add_action('wp_head', 'create_promo_js');
-	}
+		flush_rewrite_rules();    
+    fwrite ($fh, "$date - permalinks updated\n");
+		fclose($fh);
+  }
 	
 	public function add_thumb_sizes() {
 		// In addition to the thumbnail support when registering the custom post type, we need to add theme support
@@ -365,7 +380,10 @@ class MaxGalleria {
 	}
 	
 	public function get_theme_dir() {
-		return ABSPATH . 'wp-content/themes/' . get_template();
+    if(is_child_theme())
+		  return ABSPATH . 'wp-content/themes/' . get_stylesheet();
+    else
+		  return ABSPATH . 'wp-content/themes/' . get_template();
 	}
 	
 	public function hide_add_new() {
@@ -526,7 +544,7 @@ class MaxGalleria {
 	
 	public function set_global_constants() {	
 		define('MAXGALLERIA_VERSION_KEY', 'maxgalleria_version');
-		define('MAXGALLERIA_VERSION_NUM', '3.1.1');
+		define('MAXGALLERIA_VERSION_NUM', '3.1.2');
 		define('MAXGALLERIA_PLUGIN_NAME', trim(dirname(plugin_basename(__FILE__)), '/'));
 		define('MAXGALLERIA_PLUGIN_DIR', WP_PLUGIN_DIR . '/' . MAXGALLERIA_PLUGIN_NAME);
 		define('MAXGALLERIA_PLUGIN_URL', plugin_dir_url('') . MAXGALLERIA_PLUGIN_NAME);
@@ -579,13 +597,21 @@ class MaxGalleria {
 		add_action('media_buttons_context', array($this, 'media_button'));
 		add_action('admin_footer', array($this, 'media_button_admin_footer'));
 		add_action('widgets_init', array($this, 'register_widgets'));
+		add_action('after_switch_theme', array($this, 'copy_template'));
     
     if(!defined('ATTACHMENT_QUERY_OFF'))    
       add_action( 'pre_get_posts', array($this, 'modify_attachments'));
-         
+
+//    this is not working yet:    
+//    check daily for the template in the theme folder; copy and update permalinks if missing.        
+//    if ( ! wp_next_scheduled( 'mg_task_hook' ) ) {
+//      wp_schedule_event( time(), 'daily', 'mg_task_hook' );
+//    }
+//
+//    add_action( 'mg_task_hook', array($this, 'mg_daily_check') );
+             
 	}
-  
-  
+
   public function modify_attachments( $query ) {
     
     if ( is_admin() && strpos( $_SERVER[ 'REQUEST_URI' ], 'admin-ajax.php' ) !== false && $_REQUEST['action'] === 'query-attachments'  ) {      
@@ -687,12 +713,24 @@ class MaxGalleria {
   public function mg_admin_notice() {
       ?>
       <div class="update-nag">
-          <p><?php _e( 'Attention: Maxgalleria 3.1 now uses Magnific Popup for lightboxes.  Please check you galleries after upgrading.  The Image Carousel Add-on requires updating to use with this new version.', 'maxgalleria' ); ?></p>
+          <p><?php _e( 'Versions 3.1.0 and higher of Maxgalleria include Magnific Popup as part of the plugin.  There is nothing to install.  Magnific Popup has many more options so please check your galleries. The <a href="http://maxgalleria.com/documentation/maxgalleria/quickstart/" target="_blank">MaxGalleria Quick Start Page</a> shows how to use these options.  If you are using the Image Carousel Add-on it must be updated to work with these versions of Maxgalleria.', 'maxgalleria' ); ?></p>
           <p><a href="<?php echo admin_url() . 'edit.php?post_type=maxgallery&page=mg-admin-notice'; ?>">Dismiss</a></p>
       </div>
       <?php
   }
+  
+  private function mg_daily_check() {
+
+    $source = MAXGALLERIA_PLUGIN_DIR . '/single-maxgallery.php';
+    $destination = $this->get_theme_dir() . '/single-maxgallery.php';
     
+    if(!file_exists($destination)) {
+      copy($source, $destination);
+		  flush_rewrite_rules();
+    }
+		
+  }
+  
 }
 
 // Let's get this party started
