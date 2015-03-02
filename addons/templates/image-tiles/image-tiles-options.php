@@ -80,7 +80,8 @@ class MaxGalleriaImageTilesOptions extends MaxGalleryOptions {
 			'lightbox' => __('Lightbox Image', 'maxgalleria'),
 			'attachment_image_page' => __('Image Page', 'maxgalleria'),
 			'attachment_image_link' => __('Image Link', 'maxgalleria'),
-			'attachment_image_source' => __('Original Image', 'maxgalleria')
+			'attachment_image_source' => __('Original Image', 'maxgalleria'),
+			'no_link' => __('No Link', 'maxgalleria')
 		);
 		
 		$this->thumb_columns = array(
