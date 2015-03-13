@@ -119,6 +119,11 @@ No. The MaxGalleria core plugin contains plenty of functionality to keep even th
 
 == Changelog ==
 
+= 3.1.4 =
+
+* Added instructions on the video add box to use only youtube page links instead of embedded links
+* Added code to convert embedded links to page links when new youtube videos are added
+
 = 3.1.3 =
 
 * Added option to turn of links for image tiles

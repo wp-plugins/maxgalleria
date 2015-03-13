@@ -37,6 +37,18 @@ if ($_POST && check_admin_referer($video_gallery->nonce_video_add['action'], $vi
 				$video_url = rtrim($video_url);
 				
 				if ($video_url != '') {
+          
+          // is this a vimeo url?
+          if( strpos($video_url, "vimeo.com") === false) {
+            $page_link = strpos($video_url, "youtube.com/watch?v=");
+            
+            // if an yourtube embedded url convert it to a page link
+            if($page_link === false) {
+              $video_pos = strrpos($video_url, '/');
+              $video_url = "https://www.youtube.com/watch?v=" . substr($video_url, $video_pos+1);
+            }
+          }
+          
 					// Get the data for the video; first initialize the API URL
 					// and then pass it to the filter so it can get populated
 					$api_url = '';
@@ -137,7 +149,7 @@ if ($_POST && check_admin_referer($video_gallery->nonce_video_add['action'], $vi
 		</div>
 	<?php } else { ?>
 		<form id="video-add-form" method="post">
-			<p><?php _e('You can add as many videos to this gallery as you like. Simply enter the URL of each video in the box, and data about each video will be retrieved automatically.', 'maxgalleria') ?></p>
+			<p><?php _e('You can add as many videos to this gallery as you like. Simply enter the page URL of each video (not the embedded URL) in the box, and data about each video will be retrieved automatically.', 'maxgalleria') ?></p>
 			<p><?php _e('Video URLs from the following sites are currently supported:', 'maxgalleria') ?></p>
 			
 			<ul class="addons">
