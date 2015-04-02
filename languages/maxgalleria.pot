@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: maxgalleria\n"
-"POT-Creation-Date: 2015-01-01 10:34-0300\n"
-"PO-Revision-Date: 2015-01-01 10:34-0300\n"
+"POT-Creation-Date: 2015-03-18 14:17-0500\n"
+"PO-Revision-Date: 2015-03-18 16:03-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -382,19 +382,23 @@ msgstr ""
 msgid "Original Image"
 msgstr ""
 
-#: ../addons/templates/image-tiles/image-tiles-options.php:100
+#: ../addons/templates/image-tiles/image-tiles-options.php:84
+msgid "No Link"
+msgstr ""
+
+#: ../addons/templates/image-tiles/image-tiles-options.php:101
 #: ../addons/templates/video-tiles/video-tiles-options.php:74
 #: ../widgets/gallery-widget.php:46
 msgid "Landscape"
 msgstr ""
 
-#: ../addons/templates/image-tiles/image-tiles-options.php:101
+#: ../addons/templates/image-tiles/image-tiles-options.php:102
 #: ../addons/templates/video-tiles/video-tiles-options.php:75
 #: ../widgets/gallery-widget.php:47
 msgid "Portrait"
 msgstr ""
 
-#: ../addons/templates/image-tiles/image-tiles-options.php:102
+#: ../addons/templates/image-tiles/image-tiles-options.php:103
 #: ../addons/templates/video-tiles/video-tiles-options.php:76
 #: ../widgets/gallery-widget.php:48
 msgid "Square"
@@ -432,14 +436,14 @@ msgstr ""
 msgid "Arrow Button Markup**:"
 msgstr ""
 
-#: ../addons/templates/image-tiles/image-tiles-settings.php:390
-#: ../addons/templates/video-tiles/video-tiles-settings.php:285
+#: ../addons/templates/image-tiles/image-tiles-settings.php:391
+#: ../addons/templates/video-tiles/video-tiles-settings.php:286
 #: ../admin/settings.php:171
 msgid "Save Settings"
 msgstr ""
 
-#: ../addons/templates/image-tiles/image-tiles-settings.php:391
-#: ../addons/templates/video-tiles/video-tiles-settings.php:286
+#: ../addons/templates/image-tiles/image-tiles-settings.php:392
+#: ../addons/templates/video-tiles/video-tiles-settings.php:287
 msgid "Revert Defaults"
 msgstr ""
 
@@ -644,7 +648,7 @@ msgstr ""
 msgid "NextGEN Importer"
 msgstr ""
 
-#: ../maxgalleria-admin.php:22 ../maxgalleria.php:203
+#: ../maxgalleria-admin.php:22 ../maxgalleria.php:223
 msgid "Settings"
 msgstr ""
 
@@ -652,45 +656,45 @@ msgstr ""
 msgid "Support"
 msgstr ""
 
-#: ../maxgalleria-image-gallery.php:282
+#: ../maxgalleria-image-gallery.php:295
 msgid "Included the image in this gallery."
 msgstr ""
 
-#: ../maxgalleria-image-gallery.php:315
+#: ../maxgalleria-image-gallery.php:328
 msgid "Included 1 image in this gallery."
 msgstr ""
 
-#: ../maxgalleria-image-gallery.php:319
+#: ../maxgalleria-image-gallery.php:332
 #, php-format
 msgid "Included %d images in this gallery."
 msgstr ""
 
-#: ../maxgalleria-image-gallery.php:340
+#: ../maxgalleria-image-gallery.php:353
 msgid "Excluded the image from this gallery."
 msgstr ""
 
-#: ../maxgalleria-image-gallery.php:373
+#: ../maxgalleria-image-gallery.php:386
 msgid "Excluded 1 image from this gallery."
 msgstr ""
 
-#: ../maxgalleria-image-gallery.php:377
+#: ../maxgalleria-image-gallery.php:390
 #, php-format
 msgid "Excluded %d images from this gallery."
 msgstr ""
 
-#: ../maxgalleria-image-gallery.php:403
+#: ../maxgalleria-image-gallery.php:416
 msgid ""
 "Removed the image from this gallery. To delete it permanently, use the Media "
 "Library."
 msgstr ""
 
-#: ../maxgalleria-image-gallery.php:441
+#: ../maxgalleria-image-gallery.php:454
 msgid ""
 "Removed 1 image from this gallery. To delete it permanently, use the Media "
 "Library."
 msgstr ""
 
-#: ../maxgalleria-image-gallery.php:445
+#: ../maxgalleria-image-gallery.php:458
 #, php-format
 msgid ""
 "Removed %d images from this gallery. To delete them permanently, use the "
@@ -720,15 +724,15 @@ msgstr ""
 msgid "Image Galleries"
 msgstr ""
 
-#: ../maxgalleria-media-button.php:49 ../maxgalleria.php:171
+#: ../maxgalleria-media-button.php:49 ../maxgalleria.php:191
 msgid "0 images"
 msgstr ""
 
-#: ../maxgalleria-media-button.php:50 ../maxgalleria.php:172
+#: ../maxgalleria-media-button.php:50 ../maxgalleria.php:192
 msgid "1 image"
 msgstr ""
 
-#: ../maxgalleria-media-button.php:51 ../maxgalleria.php:173
+#: ../maxgalleria-media-button.php:51 ../maxgalleria.php:193
 #, php-format
 msgid "%d images"
 msgstr ""
@@ -737,15 +741,15 @@ msgstr ""
 msgid "Video Galleries"
 msgstr ""
 
-#: ../maxgalleria-media-button.php:71 ../maxgalleria.php:177
+#: ../maxgalleria-media-button.php:71 ../maxgalleria.php:197
 msgid "0 videos"
 msgstr ""
 
-#: ../maxgalleria-media-button.php:72 ../maxgalleria.php:178
+#: ../maxgalleria-media-button.php:72 ../maxgalleria.php:198
 msgid "1 video"
 msgstr ""
 
-#: ../maxgalleria-media-button.php:73 ../maxgalleria.php:179
+#: ../maxgalleria-media-button.php:73 ../maxgalleria.php:199
 #, php-format
 msgid "%d videos"
 msgstr ""
@@ -755,12 +759,12 @@ msgid "Insert Gallery"
 msgstr ""
 
 #: ../maxgalleria-media-button.php:83 ../meta/image-edit-bulk.php:141
-#: ../meta/image-edit.php:121 ../meta/video-add.php:167
+#: ../meta/image-edit.php:121 ../meta/video-add.php:179
 #: ../meta/video-edit-bulk.php:167 ../meta/video-edit.php:148
 msgid "Cancel"
 msgstr ""
 
-#: ../maxgalleria-meta.php:20 ../maxgalleria.php:435
+#: ../maxgalleria-meta.php:20 ../maxgalleria.php:460
 msgid "New Gallery"
 msgstr ""
 
@@ -769,12 +773,12 @@ msgid "Shortcodes"
 msgstr ""
 
 #: ../maxgalleria-meta.php:29 ../maxgalleria-meta.php:40
-#: ../maxgalleria.php:431 ../meta/meta-images.php:21
+#: ../maxgalleria.php:456 ../meta/meta-images.php:21
 #: ../meta/meta-videos.php:21
 msgid "Gallery"
 msgstr ""
 
-#: ../maxgalleria-nextgen.php:115
+#: ../maxgalleria-nextgen.php:119
 #, php-format
 msgid ""
 "%sSuccessfully imported %d of %d images from NextGEN into the \"%s%s%s\" "
@@ -826,115 +830,126 @@ msgid ""
 "Media Library."
 msgstr ""
 
-#: ../maxgalleria.php:144 ../maxgalleria.php:658 ../meta/meta-new.php:69
+#: ../maxgalleria.php:164 ../maxgalleria.php:695 ../meta/meta-new.php:69
 #: ../meta/meta-new.php:71
 msgid "Image"
 msgstr ""
 
-#: ../maxgalleria.php:148 ../meta/meta-new.php:74 ../meta/meta-new.php:76
+#: ../maxgalleria.php:168 ../meta/meta-new.php:74 ../meta/meta-new.php:76
 msgid "Video"
 msgstr ""
 
-#: ../maxgalleria.php:206 ../maxgalleria.php:430
+#: ../maxgalleria.php:226 ../maxgalleria.php:455
 msgid "Galleries"
 msgstr ""
 
-#: ../maxgalleria.php:241 ../meta/image-edit-bulk.php:90
+#: ../maxgalleria.php:263 ../meta/image-edit-bulk.php:90
 #: ../meta/image-edit.php:73 ../meta/meta-images.php:315
 #: ../meta/meta-videos.php:367 ../meta/video-edit-bulk.php:96
 #: ../meta/video-edit.php:81
 msgid "Title"
 msgstr ""
 
-#: ../maxgalleria.php:242
+#: ../maxgalleria.php:264
 msgid "Thumbnail"
 msgstr ""
 
-#: ../maxgalleria.php:243
+#: ../maxgalleria.php:265
 msgid "Type"
 msgstr ""
 
-#: ../maxgalleria.php:244 ../meta/meta-image-gallery.php:11
+#: ../maxgalleria.php:266 ../meta/meta-image-gallery.php:11
 #: ../meta/meta-video-gallery.php:11
 msgid "Template"
 msgstr ""
 
-#: ../maxgalleria.php:245
+#: ../maxgalleria.php:267
 msgid "Number of Media"
 msgstr ""
 
-#: ../maxgalleria.php:246
+#: ../maxgalleria.php:268
 msgid "Shortcode"
 msgstr ""
 
-#: ../maxgalleria.php:247
+#: ../maxgalleria.php:269
 msgid "Date"
 msgstr ""
 
-#: ../maxgalleria.php:411
+#: ../maxgalleria.php:436
 msgid "Add Gallery"
 msgstr ""
 
-#: ../maxgalleria.php:432
+#: ../maxgalleria.php:457
 msgid "Add New"
 msgstr ""
 
-#: ../maxgalleria.php:433
+#: ../maxgalleria.php:458
 msgid "Add New Gallery"
 msgstr ""
 
-#: ../maxgalleria.php:434
+#: ../maxgalleria.php:459
 msgid "Edit Gallery"
 msgstr ""
 
-#: ../maxgalleria.php:436
+#: ../maxgalleria.php:461
 msgid "View Gallery"
 msgstr ""
 
-#: ../maxgalleria.php:437
+#: ../maxgalleria.php:462
 msgid "Search Galleries"
 msgstr ""
 
-#: ../maxgalleria.php:438
+#: ../maxgalleria.php:463
 msgid "No galleries found"
 msgstr ""
 
-#: ../maxgalleria.php:439
+#: ../maxgalleria.php:464
 msgid "No galleries found in trash"
 msgstr ""
 
-#: ../maxgalleria.php:614 ../meta/meta-images.php:236
+#: ../maxgalleria.php:651 ../meta/meta-images.php:236
 msgid "Add Images"
 msgstr ""
 
-#: ../maxgalleria.php:615 ../meta/video-add.php:164
+#: ../maxgalleria.php:652 ../meta/video-add.php:176
 msgid "Add to Gallery"
 msgstr ""
 
-#: ../maxgalleria.php:616
+#: ../maxgalleria.php:653
 msgid "Added to this gallery"
 msgstr ""
 
-#: ../maxgalleria.php:656
+#: ../maxgalleria.php:693
 msgid "Next >"
 msgstr ""
 
-#: ../maxgalleria.php:657
+#: ../maxgalleria.php:694
 msgid "< Prev"
 msgstr ""
 
-#: ../maxgalleria.php:659
+#: ../maxgalleria.php:696
 msgid "of"
 msgstr ""
 
-#: ../maxgalleria.php:660 ../meta/video-add.php:135
+#: ../maxgalleria.php:697 ../meta/video-add.php:147
 msgid "Close"
 msgstr ""
 
-#: ../maxgalleria.php:661
+#: ../maxgalleria.php:698
 msgid ""
 "This feature requires inline frames. You have iframes disabled or your "
 "browser does not support them."
+msgstr ""
+
+#: ../maxgalleria.php:716
+msgid ""
+"Versions 3.1.0 and higher of Maxgalleria include Magnific Popup as part of "
+"the plugin.  There is nothing to install.  Magnific Popup has many more "
+"options so please check your galleries. The <a href=\"http://maxgalleria.com/"
+"documentation/maxgalleria/quickstart/\" target=\"_blank\">MaxGalleria Quick "
+"Start Page</a> shows how to use these options.  If you are using the Image "
+"Carousel Add-on it must be updated to work with these versions of "
+"Maxgalleria."
 msgstr ""
 
 #: ../meta/image-edit-bulk.php:46 ../meta/meta-images.php:70
@@ -1148,7 +1163,7 @@ msgid "videos"
 msgstr ""
 
 #: ../meta/meta-videos.php:39 ../meta/meta-videos.php:270
-#: ../meta/video-add.php:100
+#: ../meta/video-add.php:112
 msgid "Add Videos"
 msgstr ""
 
@@ -1184,35 +1199,35 @@ msgstr ""
 msgid "URL"
 msgstr ""
 
-#: ../meta/video-add.php:131
+#: ../meta/video-add.php:143
 msgid "You do not have any video addons installed."
 msgstr ""
 
-#: ../meta/video-add.php:132
+#: ../meta/video-add.php:144
 #, php-format
 msgid "You can get video addons from the %sMaxGalleria website%s."
 msgstr ""
 
-#: ../meta/video-add.php:140
+#: ../meta/video-add.php:152
 msgid ""
-"You can add as many videos to this gallery as you like. Simply enter the URL "
-"of each video in the box, and data about each video will be retrieved "
-"automatically."
+"You can add as many videos to this gallery as you like. Simply enter the "
+"page URL of each video (not the embedded URL) in the box, and data about "
+"each video will be retrieved automatically."
 msgstr ""
 
-#: ../meta/video-add.php:141
+#: ../meta/video-add.php:153
 msgid "Video URLs from the following sites are currently supported:"
 msgstr ""
 
-#: ../meta/video-add.php:154
+#: ../meta/video-add.php:166
 msgid "Video URLs"
 msgstr ""
 
-#: ../meta/video-add.php:154
+#: ../meta/video-add.php:166
 msgid "Multiple URLs accepted, one per line"
 msgstr ""
 
-#: ../meta/video-add.php:174
+#: ../meta/video-add.php:186
 msgid "Adding media to gallery..."
 msgstr ""
 

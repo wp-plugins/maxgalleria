@@ -3,7 +3,7 @@ Contributors: maxfoundry, arcware, johnbhartley, AlanP57
 Tags: albums, gallery, gallery platform, image, images, media, flash, foto, fotoalbum, photo, photos, photo albums, picture, pictures, responsive wordpress gallery, thumbmail, thumbnails, wordpress gallery, wordpress gallery platform, wordpress gallery plugin, responsive wordpress gallery plugins, responsive, slideshows, image slider, nivo, image slide plugin, javascript rotator, javascript slider, jquery slider, photo slider, responsive image slider, responsive image slider plugin, responsive slideshow, responsive slideshow slider, responsive slider plugin, slideshow plugin, template, wordpress picture slider, wordpress responsive slider, wordpress slider, website gallery, multiple pictures, youtube, youtube video, youtube videos, youtube gallery, youtube galleries, youtube video gallery, youtube video galleries, nextgen, nextgen galleries, nextgen gallery
 Requires at least: 3.9
 Tested up to: 4.1.1
-Stable tag: 3.1.4
+Stable tag: 3.1.5
 
 Responsive, Easy to Use, Developer Friendly
 
@@ -117,7 +117,16 @@ Yes. All documentation, which includes QuickStart Guides and developer hooks ref
 = Do I have to buy any of the addons to fully enjoy MaxGalleria? =
 No. The MaxGalleria core plugin contains plenty of functionality to keep even the most die-hard gallery user happy. But for those looking to enhance their gallery experience, [MaxGalleria addons](http://maxgalleria.com/shop/category/addons/?utm_source=wordpress&utm_medium=mgrepo&utm_content=maxgalleria-addons&utm_campaign=plugin) are the perfect choice.
 
+= Why am I seeing duplicate images the media library? =
+
+Originally in WordPress, whenever a person added an image/attachment to a gallery it would create a duplicate image. We recognized this problem and modified the plugin to simply copy the attachment while pointing to the original image. But duplicate image continued to appear in the media library because every item in the media library is an attachment even though there is only one copy of the image on the server. Thus, in order to remove the appearance of duplicate images we modified how the media library displays attachments so that there would be no appearance of duplicate image. Now if your site uses the Enhanced Media Library, our modification to the media library will be disabled and you may see duplicate image. In this case, please do not delete images that appear to be duplicate, because there is really only one copy of the image on the server.
+
+
 == Changelog ==
+
+= 3.1.5 =
+
+* Added test for groupby clause in for the media attachment query.
 
 = 3.1.4 =
 
