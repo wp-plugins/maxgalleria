@@ -167,18 +167,9 @@ class MaxGalleriaVideoTiles {
 				$output .= '<div data-video-id="' . $attachment->ID . '" style="display: none;">';
 				$output .= '	<div align="center">';
 				
-				if ($options->get_lightbox_video_size() == 'custom') {
-					$video_width = $options->get_lightbox_video_size_custom_width();
-					$video_height = $options->get_lightbox_video_size_custom_height();
-					
-					$embed_code = apply_filters(MAXGALLERIA_FILTER_VIDEO_EMBED_CODE, $embed_code, $video_url, $enable_related_videos, $enable_hd_playback, $video_width, $video_height);
-					$output .= $embed_code;
-				}
-				else {
-					$embed_code = apply_filters(MAXGALLERIA_FILTER_VIDEO_EMBED_CODE, $embed_code, $video_url, $enable_related_videos, $enable_hd_playback);
-					$output .= $embed_code;
-				}
-				
+        $embed_code = apply_filters(MAXGALLERIA_FILTER_VIDEO_EMBED_CODE, $embed_code, $video_url, $enable_related_videos, $enable_hd_playback);
+        $output .= $embed_code;
+        				
 				$output .= '	</div>';
 				$output .= '</div>';
 			}

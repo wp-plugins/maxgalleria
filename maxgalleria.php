@@ -3,7 +3,7 @@
 Plugin Name: MaxGalleria
 Plugin URI: http://maxgalleria.com
 Description: The gallery platform for WordPress.
-Version: 3.1.5
+Version: 3.1.6
 Author: Max Foundry
 Author URI: http://maxfoundry.com
 
@@ -320,9 +320,11 @@ class MaxGalleria {
 			wp_enqueue_script('maxgalleria-magnific', MAXGALLERIA_PLUGIN_URL . '/libs/magnific/jquery.magnific-popup.min.js', array('jquery'));
             
       $screen = get_current_screen();
-      if($screen->id == 'edit-maxgallery') {
-        wp_enqueue_script('maxgalleria-promo', MAXGALLERIA_PLUGIN_URL . '/js/promo.js', array('jquery'));                            
-      }  
+      if($screen->id == 'edit-maxgallery') {                
+        wp_enqueue_script('maxgalleria-promo', MAXGALLERIA_PLUGIN_URL . '/js/promo.js', array('jquery'));                                    
+        wp_localize_script( 'maxgalleria-promo', 'mg_promo', 
+              array( 'pluginurl' => MAXGALLERIA_PLUGIN_URL));         
+      }
 		}
 	}
 
@@ -544,7 +546,7 @@ class MaxGalleria {
 	
 	public function set_global_constants() {	
 		define('MAXGALLERIA_VERSION_KEY', 'maxgalleria_version');
-		define('MAXGALLERIA_VERSION_NUM', '3.1.5');
+		define('MAXGALLERIA_VERSION_NUM', '3.1.6');
 		define('MAXGALLERIA_PLUGIN_NAME', trim(dirname(plugin_basename(__FILE__)), '/'));
 		define('MAXGALLERIA_PLUGIN_DIR', WP_PLUGIN_DIR . '/' . MAXGALLERIA_PLUGIN_NAME);
 		define('MAXGALLERIA_PLUGIN_URL', plugin_dir_url('') . MAXGALLERIA_PLUGIN_NAME);

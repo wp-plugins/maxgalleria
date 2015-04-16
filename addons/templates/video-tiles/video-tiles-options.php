@@ -166,7 +166,7 @@ class MaxGalleriaVideoTilesOptions extends MaxGalleryOptions {
   public $counter_markup_default = "<div class='mfp-counter'>%curr% of %total%</div>";
 	public $counter_markup_default_key = 'maxgallery_counter_markup_video_tiles_default';
 	public $counter_markup_key = 'maxgallery_counter_markup';
-
+  
 	public function get_counter_markup() {
 		$value = $this->get_post_meta($this->counter_markup_key);
 		if ($value == '' && $this->get_saves_count() < 1) {
@@ -349,34 +349,8 @@ class MaxGalleriaVideoTilesOptions extends MaxGalleryOptions {
 	public function get_vertical_fit_enabled_default() {
 		return get_option($this->vertical_fit_enabled_default_key, $this->vertical_fit_enabled_default);
 	}
-  	
-	public function get_lightbox_video_size() {
-		$value = $this->get_post_meta($this->lightbox_video_size_key);
-		if ($value == '' && $this->get_saves_count() < 1) {
-			$value = $this->get_lightbox_video_size_default();
-		}
-		
-		return $value;
-	}
-	
-	public function get_lightbox_video_size_default() {
-		return get_option($this->lightbox_video_size_default_key, $this->lightbox_video_size_default);
-	}
-	
-	public function get_lightbox_video_size_custom_height() {
-		$value = $this->get_post_meta($this->lightbox_video_size_custom_height_key);
-		if ($value == '' && $this->get_saves_count() < 1) {
-			$value = $this->get_lightbox_video_size_custom_height_default();
-		}
-		
-		return $value;
-	}
-	
-	public function get_lightbox_video_size_custom_height_default() {
-		return get_option($this->lightbox_video_size_custom_height_default_key, $this->lightbox_video_size_custom_height_default);
-	}
-  
-  	public function get_videos_per_page() {
+  	  
+  public function get_videos_per_page() {
 		$value = $this->get_post_meta($this->videos_per_page_key);
 		if ($value == '' && $this->get_saves_count() < 1) {
 			$value = $this->get_videos_per_page_default();
@@ -388,20 +362,7 @@ class MaxGalleriaVideoTilesOptions extends MaxGalleryOptions {
 	public function get_videos_per_page_default() {
 		return get_option($this->videos_per_page_default_key, $this->videos_per_page_default);
 	}
-  
-	public function get_lightbox_video_size_custom_width() {
-		$value = $this->get_post_meta($this->lightbox_video_size_custom_width_key);
-		if ($value == '' && $this->get_saves_count() < 1) {
-			$value = $this->get_lightbox_video_size_custom_width_default();
-		}
-		
-		return $value;
-	}
-	
-	public function get_lightbox_video_size_custom_width_default() {
-		return get_option($this->lightbox_video_size_custom_width_default_key, $this->lightbox_video_size_custom_width_default);
-	}
-	
+  	
 	public function get_skin() {
 		$value = $this->get_post_meta($this->skin_key);
 		if ($value == '' && $this->get_saves_count() < 1) {

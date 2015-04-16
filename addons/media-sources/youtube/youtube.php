@@ -84,8 +84,10 @@ class MaxGalleriaYouTube {
 				}
         
         //check for SSL on the server, iso change to https
-        if ($_SERVER["HTTPS"] == "on") {
-          $embed_code = str_replace('http:', 'https:', $embed_code);
+        if ( isset( $_SERVER["HTTPS"] )) {
+          if ($_SERVER["HTTPS"] == "on") {
+            $embed_code = str_replace('http:', 'https:', $embed_code);
+          }
         }
           
 				// We always add support for fullscreen mode and javascript API access on YouTube videos
