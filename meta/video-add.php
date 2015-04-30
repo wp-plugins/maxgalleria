@@ -28,7 +28,7 @@ $updated = false;
 if ($_POST && check_admin_referer($video_gallery->nonce_video_add['action'], $video_gallery->nonce_video_add['name'])) {
 	if (isset($gallery)) {
 		if (isset($_POST['video-urls']) && $_POST['video-urls'] != '') {
-			$video_urls = explode("\n", $_POST['video-urls']);
+			$video_urls = explode("\n", strip_tags($_POST['video-urls']));
 
 			do_action(MAXGALLERIA_ACTION_BEFORE_ADD_VIDEOS_TO_GALLERY, $video_urls);
 			

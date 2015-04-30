@@ -3,7 +3,7 @@
 Plugin Name: MaxGalleria
 Plugin URI: http://maxgalleria.com
 Description: The gallery platform for WordPress.
-Version: 3.1.6
+Version: 3.1.7
 Author: Max Foundry
 Author URI: http://maxfoundry.com
 
@@ -546,7 +546,7 @@ class MaxGalleria {
 	
 	public function set_global_constants() {	
 		define('MAXGALLERIA_VERSION_KEY', 'maxgalleria_version');
-		define('MAXGALLERIA_VERSION_NUM', '3.1.6');
+		define('MAXGALLERIA_VERSION_NUM', '3.1.7');
 		define('MAXGALLERIA_PLUGIN_NAME', trim(dirname(plugin_basename(__FILE__)), '/'));
 		define('MAXGALLERIA_PLUGIN_DIR', WP_PLUGIN_DIR . '/' . MAXGALLERIA_PLUGIN_NAME);
 		define('MAXGALLERIA_PLUGIN_URL', plugin_dir_url('') . MAXGALLERIA_PLUGIN_NAME);
@@ -717,12 +717,13 @@ class MaxGalleria {
   }
   
   public function mg_admin_notice() {
-      ?>
+   if( current_user_can( 'manage_options' ) ) {  ?>
       <div class="update-nag">
           <p><?php _e( 'Versions 3.1.0 and higher of Maxgalleria include Magnific Popup as part of the plugin.  There is nothing to install.  Magnific Popup has many more options so please check your galleries. The <a href="http://maxgalleria.com/documentation/maxgalleria/quickstart/" target="_blank">MaxGalleria Quick Start Page</a> shows how to use these options.  If you are using the Image Carousel Add-on it must be updated to work with these versions of Maxgalleria.', 'maxgalleria' ); ?></p>
           <p><a href="<?php echo admin_url() . 'edit.php?post_type=maxgallery&page=mg-admin-notice'; ?>">Dismiss</a></p>
       </div>
-      <?php
+    <?php     
+    }
   }
   
   private function mg_daily_check() {

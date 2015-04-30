@@ -5,7 +5,7 @@ global $maxgalleria;
 $common = $maxgalleria->common;
 $image_gallery = $maxgalleria->image_gallery;
 
-$image_ids = $_GET['image_ids'];
+$image_ids = stripslashes(strip_tags($_GET['image_ids']));
 $updated = false;
 
 if ($_POST && check_admin_referer($image_gallery->nonce_image_edit_bulk['action'], $image_gallery->nonce_image_edit_bulk['name'])) {
@@ -14,8 +14,8 @@ if ($_POST && check_admin_referer($image_gallery->nonce_image_edit_bulk['action'
 		// First update the post itself
 		$temp = array();
 		$temp['ID'] = $image_edit_id;
-		$temp['post_title'] = stripslashes($_POST['image-edit-title'][$i]);
-		$temp['post_excerpt'] = stripslashes($_POST['image-edit-caption'][$i]);
+		$temp['post_title'] = stripslashes(strip_tags($_POST['image-edit-title'][$i]));
+		$temp['post_excerpt'] = stripslashes(strip_tags($_POST['image-edit-caption'][$i]));
 		wp_update_post($temp);
 		
 		// Determine if we need to prepend http:// to the link

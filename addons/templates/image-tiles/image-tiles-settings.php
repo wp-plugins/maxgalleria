@@ -220,6 +220,17 @@ $options = new MaxGalleriaImageTilesOptions();
 					<input data-default="<?php echo $options->lazy_load_threshold_default; ?>" type="text" class="small" id="<?php echo $options->lazy_load_threshold_default_key ?>" name="<?php echo $options->lazy_load_threshold_default_key ?>" value="<?php echo $options->get_lazy_load_threshold_default() ?>" />
 				</td>
 			</tr>
+      <tr>
+				<td><?php _e('Image display order:', 'maxgalleria') ?></td>
+				<td>
+					<select data-default="<?php echo $options->sort_order_default ?>" id="<?php echo $options->sort_order_default_key ?>" name="<?php echo $options->sort_order_default_key ?>">
+					<?php foreach ($options->sort_orders as $key => $name) { ?>
+						<?php $selected = ($options->get_sort_order_default() == $key) ? 'selected="selected"' : ''; ?>
+						<option value="<?php echo $key ?>" <?php echo $selected ?>><?php echo $name ?></option>
+					<?php } ?>
+					</select>
+				</td>
+			</tr>
       <tr><td><span class="mg-bold">Lightbox Settings</span></td></tr>
       <tr>
 				<td><?php _e('Align Top Enabled:', 'maxgalleria') ?></td>

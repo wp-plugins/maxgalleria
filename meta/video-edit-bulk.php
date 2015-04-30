@@ -4,7 +4,7 @@ require('../../../../wp-load.php');
 global $maxgalleria;
 $video_gallery = $maxgalleria->video_gallery;
 
-$video_ids = $_GET['video_ids'];
+$video_ids = stripslashes(strip_tags($_GET['video_ids']));
 $updated = false;
 
 if ($_POST && check_admin_referer($video_gallery->nonce_video_edit_bulk['action'], $video_gallery->nonce_video_edit_bulk['name'])) {
@@ -13,8 +13,8 @@ if ($_POST && check_admin_referer($video_gallery->nonce_video_edit_bulk['action'
 		// First update the post itself
 		$temp = array();
 		$temp['ID'] = $video_edit_id;
-		$temp['post_title'] = stripslashes($_POST['video-edit-title'][$i]);
-		$temp['post_excerpt'] = stripslashes($_POST['video-edit-caption'][$i]);
+		$temp['post_title'] = stripslashes(strip_tags($_POST['video-edit-title'][$i]));
+		$temp['post_excerpt'] = stripslashes(strip_tags($_POST['video-edit-caption'][$i]));
 		wp_update_post($temp);
 		
 		// Now update the image alt in the meta
@@ -130,8 +130,8 @@ if ($_POST && check_admin_referer($video_gallery->nonce_video_edit_bulk['action'
 														$enable_related_videos = 1;
 													}
 													?>
-													<input type="checkbox" name="video-edit-related-videos-<?php echo $video->ID ?>" id="video-edit-related-videos-<?php echo $video->ID ?>" <?php echo ($enable_related_videos == 1) ? 'checked="checked"' : '' ?>>
-													<label for="video-edit-related-videos-<?php echo $video->ID ?>"><strong><?php _e('Enable Related Videos', 'maxgalleria') ?></strong></label>
+<!--													<input type="checkbox" name="video-edit-related-videos-<?php echo $video->ID ?>" id="video-edit-related-videos-<?php echo $video->ID ?>" <?php echo ($enable_related_videos == 1) ? 'checked="checked"' : '' ?>>
+													<label for="video-edit-related-videos-<?php echo $video->ID ?>"><strong><?php _e('Enable Related Videos', 'maxgalleria') ?></strong></label>-->
 												</div>
 											</div>
 											<div class="clear"></div>
@@ -145,8 +145,8 @@ if ($_POST && check_admin_referer($video_gallery->nonce_video_edit_bulk['action'
 														$enable_hd_playback = 0;
 													}
 													?>
-													<input type="checkbox" name="video-edit-hd-playback-<?php echo $video->ID ?>" id="video-edit-hd-playback-<?php echo $video->ID ?>" <?php echo ($enable_hd_playback == 1) ? 'checked="checked"' : '' ?>>
-													<label for="video-edit-hd-playback-<?php echo $video->ID ?>"><strong><?php _e('Enable HD Playback', 'maxgalleria') ?></strong></label>
+<!--													<input type="checkbox" name="video-edit-hd-playback-<?php echo $video->ID ?>" id="video-edit-hd-playback-<?php echo $video->ID ?>" <?php echo ($enable_hd_playback == 1) ? 'checked="checked"' : '' ?>>
+													<label for="video-edit-hd-playback-<?php echo $video->ID ?>"><strong><?php _e('Enable HD Playback', 'maxgalleria') ?></strong></label>-->
 												</div>
 											</div>
 											<div class="clear"></div>

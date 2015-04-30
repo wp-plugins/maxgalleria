@@ -178,6 +178,19 @@ $options = new MaxGalleriaVideoTilesOptions();
 					<input data-default="<?php echo $options->videos_per_page_default; ?>" type="text" class="small" id="<?php echo $options->videos_per_page_default_key ?>" name="<?php echo $options->videos_per_page_default_key ?>" value="<?php echo $options->get_videos_per_page_default() ?>" />
 				</td>
 			</tr>
+      
+      <tr>
+				<td><?php _e('Image display order:', 'maxgalleria') ?></td>
+				<td>
+					<select data-default="<?php echo $options->sort_order_default ?>" id="<?php echo $options->sort_order_default_key ?>" name="<?php echo $options->sort_order_default_key ?>">
+					<?php foreach ($options->sort_orders as $key => $name) { ?>
+						<?php $selected = ($options->get_sort_order_default() == $key) ? 'selected="selected"' : ''; ?>
+						<option value="<?php echo $key ?>" <?php echo $selected ?>><?php echo $name ?></option>
+					<?php } ?>
+					</select>
+				</td>
+			</tr>
+      
       <tr><td><span class="mg-bold">Lightbox Settings</span></td></tr>
       <tr>
 				<td><?php _e('Align Top Enabled:', 'maxgalleria') ?></td>

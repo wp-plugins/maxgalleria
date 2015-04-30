@@ -38,11 +38,19 @@ class MaxGalleriaShortcode {
       global $wpdb;
       
       $options = new MaxGalleryOptions($gallery->ID);
-      
-      if($options->is_video_gallery())
+            
+      if($options->is_video_gallery()) {
         $items_per_page = get_post_meta( $gallery->ID, 'maxgallery_videos_per_page', true );
-      else
+        $sort_order = trim(get_post_meta( $gallery->ID, 'maxgallery_sort_order_video_tiles', true ));
+        if($sort_order === '')
+          $sort_order = get_option('maxgallery_sort_order_video_tiles_default', 'asc');
+      }  
+      else {
         $items_per_page = get_post_meta( $gallery->ID, 'maxgallery_images_per_page', true );
+        $sort_order = trim(get_post_meta( $gallery->ID, 'maxgallery_sort_order_image_tiles', true ));
+        if($sort_order === '')
+          $sort_order = get_option('maxgallery_sort_order_image_tiles_default', 'asc');
+      }
       
       if(($items_per_page == '') || ($items_per_page == 0)) {
         // if blank, get all attachments by setting items_per_page to -1
@@ -61,10 +69,10 @@ class MaxGalleriaShortcode {
 				'post_parent' => $gallery->ID,
 				'post_type' => 'attachment',
 				'orderby' => 'menu_order',
-				'order' => 'asc',
+				'order' => $sort_order,
 				'numberposts' => -1, // All of them
-                'posts_per_page' => $items_per_page,
-                'paged' => $paged
+        'posts_per_page' => $items_per_page,
+        'paged' => $paged
 			);
 
 			$attachments = get_posts($args);

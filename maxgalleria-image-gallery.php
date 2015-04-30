@@ -88,17 +88,17 @@ class MaxGalleriaImageGallery {
 		if (isset($_POST)) {
 			$result = 0;
 			
-			$gallery_id = $_POST['gallery_id'];
+      $gallery_id = trim(stripslashes(strip_tags($_POST['gallery_id'])));
 			
 			do_action(MAXGALLERIA_ACTION_BEFORE_ADD_IMAGES_TO_GALLERY, $gallery_id, $_POST['url']);
 			
 			$count = count($_POST['url']);
 			for ($i = 0; $i < $count; $i++) {
-				$url = $_POST['url'][$i];
-				$title = $_POST['title'][$i];
-				$caption = $_POST['caption'][$i];
-				$description = $_POST['description'][$i];
-				$alt_text = $_POST['alt_text'][$i];
+				$url = trim(strip_tags($_POST['url'][$i]));
+				$title = trim(stripslashes(strip_tags($_POST['title'][$i])));
+				$caption = trim(stripslashes(strip_tags($_POST['caption'][$i])));
+				$description = trim(stripslashes(strip_tags($_POST['description'][$i])));
+				$alt_text = trim(stripslashes(strip_tags($_POST['alt_text'][$i])));
 
 				if ($url != '') {
 					do_action(MAXGALLERIA_ACTION_BEFORE_ADD_IMAGE_TO_GALLERY, $gallery_id, $url, $title, $caption, $description, $alt_text);
@@ -286,7 +286,7 @@ class MaxGalleriaImageGallery {
 			$message = '';
 
 			if (isset($_POST['id'])) {
-				$image_post = get_post($_POST['id']);
+				$image_post = get_post(stripslashes(strip_tags($_POST['id'])));
 				if (isset($image_post)) {
 					do_action(MAXGALLERIA_ACTION_BEFORE_INCLUDE_SINGLE_IMAGE_IN_GALLERY, $image_post);
 					delete_post_meta($image_post->ID, 'maxgallery_attachment_image_exclude', true);

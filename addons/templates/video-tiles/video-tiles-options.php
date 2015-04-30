@@ -15,6 +15,7 @@ class MaxGalleriaVideoTilesOptions extends MaxGalleryOptions {
 	public $thumb_shapes = array();
 	public $content_positions = array();
   public $overflow_y_settings = array();
+  public $sort_orders = array();
 	
 	public function __construct($post_id = 0) {
 		parent::__construct($post_id);
@@ -75,6 +76,11 @@ class MaxGalleriaVideoTilesOptions extends MaxGalleryOptions {
 			'portrait' => __('Portrait', 'maxgalleria'),
 			'square' => __('Square', 'maxgalleria')
 		);
+    
+    $this->sort_orders = array(
+			'asc' => __('Ascending ', 'maxgalleria'),
+			'desc' => __('Descending', 'maxgalleria')        
+    );    
 	}
 
 	public $videos_per_page_key = 'maxgallery_videos_per_page';
@@ -167,6 +173,23 @@ class MaxGalleriaVideoTilesOptions extends MaxGalleryOptions {
 	public $counter_markup_default_key = 'maxgallery_counter_markup_video_tiles_default';
 	public $counter_markup_key = 'maxgallery_counter_markup';
   
+	public $sort_order_default = 'asc';
+	public $sort_order_default_key = 'maxgallery_sort_order_video_tiles_default';
+	public $sort_order_key = 'maxgallery_sort_order_video_tiles';
+  
+  public function get_sort_order() {
+		$value = $this->get_post_meta($this->sort_order_key);
+		if ($value == '' && $this->get_saves_count() < 1) {
+			$value = $this->get_sort_order_default();
+		}
+		
+		return $value;
+	}
+	
+	public function get_sort_order_default() {
+		return get_option($this->sort_order_default_key, $this->sort_order_default);
+	}
+    
 	public function get_counter_markup() {
 		$value = $this->get_post_meta($this->counter_markup_key);
 		if ($value == '' && $this->get_saves_count() < 1) {
@@ -540,7 +563,8 @@ class MaxGalleriaVideoTilesOptions extends MaxGalleryOptions {
       $this->arrow_markup_key,
       $this->prev_button_title_key,
       $this->next_button_title_key,
-      $this->counter_markup_key
+      $this->counter_markup_key,
+      $this->sort_order_key
 		);
 	}
 }

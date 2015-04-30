@@ -12,8 +12,8 @@ if ($_POST && check_admin_referer($video_gallery->nonce_video_edit['action'], $v
 		// First update the post itself
 		$temp = array();
 		$temp['ID'] = $video->ID;
-		$temp['post_title'] = stripslashes($_POST['video-edit-title']);
-		$temp['post_excerpt'] = stripslashes($_POST['video-edit-caption']);
+		$temp['post_title'] = stripslashes(strip_tags($_POST['video-edit-title']));
+		$temp['post_excerpt'] = stripslashes(strip_tags($_POST['video-edit-caption']));
 		wp_update_post($temp);
 		
 		// Now update the image alt in the meta
@@ -112,8 +112,8 @@ if ($_POST && check_admin_referer($video_gallery->nonce_video_edit['action'], $v
 									$enable_related_videos = 1;
 								}
 								?>
-								<input type="checkbox" name="video-edit-related-videos" id="video-edit-related-videos" <?php echo ($enable_related_videos == 1) ? 'checked="checked"' : '' ?>>
-								<label for="video-edit-related-videos"><strong><?php _e('Enable Related Videos', 'maxgalleria') ?></strong></label>
+<!--								<input type="checkbox" name="video-edit-related-videos" id="video-edit-related-videos" <?php echo ($enable_related_videos == 1) ? 'checked="checked"' : '' ?>>
+								<label for="video-edit-related-videos"><strong><?php _e('Enable Related Videos', 'maxgalleria') ?></strong></label>-->
 							</div>
 						</div>
 						
@@ -126,8 +126,8 @@ if ($_POST && check_admin_referer($video_gallery->nonce_video_edit['action'], $v
 									$enable_hd_playback = 0;
 								}
 								?>
-								<input type="checkbox" name="video-edit-hd-playback" id="video-edit-hd-playback" <?php echo ($enable_hd_playback == 1) ? 'checked="checked"' : '' ?>>
-								<label for="video-edit-hd-playback"><strong><?php _e('Enable HD Playback', 'maxgalleria') ?></strong></label>
+<!--								<input type="checkbox" name="video-edit-hd-playback" id="video-edit-hd-playback" <?php echo ($enable_hd_playback == 1) ? 'checked="checked"' : '' ?>>
+								<label for="video-edit-hd-playback"><strong><?php _e('Enable HD Playback', 'maxgalleria') ?></strong></label>-->
 							</div>
 						</div>
 					</div>

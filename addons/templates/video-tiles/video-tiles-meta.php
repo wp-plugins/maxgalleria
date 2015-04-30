@@ -63,7 +63,6 @@ $options = new MaxGalleriaVideoTilesOptions($post->ID);
 			jQuery("#<?php echo $options->counter_markup_key ?>").removeAttr("disabled");
 		}
 		else {
-			jQuery("#<?php echo $options->navigate_by_img_click_enabled_key ?>").attr("disabled", "disabled");
 			jQuery("#<?php echo $options->arrow_markup_key ?>").attr("disabled", "disabled");
 			jQuery("#<?php echo $options->prev_button_title_key ?>").attr("disabled", "disabled");
 			jQuery("#<?php echo $options->next_button_title_key ?>").attr("disabled", "disabled");
@@ -189,6 +188,21 @@ $options = new MaxGalleriaVideoTilesOptions($post->ID);
 				<input type="text" class="small" id="<?php echo $options->videos_per_page_key ?>" name="<?php echo $options->videos_per_page_key ?>" value="<?php echo $options->get_videos_per_page() ?>" />
 			</td>
 		</tr>
+    
+		<tr>
+			<td>
+				<?php _e('Image display order:', 'maxgalleria') ?>
+			</td>
+			<td>
+				<select id="<?php echo $options->sort_order_key ?>" name="<?php echo $options->sort_order_key ?>">
+				<?php foreach ($options->sort_orders as $key => $name) { ?>
+					<?php $selected = ($options->get_sort_order() == $key) ? 'selected="selected"' : ''; ?>
+					<option value="<?php echo $key ?>" <?php echo $selected ?>><?php echo $name ?></option>
+				<?php } ?>
+				</select>
+			</td>
+		</tr>
+        
     <tr><td><span class="mg-bold">Lighbox Settings</span></td></tr>
 		<tr>
 			<td>
