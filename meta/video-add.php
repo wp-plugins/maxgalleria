@@ -53,7 +53,7 @@ if ($_POST && check_admin_referer($video_gallery->nonce_video_add['action'], $vi
 					// and then pass it to the filter so it can get populated
 					$api_url = '';
 					$api_url = apply_filters(MAXGALLERIA_FILTER_VIDEO_API_URL, $api_url, $video_url);
-
+          
 					// Continue only if we have an API URL to call
 					if ($api_url != '') {
 						// Perform a remote GET to get the body of data from
@@ -61,7 +61,9 @@ if ($_POST && check_admin_referer($video_gallery->nonce_video_add['action'], $vi
 						$response = wp_remote_get($api_url);
 						$contents = wp_remote_retrieve_body($response);
 						$data = json_decode($contents, true);
-						
+            
+            $output = print_r($data, true);						
+            
 						// Get the URL of the video thumbnail; first initialize the thumb
 						// URL and then pass it to the filter so it can get populated
 						$thumb_url = '';

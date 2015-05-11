@@ -6,13 +6,19 @@ class MaxGalleriaYouTube {
 	public $addon_subtype;
 	public $addon_settings;
 	public $regex_patterns;
+  public $api_url;
+  public $referer;
 
-	public function __construct() {
+  public function __construct() {
 		$this->addon_key = 'maxgalleria-youtube';
 		$this->addon_name = __('YouTube', 'maxgalleria');
 		$this->addon_type = 'media_source';
 		$this->addon_subtype = 'video';
 		$this->addon_settings = MAXGALLERIA_PLUGIN_DIR . '/addons/media-sources/youtube/youtube-settings.php';
+    $this->api_url = 'https://www.googleapis.com/youtube/v3/videos';
+    $this->referer = $_SERVER['SERVER_ADDR'];
+    $this->initialize_properties();
+
 
 		$this->regex_patterns = apply_filters(MAXGALLERIA_FILTER_YOUTUBE_REGEX_PATTERNS, array(
 			'#^(http:\/\/|https:\/\/)?(www\.)?youtube\.com\/watch\?v=(.*?)(&.*?)?$#',
@@ -26,16 +32,27 @@ class MaxGalleriaYouTube {
 		add_filter('maxgalleria_video_embed_code', array($this, 'get_video_embed_code'), 10, 6);
 		add_filter('maxgalleria_video_attachment', array($this, 'get_video_attachment'), 10, 6);
 		add_action('maxgalleria_video_attachment_post_meta', array($this, 'save_video_attachment_post_meta'), 10, 4);
+    
+		add_action('wp_ajax_save_youtube_settings', array($this, 'save_youtube_settings'));
+		add_action('wp_ajax_nopriv_save_youtube_settings', array($this, 'save_youtube_settings'));
 	}
-
+  
+	public function initialize_properties() {
+		require_once 'youtube-options.php';
+	}
+  
 	public function get_video_api_url($api_url, $video_url) {
+    
+    $options = new MaxGalleriaYoutubeOptions();
+    $key = $options->get_developer_api_key_default();
+    
 		if ($api_url == '') {
 			if ($this->is_youtube_video($video_url)) {
 				$video_id = $this->get_video_id($video_url);
-				$api_url = 'http://gdata.youtube.com/feeds/api/videos/' . $video_id . '?v=2&alt=json';
+        $api_url = 'https://www.googleapis.com/youtube/v3/videos?key=' . $key . '&part=snippet,contentDetails&id='  . $video_id;
 			}
 		}
-
+    
 		return $api_url;
 	}
 
@@ -54,16 +71,9 @@ class MaxGalleriaYouTube {
 	public function get_video_thumb_url($thumb_url, $video_url, $data) {
 		if ($thumb_url == '') {
 			if ($this->is_youtube_video($video_url)) {
-				foreach ($data['entry']['media$group']['media$thumbnail'] as $item) {
-					if ($item['yt$name'] == 'hqdefault') {
-						return $item['url'];
-					}
-				}
-
-				return '';
+        return $data['items'][0]['snippet']['thumbnails']['high']['url'];
 			}
 		}
-
 		return $thumb_url;
 	}
 
@@ -128,9 +138,9 @@ class MaxGalleriaYouTube {
 				$attachment = array(
 					'ID' => 0,
 					'guid' => $guid,
-					'post_title' => $data['entry']['media$group']['media$title']['$t'],
-					'post_excerpt' => $data['entry']['media$group']['media$title']['$t'],
-					'post_content' => $data['entry']['media$group']['media$description']['$t'],
+					'post_title' => $data['items'][0]['snippet']['title'],
+					'post_excerpt' => $data['items'][0]['snippet']['title'],
+					'post_content' => $data['items'][0]['snippet']['description'],
 					'post_date' => '', // Ensures it gets today's date
 					'post_parent' => $gallery_id,
 					'post_mime_type' => $file_type,
@@ -145,11 +155,12 @@ class MaxGalleriaYouTube {
 
 	public function save_video_attachment_post_meta($attachment_id, $video_url, $thumb_url, $data) {
 		if ($this->is_youtube_video($video_url)) {
+      $duration = $this->covert_duration_to_time($data['items'][0]['contentDetails']['duration']);
 			update_post_meta($attachment_id, 'maxgallery_attachment_video_url', $video_url);
 			update_post_meta($attachment_id, 'maxgallery_attachment_video_thumb_url', $thumb_url);
-			update_post_meta($attachment_id, 'maxgallery_attachment_video_id', $data['entry']['media$group']['yt$videoid']['$t']);
-			update_post_meta($attachment_id, 'maxgallery_attachment_video_seconds', $data['entry']['media$group']['yt$duration']['seconds']);
-			update_post_meta($attachment_id, '_wp_attachment_image_alt', $data['entry']['media$group']['media$title']['$t']);
+			update_post_meta($attachment_id, 'maxgallery_attachment_video_id', $data['items'][0]['id']);
+			update_post_meta($attachment_id, 'maxgallery_attachment_video_seconds', $duration);
+			update_post_meta($attachment_id, '_wp_attachment_image_alt', $data['items'][0]['snippet']['title']);
 		}
 	}
 
@@ -163,5 +174,57 @@ class MaxGalleriaYouTube {
 
 		return false;
 	}
+  
+  public function save_youtube_settings() {
+		$options = new MaxGalleriaYoutubeOptions();
+		
+		if (isset($_POST) && check_admin_referer($options->nonce_save_youtube_defaults['action'], $options->nonce_save_youtube_defaults['name'])) {
+			global $maxgalleria;
+			$message = '';
+            
+			foreach ($_POST as $key => $value) {
+				if ($maxgalleria->common->string_starts_with($key, 'maxgallery_')) {
+					update_option($key, $value);
+				}
+			}
+			
+			$message = 'success';
+			
+			echo $message;
+			die();
+		}
+  }
+    
+  public function covert_duration_to_time($youtube_time) {
+    preg_match_all('/(\d+)/',$youtube_time,$parts);
+
+    // Put in zeros if we have less than 3 numbers.
+    if (count($parts[0]) == 1) {
+      array_unshift($parts[0], "0", "0");
+    } elseif (count($parts[0]) == 2) {
+      array_unshift($parts[0], "0");
+    }
+
+    $sec_init = $parts[0][2];
+    $seconds = $sec_init%60;
+    $seconds_overflow = floor($sec_init/60);
+
+    $min_init = $parts[0][1] + $seconds_overflow;
+    $minutes = ($min_init)%60;
+    $minutes_overflow = floor(($min_init)/60);
+
+    $hours = $parts[0][0] + $minutes_overflow;
+    
+    $total = ($hours * 60 * 60) + ($minutes * 60) + $seconds;
+    
+    // number of seconds
+    return $total;
+
+//    if($hours != 0)
+//      return $hours.':'.$minutes.':'.$seconds;
+//    else
+//      return $minutes.':'.$seconds;
+  }    
 }
+
 ?>

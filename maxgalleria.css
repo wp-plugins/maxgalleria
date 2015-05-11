@@ -1617,3 +1617,7 @@ Media Manager Styles and Overrides
   font-weight:700;
   text-decoration: underline;
 }
+
+.center-text {
+  text-align: center;
+}

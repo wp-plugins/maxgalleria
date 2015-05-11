@@ -633,8 +633,14 @@ class MaxGalleriaImageGallery {
 			  $image_editor = wp_get_image_editor($file_path);        
       }
       
-			$resized = $image_editor->resize($width, $height, $crop);
-			$new_image = $image_editor->save($resized_image_path);
+      if ( !is_wp_error( $image_editor ) ) {           
+        $resized = $image_editor->resize($width, $height, $crop);
+        $new_image = $image_editor->save($resized_image_path);
+      }
+      else {
+        $resized = NULL;
+        $new_image = array('width' => 0, 'height' => 0);        
+      }
 			
 			return array('url' => $resized_image_url, 'width' => $new_image['width'], 'height' => $new_image['height']);
 		}

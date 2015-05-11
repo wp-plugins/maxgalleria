@@ -265,9 +265,25 @@ $attachments = get_posts($args);
 		window.location = "<?php echo admin_url() ?>post.php?post=<?php echo $post->ID ?>&action=edit";
 	}
 </script>
+<?php 
+require_once MAXGALLERIA_PLUGIN_DIR . '/addons/media-sources/youtube/youtube-options.php';
 
+$options = new MaxGalleriaYoutubeOptions();
+if($options->get_developer_api_key_default() === '') {
+  $diabled = "disabled";  
+  echo '<div class="maxgalleria-meta label-warning center-text">' . __('In order to access Youtube videos you are now required to obtain a Google Developer API Key. ', 'maxgalleria') . 
+       '<a href="http://maxgalleria.com/youtube-api-key/" target="_blank">' . __('Click here for more details', 'maxgalleria') . '.</a> ' .          
+        __('If you have Google Developer API Key ', 'maxgalleria') .
+       '<a href="' . home_url() .'/wp-admin/edit.php?post_type=maxgallery&page=maxgalleria-settings&addon=maxgalleria-youtube">' . __('click here', 'maxgalleria') . '</a>' .
+         __(' to enter it into Youtube Settings.', 'maxgalleria') .
+          '</div><br>';  
+}
+else
+  $diabled = "";
+
+?>
 <div class="add-media">
-	<input type="button" class="btn btn-primary" id="gallery_media_select_button" name="gallery_media_select_button" value="<?php _e('Add Videos', 'maxgalleria') ?>" />
+  <input type="button" class="btn btn-primary" id="gallery_media_select_button" name="gallery_media_select_button" value="<?php _e('Add Videos', 'maxgalleria') ?>" <?php echo $diabled; ?> />
 </div>
 <?php if (count($attachments) > 0) { ?>
 	<div class="bulk-actions">
