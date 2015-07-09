@@ -3,7 +3,7 @@ Contributors: maxfoundry, arcware, johnbhartley, AlanP57
 Tags: albums, gallery, gallery platform, image, images, media, flash, foto, fotoalbum, photo, photos, photo albums, picture, pictures, responsive wordpress gallery, thumbmail, thumbnails, wordpress gallery, wordpress gallery platform, wordpress gallery plugin, responsive wordpress gallery plugins, responsive, slideshows, image slider, nivo, image slide plugin, javascript rotator, javascript slider, jquery slider, photo slider, responsive image slider, responsive image slider plugin, responsive slideshow, responsive slideshow slider, responsive slider plugin, slideshow plugin, template, wordpress picture slider, wordpress responsive slider, wordpress slider, website gallery, multiple pictures, youtube, youtube video, youtube videos, youtube gallery, youtube galleries, youtube video gallery, youtube video galleries, nextgen, nextgen galleries, nextgen gallery
 Requires at least: 3.9
 Tested up to: 4.2.2
-Stable tag: 3.1.8
+Stable tag: 4.0
 
 Responsive, Easy to Use, Developer Friendly
 
@@ -36,14 +36,20 @@ The MaxGalleria gallery platform was created with developers in mind. You'll fin
 = Addons to Enhance Your Gallery Experience =
 Many people will find the core MaxGalleria plugin all they will ever need; however, some people will want to take their gallery experience further. And to do help them do that, there are several addons available:
 
+Layout Addons
 * [MaxGalleria Albums](http://maxgalleria.com/shop/maxgalleria-albums/?utm_source=wordpress&utm_medium=mgrepo&utm_content=maxgalleria-albums&utm_campaign=plugin) - Organize your galleries into albums
-* [MaxGalleria Facebook](http://maxgalleria.com/shop/maxgalleria-facebook/?utm_source=wordpress&utm_medium=mgrepo&utm_content=maxgalleria-facebook&utm_campaign=plugin) - Add Facebook photos to your galleries
 * [MaxGalleria Image Carousel](http://maxgalleria.com/shop/maxgalleria-image-carousel/?utm_source=wordpress&utm_medium=mgrepo&utm_content=maxgalleria-image-carousel&utm_campaign=plugin) - Turn your galleries into carousels
 * [MaxGalleria Image Showcase](http://maxgalleria.com/shop/maxgalleria-image-showcase/?utm_source=wordpress&utm_medium=mgrepo&utm_content=maxgalleria-image-showcase&utm_campaign=plugin) - Showcase your high-resolution images
 * [MaxGalleria Image Slider](http://maxgalleria.com/shop/maxgalleria-image-slider/?utm_source=wordpress&utm_medium=mgrepo&utm_content=maxgalleria-image-slider&utm_campaign=plugin) - Turn your galleries into sliders
-* [MaxGalleria Instagram](http://maxgalleria.com/shop/maxgalleria-instagram/?utm_source=wordpress&utm_medium=mgrepo&utm_content=maxgalleria-instagram&utm_campaign=plugin) - Add Instagram images to your galleries
 * [MaxGalleria Video Showcase](http://maxgalleria.com/shop/maxgalleria-video-showcase/?utm_source=wordpress&utm_medium=mgrepo&utm_content=maxgalleria-video-showcase&utm_campaign=plugin) - Showcase your videos
+* [MaxGalleria Masonry](http://maxgalleria.com/shop/maxgalleria-masonry?utm_source=wordpress&utm_medium=masonry&utm_content=masonry&utm_campaign=mgrepo) - Display images in a Pinterest like grid
+
+Media Sources
+* [MaxGalleria Facebook](http://maxgalleria.com/shop/maxgalleria-facebook/?utm_source=wordpress&utm_medium=mgrepo&utm_content=maxgalleria-facebook&utm_campaign=plugin) - Add Facebook photos to your galleries
+* [MaxGalleria Instagram](http://maxgalleria.com/shop/maxgalleria-instagram/?utm_source=wordpress&utm_medium=mgrepo&utm_content=maxgalleria-instagram&utm_campaign=plugin) - Add Instagram images to your galleries
 * [MaxGalleria Vimeo](http://maxgalleria.com/shop/maxgalleria-vimeo/?utm_source=wordpress&utm_medium=mgrepo&utm_content=maxgalleria-vimeo&utm_campaign=plugin) - Add Vimeo videos to your galleries
+* [MaxGalleria Flickr](http://maxgalleria.com/shop/maxgalleria-flickr/?utm_source=wordpress&utm_medium=flickr&utm_content=flickr&utm_campaign=mgrepo) - Pull in images from your Flickr stream
+* [MaxGalleria Slick for WordPress](http://maxgalleria.com/shop/maxgalleria-slick-for-wordpress//?utm_source=wordpress&utm_medium=slick&utm_content=slick&utm_campaign=mgrepo) - The Last Carousel You'll ever need!
 
 = Features at a Glance =
 MaxGalleria is stuffed full of all the features and functionality you need to easily create and manage your image and video galleries in WordPress.
@@ -86,6 +92,11 @@ Support
 
 We work hard to give timely support during the week.  And we give support when we're on during the weekend
 
+If you like MaxGalleria please leave us a ★★★★★ rating. A huge thank you from MaxFoundry in advance!
+
+<a href="https://wordpress.org/support/view/plugin-reviews/maxgalleria#postform" target="blank" ></a>
+
+
 == Screenshots ==
 
 There are too many screenshots to list here, but you can [see all of them on the MaxGalleria website](http://maxgalleria.com/features/?utm_source=wordpress&utm_medium=mgrepo&utm_content=see-all-on-maxgalleria-website&utm_campaign=plugin).
@@ -117,12 +128,25 @@ Yes. All documentation, which includes QuickStart Guides and developer hooks ref
 = Do I have to buy any of the addons to fully enjoy MaxGalleria? =
 No. The MaxGalleria core plugin contains plenty of functionality to keep even the most die-hard gallery user happy. But for those looking to enhance their gallery experience, [MaxGalleria addons](http://maxgalleria.com/shop/category/addons/?utm_source=wordpress&utm_medium=mgrepo&utm_content=maxgalleria-addons&utm_campaign=plugin) are the perfect choice.
 
-= Why am I seeing duplicate images the media library? =
+= Why do I need a Google Developer API Key to add Youtube videos to a gallery?  =
 
-Originally in WordPress, whenever a person added an image/attachment to a gallery it would create a duplicate image. We recognized this problem and modified the plugin to simply copy the attachment while pointing to the original image. But duplicate image continued to appear in the media library because every item in the media library is an attachment even though there is only one copy of the image on the server. Thus, in order to remove the appearance of duplicate images we modified how the media library displays attachments so that there would be no appearance of duplicate image. Now if your site uses the Enhanced Media Library, our modification to the media library will be disabled and you may see duplicate image. In this case, please do not delete images that appear to be duplicate, because there is really only one copy of the image on the server.
+Google has recently depreciated the use of the Youtube API version 2 which MaxGalleria uses. We have updated MaxGalleria version 3.1.8 to use version 3 of the API. The new API provides new features for application developers. And it also requires programs accessing Youtube data, such as thumbnails, titles and captions, to have a Google Developer API Key.
 
+MaxGalleria users will now be directed to obtain a Google Developer API Key in order to add new videos to their galleries. Existing galleries are not effected by this change.
+
+To obtain an API key visit this page for instructions: http://maxgalleria.com/youtube-api-key/
+
+= How do I activate and use the Maxgalleria Media Library Plus?  =
+
+The details about using the Maxgalleria Media Library Plus can be found <a href='http://maxgalleria.com/maxgalleria-media-library-plus/'>here</a>.
 
 == Changelog ==
+
+= 4.0 =
+
+* Media Library Plus added
+* Added test for Windows server when getting the server URL
+* Added code to save and restore current author data when displaying a gallery
 
 = 3.1.8 =
 
