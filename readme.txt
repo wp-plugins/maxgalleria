@@ -3,7 +3,7 @@ Contributors: maxfoundry, arcware, johnbhartley, AlanP57
 Tags: albums, gallery, gallery platform, image, images, media, flash, foto, fotoalbum, photo, photos, photo albums, picture, pictures, responsive wordpress gallery, thumbmail, thumbnails, wordpress gallery, wordpress gallery platform, wordpress gallery plugin, responsive wordpress gallery plugins, responsive, slideshows, image slider, nivo, image slide plugin, javascript rotator, javascript slider, jquery slider, photo slider, responsive image slider, responsive image slider plugin, responsive slideshow, responsive slideshow slider, responsive slider plugin, slideshow plugin, template, wordpress picture slider, wordpress responsive slider, wordpress slider, website gallery, multiple pictures, youtube, youtube video, youtube videos, youtube gallery, youtube galleries, youtube video gallery, youtube video galleries, nextgen, nextgen galleries, nextgen gallery
 Requires at least: 3.9
 Tested up to: 4.2.2
-Stable tag: 4.01
+Stable tag: 4.02
 
 Responsive, Easy to Use, Developer Friendly
 
@@ -49,7 +49,7 @@ Many people will find the core MaxGalleria plugin all they will ever need; howev
 * [MaxGalleria Slick for WordPress](http://maxgalleria.com/shop/maxgalleria-slick-for-wordpress//?utm_source=wordpress&utm_medium=slick&utm_content=slick&utm_campaign=mgrepo) - The Last Carousel You'll ever need!
 
 = Media Library Extended =
-[Media Library Plus] (http://maxgalleria.com/media-library-plus/?utm_source=wordpress&utm_medium=mlp&utm_content=mlp&utm_campaign=mgrepo) (MLP) comes standard with MaxGalleria. MLP lets you add and build new folders to organize your media.  If you want to create a media folder for a specific gallery or album, copy all of the images you want to use into the folder. Then easily load those images into a MaxGalleria gallery. Everything is organized in a more logical manner for galleries and albums. MLP sits on top of the WordPress Media Library and adds functionality to it.
+[Media Library Plus] (http://maxgalleria.com/media-library-plus/?utm_source=wordpress&utm_medium=mlp&utm_content=mlp&utm_campaign=mgrepo) comes standard with MaxGalleria. MLP lets you add and build new folders to organize your media.  If you want to create a media folder for a specific gallery or album, copy all of the images you want to use into the folder. Then easily load those images into a MaxGalleria gallery. Everything is organized in a more logical manner for galleries and albums. MLP sits on top of the WordPress Media Library and adds functionality to it.
 
 = Features at a Glance =
 MaxGalleria is stuffed full of all the features and functionality you need to easily create and manage your image and video galleries in WordPress.
