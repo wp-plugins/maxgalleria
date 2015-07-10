@@ -3,7 +3,7 @@ Contributors: maxfoundry, arcware, johnbhartley, AlanP57
 Tags: albums, gallery, gallery platform, image, images, media, flash, foto, fotoalbum, photo, photos, photo albums, picture, pictures, responsive wordpress gallery, thumbmail, thumbnails, wordpress gallery, wordpress gallery platform, wordpress gallery plugin, responsive wordpress gallery plugins, responsive, slideshows, image slider, nivo, image slide plugin, javascript rotator, javascript slider, jquery slider, photo slider, responsive image slider, responsive image slider plugin, responsive slideshow, responsive slideshow slider, responsive slider plugin, slideshow plugin, template, wordpress picture slider, wordpress responsive slider, wordpress slider, website gallery, multiple pictures, youtube, youtube video, youtube videos, youtube gallery, youtube galleries, youtube video gallery, youtube video galleries, nextgen, nextgen galleries, nextgen gallery
 Requires at least: 3.9
 Tested up to: 4.2.2
-Stable tag: 4.02
+Stable tag: 4.03
 
 Responsive, Easy to Use, Developer Friendly
 
@@ -36,12 +36,17 @@ The MaxGalleria gallery platform was created with developers in mind. You'll fin
 = Addons to Enhance Your Gallery Experience =
 Many people will find the core MaxGalleria plugin all they will ever need; however, some people will want to take their gallery experience further. And to do help them do that, there are several addons available:
 
+= Layout Addons =
+
 * [MaxGalleria Albums](http://maxgalleria.com/shop/maxgalleria-albums/?utm_source=wordpress&utm_medium=mgrepo&utm_content=maxgalleria-albums&utm_campaign=plugin) - Organize your galleries into albums
 * [MaxGalleria Image Carousel](http://maxgalleria.com/shop/maxgalleria-image-carousel/?utm_source=wordpress&utm_medium=mgrepo&utm_content=maxgalleria-image-carousel&utm_campaign=plugin) - Turn your galleries into carousels
 * [MaxGalleria Image Showcase](http://maxgalleria.com/shop/maxgalleria-image-showcase/?utm_source=wordpress&utm_medium=mgrepo&utm_content=maxgalleria-image-showcase&utm_campaign=plugin) - Showcase your high-resolution images
 * [MaxGalleria Image Slider](http://maxgalleria.com/shop/maxgalleria-image-slider/?utm_source=wordpress&utm_medium=mgrepo&utm_content=maxgalleria-image-slider&utm_campaign=plugin) - Turn your galleries into sliders
 * [MaxGalleria Video Showcase](http://maxgalleria.com/shop/maxgalleria-video-showcase/?utm_source=wordpress&utm_medium=mgrepo&utm_content=maxgalleria-video-showcase&utm_campaign=plugin) - Showcase your videos
 * [MaxGalleria Masonry](http://maxgalleria.com/shop/maxgalleria-masonry?utm_source=wordpress&utm_medium=masonry&utm_content=masonry&utm_campaign=mgrepo) - Display images in a Pinterest like grid
+
+= Media Sources =
+
 * [MaxGalleria Facebook](http://maxgalleria.com/shop/maxgalleria-facebook/?utm_source=wordpress&utm_medium=mgrepo&utm_content=maxgalleria-facebook&utm_campaign=plugin) - Add Facebook photos to your galleries
 * [MaxGalleria Instagram](http://maxgalleria.com/shop/maxgalleria-instagram/?utm_source=wordpress&utm_medium=mgrepo&utm_content=maxgalleria-instagram&utm_campaign=plugin) - Add Instagram images to your galleries
 * [MaxGalleria Vimeo](http://maxgalleria.com/shop/maxgalleria-vimeo/?utm_source=wordpress&utm_medium=mgrepo&utm_content=maxgalleria-vimeo&utm_campaign=plugin) - Add Vimeo videos to your galleries
@@ -49,7 +54,8 @@ Many people will find the core MaxGalleria plugin all they will ever need; howev
 * [MaxGalleria Slick for WordPress](http://maxgalleria.com/shop/maxgalleria-slick-for-wordpress//?utm_source=wordpress&utm_medium=slick&utm_content=slick&utm_campaign=mgrepo) - The Last Carousel You'll ever need!
 
 = Media Library Extended =
-[Media Library Plus] (http://maxgalleria.com/media-library-plus/?utm_source=wordpress&utm_medium=mlp&utm_content=mlp&utm_campaign=mgrepo) comes standard with MaxGalleria. MLP lets you add and build new folders to organize your media.  If you want to create a media folder for a specific gallery or album, copy all of the images you want to use into the folder. Then easily load those images into a MaxGalleria gallery. Everything is organized in a more logical manner for galleries and albums. MLP sits on top of the WordPress Media Library and adds functionality to it.
+
+[Media Library Plus](http://maxgalleria.com/media-library-plus/?utm_source=wordpress&utm_medium=mlp&utm_content=mlp&utm_campaign=mgrepo) (MLP) comes standard with MaxGalleria. MLP lets you add and build new folders to organize your media.  If you want to create a media folder for a specific gallery or album, copy all of the images you want to use into the folder. Then easily load those images into a MaxGalleria gallery. Everything is organized in a more logical manner for galleries and albums. MLP sits on top of the WordPress Media Library and adds functionality to it.
 
 = Features at a Glance =
 MaxGalleria is stuffed full of all the features and functionality you need to easily create and manage your image and video galleries in WordPress.
