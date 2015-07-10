@@ -1,9 +1,9 @@
 === MaxGalleria: WordPress Gallery Platform ===
 Contributors: maxfoundry, arcware, johnbhartley, AlanP57
-Tags: albums, gallery, gallery platform, image, images, media, flash, foto, fotoalbum, photo, photos, photo albums, picture, pictures, responsive wordpress gallery, thumbmail, thumbnails, wordpress gallery, wordpress gallery platform, wordpress gallery plugin, responsive wordpress gallery plugins, responsive, slideshows, image slider, nivo, image slide plugin, javascript rotator, javascript slider, jquery slider, photo slider, responsive image slider, responsive image slider plugin, responsive slideshow, responsive slideshow slider, responsive slider plugin, slideshow plugin, template, wordpress picture slider, wordpress responsive slider, wordpress slider, website gallery, multiple pictures, youtube, youtube video, youtube videos, youtube gallery, youtube galleries, youtube video gallery, youtube video galleries, nextgen, nextgen galleries, nextgen gallery
+Tags: albums, gallery, gallery platform, image, images, media, flash, foto, fotoalbum, photo, photos, photo albums, picture, pictures, responsive wordpress gallery, thumbmail, thumbnails, wordpress gallery, wordpress gallery platform, wordpress gallery plugin, responsive wordpress gallery plugins, responsive, slideshows, image slider, nivo, image slide plugin, javascript rotator, javascript slider, jquery slider, photo slider, responsive image slider, responsive image slider plugin, responsive slideshow, responsive slideshow slider, responsive slider plugin, slideshow plugin, template, wordpress picture slider, wordpress responsive slider, wordpress slider, website gallery, multiple pictures, youtube, youtube video, youtube videos, youtube gallery, youtube galleries, youtube video gallery, youtube video galleries, nextgen, nextgen galleries, nextgen gallery, media library, media uploader, images, image folders
 Requires at least: 3.9
 Tested up to: 4.2.2
-Stable tag: 4.03
+Stable tag: 4.04
 
 Responsive, Easy to Use, Developer Friendly
 
@@ -38,20 +38,20 @@ Many people will find the core MaxGalleria plugin all they will ever need; howev
 
 = Layout Addons =
 
-* [MaxGalleria Albums](http://maxgalleria.com/shop/maxgalleria-albums/?utm_source=wordpress&utm_medium=mgrepo&utm_content=maxgalleria-albums&utm_campaign=plugin) - Organize your galleries into albums
-* [MaxGalleria Image Carousel](http://maxgalleria.com/shop/maxgalleria-image-carousel/?utm_source=wordpress&utm_medium=mgrepo&utm_content=maxgalleria-image-carousel&utm_campaign=plugin) - Turn your galleries into carousels
-* [MaxGalleria Image Showcase](http://maxgalleria.com/shop/maxgalleria-image-showcase/?utm_source=wordpress&utm_medium=mgrepo&utm_content=maxgalleria-image-showcase&utm_campaign=plugin) - Showcase your high-resolution images
-* [MaxGalleria Image Slider](http://maxgalleria.com/shop/maxgalleria-image-slider/?utm_source=wordpress&utm_medium=mgrepo&utm_content=maxgalleria-image-slider&utm_campaign=plugin) - Turn your galleries into sliders
-* [MaxGalleria Video Showcase](http://maxgalleria.com/shop/maxgalleria-video-showcase/?utm_source=wordpress&utm_medium=mgrepo&utm_content=maxgalleria-video-showcase&utm_campaign=plugin) - Showcase your videos
-* [MaxGalleria Masonry](http://maxgalleria.com/shop/maxgalleria-masonry?utm_source=wordpress&utm_medium=masonry&utm_content=masonry&utm_campaign=mgrepo) - Display images in a Pinterest like grid
+* [Albums](http://maxgalleria.com/shop/maxgalleria-albums/?utm_source=wordpress&utm_medium=albums&utm_content=albums&utm_campaign=mgrepo) - Organize your galleries into albums
+* [Image Carousel](http://maxgalleria.com/shop/maxgalleria-image-carousel/?utm_source=wordpress&utm_medium=imagecarousel&utm_content=image-carousel&utm_campaign=mgrepo) - Turn your galleries into carousels
+* [Image Showcase](http://maxgalleria.com/shop/maxgalleria-image-showcase/?utm_source=wordpress&utm_medium=imageshowcase&utm_content=image-showcase&utm_campaign=mgrepo) - Showcase your high-resolution images
+* [Image Slider](http://maxgalleria.com/shop/maxgalleria-image-slider/?utm_source=wordpress&utm_medium=imageslider&utm_content=image-slider&utm_campaign=mgrepo) - Turn your galleries into sliders
+* [Video Showcase](http://maxgalleria.com/shop/maxgalleria-video-showcase/?utm_source=wordpress&utm_medium=videoshowcase&utm_content=video-showcase&utm_campaign=mgrepo) - Showcase your videos
+* Masonry - Display images in a [Pinterest](http://maxgalleria.com/shop/maxgalleria-masonry?utm_source=wordpress&utm_medium=masonry&utm_content=masonry&utm_campaign=mgrepo) like grid
 
 = Media Sources =
 
-* [MaxGalleria Facebook](http://maxgalleria.com/shop/maxgalleria-facebook/?utm_source=wordpress&utm_medium=mgrepo&utm_content=maxgalleria-facebook&utm_campaign=plugin) - Add Facebook photos to your galleries
-* [MaxGalleria Instagram](http://maxgalleria.com/shop/maxgalleria-instagram/?utm_source=wordpress&utm_medium=mgrepo&utm_content=maxgalleria-instagram&utm_campaign=plugin) - Add Instagram images to your galleries
-* [MaxGalleria Vimeo](http://maxgalleria.com/shop/maxgalleria-vimeo/?utm_source=wordpress&utm_medium=mgrepo&utm_content=maxgalleria-vimeo&utm_campaign=plugin) - Add Vimeo videos to your galleries
-* [MaxGalleria Flickr](http://maxgalleria.com/shop/maxgalleria-flickr/?utm_source=wordpress&utm_medium=flickr&utm_content=flickr&utm_campaign=mgrepo) - Pull in images from your Flickr stream
-* [MaxGalleria Slick for WordPress](http://maxgalleria.com/shop/maxgalleria-slick-for-wordpress//?utm_source=wordpress&utm_medium=slick&utm_content=slick&utm_campaign=mgrepo) - The Last Carousel You'll ever need!
+* [Facebook](http://maxgalleria.com/shop/maxgalleria-facebook/?utm_source=wordpress&utm_medium=facebook&utm_content=facebook&utm_campaign=mgrepo) - Add Facebook photos to your galleries
+* [Instagram](http://maxgalleria.com/shop/maxgalleria-instagram/?utm_source=wordpress&utm_medium=instagram&utm_content=instagram&utm_campaign=mgrepo) - Add Instagram images to your galleries
+* [Vimeo](http://maxgalleria.com/shop/maxgalleria-vimeo/?utm_source=wordpress&utm_medium=vimeo&utm_content=vimeo&utm_campaign=mgrepo) - Add Vimeo videos to your galleries
+* [Flickr](http://maxgalleria.com/shop/maxgalleria-flickr/?utm_source=wordpress&utm_medium=flickr&utm_content=flickr&utm_campaign=mgrepo) - Pull in images from your Flickr stream
+* [Slick for WordPress](http://maxgalleria.com/shop/maxgalleria-slick-for-wordpress//?utm_source=wordpress&utm_medium=slick&utm_content=slick&utm_campaign=mgrepo) - The Last Carousel You'll ever need!
 
 = Media Library Extended =
 
