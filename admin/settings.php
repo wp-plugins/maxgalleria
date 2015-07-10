@@ -104,7 +104,13 @@ $addon = isset($_GET['addon']) ? $_GET['addon'] : '';
 								</li>
 							<?php } ?>
 							
+              <?php if(!defined('NO_MEDIA_LIBRARY_EXTENDED')) { ?>  
 							<li><!-- Spacer --></li>
+							<li><strong><?php _e('Other', 'maxgalleria') ?></strong></li>
+              <li class="<?php echo 'media-library' == $addon ? 'selected' : '' ?>">
+                <a href="<?php echo MAXGALLERIA_SETTINGS . '&addon=media-library' ?>">Media Library</a>
+              </li>
+              <?php } ?>
 						</ul>
 					</div>
 					

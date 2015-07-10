@@ -5,6 +5,10 @@ class MaxGalleriaShortcode {
 	}
 	
 	public function maxgallery_shortcode($atts) {	
+    
+    global $authordata;
+    $authortemp = $authordata;
+    
 		extract(shortcode_atts(array(
 			'id' => '',
 			'name' => ''
@@ -116,7 +120,9 @@ class MaxGalleriaShortcode {
     else
         $page_links = "";
     
-		return $output . $page_links;
+	  $authordata = $authortemp;
+      
+	return $output . $page_links;
 	}
 }
 ?>

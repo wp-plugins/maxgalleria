@@ -51,6 +51,9 @@ Media Sources
 * [MaxGalleria Flickr](http://maxgalleria.com/shop/maxgalleria-flickr/?utm_source=wordpress&utm_medium=flickr&utm_content=flickr&utm_campaign=mgrepo) - Pull in images from your Flickr stream
 * [MaxGalleria Slick for WordPress](http://maxgalleria.com/shop/maxgalleria-slick-for-wordpress//?utm_source=wordpress&utm_medium=slick&utm_content=slick&utm_campaign=mgrepo) - The Last Carousel You'll ever need!
 
+Media Library Extended
+[Media Library Plus] (http://maxgalleria.com/media-library-plus/?utm_source=wordpress&utm_medium=mlp&utm_content=mlp&utm_campaign=mgrepo) (MLP) comes standard with MaxGalleria. MLP lets you add and build new folders to organize your media.  If you want to create a media folder for a specific gallery or album, copy all of the images you want to use into the folder. Then easily load those images into a MaxGalleria gallery. Everything is organized in a more logical manner for galleries and albums. MLP sits on top of the WordPress Media Library and adds functionality to it.
+
 = Features at a Glance =
 MaxGalleria is stuffed full of all the features and functionality you need to easily create and manage your image and video galleries in WordPress.
 

@@ -16,7 +16,10 @@ class MaxGalleriaYouTube {
 		$this->addon_subtype = 'video';
 		$this->addon_settings = MAXGALLERIA_PLUGIN_DIR . '/addons/media-sources/youtube/youtube-settings.php';
     $this->api_url = 'https://www.googleapis.com/youtube/v3/videos';
-    $this->referer = $_SERVER['SERVER_ADDR'];
+    if($this->is_windows()) 
+      $this->referer = $_SERVER['LOCAL_ADDR'];
+    else
+      $this->referer = $_SERVER['SERVER_ADDR'];
     $this->initialize_properties();
 
 
@@ -36,6 +39,13 @@ class MaxGalleriaYouTube {
 		add_action('wp_ajax_save_youtube_settings', array($this, 'save_youtube_settings'));
 		add_action('wp_ajax_nopriv_save_youtube_settings', array($this, 'save_youtube_settings'));
 	}
+  
+  public function is_windows() {
+    if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') 
+      return true;
+    else
+      return false;      
+  }
   
 	public function initialize_properties() {
 		require_once 'youtube-options.php';
