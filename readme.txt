@@ -3,7 +3,7 @@ Contributors: maxfoundry, arcware, johnbhartley, AlanP57
 Tags: albums, gallery, gallery platform, image, images, media, flash, foto, fotoalbum, photo, photos, photo albums, picture, pictures, responsive wordpress gallery, thumbmail, thumbnails, wordpress gallery, wordpress gallery platform, wordpress gallery plugin, responsive wordpress gallery plugins, responsive, slideshows, image slider, nivo, image slide plugin, javascript rotator, javascript slider, jquery slider, photo slider, responsive image slider, responsive image slider plugin, responsive slideshow, responsive slideshow slider, responsive slider plugin, slideshow plugin, template, wordpress picture slider, wordpress responsive slider, wordpress slider, website gallery, multiple pictures, youtube, youtube video, youtube videos, youtube gallery, youtube galleries, youtube video gallery, youtube video galleries, nextgen, nextgen galleries, nextgen gallery
 Requires at least: 3.9
 Tested up to: 4.2.2
-Stable tag: 4.0
+Stable tag: 4.01
 
 Responsive, Easy to Use, Developer Friendly
 
@@ -141,6 +141,9 @@ To obtain an API key visit this page for instructions: http://maxgalleria.com/yo
 The details about using the Maxgalleria Media Library Plus can be found <a href='http://maxgalleria.com/maxgalleria-media-library-plus/'>here</a>.
 
 == Changelog ==
+
+= 4.01 =
+* Updated repository info
 
 = 4.0 =
 

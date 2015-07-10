@@ -1732,4 +1732,7 @@ div.mg-promo div.promo-section p.section-title span {
   .addon-item {
     min-height: 270px;
   }
+  .addon-item-2 {
+    min-height: 270px;
+  }  
 }
