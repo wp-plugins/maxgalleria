@@ -3,7 +3,7 @@
 Plugin Name: MaxGalleria
 Plugin URI: http://maxgalleria.com
 Description: The gallery platform for WordPress.
-Version: 4.04
+Version: 4.05
 Author: Max Foundry
 Author URI: http://maxfoundry.com
 
@@ -564,7 +564,7 @@ class MaxGalleria {
 	
 	public function set_global_constants() {	
 		define('MAXGALLERIA_VERSION_KEY', 'maxgalleria_version');
-		define('MAXGALLERIA_VERSION_NUM', '4.04');
+		define('MAXGALLERIA_VERSION_NUM', '4.05');
 		define('MAXGALLERIA_PLUGIN_NAME', trim(dirname(plugin_basename(__FILE__)), '/'));
 		define('MAXGALLERIA_PLUGIN_DIR', WP_PLUGIN_DIR . '/' . MAXGALLERIA_PLUGIN_NAME);
 		define('MAXGALLERIA_PLUGIN_URL', plugin_dir_url('') . MAXGALLERIA_PLUGIN_NAME);
@@ -583,7 +583,7 @@ class MaxGalleria {
 		define('MAXGALLERIA_SETTING_EXCLUDE_GALLERIES_FROM_SEARCH', 'maxgalleria_setting_exlude_galleries_from_search');
 		define('MAXGALLERIA_SETTING_DEFAULT_IMAGE_GALLERY_TEMPLATE', 'maxgalleria_setting_default_image_gallery_template');
 		define('MAXGALLERIA_SETTING_DEFAULT_VIDEO_GALLERY_TEMPLATE', 'maxgalleria_setting_default_video_gallery_template');
-    define('MAXGALLERIA_ADMIN_NOTICE', 'maxgalleria_admin_notice-1');
+    define('MAXGALLERIA_ADMIN_NOTICE', 'maxgalleria_admin_notice-2');
     //define('NO_MEDIA_LIBRARY_EXTENDED', true);
 		
 		// Bring in all the actions and filters
@@ -730,7 +730,7 @@ class MaxGalleria {
         
     $current_user_id = get_current_user_id(); 
 
-    $notice = get_user_meta( $current_user_id, MAXGALLERIA_ADMIN_NOTICE_4, true );
+    $notice = get_user_meta( $current_user_id, MAXGALLERIA_ADMIN_NOTICE, true );
     if( $notice !== 'off' )
       add_action( 'admin_notices', array($this, 'mg_admin_notice' ));      
   }
@@ -738,7 +738,7 @@ class MaxGalleria {
   public function mg_admin_notice() {
    if( current_user_can( 'manage_options' ) ) {  ?>
       <div class="update-nag">         
-          <p><?php _e( 'Version 4.0 of Maxgalleria includes Media Library Plus for organizing your images into folders. <a href="http://maxgalleria.com/media-library-plus/" target="_blank">Click here to learn more.</a>' ); ?></p>
+          <p><?php _e( 'Version 4.05 of Maxgalleria includes Media Library Plus for organizing your images into folders. <a href="http://maxgalleria.com/media-library-plus/" target="_blank">Click here to learn more.</a>' ); ?></p>
           <!--<p><?php _e( 'Versions 3.1.0 and higher of Maxgalleria include Magnific Popup as part of the plugin.  There is nothing to install.  Magnific Popup has many more options so please check your galleries. The <a href="http://maxgalleria.com/documentation/maxgalleria/quickstart/" target="_blank">MaxGalleria Quick Start Page</a> shows how to use these options.  If you are using the Image Carousel Add-on it must be updated to work with these versions of Maxgalleria.', 'maxgalleria' ); ?></p>-->
           <p><a href="<?php echo admin_url() . 'edit.php?post_type=maxgallery&page=mg-admin-notice'; ?>">Dismiss</a></p>
       </div>

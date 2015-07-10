@@ -58,7 +58,7 @@ class MaxGalleriaAdmin {
     
     $current_user_id = get_current_user_id(); 
     
-    update_user_meta( $current_user_id, MAXGALLERIA_ADMIN_NOTICE_4, "off" );
+    update_user_meta( $current_user_id, MAXGALLERIA_ADMIN_NOTICE, "off" );
     
     $request = $_SERVER["HTTP_REFERER"];
     
