@@ -107,21 +107,28 @@ class MaxGalleriaMediaLib {
 	}
     
   public function enqueue_admin_print_styles() {		
-    wp_enqueue_style('thickbox');
-    wp_enqueue_style('maxgalleria-media-library', MAXGALLERIA_MEDIA_LIBRARY_PLUGIN_URL . '/media-library.css');
+    if(isset($_REQUEST['page'])) {
+      if($_REQUEST['page'] === 'media-library') {
+          wp_enqueue_style('thickbox');
+          wp_enqueue_style('maxgalleria-media-library', MAXGALLERIA_MEDIA_LIBRARY_PLUGIN_URL . '/media-library.css');
+          wp_enqueue_style('foundation', MAXGALLERIA_PLUGIN_URL . '/libs/foundation/foundation.min.css');
+      }
+    }
 	}
   
   public function enqueue_admin_print_scripts() {
-	  wp_register_script( 'loader-folders', MAXGALLERIA_MEDIA_LIBRARY_PLUGIN_URL . '/js/mgmlp-loader.js', array( 'jquery' ), '', true );
-  
-    wp_localize_script( 'loader-folders', 'mgmlp_ajax', 
-          array( 'ajaxurl' => admin_url( 'admin-ajax.php' ),
-                 'nonce'=> wp_create_nonce(MAXGALLERIA_MEDIA_LIBRARY_NONCE))
-               ); 
-    
-    wp_enqueue_script('loader-folders');
-		wp_enqueue_style('foundation', MAXGALLERIA_PLUGIN_URL . '/libs/foundation/foundation.min.css');
-    
+    if(isset($_REQUEST['page'])) {
+      if($_REQUEST['page'] === 'media-library') {
+        wp_register_script( 'loader-folders', MAXGALLERIA_MEDIA_LIBRARY_PLUGIN_URL . '/js/mgmlp-loader.js', array( 'jquery' ), '', true );
+
+        wp_localize_script( 'loader-folders', 'mgmlp_ajax', 
+              array( 'ajaxurl' => admin_url( 'admin-ajax.php' ),
+                     'nonce'=> wp_create_nonce(MAXGALLERIA_MEDIA_LIBRARY_NONCE))
+                   ); 
+
+        wp_enqueue_script('loader-folders');
+      }
+    }
   }
  
 	public function initialize_properties() {
@@ -268,7 +275,7 @@ class MaxGalleriaMediaLib {
 		register_post_type(MAXGALLERIA_MEDIA_LIBRARY_POST_TYPE, $args);
     
   }
-  
+    
   public function add_folder_table () {
     global $wpdb;
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
