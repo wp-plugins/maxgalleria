@@ -17,9 +17,18 @@ class MaxGalleriaMediaLibraryOptions extends MaxGalleryOptions  {
 	public $media_library_enabled_default_key = 'maxgallery_media_library_default';
 	public $media_library_enabled_key = 'maxgallery_media_librarys_enabled';
   
+	public $media_library_clear_default = '';
+	public $media_library_clear_default_key = 'maxgallery_media_library_clear_default';
+	public $media_library_clear_key = 'maxgallery_media_librarys_clear';
+  
+  
   public function get_media_library_default() {
 		return get_option($this->media_library_enabled_default_key, $this->media_library_enabled_default);
 	}
+  
+   public function get_media_library_clear_default() {
+		return get_option($this->media_library_clear_default_key, $this->media_library_clear_default);
+	} 
 
   public function save_options($options = null) {
 		//if ($this->get_template() == MAXGALLERIA_MASONRY_KEY) {
@@ -30,7 +39,8 @@ class MaxGalleriaMediaLibraryOptions extends MaxGalleryOptions  {
   
   	public function get_options() {
 		return array(
-      $this->$media_library_enabled_key
+      $this->media_library_enabled_key,
+      $this->media_library_clear_key
   	);
 	}
 

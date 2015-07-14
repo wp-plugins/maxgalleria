@@ -496,6 +496,10 @@ ul.addon-info li h3 a {
   margin-top: 17px;
 }
 
+#save-media-library-settings-scanning {
+  display: none;
+}
+
 /*#mg-prono-top a img {
   height: auto;
   padding: 0 5px;

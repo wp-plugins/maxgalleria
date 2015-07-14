@@ -90,13 +90,17 @@ class MaxGalleriaMediaLib {
 //		}
 //	}
   
-	public function activate() {
+	public function activate($clear_status) {
 		//update_option(MAXGALLERIA_MEDIA_LIBRARY_VERSION_KEY, MAXGALLERIA_MEDIA_LIBRARY_VERSION_NUM);
     update_option('uploads_use_yearmonth_folders', 1);    
     $this->add_folder_table();
     if ( 'impossible_default_value_1234' === get_option( MAXGALLERIA_MEDIA_LIBRARY_UPLOAD_FOLDER_NAME, 'impossible_default_value_1234' ) )
-      $this->scan_attachments();
-            
+      $this->scan_attachments(false);
+    else {
+      if($clear_status)
+        $this->scan_attachments($clear_status);
+    }  
+        
     if ( ! wp_next_scheduled( 'new_folder_check' ) )
       wp_schedule_event( time(), 'daily', 'new_folder_check' );
     
@@ -189,18 +193,26 @@ class MaxGalleriaMediaLib {
 		if (isset($_POST) && check_admin_referer($options->nonce_save_media_library_settings['action'], $options->nonce_save_media_library_settings['name'])) {
 			global $maxgalleria;
 			$message = '';
+      $activate_status = false;
+      $clear_status = false;
             
 			foreach ($_POST as $key => $value) {
 				if ($maxgalleria->common->string_starts_with($key, 'maxgallery_')) {
 					update_option($key, $value);
           if($key === 'maxgallery_media_library_default') {
             if($value === 'on')
-              $this->activate();
-            else  
-              $this->deactivate();            
+              $activate_status = true;
+          }          
+          if($key === 'maxgallery_media_librarys_clear') {
+            if($value === 'on')
+              $clear_status = true;
           }          
 				}
 			}
+      if($activate_status === true) 
+        $this->activate($clear_status);
+      else  
+        $this->deactivate();            
 			
 			$message = 'success';
 			
@@ -406,27 +418,22 @@ class MaxGalleriaMediaLib {
     
   }
   
-  public function scan_attachments () {
+  public function scan_attachments ($clear_status) {
     
     global $wpdb;
     
-    //$sql = "TRUNCATE TABLE $wpdb->prefix" . "mgmlp_folders";
+    if($clear_status) {  
+      $sql = "TRUNCATE TABLE $wpdb->prefix" . "mgmlp_folders";
+      $wpdb->query($sql);
+      $sql = "delete from $wpdb->prefix" . "posts where post_type = 'mgmlp_media_folder'";
+      $wpdb->query($sql);
+    }
     
-    //write_log("emptying wp_mgmlp_folders");
-    //$wpdb->query($sql);
-    
-    //write_log("clearing wp_posts");    
-    //$sql = "delete from $wpdb->prefix" . "posts where post_type = 'mgmlp_media_folder'";
-    //$wpdb->query($sql);
-        
-    //write_log("scanning");
-        
     $uploads_path = wp_upload_dir();
     
     if(!$uploads_path['error']) {
-      
       //write_log('no error');
-      
+            
       //find the uploads folder
       $base_url = $uploads_path['baseurl'];
       $last_slash = strrpos($base_url, '/');
@@ -451,14 +458,16 @@ class MaxGalleriaMediaLib {
       $current_folder = "";
             
       $parent_id = $uploads_parent_id;
-            
+      //$loop_count = 0;
       if($rows) {
         foreach($rows as $row) {
-          
+          //$loop_count++;
           // skip rows with query strings
+          //if(!strpos($row->guid, $uploads_dir)) {
           //if(!strpos($row->guid, '?') && !strpos($row->guid, '\\') || strpos($row->guid, '.')  ) {
-          if(strpos($row->guid, '.')) {
-            //write_log("current guid: " . $row->guid );
+          //if(strpos($row->guid, '.')) {
+          if(strpos($row->guid, $uploads_dir)) {
+          //write_log("current guid: " . $row->guid );
             $sub_folders = $this->get_folders($row->guid);          
             $attachment_file = array_pop($sub_folders);  
 
@@ -494,6 +503,8 @@ class MaxGalleriaMediaLib {
             $this->add_new_folder_parent($row->ID, $parent_id );
           } //test for ?
           
+          //if($loop_count > 100)
+          //  return;
         } //foreach         
         
       } //rows  

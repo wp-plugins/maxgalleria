@@ -3,7 +3,7 @@ Contributors: maxfoundry, arcware, johnbhartley, AlanP57
 Tags: albums, gallery, image, images, media, flash, foto, fotoalbum, photo, photos, photo albums, picture, pictures, responsive wordpress gallery, thumbmail, thumbnails, wordpress gallery, wordpress gallery plugin, responsive wordpress gallery plugins, responsive, slideshows, image slider, nivo, image slide plugin, photo slider, responsive slideshow, responsive slider plugin, slideshow plugin, wordpress picture slider, wordpress responsive slider, wordpress slider, website gallery, youtube, youtube video, youtube videos, youtube gallery, youtube video galleries, nextgen, nextgen gallery, media library, media uploader, images, image folders
 Requires at least: 3.9
 Tested up to: 4.2.2
-Stable tag: 4.06
+Stable tag: 4.07
 
 Responsive, Easy to Use, Developer Friendly
 
@@ -147,6 +147,9 @@ To obtain an API key visit this page for instructions: http://maxgalleria.com/yo
 The details about using the Maxgalleria Media Library Plus can be found <a href='http://maxgalleria.com/maxgalleria-media-library-plus/'>here</a>.
 
 == Changelog ==
+
+= 4.07 =
+* Fixes to the media library folder scanning process
 
 = 4.06 =
 * Now loading media library plus scripts and styles when the media library plus page is displayed
