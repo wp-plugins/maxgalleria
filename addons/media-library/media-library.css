@@ -20,6 +20,25 @@ ul.mg-media-list li a {
   width: 135px;*/
 }
 
+#wpwrap {
+  background: #f1f1f1 none repeat scroll 0 0;
+}
+
+.media-plus-toolbar {
+  background: #fff none repeat scroll 0 0;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+  color: #555;
+  display: table;
+  font-family: "Open Sans",sans-serif;
+  font-size: 13px;
+  height: auto;
+  margin: 12px 0 25px;
+  padding: 0 20px 20px 20px;
+  position: relative;
+  width: 100%;
+}
+
 .media-folder,
 .media-attachment,
 a.media-attachment img {

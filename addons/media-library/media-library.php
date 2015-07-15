@@ -112,7 +112,7 @@ class MaxGalleriaMediaLib {
     
   public function enqueue_admin_print_styles() {		
     if(isset($_REQUEST['page'])) {
-      if($_REQUEST['page'] === 'media-library') {
+  if($_REQUEST['page'] === 'media-library' || $_REQUEST['page'] === 'search-library') {
           wp_enqueue_style('thickbox');
           wp_enqueue_style('maxgalleria-media-library', MAXGALLERIA_MEDIA_LIBRARY_PLUGIN_URL . '/media-library.css');
           wp_enqueue_style('foundation', MAXGALLERIA_PLUGIN_URL . '/libs/foundation/foundation.min.css');
@@ -651,7 +651,7 @@ class MaxGalleriaMediaLib {
       <div id="wp-media-grid" class="wrap">
         <!--empty h2 for where WP notices will appear--> 
         <h2></h2>
-        <div class="media-toolbar wp-filter"><div class="media-toolbar-secondary">  
+        <div class="media-plus-toolbar"><div class="media-toolbar-secondary">  
             
         <div id='mgmlp-title-area'>
           <h2 class='mgmlp-title'><?php _e('Maxgalleria Media Library Plus', 'maxgalleria' ); ?> </h2>    
@@ -848,67 +848,71 @@ order by post_name";
             </script>  
 
           </div>  
+          
+          <div class="clearfix"></div>
 
+          <div class="large-12">
+            <div class="mg-promo">
+            <p class="mg-promo-title"><a target="_blank" href="http://maxgalleria.com/shop/category/addons/?utm_source=mlefree&utm_medium=tout&utm_campaign=tout ">Try these terrific MaxGalleria Addons<br>Every Addon for $49 or any single Addon for $29 for 1 site</a></p>
+            <div class="small-6 medium-6 large-6 columns sources">
+            <p class="section-title"><span>Layout Addons</span></p>
+            <div class="row top-margin">
+              <div class="medium-6 large-6 columns addon-item">
+                <a href="http://maxgalleria.com/shop/maxgalleria-image-carousel/?utm_source=mlefree&amp;utm_medium=image-carousel&amp;utm_campaign=image-carousel"><img width="200" height="200" title="MaxGalleria Image Carousel Addon" alt="MaxGalleria Image Carousel Addon" src="http://cdn.maxgalleria.com//wp-content/themes/maxgalleriaplatform/images/catalog/maxgalleria-image-carousel-cover.png"></a><h3><a href="http://maxgalleria.com/shop/maxgalleria-image-carousel/?utm_source=mlefree&amp;utm_medium=image-carousel&amp;utm_campaign=image-carousel">Image Carousel</a></h3><p>Turn your galleries into carousels</p>
+              </div>
+              <div class="medium-6 large-6 columns addon-item">
+                <a href="http://maxgalleria.com/shop/maxgalleria-albums/?utm_source=mlefree&amp;utm_medium=albums&amp;utm_campaign=albums"><img width="200" height="200" title="MaxGalleria Albums Addon" alt="MaxGalleria Albums Addon" src="http://cdn.maxgalleria.com//wp-content/themes/maxgalleriaplatform/images/catalog/maxgalleria-albums-cover.png"></a><h3><a href="http://maxgalleria.com/shop/maxgalleria-image-carousel/?utm_source=mlefree&amp;utm_medium=albums&amp;utm_campaign=albums">Albums</a></h3><p>Organize your galleries into albums</p>
+              </div>
+            </div>
+            <div class="row top-margin">
+              <div class="medium-6 large-6 columns addon-item">
+                <a href="http://maxgalleria.com/shop/maxgalleria-image-showcase/?utm_source=mlefree&utm_medium=imageshowcase&utm_campaign=imageshowcase"><img width="200" height="200" title="MaxGalleria Image Showcase Addon" alt="MaxGalleria Image Showcase Addon" src="http://cdn.maxgalleria.com//wp-content/themes/maxgalleriaplatform/images/catalog/maxgalleria-image-showcase-cover.png"></a><h3><a href="http://maxgalleria.com/shop/maxgalleria-image-showcase/?utm_source=mlefree&utm_medium=imageshowcase&utm_campaign=imageshowcase">Image Showcase</a></h3><p>Showcase image with thumbnails</p>
+              </div>
+              <div class="medium-6 large-6 columns addon-item">
+                <a href="http://maxgalleria.com/shop/maxgalleria-video-showcase/?utm_source=mlefree&utm_medium=videoshowcase&utm_campaign=videoshowcase"><img width="200" height="200" title="" alt="" src="http://cdn.maxgalleria.com//wp-content/themes/maxgalleriaplatform/images/catalog/maxgalleria-video-showcase-cover.png"></a><h3><a href="http://maxgalleria.com/shop/maxgalleria-video-showcase/?utm_source=mlefree&utm_medium=videoshowcase&utm_campaign=videoshowcase">Video Showcase</a></h3><p>Showcase video with thumbnails</p>
+              </div>
+            </div>
+            <div class="row top-margin">
+              <div class="medium-6 large-6 columns addon-item">
+                <a href="http://maxgalleria.com/shop/maxgalleria-masonry/?utm_source=mlefree&utm_medium=masonry&utm_campaign=masonry"><img width="200" height="200" title="Maxgalleria Masonry" alt="Maxgalleria Masonry" src="http://cdn.maxgalleria.com//wp-content/themes/maxgalleriaplatform/images/catalog/maxgalleria-masonry-cover.png"></a><h3><a href="http://maxgalleria.com/shop/maxgalleria-masonry/?utm_source=mlefree&utm_medium=masonry&utm_campaign=masonry">Masonry</a></h3><p>Display Images in a Masonry Grid</p>
+              </div>
+              <div class="medium-6 large-6 columns addon-item">
+                <a href="http://maxgalleria.com/shop/maxgalleria-image-slider/?utm_source=mlefree&utm_medium=imageslider&utm_campaign=imageslider"><img width="200" height="200" title="MaxGalleria Image Slider Addon" alt="MaxGalleria Image Slider Addon" src="http://cdn.maxgalleria.com//wp-content/themes/maxgalleriaplatform/images/catalog/maxgalleria-image-slider-cover.png"></a><h3><a href="http://maxgalleria.com/shop/maxgalleria-image-slider/?utm_source=mlefree&utm_medium=imageslider&utm_campaign=imageslider">Image Slider</a></h3><p>Turn your galleries into sliders</p>
+              </div>
+            </div>
+           </div>
+           <div class="small-6 medium-6 large-6 columns sources">
+            <p class="section-title"><span>Media Sources</span></p>
+            <div class="row top-margin">
+              <div class="medium-6 large-6 columns addon-item">
+                <a href="http://maxgalleria.com/shop/maxgalleria-facebook/?utm_source=mlefree&utm_medium=facebook&utm_campaign=facebook"><img width="200" height="200" title="MaxGalleria Facebook Addon" alt="MaxGalleria Facebook Addon" src="http://cdn.maxgalleria.com//wp-content/themes/maxgalleriaplatform/images/catalog/maxgalleria-facebook-cover.png"></a><h3><a href="http://maxgalleria.com/shop/maxgalleria-facebook/?utm_source=mlefree&utm_medium=facebook&utm_campaign=facebook">Facebook</a></h3><p>Add Facebook photos to galleries</p>
+              </div>
+              <div class="medium-6 large-6 columns addon-item">
+                <a href="http://maxgalleria.com/shop/maxgalleria-slick-for-wordpress/?utm_source=mlefree&utm_medium=slick&utm_campaign=slick"><img width="200" height="200" title="Slick for WordPress" alt="Slick for WordPress" src="http://cdn.maxgalleria.com//wp-content/themes/maxgalleriaplatform/images/catalog/maxgalleria-slick-for-wordpress-cover.png"></a><h3><a href="http://maxgalleria.com/shop/maxgalleria-slick-for-wordpress/?utm_source=mlefree&utm_medium=slick&utm_campaign=slick">Slick for WordPress</a></h3><p>The Last Carousel You'll ever need!</p>
+              </div>
+            </div>
+            <div class="row top-margin">
+              <div class="medium-6 large-6 columns addon-item">
+                <a href="http://maxgalleria.com/shop/maxgalleria-instagram/?utm_source=mlefree&utm_medium=instagram&utm_campaign=instagram"><img width="200" height="200" title="MaxGalleria Instagram Addon" alt="MaxGalleria Instagram Addon" src="http://cdn.maxgalleria.com//wp-content/themes/maxgalleriaplatform/images/catalog/maxgalleria-instagram-cover.png"></a><h3><a href="http://maxgalleria.com/shop/maxgalleria-instagram/?utm_source=mlefree&utm_medium=instagram&utm_campaign=instagram">Instagram</a></h3><p>Add Instagram images to galleries</p>
+              </div>
+              <div class="medium-6 large-6 columns addon-item">
+                <a href="http://maxgalleria.com/shop/maxgalleria-flickr/?utm_source=mlefree&utm_medium=flickr&utm_campaign=flickr"><img width="200" height="200" title="MaxGalleria Flickr Addon" alt="MaxGalleria Flickr Addon" src="http://cdn.maxgalleria.com//wp-content/themes/maxgalleriaplatform/images/catalog/maxgalleria-flickr-cover.png"></a><h3><a href="http://maxgalleria.com/shop/maxgalleria-flickr/?utm_source=mlefree&utm_medium=flickr&utm_campaign=flickr">Flickr</a></h3><p>Pull In Images from your Flickr stream</p>
+              </div>
+            </div>
+            <div class="row top-margin">
+              <div class="medium-6 large-6 columns addon-item">
+                <a href="http://maxgalleria.com/shop/maxgalleria-vimeo/?utm_source=mlefree&utm_medium=vimeo&utm_campaign=vimeo"><img width="200" height="200" title="MaxGalleria Vimeo Addon" alt="MaxGalleria Vimeo Addon" src="http://cdn.maxgalleria.com//wp-content/themes/maxgalleriaplatform/images/catalog/maxgalleria-vimeo-cover.png"></a><h3><a href="http://maxgalleria.com/shop/maxgalleria-vimeo/?utm_source=mlefree&utm_medium=vimeo&utm_campaign=vimeo">Vimeo</a></h3><p>Use Vimeo videos in your galleries</p>
+              </div>
+            </div>
+           </div>
+           </div>
+          </div>          
+          
           
         </div>
+          <div class="clearfix"></div>  
       </div>
           
-<div class="large-12">
-    <div class="mg-promo">
-    <p class="mg-promo-title"><a target="_blank" href="http://maxgalleria.com/shop/category/addons/?utm_source=mlefree&utm_medium=tout&utm_campaign=tout ">Try these terrific MaxGalleria Addons<br>Every Addon for $49 or any single Addon for $29 for 1 site</a></p>
-    <div class="small-6 medium-6 large-6 columns sources">
-    <p class="section-title"><span>Layout Addons</span></p>
-    <div class="row top-margin">
-      <div class="medium-6 large-6 columns addon-item">
-        <a href="http://maxgalleria.com/shop/maxgalleria-image-carousel/?utm_source=mlefree&amp;utm_medium=image-carousel&amp;utm_campaign=image-carousel"><img width="200" height="200" title="MaxGalleria Image Carousel Addon" alt="MaxGalleria Image Carousel Addon" src="http://cdn.maxgalleria.com//wp-content/themes/maxgalleriaplatform/images/catalog/maxgalleria-image-carousel-cover.png"></a><h3><a href="http://maxgalleria.com/shop/maxgalleria-image-carousel/?utm_source=mlefree&amp;utm_medium=image-carousel&amp;utm_campaign=image-carousel">Image Carousel</a></h3><p>Turn your galleries into carousels</p>
-      </div>
-      <div class="medium-6 large-6 columns addon-item">
-        <a href="http://maxgalleria.com/shop/maxgalleria-albums/?utm_source=mlefree&amp;utm_medium=albums&amp;utm_campaign=albums"><img width="200" height="200" title="MaxGalleria Albums Addon" alt="MaxGalleria Albums Addon" src="http://cdn.maxgalleria.com//wp-content/themes/maxgalleriaplatform/images/catalog/maxgalleria-albums-cover.png"></a><h3><a href="http://maxgalleria.com/shop/maxgalleria-image-carousel/?utm_source=mlefree&amp;utm_medium=albums&amp;utm_campaign=albums">Albums</a></h3><p>Organize your galleries into albums</p>
-      </div>
-    </div>
-    <div class="row top-margin">
-      <div class="medium-6 large-6 columns addon-item">
-        <a href="http://maxgalleria.com/shop/maxgalleria-image-showcase/?utm_source=mlefree&utm_medium=imageshowcase&utm_campaign=imageshowcase"><img width="200" height="200" title="MaxGalleria Image Showcase Addon" alt="MaxGalleria Image Showcase Addon" src="http://cdn.maxgalleria.com//wp-content/themes/maxgalleriaplatform/images/catalog/maxgalleria-image-showcase-cover.png"></a><h3><a href="http://maxgalleria.com/shop/maxgalleria-image-showcase/?utm_source=mlefree&utm_medium=imageshowcase&utm_campaign=imageshowcase">Image Showcase</a></h3><p>Showcase image with thumbnails</p>
-      </div>
-      <div class="medium-6 large-6 columns addon-item">
-        <a href="http://maxgalleria.com/shop/maxgalleria-video-showcase/?utm_source=mlefree&utm_medium=videoshowcase&utm_campaign=videoshowcase"><img width="200" height="200" title="" alt="" src="http://cdn.maxgalleria.com//wp-content/themes/maxgalleriaplatform/images/catalog/maxgalleria-video-showcase-cover.png"></a><h3><a href="http://maxgalleria.com/shop/maxgalleria-video-showcase/?utm_source=mlefree&utm_medium=videoshowcase&utm_campaign=videoshowcase">Video Showcase</a></h3><p>Showcase video with thumbnails</p>
-      </div>
-    </div>
-    <div class="row top-margin">
-      <div class="medium-6 large-6 columns addon-item">
-        <a href="http://maxgalleria.com/shop/maxgalleria-masonry/?utm_source=mlefree&utm_medium=masonry&utm_campaign=masonry"><img width="200" height="200" title="Maxgalleria Masonry" alt="Maxgalleria Masonry" src="http://cdn.maxgalleria.com//wp-content/themes/maxgalleriaplatform/images/catalog/maxgalleria-masonry-cover.png"></a><h3><a href="http://maxgalleria.com/shop/maxgalleria-masonry/?utm_source=mlefree&utm_medium=masonry&utm_campaign=masonry">Masonry</a></h3><p>Display Images in a Masonry Grid</p>
-      </div>
-      <div class="medium-6 large-6 columns addon-item">
-        <a href="http://maxgalleria.com/shop/maxgalleria-image-slider/?utm_source=mlefree&utm_medium=imageslider&utm_campaign=imageslider"><img width="200" height="200" title="MaxGalleria Image Slider Addon" alt="MaxGalleria Image Slider Addon" src="http://cdn.maxgalleria.com//wp-content/themes/maxgalleriaplatform/images/catalog/maxgalleria-image-slider-cover.png"></a><h3><a href="http://maxgalleria.com/shop/maxgalleria-image-slider/?utm_source=mlefree&utm_medium=imageslider&utm_campaign=imageslider">Image Slider</a></h3><p>Turn your galleries into sliders</p>
-      </div>
-    </div>
-   </div>
-   <div class="small-6 medium-6 large-6 columns sources">
-    <p class="section-title"><span>Media Sources</span></p>
-    <div class="row top-margin">
-      <div class="medium-6 large-6 columns addon-item">
-        <a href="http://maxgalleria.com/shop/maxgalleria-facebook/?utm_source=mlefree&utm_medium=facebook&utm_campaign=facebook"><img width="200" height="200" title="MaxGalleria Facebook Addon" alt="MaxGalleria Facebook Addon" src="http://cdn.maxgalleria.com//wp-content/themes/maxgalleriaplatform/images/catalog/maxgalleria-facebook-cover.png"></a><h3><a href="http://maxgalleria.com/shop/maxgalleria-facebook/?utm_source=mlefree&utm_medium=facebook&utm_campaign=facebook">Facebook</a></h3><p>Add Facebook photos to galleries</p>
-      </div>
-      <div class="medium-6 large-6 columns addon-item">
-        <a href="http://maxgalleria.com/shop/maxgalleria-slick-for-wordpress/?utm_source=mlefree&utm_medium=slick&utm_campaign=slick"><img width="200" height="200" title="Slick for WordPress" alt="Slick for WordPress" src="http://cdn.maxgalleria.com//wp-content/themes/maxgalleriaplatform/images/catalog/maxgalleria-slick-for-wordpress-cover.png"></a><h3><a href="http://maxgalleria.com/shop/maxgalleria-slick-for-wordpress/?utm_source=mlefree&utm_medium=slick&utm_campaign=slick">Slick for WordPress</a></h3><p>The Last Carousel You'll ever need!</p>
-      </div>
-    </div>
-    <div class="row top-margin">
-      <div class="medium-6 large-6 columns addon-item">
-        <a href="http://maxgalleria.com/shop/maxgalleria-instagram/?utm_source=mlefree&utm_medium=instagram&utm_campaign=instagram"><img width="200" height="200" title="MaxGalleria Instagram Addon" alt="MaxGalleria Instagram Addon" src="http://cdn.maxgalleria.com//wp-content/themes/maxgalleriaplatform/images/catalog/maxgalleria-instagram-cover.png"></a><h3><a href="http://maxgalleria.com/shop/maxgalleria-instagram/?utm_source=mlefree&utm_medium=instagram&utm_campaign=instagram">Instagram</a></h3><p>Add Instagram images to galleries</p>
-      </div>
-      <div class="medium-6 large-6 columns addon-item">
-        <a href="http://maxgalleria.com/shop/maxgalleria-flickr/?utm_source=mlefree&utm_medium=flickr&utm_campaign=flickr"><img width="200" height="200" title="MaxGalleria Flickr Addon" alt="MaxGalleria Flickr Addon" src="http://cdn.maxgalleria.com//wp-content/themes/maxgalleriaplatform/images/catalog/maxgalleria-flickr-cover.png"></a><h3><a href="http://maxgalleria.com/shop/maxgalleria-flickr/?utm_source=mlefree&utm_medium=flickr&utm_campaign=flickr">Flickr</a></h3><p>Pull In Images from your Flickr stream</p>
-      </div>
-    </div>
-    <div class="row top-margin">
-      <div class="medium-6 large-6 columns addon-item">
-        <a href="http://maxgalleria.com/shop/maxgalleria-vimeo/?utm_source=mlefree&utm_medium=vimeo&utm_campaign=vimeo"><img width="200" height="200" title="MaxGalleria Vimeo Addon" alt="MaxGalleria Vimeo Addon" src="http://cdn.maxgalleria.com//wp-content/themes/maxgalleriaplatform/images/catalog/maxgalleria-vimeo-cover.png"></a><h3><a href="http://maxgalleria.com/shop/maxgalleria-vimeo/?utm_source=mlefree&utm_medium=vimeo&utm_campaign=vimeo">Vimeo</a></h3><p>Use Vimeo videos in your galleries</p>
-      </div>
-    </div>
-   </div>
-   </div>
-  </div>          
     <?php
   }
   
@@ -1587,10 +1591,12 @@ where ID = $folder_id";
   public function search_library() {
     
     global $wpdb;
-    
+            
     echo '<div id="wp-media-grid" class="wrap">' . PHP_EOL;
-    echo '  <div class="media-toolbar wp-filter"><div class="media-toolbar-secondary">' . PHP_EOL;
-        
+    //empty h2 for where WP notices will appear
+    echo '  <h2></h2>' . PHP_EOL;
+//    echo '  <div class="media-plus-toolbar wp-filter"><div class="media-toolbar-secondary">' . PHP_EOL;
+    echo '  <div class="media-plus-toolbar wp-filter">' . PHP_EOL;
     echo '<div id="mgmlp-title-area">' . PHP_EOL;
     echo '  <h2 class="mgmlp-title">Maxgalleria Media Library Plus Search Results</h2>' . PHP_EOL;
     echo '  <div id="back-wraper"><a href="' . home_url() . '/wp-admin/admin.php?page=media-library">Back to Media Library Plus Folders</a></div>' . PHP_EOL;
@@ -1666,7 +1672,7 @@ where ID = $folder_id";
       }
       echo "</ul>" . PHP_EOL;
     }
-    echo '  </div>' . PHP_EOL;
+    //echo '  </div>' . PHP_EOL;
     echo '</div>' . PHP_EOL;    
     
     ?>

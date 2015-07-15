@@ -3,7 +3,7 @@ Contributors: maxfoundry, arcware, johnbhartley, AlanP57
 Tags: albums, gallery, image, images, media, flash, foto, fotoalbum, photo, photos, photo albums, picture, pictures, responsive wordpress gallery, thumbmail, thumbnails, wordpress gallery, wordpress gallery plugin, responsive wordpress gallery plugins, responsive, slideshows, image slider, nivo, image slide plugin, photo slider, responsive slideshow, responsive slider plugin, slideshow plugin, wordpress picture slider, wordpress responsive slider, wordpress slider, website gallery, youtube, youtube video, youtube videos, youtube gallery, youtube video galleries, nextgen, nextgen gallery, media library, media uploader, images, image folders
 Requires at least: 3.9
 Tested up to: 4.2.2
-Stable tag: 4.07
+Stable tag: 4.08
 
 Responsive, Easy to Use, Developer Friendly
 
@@ -12,8 +12,8 @@ Responsive, Easy to Use, Developer Friendly
 WordPress users deserve a gallery plugin that doesn't frustrate them as they use it - they want a gallery plugin that is actually a joy to use. Other gallery plugins claim to be the best simply because they've been around the longest and have the most downloads. But we know better. MaxGalleria helps change the game by giving users a streamlined experience for creating and managing responsive WordPress galleries that look great on any device.
 
 = Useful Info =
-* [What Is a WordPress Gallery Platform?](http://maxgalleria.com/blog/what-is-a-wordpress-gallery-platform/?utm_source=wordpress&utm_medium=mgrepo&utm_content=what-is-wordpress-gallery-platform&utm_campaign=plugin)
-* [How to Upgrade to MaxGalleria 2.0](http://maxgalleria.com/blog/upgrade-maxgalleria-2-0/?utm_source=wordpress&utm_medium=mgrepo&utm_content=how-to-upgrade-maxgalleria-2&utm_campaign=plugin)
+* [What Is a WordPress Gallery Platform?](http://maxgalleria.com/?utm_source=wordpress&utm_medium=whatis&utm_content=what-is-wordpress-gallery-platform&utm_campaign=repo)
+* [How to Upgrade to MaxGalleria 2.0](http://maxgalleria.com/blog/upgrade-maxgalleria-2-0/?utm_source=wordpress&utm_medium=upgrade2&utm_content=how-to-upgrade-maxgalleria-2&utm_campaign=repo)
 
 = Responsive for All Devices =
 From iPhones to iPads to Androids to desktops, MaxGalleria provides a great viewing experience no matter the device your galleries are seen on.
@@ -25,13 +25,13 @@ MaxGalleria provides a highly streamlined user interface that makes it as straig
 Frustrated with the NextGEN Gallery plugin? You're not alone. Import your NextGEN galleries into MaxGalleria with just a couple clicks.
 
 = Use Only What You Need =
-Don't get bogged down with useless features. MaxGalleria gives you all the essentials, then lets you pick and choose [enhanced functionality](http://maxgalleria.com/shop/category/addons/?utm_source=wordpress&utm_medium=mgrepo&utm_content=enhanced-functionality&utm_campaign=plugin).
+Don't get bogged down with useless features. MaxGalleria gives you all the essentials, then lets you pick and choose [enhanced functionality](http://maxgalleria.com/?utm_source=wordpress&utm_medium=enhanced&utm_content=enhanced-functionality&utm_campaign=repo).
 
 = Ready-Made Templates =
-MaxGalleria includes several [gallery layouts and skins](http://maxgalleria.com/shop/category/addons/?utm_source=wordpress&utm_medium=mgrepo&utm_content=gallery-layouts-skins&utm_campaign=plugin), each with plenty of options to customize your galleries just how you like.
+MaxGalleria includes several [gallery layouts and skins](http://maxgalleria.com/?utm_source=wordpress&utm_medium=layoutsskins&utm_content=gallery-layouts-skins&utm_campaign=repo), each with plenty of options to customize your galleries just how you like.
 
 = Built for Developers =
-The MaxGalleria gallery platform was created with developers in mind. You'll find countless [actions and filters](http://maxgalleria.com/documentation/?utm_source=wordpress&utm_medium=mgrepo&utm_content=actions-filters&utm_campaign=plugin) to make your heart sing.
+The MaxGalleria gallery platform was created with developers in mind. You'll find countless [actions and filters](http://maxgalleria.com/documentation/?utm_source=wordpress&utm_medium=actions&utm_content=actions-filters&utm_campaign=repo) to make your heart sing.
 
 = Addons to Enhance Your Gallery Experience =
 Many people will find the core MaxGalleria plugin all they will ever need; however, some people will want to take their gallery experience further. And to do help them do that, there are several addons available:
@@ -147,6 +147,9 @@ To obtain an API key visit this page for instructions: http://maxgalleria.com/yo
 The details about using the Maxgalleria Media Library Plus can be found <a href='http://maxgalleria.com/maxgalleria-media-library-plus/'>here</a>.
 
 == Changelog ==
+
+= 4.08 =
+* Fixes to the media library folder CSS
 
 = 4.07 =
 * Fixes to the media library folder scanning process
