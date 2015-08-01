@@ -112,7 +112,7 @@ class MaxGalleriaMediaLib {
     
   public function enqueue_admin_print_styles() {		
     if(isset($_REQUEST['page'])) {
-  if($_REQUEST['page'] === 'media-library' || $_REQUEST['page'] === 'search-library') {
+        if($_REQUEST['page'] === 'media-library' || $_REQUEST['page'] === 'search-library') {
           wp_enqueue_style('thickbox');
           wp_enqueue_style('maxgalleria-media-library', MAXGALLERIA_MEDIA_LIBRARY_PLUGIN_URL . '/media-library.css');
           wp_enqueue_style('foundation', MAXGALLERIA_PLUGIN_URL . '/libs/foundation/foundation.min.css');

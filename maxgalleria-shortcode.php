@@ -106,6 +106,7 @@ class MaxGalleriaShortcode {
     // display page links if we have pages
     if($items_per_page != -1) {
         $link = get_the_permalink();
+        $link = rtrim($link, '/') . '/'; // remove the slash (if present) and then add back.
         $prev = $paged-1;
         $next = $paged+1;
         $page_links  = "<div style='clear:both'></div><div class='mg-pagination'>";

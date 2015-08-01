@@ -1,3 +1,7 @@
+select {
+  width: auto;
+}
+
 ul.mg-media-list li {
   display: inline-block;
   float: left;
@@ -104,16 +108,15 @@ a.media-attachment img {
   max-width: 96.5%;
 }
 
-#rename-box,
+#rename-box, 
 #new-folder-box {
   border: 1px solid #ddd;
-  display: inline-block;  
+  display: inline-block;
   float: left;
-  height: 30px;
+  height: 52px;
+  max-width: 445px;
   padding: 10px;
-  max-width: 428px;
 }
-
 #folder-message {
   display: block;  
   height: 30px;
@@ -152,9 +155,9 @@ a.media-attachment img {
   border: 1px solid #ddd;
   display: inline-block;  
   float: left;
-  height: 30px;
+  height: 52px;
   padding: 10px;
-  width: 428px;  
+  width: 454px;  
 }
 
 
@@ -164,10 +167,9 @@ a.media-attachment img {
   border: 1px solid #ddd;
   display: inline-block;  
   float: left;
-  height: 30px;
+  height: 52px;
   padding: 10px;
 }
-
 
 #gallery-select {
   width: 330px;
@@ -525,6 +527,11 @@ ul.addon-info li h3 a {
   vertical-align: middle;
   width: 110px;
 }*/
+
+select#move-select,
+select#copy-select {
+  width: auto;
+}
 
 @media (max-width: 1160px) {
     #mgmlp-toolbar {

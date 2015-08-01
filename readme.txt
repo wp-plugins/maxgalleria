@@ -3,7 +3,9 @@ Contributors: maxfoundry, arcware, johnbhartley, AlanP57
 Tags: albums, gallery, image, images, media, flash, foto, fotoalbum, photo, photos, photo albums, picture, pictures, responsive wordpress gallery, thumbmail, thumbnails, wordpress gallery, wordpress gallery plugin, responsive wordpress gallery plugins, responsive, slideshows, image slider, nivo, image slide plugin, photo slider, responsive slideshow, responsive slider plugin, slideshow plugin, wordpress picture slider, wordpress responsive slider, wordpress slider, website gallery, youtube, youtube video, youtube videos, youtube gallery, youtube video galleries, nextgen, nextgen gallery, media library, media uploader, images, image folders
 Requires at least: 3.9
 Tested up to: 4.2.2
-Stable tag: 4.08
+Stable tag: 4.09
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Responsive, Easy to Use, Developer Friendly
 
@@ -129,24 +131,26 @@ For manual installation:
 == Frequently Asked Questions ==
 
 = Does MaxGalleria come with documentation? =
-Yes. All documentation, which includes QuickStart Guides and developer hooks references, [can be found here](http://maxgalleria.com/documentation/?utm_source=wordpress&utm_medium=mgrepo&utm_content=found-here&utm_campaign=plugin).
+Yes. All documentation, which includes QuickStart Guides and developer hooks references, [can be found here](http://maxgalleria.com/documentation/?utm_source=wordpress&utm_medium=faq-doc&utm_content=found-here&utm_campaign=faq-doc).
 
 = Do I have to buy any of the addons to fully enjoy MaxGalleria? =
-No. The MaxGalleria core plugin contains plenty of functionality to keep even the most die-hard gallery user happy. But for those looking to enhance their gallery experience, [MaxGalleria addons](http://maxgalleria.com/shop/category/addons/?utm_source=wordpress&utm_medium=mgrepo&utm_content=maxgalleria-addons&utm_campaign=plugin) are the perfect choice.
+No. The MaxGalleria core plugin contains plenty of functionality to keep even the most die-hard gallery user happy. But for those looking to enhance their gallery experience with layouts for [Albums](http://maxgalleria.com/shop/maxgalleria-albums/?utm_source=wordpress&utm_medium=albums&utm_content=faq-albums&utm_campaign=faq-albums),  [Sliders](http://maxgalleria.com/shop/maxgalleria-image-slider/?utm_source=wordpress&utm_medium=faq-slider&utm_content=faq-image-slider&utm_campaign=faq-slider) or media sources like [Instagram](http://maxgalleria.com/shop/maxgalleria-instagram/?utm_source=wordpress&utm_medium=faq- insta&utm_content=instagram&utm_campaign=faq-insta) or [Flickr](http://maxgalleria.com/shop/maxgalleria-flickr/?utm_source=wordpress&utm_medium=faq-flickr&utm_content=flickr&utm_campaign=faq-flickr) then [MaxGalleria addons](http://maxgalleria.com/shop/category/addons/?utm_source=wordpress&utm_medium=faq-buy&utm_content=maxgalleria-addons&utm_campaign=faq-buy) are the perfect choice.
 
-= Why do I need a Google Developer API Key to add Youtube videos to a gallery?  =
-
+= Why do I need a Google Developer API Key to add Youtube videos to a gallery? =
 Google has recently depreciated the use of the Youtube API version 2 which MaxGalleria uses. We have updated MaxGalleria version 3.1.8 to use version 3 of the API. The new API provides new features for application developers. And it also requires programs accessing Youtube data, such as thumbnails, titles and captions, to have a Google Developer API Key.
 
 MaxGalleria users will now be directed to obtain a Google Developer API Key in order to add new videos to their galleries. Existing galleries are not effected by this change.
 
-To obtain an API key visit this page for instructions: http://maxgalleria.com/youtube-api-key/
+To obtain an API key visit this page for instructions: [http://maxgalleria.com/youtube-api-key/](http://maxgalleria.com/youtube-api-key/)
 
-= How do I activate and use the Maxgalleria Media Library Plus?  =
+= How do I activate and use the Maxgalleria Media Library Plus? =
+The details about using the Maxgalleria Media Library Plus can be found [here](http://maxgalleria.com/maxgalleria-media-library-plus/).
 
-The details about using the Maxgalleria Media Library Plus can be found <a href='http://maxgalleria.com/maxgalleria-media-library-plus/'>here</a>.
 
 == Changelog ==
+
+= 4.09 =
+* Fixed pagination problems with default permalinks
 
 = 4.08 =
 * Fixes to the media library folder CSS
