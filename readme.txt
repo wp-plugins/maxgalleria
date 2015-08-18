@@ -3,7 +3,7 @@ Contributors: maxfoundry, arcware, johnbhartley, AlanP57
 Tags: albums, gallery, image, images, media, flash, foto, fotoalbum, photo, photos, photo albums, picture, pictures, responsive wordpress gallery, thumbmail, thumbnails, wordpress gallery, wordpress gallery plugin, responsive wordpress gallery plugins, responsive, slideshows, image slider, nivo, image slide plugin, photo slider, responsive slideshow, responsive slider plugin, slideshow plugin, wordpress picture slider, wordpress responsive slider, wordpress slider, website gallery, youtube, youtube video, youtube videos, youtube gallery, youtube video galleries, nextgen, nextgen gallery, media library, media uploader, images, image folders, responsive lightbox, swipebox, prettyphoto, fancybox, nivo lightbox, image lightbox
 Requires at least: 3.9
 Tested up to: 4.3
-Stable tag: 4.10
+Stable tag: 4.11
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -20,11 +20,16 @@ You deserve a WordPress responsive gallery plugin that doesn't frustrate you as 
 = A Responsive WordPress Gallery for All Devices =
 From iPhones to iPads to Androids to desktops, MaxGalleria provides a great viewing experience no matter the device your galleries are seen on.
 
+= Responsive Lightbox =
+MaxGalleria includes 2 excellent options to add lightbox to WordPress image galleries, lightbox to WordPress image links and lightbox to WordPress video links (YouTube, Vimeo)
+
+MaxGalleria ships with a complete integration of the fully featured [Magnific Popup](http://dimsemenov.com/plugins/magnific-popup/) responsive lightbox by Dmitry Semenov. It is also fully compatible by selecting a simple option box and recommends at installation the [Responsive Lightbox](https://wordpress.org/plugins/responsive-lightbox/) plugin by dFactory. These plugins allows users to view larger versions of images and galleries in a lightbox (overlay) effect optimized for mobile devices. Responsive Lightbox includes 6 responsive lightbox scripts (SwipeBox, prettyPhoto, FancyBox, Nivo Lightbox, Image Lightbox, Tos "R" Us)
+
 = Superior Workflow =
 From lightboxes to sliders to layouts MaxGalleria provides a highly streamlined user interface that makes it as straightforward as possible to create and manage your galleries.
 
-= Best Alternative to NextGEN =
-Frustrated with the NextGEN Gallery plugin? You're not alone. As the best alternative to NextGEN Max Galleria lets you import your NextGEN galleries into MaxGalleria with just a couple clicks.
+= Import NextGEN Galleries =
+Frustrated with the NextGEN Gallery plugin? You're not alone. As the best alternative to NextGEN Max Galleria lets you Import your NextGEN with just a couple clicks.
 
 = Use Only What You Need =
 Don't get bogged down with useless features. MaxGalleria gives you all the essentials, then lets you pick and choose [enhanced functionality](http://maxgalleria.com/?utm_source=wordpress&utm_medium=enhanced&utm_content=enhanced-functionality&utm_campaign=repo).
@@ -147,6 +152,9 @@ The details about using the Maxgalleria Media Library Plus can be found [here](
 
 
 == Changelog ==
+
+= 4.11 =
+* Updated to the repository description
 
 = 4.10 =
 * Added code to make use of the dFactory Responsive Lightbox plugin. To use, (1) install, activate and configure the Responsive Lightbox plugin, (2) in gallery options select 'Original Image' for 'Thumbnail Click Opens' and check 'Use dFactory Resposive Lightbox' and (3) click the Update button. 
