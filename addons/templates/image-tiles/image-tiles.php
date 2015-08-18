@@ -177,10 +177,19 @@ class MaxGalleriaImageTiles {
 				$output .= '<p class="mg-description">' . $options->get_description_text() . '</p>';
 			}
 		}
-		
+    
+    // check for dfactory selector
+    if($options->get_dfactory_lightbox() == 'on') {
+      $dfactory_settings = get_option('responsive_lightbox_settings');
+      if(!empty($dfactory_settings)) 
+        $reponsive_lb_settings = $dfactory_settings['selector'];        
+      else
+        $reponsive_lb_settings = "";
+    }
+   		
 		$output .= '	<div class="mg-thumbs ' . $options->get_thumb_columns_class() . '">';
 		$output .= '		<ul>';
-
+        
 		foreach ($attachments as $attachment) {
 			$excluded = get_post_meta($attachment->ID, 'maxgallery_attachment_image_exclude', true);
 			if (!$excluded) {
@@ -235,13 +244,17 @@ class MaxGalleriaImageTiles {
         }  
         else  
 				  $thumb_image_element = '<img class="' . $image_class . '" src="' . $thumb_image['url'] . '" width="' . $thumb_image['width'] . '" height="' . $thumb_image['height'] . '" alt="' . esc_attr($alt) . '" title="' . esc_attr($title) . '" />';
-				
+        
 				$output .= '<li>';
         if($options->get_thumb_click() !== 'no_link') {
           if($options->get_thumb_click() === 'lightbox')
             $output .= "	<a class='mg-magnific' href='" . $href . "' target='" . $target . "' rel='$image_rel' title='" . esc_attr($image_caption) . "'>";
-          else
-            $output .= "	<a href='" . $href . "' target='" . $target . "' rel='$image_rel' title='" . esc_attr($image_caption) . "'>";
+          else {
+            if($options->get_dfactory_lightbox() == 'on') 
+              $output .= "	<a  data-rel='" . $reponsive_lb_settings ."-0' href='" . $href . "' target='" . $target . "' rel='$image_rel' title='" . esc_attr($image_caption) . "'>";
+            else
+              $output .= "	<a  href='" . $href . "' target='" . $target . "' rel='$image_rel' title='" . esc_attr($image_caption) . "'>";
+          }  
         }
 				$output .= '		<div class="' . $image_container_class . '">';
 				$output .= 				apply_filters(MAXGALLERIA_FILTER_IMAGE_TILES_BEFORE_THUMB, '', $options);

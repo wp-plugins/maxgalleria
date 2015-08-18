@@ -149,7 +149,16 @@ class MaxGalleriaVideoTiles {
 				$output .= '<p class="mg-description">' . $options->get_description_text() . '</p>';
 			}
 		}
-		
+    
+    // check for dfactory selector
+    if($options->get_dfactory_lightbox() == 'on') {
+      $dfactory_settings = get_option('responsive_lightbox_settings');
+      if(!empty($dfactory_settings)) 
+        $reponsive_lb_settings = $dfactory_settings['selector'];        
+      else
+        $reponsive_lb_settings = "";
+    }
+    		
 		$output .= '	<div class="mg-videos">';
 
 		foreach ($attachments as $attachment) {
@@ -203,7 +212,12 @@ class MaxGalleriaVideoTiles {
 				$thumb_image_element = '<img class="' . $image_class . '" src="' . $thumb_image['url'] . '" width="' . $thumb_image['width'] . '" height="' . $thumb_image['height'] . '" alt="' . esc_attr($alt) . '" title="' . esc_attr($title) . '" />';
 				        
 				$output .= '<li>';
-				$output .= '	<a class="video" data-video-thumb-id="' . $attachment->ID . '" href="' . $href . '" target="' . $target . '" rel="' . $image_rel . '">';
+        
+        if($options->get_dfactory_lightbox() == 'on') 
+				  $output .= '	<a data-rel="' . $reponsive_lb_settings . '-0" class="video" data-video-thumb-id="' . $attachment->ID . '" href="' . $href . '" target="' . $target . '" rel="' . $image_rel . '">';
+        else
+				  $output .= '	<a class="video" data-video-thumb-id="' . $attachment->ID . '" href="' . $href . '" target="' . $target . '" rel="' . $image_rel . '">';
+          
 				$output .= '		<div class="' . $image_container_class . '">';
 				$output .= 				apply_filters(MAXGALLERIA_FILTER_VIDEO_TILES_BEFORE_THUMB, '', $options);
 				$output .=				apply_filters(MAXGALLERIA_FILTER_VIDEO_TILES_THUMB, $thumb_image_element, $thumb_image, $image_class, $alt, $title);

@@ -192,6 +192,16 @@ $options = new MaxGalleriaVideoTilesOptions();
 			</tr>
       
       <tr><td><span class="mg-bold">Lightbox Settings</span></td></tr>
+      
+      <?php if(class_exists('Responsive_Lightbox')) { ?>
+        <tr>
+          <td><?php _e('Use dFactory Resposive Lightbox:<br>(Set "Thumbnail Click Opens" to "Video URL" when using this option.)', 'maxgalleria') ?></td>
+          <td>
+            <input data-default="<?php echo $options->dfactory_lightbox_default ?>" type="checkbox" id="<?php echo $options->dfactory_lightbox_default_key ?>" name="<?php echo $options->dfactory_lightbox_default_key ?>" <?php echo (($options->get_dfactory_lightbox_default() == 'on') ? 'checked' : '') ?> />
+          </td>
+        </tr>
+      <?php } ?>
+  
       <tr>
 				<td><?php _e('Align Top Enabled:', 'maxgalleria') ?></td>
 				<td>

@@ -3,7 +3,7 @@
 Plugin Name: MaxGalleria
 Plugin URI: http://maxgalleria.com
 Description: The gallery platform for WordPress.
-Version: 4.09
+Version: 4.10
 Author: Max Foundry
 Author URI: http://maxfoundry.com
 
@@ -43,7 +43,7 @@ class MaxGalleria {
 		update_option(MAXGALLERIA_VERSION_KEY, MAXGALLERIA_VERSION_NUM);
 		
     $this->copy_template();
-
+    
     //add_action('wp_head', 'create_promo_js');
 	}
   
@@ -413,6 +413,7 @@ class MaxGalleria {
 		require_once 'maxgalleria-video-gallery.php';
 		require_once 'widgets/gallery-widget.php';
 		require_once 'widgets/gallery-thumb-widget.php';
+    require_once 'libs/TGMPA-TGM-Plugin-Activation/class-tgm-plugin-activation.php';
 		
 		$this->admin = new MaxGalleriaAdmin();
 		$this->common = new MaxGalleriaCommon();
@@ -564,7 +565,7 @@ class MaxGalleria {
 	
 	public function set_global_constants() {	
 		define('MAXGALLERIA_VERSION_KEY', 'maxgalleria_version');
-		define('MAXGALLERIA_VERSION_NUM', '4.09');
+		define('MAXGALLERIA_VERSION_NUM', '4.10');
 		define('MAXGALLERIA_PLUGIN_NAME', trim(dirname(plugin_basename(__FILE__)), '/'));
 		define('MAXGALLERIA_PLUGIN_DIR', WP_PLUGIN_DIR . '/' . MAXGALLERIA_PLUGIN_NAME);
 		define('MAXGALLERIA_PLUGIN_URL', plugin_dir_url('') . MAXGALLERIA_PLUGIN_NAME);
@@ -619,6 +620,7 @@ class MaxGalleria {
 		add_action('admin_footer', array($this, 'media_button_admin_footer'));
 		add_action('widgets_init', array($this, 'register_widgets'));
 		add_action('after_switch_theme', array($this, 'copy_template'));
+    add_action('tgmpa_register', array($this, 'maxgalleria_register_required_plugins'));
     
     if(!defined('ATTACHMENT_QUERY_OFF'))    
       add_action( 'pre_get_posts', array($this, 'modify_attachments'));
@@ -632,6 +634,110 @@ class MaxGalleria {
 //    add_action( 'mg_task_hook', array($this, 'mg_daily_check') );
              
 	}
+  
+  public function maxgalleria_register_required_plugins() {
+    $plugins = array(
+      array(
+        'name'      => 'Responsive Lightbox',
+        'slug'      => 'responsive-lightbox',
+        'required'  => false
+      )    
+    );
+      
+    $config = array(
+      'id'           => 'maxgalleria-tgmpa',                 // Unique ID for hashing notices for multiple instances of TGMPA.
+      'default_path' => '',                      // Default absolute path to bundled plugins.
+      'menu'         => 'tgmpa-install-plugins', // Menu slug.
+      'parent_slug'  => 'plugins.php',           // Parent menu slug.
+      'capability'   => 'manage_options',    // Capability needed to view plugin install page, should be a capability associated with the parent menu used.
+      'has_notices'  => true,                    // Show admin notices or not.
+      'dismissable'  => true,                    // If false, a user cannot dismiss the nag message.
+      'dismiss_msg'  => '',                      // If 'dismissable' is false, this message will be output at top of nag.
+      'is_automatic' => false,                   // Automatically activate plugins after installation or not.
+      'message'      => '',                      // Message to output right before the plugins table.
+        
+		
+      'strings'      => array(
+        'page_title'                      => __( 'Install Required Plugins', 'theme-slug' ),
+        'menu_title'                      => __( 'Install Plugins', 'theme-slug' ),
+        'installing'                      => __( 'Installing Plugin: %s', 'theme-slug' ), // %s = plugin name.
+        'oops'                            => __( 'Something went wrong with the plugin API.', 'theme-slug' ),
+        'notice_can_install_required'     => _n_noop(
+          'This theme requires the following plugin: %1$s.',
+          'This theme requires the following plugins: %1$s.',
+          'theme-slug'
+        ), // %1$s = plugin name(s).
+        'notice_can_install_recommended'  => _n_noop(
+          'MaxGalleria recommends the following plugin: %1$s which allows the selection from 6 responsive lightbox scripts (SwipeBox, prettyPhoto, FancyBox, Nivo Lightbox, Image Lightbox, Tos "R" Us)',
+          'MaxGalleria recommends the following plugins: %1$s.',
+          'theme-slug'
+        ), // %1$s = plugin name(s).
+        'notice_cannot_install'           => _n_noop(
+          'Sorry, but you do not have the correct permissions to install the %1$s plugin.',
+          'Sorry, but you do not have the correct permissions to install the %1$s plugins.',
+          'theme-slug'
+        ), // %1$s = plugin name(s).
+        'notice_ask_to_update'            => _n_noop(
+          'The following plugin needs to be updated to its latest version to ensure maximum compatibility with this theme: %1$s.',
+          'The following plugins need to be updated to their latest version to ensure maximum compatibility with this theme: %1$s.',
+          'theme-slug'
+        ), // %1$s = plugin name(s).
+        'notice_ask_to_update_maybe'      => _n_noop(
+          'There is an update available for: %1$s.',
+          'There are updates available for the following plugins: %1$s.',
+          'theme-slug'
+        ), // %1$s = plugin name(s).
+        'notice_cannot_update'            => _n_noop(
+          'Sorry, but you do not have the correct permissions to update the %1$s plugin.',
+          'Sorry, but you do not have the correct permissions to update the %1$s plugins.',
+          'theme-slug'
+        ), // %1$s = plugin name(s).
+        'notice_can_activate_required'    => _n_noop(
+          'The following required plugin is currently inactive: %1$s.',
+          'The following required plugins are currently inactive: %1$s.',
+          'theme-slug'
+        ), // %1$s = plugin name(s).
+        'notice_can_activate_recommended' => _n_noop(
+          'The following recommended plugin is currently inactive: %1$s.',
+          'The following recommended plugins are currently inactive: %1$s.',
+          'theme-slug'
+        ), // %1$s = plugin name(s).
+        'notice_cannot_activate'          => _n_noop(
+          'Sorry, but you do not have the correct permissions to activate the %1$s plugin.',
+          'Sorry, but you do not have the correct permissions to activate the %1$s plugins.',
+          'theme-slug'
+        ), // %1$s = plugin name(s).
+        'install_link'                    => _n_noop(
+          'Begin installing plugin',
+          'Begin installing plugins',
+          'theme-slug'
+        ),
+        'update_link' 					  => _n_noop(
+          'Begin updating plugin',
+          'Begin updating plugins',
+          'theme-slug'
+        ),
+        'activate_link'                   => _n_noop(
+          'Begin activating plugin',
+          'Begin activating plugins',
+          'theme-slug'
+        ),
+        'return'                          => __( 'Return to Required Plugins Installer', 'theme-slug' ),
+        'plugin_activated'                => __( 'Plugin activated successfully.', 'theme-slug' ),
+        'activated_successfully'          => __( 'The following plugin was activated successfully:', 'theme-slug' ),
+        'plugin_already_active'           => __( 'No action taken. Plugin %1$s was already active.', 'theme-slug' ),  // %1$s = plugin name(s).
+        'plugin_needs_higher_version'     => __( 'Plugin not activated. A higher version of %s is needed for this theme. Please update the plugin.', 'theme-slug' ),  // %1$s = plugin name(s).
+        'complete'                        => __( 'All plugins installed and activated successfully. %1$s', 'theme-slug' ), // %s = dashboard link.
+        'contact_admin'                   => __( 'Please contact the administrator of this site for help.', 'tgmpa' ),
+
+        'nag_type'                        => 'updated', // Determines admin notice type - can only be 'updated', 'update-nag' or 'error'.
+      ),
+		
+        
+    );
+  
+	  tgmpa( $plugins, $config );
+  }
 
   public function modify_attachments( $query ) {
     

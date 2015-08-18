@@ -220,6 +220,18 @@ $options = new MaxGalleriaImageTilesOptions($post->ID);
 			</td>
 		</tr>
     <tr><td><span class="mg-bold">Lightbox Settings</span></td></tr>
+    
+    <?php if(class_exists('Responsive_Lightbox')) { ?>    
+      <tr>
+        <td>
+          <label for="<?php echo $options->dfactory_lightbox_key ?>"><?php _e('Use dFactory Resposive Lightbox:<br>(Set "Thumbnail Click Opens" to "Original Image" or "Image Link" when using this option.)', 'maxgalleria') ?></label>
+        </td>
+        <td>
+          <input type="checkbox" id="<?php echo $options->dfactory_lightbox_key ?>" name="<?php echo $options->dfactory_lightbox_key ?>" <?php echo (($options->get_dfactory_lightbox() == 'on') ? 'checked' : '') ?> />
+        </td>
+      </tr>
+    <?php } ?>
+    
 		<tr>
 			<td>
 				<label for="<?php echo $options->align_top_enabled_key ?>"><?php _e('Align Top Enabled:', 'maxgalleria') ?></label>

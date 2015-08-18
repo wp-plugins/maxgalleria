@@ -176,7 +176,24 @@ class MaxGalleriaVideoTilesOptions extends MaxGalleryOptions {
 	public $sort_order_default = 'asc';
 	public $sort_order_default_key = 'maxgallery_sort_order_video_tiles_default';
 	public $sort_order_key = 'maxgallery_sort_order_video_tiles';
+
+	public $dfactory_lightbox_default = '';
+	public $dfactory_lightbox_default_key = 'maxgallery_video_dfactory_lightbox_default';
+	public $dfactory_lightbox_key = 'maxgallery_video_dfactory_lightbox_enabled';  
   
+	public function get_dfactory_lightbox() {
+		$value = $this->get_post_meta($this->dfactory_lightbox_key);
+		if ($value == '' && $this->get_saves_count() < 1) {
+			$value = $this->get_dfactory_lightbox_default();
+		}
+		
+		return $value;
+	}
+	
+	public function get_dfactory_lightbox_default() {
+		return get_option($this->dfactory_lightbox_default_key, $this->dfactory_lightbox_default);
+	}
+    
   public function get_sort_order() {
 		$value = $this->get_post_meta($this->sort_order_key);
 		if ($value == '' && $this->get_saves_count() < 1) {
@@ -564,7 +581,8 @@ class MaxGalleriaVideoTilesOptions extends MaxGalleryOptions {
       $this->prev_button_title_key,
       $this->next_button_title_key,
       $this->counter_markup_key,
-      $this->sort_order_key
+      $this->sort_order_key,
+      $this->dfactory_lightbox_key  
 		);
 	}
 }

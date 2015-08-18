@@ -1,30 +1,30 @@
 === MaxGalleria: WordPress Gallery Platform ===
 Contributors: maxfoundry, arcware, johnbhartley, AlanP57
-Tags: albums, gallery, image, images, media, flash, foto, fotoalbum, photo, photos, photo albums, picture, pictures, responsive wordpress gallery, thumbmail, thumbnails, wordpress gallery, wordpress gallery plugin, responsive wordpress gallery plugins, responsive, slideshows, image slider, nivo, image slide plugin, photo slider, responsive slideshow, responsive slider plugin, slideshow plugin, wordpress picture slider, wordpress responsive slider, wordpress slider, website gallery, youtube, youtube video, youtube videos, youtube gallery, youtube video galleries, nextgen, nextgen gallery, media library, media uploader, images, image folders
+Tags: albums, gallery, image, images, media, flash, foto, fotoalbum, photo, photos, photo albums, picture, pictures, responsive wordpress gallery, thumbmail, thumbnails, wordpress gallery, wordpress gallery plugin, responsive wordpress gallery plugins, responsive, slideshows, image slider, nivo, image slide plugin, photo slider, responsive slideshow, responsive slider plugin, slideshow plugin, wordpress picture slider, wordpress responsive slider, wordpress slider, website gallery, youtube, youtube video, youtube videos, youtube gallery, youtube video galleries, nextgen, nextgen gallery, media library, media uploader, images, image folders, responsive lightbox, swipebox, prettyphoto, fancybox, nivo lightbox, image lightbox
 Requires at least: 3.9
-Tested up to: 4.2.2
-Stable tag: 4.09
+Tested up to: 4.3
+Stable tag: 4.10
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Responsive, Easy to Use, Developer Friendly
+Responsive Gallery with built in Slider and Lightbox
 
 == Description ==
 
-WordPress users deserve a gallery plugin that doesn't frustrate them as they use it - they want a gallery plugin that is actually a joy to use. Other gallery plugins claim to be the best simply because they've been around the longest and have the most downloads. But we know better. MaxGalleria helps change the game by giving users a streamlined experience for creating and managing responsive WordPress galleries that look great on any device.
+You deserve a WordPress responsive gallery plugin that doesn't frustrate you as you use it - you want a WP gallery plugin that is actually a joy to use. Other gallery plugins claim to be the best simply because they've been around the longest and have the most downloads. But we know better. MaxGalleria helps change the game by giving users a streamlined experience for creating and managing responsive WordPress galleries that look great on any device.
 
 = Useful Info =
 * [What Is a WordPress Gallery Platform?](http://maxgalleria.com/?utm_source=wordpress&utm_medium=whatis&utm_content=what-is-wordpress-gallery-platform&utm_campaign=repo)
 * [How to Upgrade to MaxGalleria 2.0](http://maxgalleria.com/blog/upgrade-maxgalleria-2-0/?utm_source=wordpress&utm_medium=upgrade2&utm_content=how-to-upgrade-maxgalleria-2&utm_campaign=repo)
 
-= Responsive for All Devices =
+= A Responsive WordPress Gallery for All Devices =
 From iPhones to iPads to Androids to desktops, MaxGalleria provides a great viewing experience no matter the device your galleries are seen on.
 
 = Superior Workflow =
-MaxGalleria provides a highly streamlined user interface that makes it as straightforward as possible to create and manage your galleries.
+From lightboxes to sliders to layouts MaxGalleria provides a highly streamlined user interface that makes it as straightforward as possible to create and manage your galleries.
 
 = Best Alternative to NextGEN =
-Frustrated with the NextGEN Gallery plugin? You're not alone. Import your NextGEN galleries into MaxGalleria with just a couple clicks.
+Frustrated with the NextGEN Gallery plugin? You're not alone. As the best alternative to NextGEN Max Galleria lets you import your NextGEN galleries into MaxGalleria with just a couple clicks.
 
 = Use Only What You Need =
 Don't get bogged down with useless features. MaxGalleria gives you all the essentials, then lets you pick and choose [enhanced functionality](http://maxgalleria.com/?utm_source=wordpress&utm_medium=enhanced&utm_content=enhanced-functionality&utm_campaign=repo).
@@ -62,9 +62,9 @@ Many people will find the core MaxGalleria plugin all they will ever need; howev
 = Features at a Glance =
 MaxGalleria is stuffed full of all the features and functionality you need to easily create and manage your image and video galleries in WordPress.
 
-* Responsive galleries
+* Responsive WordPress galleries
 * Unlimited number of galleries
-* Native integration with WP media manager
+* Native integration with WordPress media manager and extensions with our included Media Library Plus
 * Select multiple images from media manager
 * Add images from your computer
 * Import galleries from NextGEN
@@ -100,9 +100,8 @@ Support
 
 We work hard to give timely support during the week.  And we give support when we're on during the weekend
 
-If you like MaxGalleria please leave us a ★★★★★ rating. A huge thank you from MaxFoundry in advance!
+If you like MaxGalleria please leave us a ★★★★★ rating [here](https://wordpress.org/support/view/plugin-reviews/maxgalleria#postform). A huge thank you from MaxFoundry in advance!
 
-<a href="https://wordpress.org/support/view/plugin-reviews/maxgalleria#postform" target="blank" ></a>
 
 
 == Screenshots ==
@@ -148,6 +147,9 @@ The details about using the Maxgalleria Media Library Plus can be found [here](
 
 
 == Changelog ==
+
+= 4.10 =
+* Added code to make use of the dFactory Responsive Lightbox plugin. To use, (1) install, activate and configure the Responsive Lightbox plugin, (2) in gallery options select 'Original Image' for 'Thumbnail Click Opens' and check 'Use dFactory Resposive Lightbox' and (3) click the Update button. 
 
 = 4.09 =
 * Fixed pagination problems with default permalinks
