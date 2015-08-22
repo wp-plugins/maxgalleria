@@ -75,6 +75,7 @@ $options = new MaxGalleriaVideoTilesOptions($post->ID);
 
 <div class="meta-options">
 	<table>
+    <tr><td><span class="mg-bold">Basic Settings</span></td></tr>
 		<tr>
 			<td>
 				<?php _e('Gallery Skin:', 'maxgalleria') ?>

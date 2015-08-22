@@ -166,8 +166,8 @@ class MaxGalleriaMediaLib {
     add_action('wp_ajax_nopriv_move_media', array($this, 'move_media'));
     add_action('wp_ajax_move_media', array($this, 'move_media'));
     
-    add_action('wp_ajax_nopriv_add_to_gallery', array($this, 'add_to_gallery'));
-    add_action('wp_ajax_add_to_gallery', array($this, 'add_to_gallery'));
+    add_action('wp_ajax_nopriv_add_to_max_gallery', array($this, 'add_to_max_gallery'));
+    add_action('wp_ajax_add_to_max_gallery', array($this, 'add_to_max_gallery'));
     
     add_action('wp_ajax_nopriv_rename_image', array($this, 'rename_image'));
     add_action('wp_ajax_rename_image', array($this, 'rename_image'));
@@ -1459,7 +1459,7 @@ where ID = $folder_id";
     return $rSizes;
   }  
   
-  public function add_to_gallery () {
+  public function add_to_max_gallery () {
     
     global $wpdb, $maxgalleria;
     
@@ -1513,8 +1513,9 @@ where ID = $folder_id";
           //Else, unset the attachment ID, change the post parent and insert a new attachment
           unset( $attachment[ 'ID' ] );
           $attachment[ 'post_parent' ] = $gallery_id;
-          $new_attachment_id = $this->mpmlp_insert_post( $attachment );
-
+          $new_attachment_id = wp_insert_post( $attachment );
+          //$new_attachment_id = $this->mpmlp_insert_post( $attachment );
+          
 
           //Now, duplicate all the custom fields. (There's probably a better way to do this)
           $custom_fields = get_post_custom( $attachment_id );

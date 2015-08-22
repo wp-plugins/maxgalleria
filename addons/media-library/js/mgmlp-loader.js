@@ -237,7 +237,7 @@ jQuery(document).ready(function(){
       jQuery.ajax({
         type: "POST",
         async: true,
-        data: { action: "add_to_gallery", gallery_id: gallery_id, serial_gallery_image_ids: serial_gallery_image_ids, nonce: mgmlp_ajax.nonce },
+        data: { action: "add_to_max_gallery", gallery_id: gallery_id, serial_gallery_image_ids: serial_gallery_image_ids, nonce: mgmlp_ajax.nonce },
         url : mgmlp_ajax.ajaxurl,
         dataType: "html",
         success: function (data) {

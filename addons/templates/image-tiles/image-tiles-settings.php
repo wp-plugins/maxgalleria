@@ -123,6 +123,7 @@ $options = new MaxGalleriaImageTilesOptions();
 	
 	<form id="form-image-tiles-settings">
 		<table cellpadding="0" cellspacing="0">
+      <tr><td><span class="mg-bold">Basic Settings</span></td></tr>
 			<tr>
 				<td><?php _e('Gallery Skin:', 'maxgalleria') ?></td>
 				<td>
