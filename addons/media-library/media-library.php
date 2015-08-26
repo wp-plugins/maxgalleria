@@ -154,8 +154,8 @@ class MaxGalleriaMediaLib {
     add_action('wp_ajax_nopriv_create_new_folder', array($this, 'create_new_folder'));
     add_action('wp_ajax_create_new_folder', array($this, 'create_new_folder'));
     
-    add_action('wp_ajax_nopriv_delete_media', array($this, 'delete_media'));
-    add_action('wp_ajax_delete_media', array($this, 'delete_media'));
+    add_action('wp_ajax_nopriv_delete_maxgalleria_media', array($this, 'delete_maxgalleria_media'));
+    add_action('wp_ajax_delete_maxgalleria_media', array($this, 'delete_maxgalleria_media'));
     
     add_action('wp_ajax_nopriv_upload_attachment', array($this, 'upload_attachment'));
     add_action('wp_ajax_upload_attachment', array($this, 'upload_attachment'));
@@ -1189,7 +1189,7 @@ where ID = $folder_id";
   
   }
   
-  public function delete_media() {
+  public function delete_maxgalleria_media() {
     global $wpdb;
     $delete_ids = array();
     

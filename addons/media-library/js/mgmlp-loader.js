@@ -144,7 +144,7 @@ jQuery(document).ready(function(){
           jQuery.ajax({
             type: "POST",
             async: true,
-            data: { action: "delete_media", serial_delete_ids: serial_delete_ids, nonce: mgmlp_ajax.nonce },
+            data: { action: "delete_maxgalleria_media", serial_delete_ids: serial_delete_ids, nonce: mgmlp_ajax.nonce },
             //var delete_data = jQuery.serialize(data);
             url : mgmlp_ajax.ajaxurl,
             dataType: "html",
