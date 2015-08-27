@@ -3,7 +3,7 @@ Contributors: maxfoundry, arcware, johnbhartley, AlanP57
 Tags: albums, gallery, image, images, media, flash, foto, fotoalbum, photo, photos, photo albums, picture, pictures, responsive wordpress gallery, thumbmail, thumbnails, wordpress gallery, wordpress gallery plugin, responsive wordpress gallery plugins, responsive, slideshows, image slider, nivo, image slide plugin, photo slider, responsive slideshow, responsive slider plugin, slideshow plugin, wordpress picture slider, wordpress responsive slider, wordpress slider, website gallery, youtube, youtube video, youtube videos, youtube gallery, youtube video galleries, nextgen, nextgen gallery, media library, media uploader, images, image folders, responsive lightbox, swipebox, prettyphoto, fancybox, nivo lightbox, image lightbox
 Requires at least: 3.9
 Tested up to: 4.3
-Stable tag: 4.11
+Stable tag: 4.12
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -152,6 +152,9 @@ The details about using the Maxgalleria Media Library Plus can be found [here](
 
 
 == Changelog ==
+
+= 4.12 =
+* Gave unique names to some AJAX function which were conflicting with other plugins; replaced home_url with site_url for sites that run WP in a sub folder
 
 = 4.11 =
 * Updated to the repository description

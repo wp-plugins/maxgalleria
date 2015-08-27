@@ -675,7 +675,7 @@ class MaxGalleriaMediaLib {
 
             $folder_count = count($parents);
             $folder_counter = 0;        
-            $current_folder_string = home_url() . "/wp-content";
+            $current_folder_string = site_url() . "/wp-content";
             foreach( $parents as $key => $obj) { 
               $folder_counter++;
               if($folder_counter === $folder_count)
@@ -824,7 +824,7 @@ order by post_name";
               var folder = jQuery(this).attr('folder');
 
               //var pathname = window.location.pathname;
-              var home_url = "<?php echo home_url(); ?>"; 
+              var home_url = "<?php echo site_url(); ?>"; 
               //console.log(folder);
 
               window.location.href = home_url + '/wp-admin/admin.php?page=media-library&' + 'media-folder=' + folder;
@@ -837,7 +837,7 @@ order by post_name";
                 
                 var search_value = jQuery('#mgmlp-media-search-input').val();
                 
-                var home_url = "<?php echo home_url(); ?>"; 
+                var home_url = "<?php echo site_url(); ?>"; 
 
                 window.location.href = home_url + '/wp-admin/admin.php?page=search-library&' + 's=' + search_value;
                 
@@ -998,7 +998,7 @@ order by $order_by";
                 $filename = pathinfo($row->guid, PATHINFO_BASENAME);
                                 
                 echo "<li>" . PHP_EOL;
-                echo "   <a class='$class' href='" . home_url() . $media_edit_link . "'><img alt='' src='$thumbnail' /></a>" . PHP_EOL;
+                echo "   <a class='$class' href='" . site_url() . $media_edit_link . "'><img alt='' src='$thumbnail' /></a>" . PHP_EOL;
                 echo "   <div class='attachment-name'><span class='image_select'>$checkbox</span>$filename</div>" . PHP_EOL;
                 echo "</li>" . PHP_EOL;              
               }      
@@ -1118,7 +1118,7 @@ where ID = $folder_id";
     if(!file_exists($new_folder_path)) {
       if(mkdir($new_folder_path)) {
         if($this->add_media_folder($new_folder_name, $parent_folder_id, $new_folder_url)){
-          $location = 'window.location.href = "' . home_url() . '/wp-admin/admin.php?page=media-library&media-folder=' . $parent_folder_id .'";';
+          $location = 'window.location.href = "' . site_url() . '/wp-admin/admin.php?page=media-library&media-folder=' . $parent_folder_id .'";';
           echo __('The folder was created.','maxgalleria-media-library');
           echo "<script>$location</script>";
         }  
@@ -1428,7 +1428,7 @@ where ID = $folder_id";
       }
       
       if(!$copy) {
-        $location = "window.location.href = '" . home_url() . "/wp-admin/admin.php?page=media-library&media-folder=" . $current_folder . "'";
+        $location = "window.location.href = '" . site_url() . "/wp-admin/admin.php?page=media-library&media-folder=" . $current_folder . "'";
         echo "<script>$location</script>";
       }
       
@@ -1576,7 +1576,7 @@ where ID = $folder_id";
 
           $class = "media-attachment"; 
           echo "<li>" . PHP_EOL;
-          echo "   <a class='$class' href='" . home_url() . "/wp-admin/upload.php?item=" . $row->ID . "'><img alt='' src='$thumbnail' /></a>" . PHP_EOL;
+          echo "   <a class='$class' href='" . site_url() . "/wp-admin/upload.php?item=" . $row->ID . "'><img alt='' src='$thumbnail' /></a>" . PHP_EOL;
           echo "   <div class='attachment-name'>$row->post_title.$ext</div>" . PHP_EOL;
           echo "</li>" . PHP_EOL;              
         }      
@@ -1600,7 +1600,7 @@ where ID = $folder_id";
     echo '  <div class="media-plus-toolbar wp-filter">' . PHP_EOL;
     echo '<div id="mgmlp-title-area">' . PHP_EOL;
     echo '  <h2 class="mgmlp-title">Maxgalleria Media Library Plus Search Results</h2>' . PHP_EOL;
-    echo '  <div id="back-wraper"><a href="' . home_url() . '/wp-admin/admin.php?page=media-library">Back to Media Library Plus Folders</a></div>' . PHP_EOL;
+    echo '  <div id="back-wraper"><a href="' . site_url() . '/wp-admin/admin.php?page=media-library">Back to Media Library Plus Folders</a></div>' . PHP_EOL;
     echo '  <div id="search-wrap"><input type="search" placeholder="Search" id="mgmlp-media-search-input" class="search"></div>' . PHP_EOL;            
     echo '</div>' . PHP_EOL;
     echo "<p>Click on an image to go to its folder or a on folder to view its contents.</p>";
@@ -1625,7 +1625,7 @@ where ID = $folder_id";
         foreach($rows as $row) {
           
           echo "<li>" . PHP_EOL;
-          echo "   <a class='$class' href='" . home_url() . "/wp-admin/admin.php?page=media-library&media-folder=" . $row->ID . "'><img alt='' src='$thumbnail' /></a>" . PHP_EOL;
+          echo "   <a class='$class' href='" . site_url() . "/wp-admin/admin.php?page=media-library&media-folder=" . $row->ID . "'><img alt='' src='$thumbnail' /></a>" . PHP_EOL;
           echo "   <div class='attachment-name'>$row->post_title</div>" . PHP_EOL;
           echo "</li>" . PHP_EOL;              
           
@@ -1662,7 +1662,7 @@ where ID = $folder_id";
           $filename =  pathinfo($row->guid, PATHINFO_BASENAME);
           
           echo "<li>" . PHP_EOL;
-          echo "   <a class='$class' href='" . home_url() . "/wp-admin/admin.php?page=media-library&media-folder=" . $row->folder_id . "'><img alt='' src='$thumbnail' /></a>" . PHP_EOL;
+          echo "   <a class='$class' href='" . site_url() . "/wp-admin/admin.php?page=media-library&media-folder=" . $row->folder_id . "'><img alt='' src='$thumbnail' /></a>" . PHP_EOL;
           echo "   <div class='attachment-name'>$filename</div>" . PHP_EOL;
           echo "</li>" . PHP_EOL;              
         }      
@@ -1684,7 +1684,7 @@ where ID = $folder_id";
 
           var search_value = jQuery('#mgmlp-media-search-input').val();
 
-          var home_url = "<?php echo home_url(); ?>"; 
+          var home_url = "<?php echo site_url(); ?>"; 
 
           window.location.href = home_url + '/wp-admin/admin.php?page=search-library&' + 's=' + search_value;
 
