@@ -33,11 +33,20 @@ class MaxGalleriaAdmin {
 		$function = array($this, 'add_support_page');
 		add_submenu_page($parent_slug, $page_title, $sub_menu_title, $capability, $menu_slug, $function);
     		
-		$parent_slug = $edit_page;
 		$capability = 'manage_options';
 		$menu_slug = 'mg-admin-notice';
 		$function = array($this, 'set_admin_notice_true');    
-		add_submenu_page($parent_slug, '', '', $capability, $menu_slug, $function);
+		add_submenu_page(null, '', '', $capability, $menu_slug, $function);
+        
+		$capability = 'manage_options';
+		$menu_slug = 'mg-review-notice';
+		$function = array($this, 'set_review_notice_true');    
+		add_submenu_page(null, '', '', $capability, $menu_slug, $function);
+    
+		$capability = 'manage_options';
+		$menu_slug = 'mg-review-later';
+		$function = array($this, 'set_review_later');    
+		add_submenu_page(null, '', '', $capability, $menu_slug, $function);
     		
 		do_action(MAXGALLERIA_ACTION_AFTER_ADMIN_MENU_PAGES, $edit_page);
 	}
@@ -65,6 +74,33 @@ class MaxGalleriaAdmin {
     echo "<script>window.location.href = '" . $request . "'</script>";             
     
 	}
+  
+	public function set_review_notice_true() {
+    
+    $current_user_id = get_current_user_id(); 
+    
+    update_user_meta( $current_user_id, MAXGALLERIA_REVIEW_NOTICE, "off" );
+    
+    $request = $_SERVER["HTTP_REFERER"];
+    
+    echo "<script>window.location.href = '" . $request . "'</script>";             
+    
+	}
+  
+	public function set_review_later() {
+    
+    $current_user_id = get_current_user_id(); 
+    
+    $review_date = date('Y-m-d', strtotime("+14 days"));
+        
+    update_user_meta( $current_user_id, MAXGALLERIA_REVIEW_NOTICE, $review_date );
+    
+    $request = $_SERVER["HTTP_REFERER"];
+    
+    echo "<script>window.location.href = '" . $request . "'</script>";             
+    
+	}
+  
   
 }
 ?>

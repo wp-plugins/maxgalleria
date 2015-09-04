@@ -744,7 +744,7 @@ class MaxGalleriaMediaLib {
             
             echo '<div id="rename-area" class="input-area">' . PHP_EOL;
             echo '  <div id="rename-box">' . PHP_EOL;
-            echo __('File Name: ','maxgalleria-media-library') . '<input type="text" name="new-file-name" id="new-file-name", value="" />' . PHP_EOL;
+            echo __('File Name: ','maxgalleria-media-library') . '<input type="text" name="new-file-name" id="new-file-name" value="" />' . PHP_EOL;
             echo '<div class="btn-wrap"><a id="mgmlp-rename-file" class="gray-blue-link" >'. __('Rename','maxgalleria-media-library') .'</a></div>' . PHP_EOL;
             echo '  </div>' . PHP_EOL;
             echo '</div>' . PHP_EOL;
@@ -806,7 +806,7 @@ order by post_name";
             echo '<div id="new-folder-area" class="input-area">' . PHP_EOL;
             echo '  <div id="new-folder-box">' . PHP_EOL;
             echo '<input type="hidden" id="current-folder-id" value="' . $current_folder_id . '" />' . PHP_EOL;
-            echo __('Folder Name: ','maxgalleria-media-library') . '<input type="text" name="new-folder-name" id="new-folder-name", value="" />' . PHP_EOL;
+            echo __('Folder Name: ','maxgalleria-media-library') . '<input type="text" name="new-folder-name" id="new-folder-name" value="" />' . PHP_EOL;
             echo '<div class="btn-wrap"><a id="mgmlp-create-new-folder" class="gray-blue-link" >'. __('Create Folder','maxgalleria-media-library') .'</a></div>' . PHP_EOL;
             echo '  </div>' . PHP_EOL;                        
             echo '</div>' . PHP_EOL;
