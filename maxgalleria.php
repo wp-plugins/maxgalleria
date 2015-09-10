@@ -3,7 +3,7 @@
 Plugin Name: MaxGalleria
 Plugin URI: http://maxgalleria.com
 Description: The gallery platform for WordPress.
-Version: 4.13
+Version: 4.14
 Author: Max Foundry
 Author URI: http://maxfoundry.com
 
@@ -44,12 +44,12 @@ class MaxGalleria {
 		
     $this->copy_template();
     
-//    $current_user_id = get_current_user_id();     
-//    $havemeta = get_user_meta( $current_user_id, MAXGALLERIA_REVIEW_NOTICE, true );
-//    if ($havemeta === '') {
-//      $review_date = date('Y-m-d', strtotime("+7 days"));        
-//      update_user_meta( $current_user_id, MAXGALLERIA_REVIEW_NOTICE, $review_date );      
-//    }
+    $current_user_id = get_current_user_id();     
+    $havemeta = get_user_meta( $current_user_id, MAXGALLERIA_REVIEW_NOTICE, true );
+    if ($havemeta === '') {
+      $review_date = date('Y-m-d', strtotime("+7 days"));        
+      update_user_meta( $current_user_id, MAXGALLERIA_REVIEW_NOTICE, $review_date );      
+    }
 	}
   
   function copy_template() {
@@ -419,7 +419,9 @@ class MaxGalleria {
 		require_once 'maxgalleria-video-gallery.php';
 		require_once 'widgets/gallery-widget.php';
 		require_once 'widgets/gallery-thumb-widget.php';
-    require_once 'libs/TGMPA-TGM-Plugin-Activation/class-tgm-plugin-activation.php';
+    
+    if(!defined('TGMPA_OFF'))        
+      require_once 'libs/TGMPA-TGM-Plugin-Activation/class-tgm-plugin-activation.php';
 		
 		$this->admin = new MaxGalleriaAdmin();
 		$this->common = new MaxGalleriaCommon();
@@ -571,7 +573,7 @@ class MaxGalleria {
 	
 	public function set_global_constants() {	
 		define('MAXGALLERIA_VERSION_KEY', 'maxgalleria_version');
-		define('MAXGALLERIA_VERSION_NUM', '4.13');
+		define('MAXGALLERIA_VERSION_NUM', '4.14');
 		define('MAXGALLERIA_PLUGIN_NAME', trim(dirname(plugin_basename(__FILE__)), '/'));
 		define('MAXGALLERIA_PLUGIN_DIR', WP_PLUGIN_DIR . '/' . MAXGALLERIA_PLUGIN_NAME);
 		define('MAXGALLERIA_PLUGIN_URL', plugin_dir_url('') . MAXGALLERIA_PLUGIN_NAME);
@@ -627,7 +629,8 @@ class MaxGalleria {
 		add_action('admin_footer', array($this, 'media_button_admin_footer'));
 		add_action('widgets_init', array($this, 'register_widgets'));
 		add_action('after_switch_theme', array($this, 'copy_template'));
-    add_action('tgmpa_register', array($this, 'maxgalleria_register_required_plugins'));
+    if(!defined('TGMPA_OFF'))    
+      add_action('tgmpa_register', array($this, 'maxgalleria_register_required_plugins'));
     
     if(!defined('ATTACHMENT_QUERY_OFF'))    
       add_action( 'pre_get_posts', array($this, 'modify_attachments'));
@@ -641,7 +644,7 @@ class MaxGalleria {
 //    add_action( 'mg_task_hook', array($this, 'mg_daily_check') );
              
 	}
-  
+
   public function maxgalleria_register_required_plugins() {
     $plugins = array(
       array(
@@ -743,9 +746,10 @@ class MaxGalleria {
         
     );
   
-	  tgmpa( $plugins, $config );
+	  if(!defined('TGMPA_OFF'))    
+      tgmpa( $plugins, $config );
   }
-
+  
   public function modify_attachments( $query ) {
     
     if ( is_admin() && strpos( $_SERVER[ 'REQUEST_URI' ], 'admin-ajax.php' ) !== false && $_REQUEST['action'] === 'query-attachments'  ) {      

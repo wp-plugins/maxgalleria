@@ -306,7 +306,7 @@ class MaxGalleriaMediaLib {
   public function upload_attachment () {
                   
     if ( !wp_verify_nonce( $_POST['nonce'], MAXGALLERIA_MEDIA_LIBRARY_NONCE)) {
-      exit(__('missing nonce!','maxgalleria-media-library'));
+      exit(__('missing nonce!','maxgalleria'));
     }
     
     //remove_action( 'add_attachment', array($this,'add_attachment_to_folder'));
@@ -587,18 +587,18 @@ class MaxGalleriaMediaLib {
     
     if(get_option('maxgallery_media_library_default') === 'on') {
       remove_menu_page( 'upload.php' );
-      add_menu_page(__('Media Library +','maxgalleria-media-library'), __('Media Library +','maxgalleria-media-library'), 'upload_files', 'media-library', array($this, 'media_library'), MAXGALLERIA_PLUGIN_URL . '/images/maxgalleria-icon-16.png', 10 );
+      add_menu_page(__('Media Library +','maxgalleria'), __('Media Library +','maxgalleria'), 'upload_files', 'media-library', array($this, 'media_library'), MAXGALLERIA_PLUGIN_URL . '/images/maxgalleria-icon-16.png', 10 );
       add_submenu_page(null, 'Check For New Folders', 'Check For New Folders', 'upload_files', 'check-for-new-folders', array($this, 'check_for_new_folders'));
       add_submenu_page(null, 'Search Library', 'Search Library', 'upload_files', 'search-library', array($this, 'search_library'));
-      add_submenu_page('media-library', __('Add New Folders','maxgalleria-media-library'), __('Add New Folders','maxgalleria-media-library'), 'upload_files', 'admin-check-for-new-folders', array($this, 'admin_check_for_new_folders'));
-      add_submenu_page('media-library', __('WP Media Library','maxgalleria-media-library'), __('WP Media Library','maxgalleria-media-library'), 'upload_files', 'upload.php');
-      //add_submenu_page('media-library', __('Scan','maxgalleria-media-library'), __('Scan','maxgalleria-media-library'), 'upload_files', 'scan-attachments', array($this, 'scan_attachments'));
+      add_submenu_page('media-library', __('Add New Folders','maxgalleria'), __('Add New Folders','maxgalleria'), 'upload_files', 'admin-check-for-new-folders', array($this, 'admin_check_for_new_folders'));
+      add_submenu_page('media-library', __('WP Media Library','maxgalleria'), __('WP Media Library','maxgalleria'), 'upload_files', 'upload.php');
+      //add_submenu_page('media-library', __('Scan','maxgalleria'), __('Scan','maxgalleria'), 'upload_files', 'scan-attachments', array($this, 'scan_attachments'));
     }  
   }
   
-	public function load_textdomain() {
-		load_plugin_textdomain('maxgalleria-media-library', false, dirname(plugin_basename(__FILE__)) . '/languages/');
-	}
+//	public function load_textdomain() {
+//		load_plugin_textdomain('maxgalleria', false, dirname(plugin_basename(__FILE__)) . '/languages/');
+//	}
   
 	public function ignore_notice() {
 		if (current_user_can('install_plugins')) {
@@ -618,7 +618,7 @@ class MaxGalleriaMediaLib {
 				if (!get_user_meta($current_user->ID, MAXGALLERIA_MEDIA_LIBRARY_IGNORE_NOTICE)) {
 					echo '<div class="error">';
 					echo '	<p>';
-					printf(__('MaxGalleria is not installed/activated; therefore, the MaxGalleria Media Library addon will not function properly until it is. | <a href="%1$s">Hide Notice</a>', 'maxgalleria-media-library'), '?maxgalleria-media-library-ignore-notice=1');
+					printf(__('MaxGalleria is not installed/activated; therefore, the MaxGalleria Media Library addon will not function properly until it is. | <a href="%1$s">Hide Notice</a>', 'maxgalleria'), '?maxgalleria-media-library-ignore-notice=1');
 					echo '	</p>';
 					echo '</div>';
 				}
@@ -697,31 +697,31 @@ class MaxGalleriaMediaLib {
               }
             }
             
-            echo "<h3 id='mgmlp-breadcrumbs'>" . __('Location:','maxgalleria-media-library') . " $folders_path</h3>";
+            echo "<h3 id='mgmlp-breadcrumbs'>" . __('Location:','maxgalleria') . " $folders_path</h3>";
             
             //echo "$current_folder_string<br>";
             
             echo '<div id="mgmlp-toolbar">' . PHP_EOL;
             
-            echo '  <a id="add-new_attachment" help="' . __('Upload new files.','maxgalleria-media-library') . '" class="gray-blue-link" href="javascript:slideonlyone(\'add-new-area\');">' . __('Add New','maxgalleria-media-library') . '</a>' . PHP_EOL;
+            echo '  <a id="add-new_attachment" help="' . __('Upload new files.','maxgalleria') . '" class="gray-blue-link" href="javascript:slideonlyone(\'add-new-area\');">' . __('Add New','maxgalleria') . '</a>' . PHP_EOL;
             
-            echo '  <a id="add-new-folder" help="' . __('Create a new folder. Type in a folder name (do not use spaces) and click Create Folder.','maxgalleria-media-library') . '"  class="gray-blue-link" href="javascript:slideonlyone(\'new-folder-area\');">' .  __('New Folder','maxgalleria-media-library') . '</a>' . PHP_EOL;
+            echo '  <a id="add-new-folder" help="' . __('Create a new folder. Type in a folder name (do not use spaces) and click Create Folder.','maxgalleria') . '"  class="gray-blue-link" href="javascript:slideonlyone(\'new-folder-area\');">' .  __('New Folder','maxgalleria') . '</a>' . PHP_EOL;
             
-            echo '  <a id="rename-file" help="' . __('Rename a file; select only one file. Folders cannot be renamed. Type in a new name with no spaces and without the extention and click Rename.','maxgalleria-media-library') . '" class="gray-blue-link" href="javascript:slideonlyone(\'rename-area\');">' .  __('Rename','maxgalleria-media-library') . '</a>' . PHP_EOL;
+            echo '  <a id="rename-file" help="' . __('Rename a file; select only one file. Folders cannot be renamed. Type in a new name with no spaces and without the extention and click Rename.','maxgalleria') . '" class="gray-blue-link" href="javascript:slideonlyone(\'rename-area\');">' .  __('Rename','maxgalleria') . '</a>' . PHP_EOL;
             
-            echo '  <a id="copy-files" help="' . __('Copy selected files to another folder.','maxgalleria-media-library') . '" class="gray-blue-link" href="javascript:slideonlyone(\'copy-area\');">' .  __('Copy','maxgalleria-media-library') . '</a>' . PHP_EOL;
+            echo '  <a id="copy-files" help="' . __('Copy selected files to another folder.','maxgalleria') . '" class="gray-blue-link" href="javascript:slideonlyone(\'copy-area\');">' .  __('Copy','maxgalleria') . '</a>' . PHP_EOL;
             
-            echo '  <a id="move-files" help="' . __('Move selected files to a different folder','maxgalleria-media-library') . '" class="gray-blue-link" href="javascript:slideonlyone(\'move-area\');">' .  __('Move','maxgalleria-media-library') . '</a>' . PHP_EOL;
+            echo '  <a id="move-files" help="' . __('Move selected files to a different folder','maxgalleria') . '" class="gray-blue-link" href="javascript:slideonlyone(\'move-area\');">' .  __('Move','maxgalleria') . '</a>' . PHP_EOL;
             
-            echo '  <a id="add-images-to-gallery" help="' . __('Add image files to a Maxgalleria image gallery. Folders can not be added to a gallery. Images already in the gallery will not be added. ','maxgalleria-media-library') . '" class="gray-blue-link" href="javascript:slideonlyone(\'gallery-area\');">' .  __('Add to Gallery','maxgalleria-media-library') . '</a>' . PHP_EOL;
+            echo '  <a id="add-images-to-gallery" help="' . __('Add image files to a Maxgalleria image gallery. Folders can not be added to a gallery. Images already in the gallery will not be added. ','maxgalleria') . '" class="gray-blue-link" href="javascript:slideonlyone(\'gallery-area\');">' .  __('Add to Gallery','maxgalleria') . '</a>' . PHP_EOL;
                         
-            echo '  <a id="delete-media" help="' . __('Delete selected files or selected folders if the folders are empty.','maxgalleria-media-library') . '" class="gray-blue-link" >' .  __('Delete','maxgalleria-media-library') . '</a>' . PHP_EOL;
+            echo '  <a id="delete-media" help="' . __('Delete selected files or selected folders if the folders are empty.','maxgalleria') . '" class="gray-blue-link" >' .  __('Delete','maxgalleria') . '</a>' . PHP_EOL;
                         
-            echo '  <a id="select-media" help="' . __('Select or unselect all items in the folder.','maxgalleria-media-library') . '" class="gray-blue-link" >' .  __('Select/Unselect','maxgalleria-media-library') . '</a>' . PHP_EOL;
+            echo '  <a id="select-media" help="' . __('Select or unselect all items in the folder.','maxgalleria') . '" class="gray-blue-link" >' .  __('Select/Unselect','maxgalleria') . '</a>' . PHP_EOL;
             
             echo '  <div id="sort-wrap"><select id="mgmlp-sort-order">' . PHP_EOL;
-            echo '    <option value="0" ' . ($sort_order === '0' ? 'selected="selected"' : ''  ). '>' . __('Sort by Date','maxgalleria-media-library') . '</option>' . PHP_EOL;
-            echo '    <option value="1" ' . ($sort_order === '1' ? 'selected="selected"' : ''  ). '>' . __('Sort by Name','maxgalleria-media-library') . '</option>' . PHP_EOL;
+            echo '    <option value="0" ' . ($sort_order === '0' ? 'selected="selected"' : ''  ). '>' . __('Sort by Date','maxgalleria') . '</option>' . PHP_EOL;
+            echo '    <option value="1" ' . ($sort_order === '1' ? 'selected="selected"' : ''  ). '>' . __('Sort by Name','maxgalleria') . '</option>' . PHP_EOL;
             echo '  </select></div>' . PHP_EOL;
                                     
             echo '  <div id="search-wrap"><input type="search" placeholder="Search" id="mgmlp-media-search-input" class="search"></div>' . PHP_EOL;            
@@ -744,8 +744,8 @@ class MaxGalleriaMediaLib {
             
             echo '<div id="rename-area" class="input-area">' . PHP_EOL;
             echo '  <div id="rename-box">' . PHP_EOL;
-            echo __('File Name: ','maxgalleria-media-library') . '<input type="text" name="new-file-name" id="new-file-name" value="" />' . PHP_EOL;
-            echo '<div class="btn-wrap"><a id="mgmlp-rename-file" class="gray-blue-link" >'. __('Rename','maxgalleria-media-library') .'</a></div>' . PHP_EOL;
+            echo __('File Name: ','maxgalleria') . '<input type="text" name="new-file-name" id="new-file-name" value="" />' . PHP_EOL;
+            echo '<div class="btn-wrap"><a id="mgmlp-rename-file" class="gray-blue-link" >'. __('Rename','maxgalleria') .'</a></div>' . PHP_EOL;
             echo '  </div>' . PHP_EOL;
             echo '</div>' . PHP_EOL;
             echo '<div class="clearfix"></div>' . PHP_EOL;
@@ -753,12 +753,12 @@ class MaxGalleriaMediaLib {
             
             echo '<div id="copy-area" class="input-area">' . PHP_EOL;
             echo '  <div id="copy-box">' . PHP_EOL;
-            echo __('Copy files to: ','maxgalleria-media-library') . PHP_EOL;
+            echo __('Copy files to: ','maxgalleria') . PHP_EOL;
             echo '    <select id="copy-select">' . PHP_EOL;
             echo        $folder_list;
             echo '    </select>' . PHP_EOL;
-            echo '<div class="btn-wrap"><a id="copy-media" class="gray-blue-link" >'. __('Copy files','maxgalleria-media-library') .'</a></div><br>' . PHP_EOL;
-            //echo __('Enter a new file name: ','maxgalleria-media-library') . PHP_EOL;
+            echo '<div class="btn-wrap"><a id="copy-media" class="gray-blue-link" >'. __('Copy files','maxgalleria') .'</a></div><br>' . PHP_EOL;
+            //echo __('Enter a new file name: ','maxgalleria') . PHP_EOL;
             //echo '<input type="text" value="" id="new-file_name" />' . PHP_EOL;
             echo '  </div>' . PHP_EOL;
             echo '</div>' . PHP_EOL;
@@ -767,10 +767,10 @@ class MaxGalleriaMediaLib {
             
             echo '<div id="move-area" class="input-area">' . PHP_EOL;
             echo '  <div id="move-box">' . PHP_EOL;
-            echo __('Move files to: ','maxgalleria-media-library') . '<select id="move-select">' . PHP_EOL;
+            echo __('Move files to: ','maxgalleria') . '<select id="move-select">' . PHP_EOL;
             echo        $folder_list;
             echo '    </select>' . PHP_EOL;
-            echo '<div class="btn-wrap"><a id="move-media" class="gray-blue-link" >'. __('Move files','maxgalleria-media-library') .'</a></div>' . PHP_EOL;                                  
+            echo '<div class="btn-wrap"><a id="move-media" class="gray-blue-link" >'. __('Move files','maxgalleria') .'</a></div>' . PHP_EOL;                                  
             echo '  </div>' . PHP_EOL;
             echo '</div>' . PHP_EOL;
             echo '<div class="clearfix"></div>' . PHP_EOL;            
@@ -796,7 +796,7 @@ order by post_name";
             echo '    <select id="gallery-select">' . PHP_EOL;
             echo        $gallery_list;
             echo '    </select>' . PHP_EOL;
-            echo '<div class="btn-wrap"><a id="add-to-gallery" class="gray-blue-link" >'. __('Add Images','maxgalleria-media-library') .'</a></div>' . PHP_EOL;
+            echo '<div class="btn-wrap"><a id="add-to-gallery" class="gray-blue-link" >'. __('Add Images','maxgalleria') .'</a></div>' . PHP_EOL;
                        
             
             echo '  </div>' . PHP_EOL;
@@ -806,8 +806,8 @@ order by post_name";
             echo '<div id="new-folder-area" class="input-area">' . PHP_EOL;
             echo '  <div id="new-folder-box">' . PHP_EOL;
             echo '<input type="hidden" id="current-folder-id" value="' . $current_folder_id . '" />' . PHP_EOL;
-            echo __('Folder Name: ','maxgalleria-media-library') . '<input type="text" name="new-folder-name" id="new-folder-name" value="" />' . PHP_EOL;
-            echo '<div class="btn-wrap"><a id="mgmlp-create-new-folder" class="gray-blue-link" >'. __('Create Folder','maxgalleria-media-library') .'</a></div>' . PHP_EOL;
+            echo __('Folder Name: ','maxgalleria') . '<input type="text" name="new-folder-name" id="new-folder-name" value="" />' . PHP_EOL;
+            echo '<div class="btn-wrap"><a id="mgmlp-create-new-folder" class="gray-blue-link" >'. __('Create Folder','maxgalleria') .'</a></div>' . PHP_EOL;
             echo '  </div>' . PHP_EOL;                        
             echo '</div>' . PHP_EOL;
             echo '<div class="clearfix"></div>' . PHP_EOL;
@@ -1006,7 +1006,7 @@ order by $order_by";
             echo '</ul>' . PHP_EOL;
             
             if(!$images_found && !$folders_found)
-              echo "<p style='text-align:center'>" . __('No images or folders were found.','maxgalleria-media-library')  . "</p>";
+              echo "<p style='text-align:center'>" . __('No images or folders were found.','maxgalleria')  . "</p>";
     
   }
   
@@ -1095,7 +1095,7 @@ where ID = $folder_id";
     global $wpdb;
     
     if ( !wp_verify_nonce( $_POST['nonce'], MAXGALLERIA_MEDIA_LIBRARY_NONCE)) {
-      exit(__('missing nonce!','maxgalleria-media-library'));
+      exit(__('missing nonce!','maxgalleria'));
     } 
 
     if ((isset($_POST['parent_folder'])) && (strlen(trim($_POST['parent_folder'])) > 0))
@@ -1119,15 +1119,15 @@ where ID = $folder_id";
       if(mkdir($new_folder_path)) {
         if($this->add_media_folder($new_folder_name, $parent_folder_id, $new_folder_url)){
           $location = 'window.location.href = "' . site_url() . '/wp-admin/admin.php?page=media-library&media-folder=' . $parent_folder_id .'";';
-          echo __('The folder was created.','maxgalleria-media-library');
+          echo __('The folder was created.','maxgalleria');
           echo "<script>$location</script>";
         }  
         else
-          echo __('There was a problem creating the folder.','maxgalleria-media-library');
+          echo __('There was a problem creating the folder.','maxgalleria');
       }
     }
     else
-      echo __('The folder already exists.','maxgalleria-media-library');
+      echo __('The folder already exists.','maxgalleria');
     die();
   }
 
@@ -1194,7 +1194,7 @@ where ID = $folder_id";
     $delete_ids = array();
     
     if ( !wp_verify_nonce( $_POST['nonce'], MAXGALLERIA_MEDIA_LIBRARY_NONCE)) {
-      exit(__('missing nonce!','maxgalleria-media-library'));
+      exit(__('missing nonce!','maxgalleria'));
     } 
     
     if ((isset($_POST['serial_delete_ids'])) && (strlen(trim($_POST['serial_delete_ids'])) > 0)) {
@@ -1222,7 +1222,7 @@ where ID = $folder_id";
         $row_count = $wpdb->get_var($sql);
         
         if($row_count > 1) {
-          echo __('The folder, ','maxgalleria-media-library'). $row->post_title . __(', is not empty. Please delete or move files form the folder','maxgalleria-media-library') . PHP_EOL;      
+          echo __('The folder, ','maxgalleria'). $row->post_title . __(', is not empty. Please delete or move files form the folder','maxgalleria') . PHP_EOL;      
           die();
         }  
 
@@ -1264,7 +1264,7 @@ where ID = $folder_id";
     global $wpdb;
     
     if ( !wp_verify_nonce( $_POST['nonce'], MAXGALLERIA_MEDIA_LIBRARY_NONCE)) {
-      exit(__('missing nonce!','maxgalleria-media-library'));
+      exit(__('missing nonce!','maxgalleria'));
     } 
     
     if ((isset($_POST['serial_copy_ids'])) && (strlen(trim($_POST['serial_copy_ids'])) > 0))
@@ -1335,7 +1335,7 @@ where ID = $folder_id";
                     }  
                   }
                   else {
-                    echo __('Unable to copy the file; please check the folder and file permissions.','maxgalleria-media-library') . PHP_EOL;
+                    echo __('Unable to copy the file; please check the folder and file permissions.','maxgalleria') . PHP_EOL;
                     $copy_status = false; 
                     break;
                   }
@@ -1385,46 +1385,46 @@ where ID = $folder_id";
                                                                              
                   }                                   
                   else {
-                    echo __('Unable to move the file(s); please check the folder and file permissions.','maxgalleria-media-library') . PHP_EOL;
+                    echo __('Unable to move the file(s); please check the folder and file permissions.','maxgalleria') . PHP_EOL;
                     $copy_status = false; 
                     break;
                   }
                 } 
               }
               else {
-                echo __('The destination is not a folder: ','maxgalleria-media-library') . $destination_path . PHP_EOL;
+                echo __('The destination is not a folder: ','maxgalleria') . $destination_path . PHP_EOL;
                 $copy_status = false; 
                 break;
               }
             }
             else {
-              echo __('Cannot find destination folder: ','maxgalleria-media-library') . $destination_path . PHP_EOL;
+              echo __('Cannot find destination folder: ','maxgalleria') . $destination_path . PHP_EOL;
               $copy_status = false; 
               break;
             }
           }   
           else {
-            echo __('Coping or moving a folder is not allowed.','maxgalleria-media-library') . PHP_EOL;
+            echo __('Coping or moving a folder is not allowed.','maxgalleria') . PHP_EOL;
             $copy_status = false; 
             break;
           }
         }
         else {
-          echo __('Cannot the find the file: ','maxgalleria-media-library') . $image_path  . PHP_EOL;
+          echo __('Cannot the find the file: ','maxgalleria') . $image_path  . PHP_EOL;
           $copy_status = false; 
         }        
       }
       if($copy) {
         if($copy_status)
-          echo __('The file(s) were copied.','maxgalleria-media-library') . PHP_EOL;      
+          echo __('The file(s) were copied.','maxgalleria') . PHP_EOL;      
         else
-          echo __('The file(s) were not copied.','maxgalleria-media-library') . PHP_EOL;      
+          echo __('The file(s) were not copied.','maxgalleria') . PHP_EOL;      
       }
       else {
         if($copy_status)
-          echo __('The file(s) were moved.','maxgalleria-media-library') . PHP_EOL;      
+          echo __('The file(s) were moved.','maxgalleria') . PHP_EOL;      
         else
-          echo __('The file(s) were not moved.','maxgalleria-media-library') . PHP_EOL;              
+          echo __('The file(s) were not moved.','maxgalleria') . PHP_EOL;              
       }
       
       if(!$copy) {
@@ -1464,7 +1464,7 @@ where ID = $folder_id";
     global $wpdb, $maxgalleria;
     
     if ( !wp_verify_nonce( $_POST['nonce'], MAXGALLERIA_MEDIA_LIBRARY_NONCE)) {
-      exit(__('missing nonce!','maxgalleria-media-library'));
+      exit(__('missing nonce!','maxgalleria'));
     } 
     
     if ((isset($_POST['serial_gallery_image_ids'])) && (strlen(trim($_POST['serial_gallery_image_ids'])) > 0))
@@ -1537,7 +1537,7 @@ where ID = $folder_id";
             
     }// foreach
         
-    echo __('The images were added.','maxgalleria-media-library') . PHP_EOL;              
+    echo __('The images were added.','maxgalleria') . PHP_EOL;              
         
     die();
     
@@ -1548,7 +1548,7 @@ where ID = $folder_id";
     global $wpdb;
     
     if ( !wp_verify_nonce( $_POST['nonce'], MAXGALLERIA_MEDIA_LIBRARY_NONCE)) {
-      exit(__('missing nonce!','maxgalleria-media-library'));
+      exit(__('missing nonce!','maxgalleria'));
     } 
     
     if ((isset($_POST['search_value'])) && (strlen(trim($_POST['search_value'])) > 0))
@@ -1583,7 +1583,7 @@ where ID = $folder_id";
       
     }
     else {
-      echo __('No files were found matching that name.','maxgalleria-media-library') . PHP_EOL;                      
+      echo __('No files were found matching that name.','maxgalleria') . PHP_EOL;                      
     }
     
     die();    
@@ -1669,7 +1669,7 @@ where ID = $folder_id";
 
       }
       else {
-        echo __('No files were found matching that name.','maxgalleria-media-library') . PHP_EOL;                      
+        echo __('No files were found matching that name.','maxgalleria') . PHP_EOL;                      
       }
       echo "</ul>" . PHP_EOL;
     }
@@ -1699,7 +1699,7 @@ where ID = $folder_id";
     global $wpdb;
     
     if ( !wp_verify_nonce( $_POST['nonce'], MAXGALLERIA_MEDIA_LIBRARY_NONCE)) {
-      exit(__('missing nonce!','maxgalleria-media-library'));
+      exit(__('missing nonce!','maxgalleria'));
     } 
     
     if ((isset($_POST['image_id'])) && (strlen(trim($_POST['image_id'])) > 0))
@@ -1801,7 +1801,7 @@ where ID = $folder_id";
   public function sort_contents() {
     
     if ( !wp_verify_nonce( $_POST['nonce'], MAXGALLERIA_MEDIA_LIBRARY_NONCE)) {
-      exit(__('missing nonce!','maxgalleria-media-library'));
+      exit(__('missing nonce!','maxgalleria'));
     } 
     
     if ((isset($_POST['sort_order'])) && (strlen(trim($_POST['sort_order'])) > 0))
@@ -1813,11 +1813,11 @@ where ID = $folder_id";
     
     switch ($sort_order) {
       case '0':
-      $msg = __('Sorting by date.','maxgalleria-media-library');
+      $msg = __('Sorting by date.','maxgalleria');
       break;  
     
       case '1':
-      $msg = __('Sorting by name.','maxgalleria-media-library');
+      $msg = __('Sorting by name.','maxgalleria');
       break;        
     }
     
@@ -1849,7 +1849,7 @@ where ID = $folder_id";
       $folder_found = false;
       
       if(!$noecho)
-        echo __('Scaning for new folders in ','maxgalleria-media-library') . " $upload_path<br>";      
+        echo __('Scaning for new folders in ','maxgalleria') . " $upload_path<br>";      
       $objects = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($upload_path), RecursiveIteratorIterator::SELF_FIRST);
       foreach($objects as $name => $object){
         if(is_dir($name)) {
@@ -1870,7 +1870,7 @@ where ID = $folder_id";
             if($this->folder_exist($url) === false) {
               $folder_found = true;
               if(!$noecho)
-                echo __('Adding','maxgalleria-media-library') . " $url<br>";
+                echo __('Adding','maxgalleria') . " $url<br>";
               $parent_id = $this->find_parent_id($url);
               //write_log("Adding folder $dir_name <br>");
               $this->add_media_folder($dir_name, $parent_id, $url);              
@@ -1880,7 +1880,7 @@ where ID = $folder_id";
       }      
       if(!$folder_found) {
         if(!$noecho)
-          echo __('No new folders were found.','maxgalleria-media-library') . "<br>";
+          echo __('No new folders were found.','maxgalleria') . "<br>";
       }  
     } 
     else {
