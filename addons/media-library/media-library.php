@@ -140,7 +140,7 @@ class MaxGalleriaMediaLib {
 	}
   
   public function setup_hooks() {
-		add_action('init', array($this, 'load_textdomain'));
+		//add_action('init', array($this, 'load_textdomain'));
 	  add_action('init', array($this, 'register_mgmlp_post_type'));
 	  add_action('admin_init', array($this, 'ignore_notice'));
 		add_action('admin_notices', array($this, 'show_admin_notice'));
