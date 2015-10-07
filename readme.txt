@@ -3,7 +3,7 @@ Contributors: maxfoundry, arcware, johnbhartley, AlanP57
 Tags: albums, gallery, image, images, media, flash, foto, fotoalbum, photo, photos, photo albums, picture, pictures, responsive wordpress gallery, thumbmail, thumbnails, wordpress gallery, wordpress gallery plugin, responsive wordpress gallery plugins, responsive, slideshows, image slider, nivo, image slide plugin, photo slider, responsive slideshow, responsive slider plugin, slideshow plugin, wordpress picture slider, wordpress responsive slider, wordpress slider, website gallery, youtube, youtube video, youtube videos, youtube gallery, youtube video galleries, nextgen, nextgen gallery, media library, media uploader, images, image folders, responsive lightbox, swipebox, prettyphoto, fancybox, nivo lightbox, image lightbox
 Requires at least: 3.9
 Tested up to: 4.3
-Stable tag: 4.15
+Stable tag: 4.16
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -111,7 +111,7 @@ If you like MaxGalleria please leave us a ★★★★★ rating [here](https://
 
 == Screenshots ==
 
-There are too many screenshots to list here, but you can [see all of them on the MaxGalleria website](http://maxgalleria.com/features/?utm_source=wordpress&utm_medium=mgrepo&utm_content=see-all-on-maxgalleria-website&utm_campaign=plugin).
+There are too many screenshots to list here, but you can [see all of them on the MaxGalleria website](http://maxgalleria.com/?utm_source=wordpress&utm_medium=mgrepo&utm_content=see-all-on-maxgalleria-website&utm_campaign=plugin).
 
 == Installation ==
 
@@ -138,7 +138,7 @@ For manual installation:
 Yes. All documentation, which includes QuickStart Guides and developer hooks references, [can be found here](http://maxgalleria.com/documentation/?utm_source=wordpress&utm_medium=faq-doc&utm_content=found-here&utm_campaign=faq-doc).
 
 = Do I have to buy any of the addons to fully enjoy MaxGalleria? =
-No. The MaxGalleria core plugin contains plenty of functionality to keep even the most die-hard gallery user happy. But for those looking to enhance their gallery experience with layouts for [Albums](http://maxgalleria.com/shop/maxgalleria-albums/?utm_source=wordpress&utm_medium=albums&utm_content=faq-albums&utm_campaign=faq-albums),  [Sliders](http://maxgalleria.com/shop/maxgalleria-image-slider/?utm_source=wordpress&utm_medium=faq-slider&utm_content=faq-image-slider&utm_campaign=faq-slider) or media sources like [Instagram](http://maxgalleria.com/shop/maxgalleria-instagram/?utm_source=wordpress&utm_medium=faq- insta&utm_content=instagram&utm_campaign=faq-insta) or [Flickr](http://maxgalleria.com/shop/maxgalleria-flickr/?utm_source=wordpress&utm_medium=faq-flickr&utm_content=flickr&utm_campaign=faq-flickr) then [MaxGalleria addons](http://maxgalleria.com/shop/category/addons/?utm_source=wordpress&utm_medium=faq-buy&utm_content=maxgalleria-addons&utm_campaign=faq-buy) are the perfect choice.
+No. The MaxGalleria core plugin contains plenty of functionality to keep even the most die-hard gallery user happy. But for those looking to enhance their gallery experience with layouts for [Albums](http://maxgalleria.com/shop/maxgalleria-albums/?utm_source=wordpress&utm_medium=albums&utm_content=faq-albums&utm_campaign=faq-albums),  [Sliders](http://maxgalleria.com/shop/maxgalleria-image-slider/?utm_source=wordpress&utm_medium=faq-slider&utm_content=faq-image-slider&utm_campaign=faq-slider) or media sources like [Instagram](http://maxgalleria.com/shop/maxgalleria-instagram/?utm_source=wordpress&utm_medium=faq-insta&utm_content=instagram&utm_campaign=faq-insta) or [Flickr](http://maxgalleria.com/shop/maxgalleria-flickr/?utm_source=wordpress&utm_medium=faq-flickr&utm_content=flickr&utm_campaign=faq-flickr) then [MaxGalleria addons](http://maxgalleria.com/shop/category/addons/?utm_source=wordpress&utm_medium=faq-buy&utm_content=maxgalleria-addons&utm_campaign=faq-buy) are the perfect choice.
 
 = Why do I need a Google Developer API Key to add Youtube videos to a gallery? =
 Google has recently depreciated the use of the Youtube API version 2 which MaxGalleria uses. We have updated MaxGalleria version 3.1.8 to use version 3 of the API. The new API provides new features for application developers. And it also requires programs accessing Youtube data, such as thumbnails, titles and captions, to have a Google Developer API Key.
@@ -152,6 +152,11 @@ The details about using the Maxgalleria Media Library Plus can be found [here](
 
 
 == Changelog ==
+
+= 4.16 =
+* Add scan for folders in uploads directory during initial scan on plugin activation
+* Changes made to the readme file
+
 = 4.15 =
 * Removed unneeded hook for text domain.
 

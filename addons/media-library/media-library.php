@@ -94,11 +94,14 @@ class MaxGalleriaMediaLib {
 		//update_option(MAXGALLERIA_MEDIA_LIBRARY_VERSION_KEY, MAXGALLERIA_MEDIA_LIBRARY_VERSION_NUM);
     update_option('uploads_use_yearmonth_folders', 1);    
     $this->add_folder_table();
-    if ( 'impossible_default_value_1234' === get_option( MAXGALLERIA_MEDIA_LIBRARY_UPLOAD_FOLDER_NAME, 'impossible_default_value_1234' ) )
+    if ( 'impossible_default_value_1234' === get_option( MAXGALLERIA_MEDIA_LIBRARY_UPLOAD_FOLDER_NAME, 'impossible_default_value_1234' ) ) {
       $this->scan_attachments(false);
-    else {
-      if($clear_status)
+      $this->admin_check_for_new_folders(true);
+    } else {
+      if($clear_status) {
         $this->scan_attachments($clear_status);
+        $this->admin_check_for_new_folders(true);
+      }  
     }  
         
     if ( ! wp_next_scheduled( 'new_folder_check' ) )
