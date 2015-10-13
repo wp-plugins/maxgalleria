@@ -21,6 +21,7 @@ class MaxGalleriaMediaLib {
 	public $addon_settings;
 	public $addon_image;
 	public $addon_output;
+  public $theme_mods;
   
 
   public function __construct() {
@@ -42,6 +43,10 @@ class MaxGalleriaMediaLib {
 		$this->setup_hooks();       
 		$this->upload_dir = wp_upload_dir();  
     $this->wp_version = get_bloginfo('version'); 
+    
+    //convert theme mods into an array
+    $theme_mods = get_theme_mods();
+    $this->theme_mods = json_decode(json_encode($theme_mods), true);    
         
     add_option( MAXGALLERIA_MEDIA_LIBRARY_SORT_ORDER, '0' );    
 	}
@@ -633,6 +638,18 @@ class MaxGalleriaMediaLib {
     
     global $wpdb;
     
+    ?>      
+<!-- code for fb share buttons
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.4&appId=636262096435499";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>-->
+    <?php
+    
     $sort_order = get_option( MAXGALLERIA_MEDIA_LIBRARY_SORT_ORDER );    
         
     if ((isset($_GET['media-folder'])) && (strlen(trim($_GET['media-folder'])) > 0)) {
@@ -657,11 +674,14 @@ class MaxGalleriaMediaLib {
         <div class="media-plus-toolbar"><div class="media-toolbar-secondary">  
             
         <div id='mgmlp-title-area'>
-          <h2 class='mgmlp-title'><?php _e('Maxgalleria Media Library Plus', 'maxgalleria' ); ?> </h2>    
-          <div class="mgmlp-title" id='mg-prono-top'><?php _e('Brought to you by', 'maxgalleria' ); ?> <a target="_blank" href="http://maxfoundry.com"> <img alt="Max Foundry" src="<?php echo MAXGALLERIA_MEDIA_LIBRARY_PLUGIN_URL ?>/images/max-foundry-new.png"></a> makers of <a target="_blank" href="http://maxbuttons.com/?ref=mbpro">MaxButtons</a> and <a target="_blank" href="http://maxinbound.com/?ref=mbpro">MaxInbound</a></div>    
-        </div>      
-                
-        <div class="clearfix"></div>
+          <h2 class='mgmlp-title'><?php _e('Maxgalleria Media Library Plus', 'maxgalleria-media-library' ); ?> </h2>    
+          <div class="mgmlp-title" id='mg-prono-top'>
+            <div><?php _e('Brought to you by', 'maxgalleria-media-library' ); ?> <a target="_blank" href="http://maxfoundry.com"> <img alt="Max Foundry" src="<?php echo MAXGALLERIA_MEDIA_LIBRARY_PLUGIN_URL ?>/images/max-foundry-new.png"></a> <?php _e('makers of', 'maxgalleria-media-library' ); ?> <a target="_blank" href="http://maxbuttons.com/?ref=mbpro">MaxButtons</a> <?php _e('and', 'maxgalleria-media-library' ); ?> <a target="_blank" href="http://maxinbound.com/?ref=mbpro">MaxInbound</a></div>
+            <!--<div class="fb-like" data-href="https://www.facebook.com/maxfoundry" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>-->              
+          </div>      
+        </div>    
+            
+        <div class="clearfix"></div>  
                         
           <!--<a id="mgmlp-scan_folders">Scan Folders</a>-->  
           
@@ -1346,18 +1366,49 @@ where ID = $folder_id";
                 } else {
                                     
                   if(rename($image_path, $destination_name )) {
-                      
+                    
+                    // check current theme customizer settings for the file
+                    // and update if found
+                    $update_theme_mods = false;
+                    $move_image_url = $this->get_file_url_for_copy($image_path);
+                    $move_destination_url = $this->get_file_url_for_copy($destination_name);
+                    $key = array_search ($move_image_url, $this->theme_mods);
+                    if($key !== false ) {
+                      set_theme_mod( $key, $move_destination_url);
+                      $update_theme_mods = true;                      
+                    }
+                    if($update_theme_mods) {
+                      $theme_mods = get_theme_mods();
+                      $this->theme_mods = json_decode(json_encode($theme_mods), true);
+                      $update_theme_mods = false;
+                    }
+                                          
                     $image_path = str_replace('.', '*.', $image_path );
 
                     foreach (glob($image_path) as $source_path) {
                       $thumbnail_file = pathinfo($source_path, PATHINFO_BASENAME);
                       $thumbnail_destination = $destination_path . DIRECTORY_SEPARATOR . $thumbnail_file;
                       rename($source_path, $thumbnail_destination);
+                      
+                      // check current theme customizer settings for the fileg
+                      // and update if found
+                      $update_theme_mods = false;
+                      $move_source_url = $this->get_file_url_for_copy($source_path);
+                      $move_thumbnail_url = $this->get_file_url_for_copy($thumbnail_destination);
+                      $key = array_search ($move_source_url, $this->theme_mods);
+                      if($key !== false ) {
+                        set_theme_mod( $key, $move_thumbnail_url);
+                        $update_theme_mods = true;                      
+                      }
+                      if($update_theme_mods) {
+                        $theme_mods = get_theme_mods();
+                        $this->theme_mods = json_decode(json_encode($theme_mods), true);
+                        $update_theme_mods = false;
+                      }
+                      
                     }                    
                       
                     $destination_url = $this->get_file_url($destination_name);
-                    //write_log("move destination url: $destination_url");
-                    //write_log("destination path: $destination_name");
                     
                     // update posts table
                     $table = $wpdb->prefix . "posts";

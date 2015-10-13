@@ -1566,6 +1566,7 @@ Media Manager Styles and Overrides
 
   display: block;
   margin: -33px 0 0 210px;
+  max-width: 500px;
 }
 
 .mg-logo a img {
@@ -1683,6 +1684,13 @@ div.mg-promo div.promo-section p.section-title span {
 
 .center-text {
   text-align: center;
+}
+
+.fb_iframe_widget {
+  display: block !important;
+  margin: 0 auto;
+  position: relative;
+  width: 92px;
 }
 
 @media (max-width: 850px) {

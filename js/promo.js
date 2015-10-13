@@ -1,3 +1,13 @@
+jQuery('body').append('<div id="fb-root"></div>');
+
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.4&appId=636262096435499";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
 jQuery(document).ready(function() {
   jQuery('.tablenav.bottom').after('<div style="clear:both"></div>\n\
 <div class="large-12">\n\
@@ -57,8 +67,9 @@ jQuery(document).ready(function() {
    </div>\n\
   </div>');
   jQuery('.wrap h2').append(
-    '<div class="mg-logo">Brought to you by<a href="http://maxfoundry.com" target="_blank"><img src="' +
+    '<div class="mg-logo"><div>Brought to you by<a href="http://maxfoundry.com" target="_blank"><img src="' +
     mg_promo.pluginurl +
-    '/images/max-foundry.png" alt="Max Foundry" /></a>makers of <a href="http://maxbuttons.com/?ref=mbpro" target="_blank">MaxButtons</a> and <a href="http://maxinbound.com/?ref=mbpro" target="_blank">MaxInbound</a></div>'
+    '/images/max-foundry.png" alt="Max Foundry" /></a>makers of <a href="http://maxbuttons.com/?ref=mbpro" target="_blank">MaxButtons</a> and <a href="http://maxinbound.com/?ref=mbpro" target="_blank">MaxInbound</a></div>\n\
+<div class="fb-like" data-href="https://www.facebook.com/maxfoundry" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div></div>'
   );
 });
