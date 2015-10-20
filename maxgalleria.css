@@ -1454,91 +1454,92 @@ Admin Page Styles
 #maxgalleria-admin #import_progress .progress {
 	margin-bottom: 0px;
 }
-#maxgalleria-admin .settings {
+#maxgalleria-admin .mg-settings {
 	margin-top: 20px;
 	margin-bottom: 20px;
 	border: solid 1px #cccccc;
+  display:block;
 }
-#maxgalleria-admin .settings .main .inside {
+#maxgalleria-admin .mg-settings .main .inside {
 	border-top: solid 1px #cccccc;
 	background-color: #ffffff;
 	padding: 0px;
 }
-#maxgalleria-admin .settings .settings-menu {
+#maxgalleria-admin .mg-settings .settings-menu {
 	float: left;
 	width: 151px;
 	background-color: #f1f1f1;
 	border-right: solid 1px #cccccc;
 }
-#maxgalleria-admin .settings .settings-menu ul {
+#maxgalleria-admin .mg-settings .settings-menu ul {
 	margin-top: 0px;
 	margin-bottom: 0px;
 	margin-left: 0px;
 	min-height: 840px;
 }
-#maxgalleria-admin .settings .settings-menu ul li {
+#maxgalleria-admin .mg-settings .settings-menu ul li {
 	padding: 7px 10px 7px 10px;
 	border-top: solid 1px #f1f1f1;
 	border-bottom: solid 1px #f1f1f1;
 	margin-bottom: 0px;
 }
-#maxgalleria-admin .settings .settings-menu ul li.selected {
+#maxgalleria-admin .mg-settings .settings-menu ul li.selected {
 	background-color: #ffffff;
 	border-top: solid 1px #cccccc;
 	border-bottom: solid 1px #cccccc;
 	margin-right: -1px;
 }
-#maxgalleria-admin .settings .settings-menu ul li a {
+#maxgalleria-admin .mg-settings .settings-menu ul li a {
 	text-decoration: none;
 }
-#maxgalleria-admin .settings .settings-content {
+#maxgalleria-admin .mg-settings .settings-content {
 	margin-left: 150px;
 	background-color: #ffffff;
 	border-left: solid 1px #cccccc;
 	border-bottom: solid 2px #ffffff;
 	padding: 15px 20px 15px 20px;
 }
-#maxgalleria-admin .settings .settings-content h2 {
+#maxgalleria-admin .mg-settings .settings-content h2 {
 	padding-top: 0px;
 }
-#maxgalleria-admin .settings .settings-content input[type='text'],
-#maxgalleria-admin .settings .settings-content select {
+#maxgalleria-admin .mg-settings .settings-content input[type='text'],
+#maxgalleria-admin .mg-settings .settings-content select {
 	font-size: 13px;
 	width: 150px;
 }
-#maxgalleria-admin .settings .settings-content input[type='text'].small {
+#maxgalleria-admin .mg-settings .settings-content input[type='text'].small {
 	width: 50px;
 }
 .maxgalleria-meta input#maxgallery_next_button_title.medium,
 .maxgalleria-meta input#maxgallery_prev_button_title.medium,
-#maxgalleria-admin .settings .settings-content input[type='text'].medium {
+#maxgalleria-admin .mg-settings .settings-content input[type='text'].medium {
 	width: 250px;
 }
-#maxgalleria-admin .settings .settings-content input[type='text'].wide {
+#maxgalleria-admin .mg-settings .settings-content input[type='text'].wide {
 	width: 450px;
 }
-#maxgalleria-admin .settings .settings-content .settings-title {
+#maxgalleria-admin .mg-settings .settings-content .settings-title {
 	padding: 10px;
 	border: solid 1px #e1e1e1;
 	font-weight: bold;
 	font-size: 14px;
 }
-#maxgalleria-admin .settings .settings-content .settings-options {
+#maxgalleria-admin .mg-settings .settings-content .settings-options {
 	padding: 10px;
 	margin-bottom: 20px;
 	border-left: solid 1px #e1e1e1;
 	border-right: solid 1px #e1e1e1;
 	border-bottom: solid 1px #e1e1e1;
 }
-#maxgalleria-admin .settings .settings-content .settings-options .note {
+#maxgalleria-admin .mg-settings .settings-content .settings-options .note {
 	color: #808080;
 	font-style: italic;
 	padding-bottom: 10px;
 }
-#maxgalleria-admin .settings .settings-content .settings-options table td {
+#maxgalleria-admin .mg-settings .settings-content .settings-options table td {
 	padding: 3px 10px 3px 0px;
 }
-#maxgalleria-admin .settings .settings-content .settings-options table td input[type='checkbox'] {
+#maxgalleria-admin .mg-settings .settings-content .settings-options table td input[type='checkbox'] {
 	margin: 5px 10px 5px 2px !important;
 }
 

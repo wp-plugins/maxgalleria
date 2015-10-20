@@ -65,7 +65,7 @@ $addon = isset($_GET['addon']) ? $_GET['addon'] : '';
 		
 		<div class="clear"></div>
 		
-		<div class="settings">
+		<div class="mg-settings">
 			<div class="main">
 				<div class="inside">
 					<div class="settings-menu">

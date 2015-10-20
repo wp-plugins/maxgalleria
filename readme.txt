@@ -1,4 +1,4 @@
-=== WordPress Gallery Platform MaxGalleria ===
+=== WordPress Gallery Plugin ===
 Contributors: maxfoundry, arcware, johnbhartley, AlanP57
 Tags: albums, gallery, image, images, media, flash, foto, fotoalbum, photo, photos, photo albums, picture, pictures, responsive wordpress gallery, thumbmail, thumbnails, wordpress gallery, wordpress gallery plugin, responsive wordpress gallery plugins, responsive, slideshows, image slider, nivo, image slide plugin, photo slider, responsive slideshow, responsive slider plugin, slideshow plugin, wordpress picture slider, wordpress responsive slider, wordpress slider, website gallery, youtube, youtube video, youtube videos, youtube gallery, youtube video galleries, nextgen, nextgen gallery, media library, media uploader, images, image folders, responsive lightbox, swipebox, prettyphoto, fancybox, nivo lightbox, image lightbox
 Requires at least: 3.9
@@ -14,7 +14,7 @@ Responsive Gallery plugin with built in Slider and Lightbox
 You deserve a WordPress responsive gallery plugin that doesn't frustrate you as you use it - you want a WP gallery plugin that is actually a joy to use. Other gallery plugins claim to be the best simply because they've been around the longest and have the most downloads. But we know better. MaxGalleria helps change the game by giving users a streamlined experience for creating and managing responsive WordPress galleries that look great on any device.
 
 = Useful Info =
-* [What Is a WordPress Gallery Platform?](http://maxgalleria.com/?utm_source=wordpress&utm_medium=whatis&utm_content=what-is-wordpress-gallery-platform&utm_campaign=repo)
+* What Is a [WordPress Gallery Plugin?](http://maxgalleria.com/?utm_source=wordpress&utm_medium=whatis&utm_content=what-is-wordpress-gallery-platform&utm_campaign=repo)
 * [How to Upgrade to MaxGalleria 2.0](http://maxgalleria.com/blog/upgrade-maxgalleria-2-0/?utm_source=wordpress&utm_medium=upgrade2&utm_content=how-to-upgrade-maxgalleria-2&utm_campaign=repo)
 
 = A Responsive WordPress Gallery for All Devices =
@@ -58,7 +58,8 @@ Many people will find the core MaxGalleria plugin all they will ever need; howev
 * [Instagram](http://maxgalleria.com/shop/maxgalleria-instagram/?utm_source=wordpress&utm_medium=instagram&utm_content=instagram&utm_campaign=mgrepo) - Add Instagram images to your galleries
 * [Vimeo](http://maxgalleria.com/shop/maxgalleria-vimeo/?utm_source=wordpress&utm_medium=vimeo&utm_content=vimeo&utm_campaign=mgrepo) - Add Vimeo videos to your galleries
 * [Flickr](http://maxgalleria.com/shop/maxgalleria-flickr/?utm_source=wordpress&utm_medium=flickr&utm_content=flickr&utm_campaign=mgrepo) - Pull in images from your Flickr stream
-* [Slick for WordPress](http://maxgalleria.com/shop/maxgalleria-slick-for-wordpress//?utm_source=wordpress&utm_medium=slick&utm_content=slick&utm_campaign=mgrepo) - The Last Carousel You'll ever need!
+* [Slick for WordPress](http://maxgalleria.com/shop/maxgalleria-slick-for-wordpress/?utm_source=wordpress&utm_medium=slick&utm_content=slick&utm_campaign=mgrepo) - The Last Carousel You'll ever need!
+
 
 = Media Library Extended =
 
