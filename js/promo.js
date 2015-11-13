@@ -66,10 +66,19 @@ jQuery(document).ready(function() {
    </div>\n\
    </div>\n\
   </div>');
-  jQuery('.wrap h2').append(
+  jQuery('.wrap h2').prepend(
     '<div class="mg-logo"><div>Brought to you by<a href="http://maxfoundry.com" target="_blank"><img src="' +
     mg_promo.pluginurl +
     '/images/max-foundry.png" alt="Max Foundry" /></a>makers of <a href="http://maxbuttons.com/?ref=mbpro" target="_blank">MaxButtons</a> and <a href="http://maxinbound.com/?ref=mbpro" target="_blank">MaxInbound</a></div>\n\
-<div class="fb-like" data-href="https://www.facebook.com/maxfoundry" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div></div>'
+<div class="fb-like" ><a href="https://twitter.com/maxfoundry" class="twitter-follow-button" data-show-count="true" data-show-screen-name="false">Follow</a></div></div>'
   );
+  jQuery('.wrap h1').prepend(
+    '<div class="mg-logo"><div>Brought to you by<a href="http://maxfoundry.com" target="_blank"><img src="' +
+    mg_promo.pluginurl +
+    '/images/max-foundry.png" alt="Max Foundry" /></a>makers of <a href="http://maxbuttons.com/?ref=mbpro" target="_blank">MaxButtons</a> and <a href="http://maxinbound.com/?ref=mbpro" target="_blank">MaxInbound</a></div>\n\
+<div class="fb-like" ><a href="https://twitter.com/maxfoundry" class="twitter-follow-button" data-show-count="true" data-show-screen-name="false">Follow</a></div></div>'
+  );
+		
+  !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs')	
+		
 });

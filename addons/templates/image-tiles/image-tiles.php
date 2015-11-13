@@ -203,6 +203,13 @@ class MaxGalleriaImageTiles {
 				
 				// Default to original, full size image
 				$href = $attachment->guid;
+        
+        // get the link when urls that have '?attachment_id='
+        $attach_id_found = strpos($href, 'attachment_id=');
+        if($attach_id_found !== false) {
+          $href = wp_get_attachment_url($attachment->ID);
+        }   
+                 
 				$target = '';
 				
 //				if ($options->get_thumb_click() == 'lightbox') {

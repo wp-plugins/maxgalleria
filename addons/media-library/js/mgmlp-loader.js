@@ -79,21 +79,17 @@ jQuery(document).ready(function(){
     });
         
     jQuery("#select-media").click(function(){
-      //jQuery(".mgmlp-folder, .mgmlp-media").prop("checked", !jQuery(".mgmlp-folder").prop("checked"));
       jQuery(".media-attachment, .mgmlp-media").prop("checked", !jQuery(".media-attachment").prop("checked"));
     });
             
     jQuery("#mgmlp_ajax_upload").click(function(){
         
-              
-      //var file_destination = jQuery('#file_destination').val();
       var folder_id = jQuery('#folder_id').val();      
       var file_data = jQuery('#fileToUpload').prop('files')[0];   
       var form_data = new FormData();                  
       
       form_data.append('file', file_data);
       form_data.append('action', 'upload_attachment');
-      //form_data.append('destination', file_destination);
       form_data.append('folder_id', folder_id);
       form_data.append('nonce', mgmlp_ajax.nonce);
       jQuery("#ajaxloader").show();
@@ -109,10 +105,7 @@ jQuery(document).ready(function(){
           success: function (data) {
             jQuery("#ajaxloader").hide();
             jQuery("#mgmlp-file-container").html(data);
-            //jQuery('#file_destination').val("");
             jQuery('#fileToUpload').val("");
-            //var afile = jQuery("#" + picName);
-            //afile.replaceWith(afile.clone());            
           }
        });
             
@@ -264,7 +257,7 @@ jQuery(document).ready(function(){
       });
       
       if(new_file_name.indexOf(' ') >= 0 || new_file_name === '' ) {
-        alert('Please enter a file name.');
+        alert('Please enter a valid file name with no spaces.');
         return false;
       }       
       
@@ -273,7 +266,7 @@ jQuery(document).ready(function(){
       jQuery.ajax({
         type: "POST",
         async: true,
-        data: { action: "rename_image", image_id: image_id, new_file_name: new_file_name, nonce: mgmlp_ajax.nonce },
+        data: { action: "maxgalleria_rename_image", image_id: image_id, new_file_name: new_file_name, nonce: mgmlp_ajax.nonce },
         url : mgmlp_ajax.ajaxurl,
         dataType: "html",
         success: function (data) {
@@ -424,8 +417,6 @@ function sendFileToServer(formData,status)
             status.setProgress(100);
             jQuery("#ajaxloader").hide();
             jQuery("#mgmlp-file-container").html(data);
-            //jQuery(".statusbar").remove();
-           //jQuery("#status1").append("File upload Done<br>");           
         },
         error: function (err){ 
           jQuery("#ajaxloader").hide();

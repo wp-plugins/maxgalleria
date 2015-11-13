@@ -1,8 +1,7 @@
 <?php
 /*
-Add On: MaxGalleria Media Library
+Add On: Media Library Plus
 Description: Gives you the ability to adds folders and move files in the WordPress Media Library.
-Version: 0.0.1
 Author: Max Foundry
 Author URI: http://maxfoundry.com
 
@@ -22,6 +21,9 @@ class MaxGalleriaMediaLib {
 	public $addon_image;
 	public $addon_output;
   public $theme_mods;
+  public $uploads_folder_name;
+	public $uploads_folder_name_length;
+	public $uploads_folder_ID;
   
 
   public function __construct() {
@@ -177,8 +179,8 @@ class MaxGalleriaMediaLib {
     add_action('wp_ajax_nopriv_add_to_max_gallery', array($this, 'add_to_max_gallery'));
     add_action('wp_ajax_add_to_max_gallery', array($this, 'add_to_max_gallery'));
     
-    add_action('wp_ajax_nopriv_rename_image', array($this, 'rename_image'));
-    add_action('wp_ajax_rename_image', array($this, 'rename_image'));
+    add_action('wp_ajax_nopriv_maxgalleria_rename_image', array($this, 'maxgalleria_rename_image'));
+    add_action('wp_ajax_maxgalleria_rename_image', array($this, 'maxgalleria_rename_image'));
         
     add_action('wp_ajax_nopriv_sort_contents', array($this, 'sort_contents'));
     add_action('wp_ajax_sort_contents', array($this, 'sort_contents'));
@@ -233,7 +235,8 @@ class MaxGalleriaMediaLib {
   public function delete_folder_attachment ($postid) {    
     global $wpdb;
     $table = $wpdb->prefix . MAXGALLERIA_MEDIA_LIBRARY_FOLDER_TABLE;
-    $wpdb->delete( $table, $postid );    
+    $where = array( 'post_id' => $postid );
+    $wpdb->delete( $table, $where );    
   }
 
     // in case an image is uploaded in the WP media library we
@@ -248,10 +251,12 @@ class MaxGalleriaMediaLib {
   
   public function get_default_folder() {
     global $wpdb;
-    
-    $uploads_path = wp_upload_dir();
-    
-    $base_url = $uploads_path['baseurl'];
+
+		
+		if( get_option('uploads_use_yearmonth_folders') === false)
+			return $this->uploads_folder_ID;
+		
+    $base_url = $this->upload_dir['baseurl'];
     $year_month = date("m");    
     $year = date("Y");    
     $guid = $base_url . '/' . $year . '/' . $year_month;
@@ -260,7 +265,6 @@ class MaxGalleriaMediaLib {
       $guid = str_replace('\\', '/', $guid);      
     
     $sql = "select ID from $wpdb->prefix" . "posts where guid = '$guid'";
-    //write_log($sql);
     
     $row = $wpdb->get_row($sql);
     if($row) {
@@ -275,7 +279,6 @@ class MaxGalleriaMediaLib {
   public function register_mgmlp_post_type() {
     
 		$args = apply_filters(MGMLP_FILTER_POST_TYPE_ARGS, array(
-			//'labels' => $labels,
 			'public' => false,
 			'publicly_queryable' => false,
 			'show_ui' => false,
@@ -283,12 +286,8 @@ class MaxGalleriaMediaLib {
       'show_in_admin_bar' => false,
 			'show_in_menu' => false,
 			'query_var' => true,
-			//'menu_icon' => MAXGALLERIA_PLUGIN_URL . '/images/maxgalleria-icon-16.png',
-			//'rewrite' => array('slug' => $slug),
-			//'capability_type' => 'page',
 			'hierarchical' => true,
 			'supports' => false,
-			//'taxonomies' => array('category', 'post_tag'),
 			'exclude_from_search' => true
 		));
 		
@@ -317,8 +316,6 @@ class MaxGalleriaMediaLib {
       exit(__('missing nonce!','maxgalleria'));
     }
     
-    //remove_action( 'add_attachment', array($this,'add_attachment_to_folder'));
-    
     $uploads_path = wp_upload_dir();
     
     if ((isset($_POST['folder_id'])) && (strlen(trim($_POST['folder_id'])) > 0))
@@ -327,7 +324,6 @@ class MaxGalleriaMediaLib {
       $folder_id = 0;
     
     $destination = $this->get_folder_path($folder_id);
-    //write_log("destination $destination");
     
     if ( 0 < $_FILES['file']['error'] ) {
       echo 'Error: ' . $_FILES['file']['error'] . '<br>';
@@ -338,9 +334,7 @@ class MaxGalleriaMediaLib {
       $new_filename = wp_unique_filename( $destination, $_FILES['file']['name'], null );
       
       $filename = $destination . DIRECTORY_SEPARATOR . $new_filename;
-		  ///$move_new_file = @ move_uploaded_file( $file['tmp_name'], $new_file );      
       if( move_uploaded_file($_FILES['file']['tmp_name'], $filename) ) {
-      //move_uploaded_file($_FILES['file']['tmp_name'], $filename);
         
         // Set correct file permissions.
 	      $stat = stat( dirname( $filename ));
@@ -368,7 +362,6 @@ class MaxGalleriaMediaLib {
     // Get the path to the upload directory.
     $wp_upload_dir = wp_upload_dir();
     
-    //$file_url = $this->get_file_url($filename);
     $file_url = $this->get_file_url_for_copy($filename);
             
     // Prepare an array of post data for the attachment.
@@ -383,15 +376,10 @@ class MaxGalleriaMediaLib {
     
     // Insert the attachment.
     $attach_id = wp_insert_attachment( $attachment, $filename, $parent_post_id );    
-    //if ( is_wp_error($attach_id) )
-    //  write_log ($attach_id->get_error_message());
 
     // Make sure that this file is included, as wp_generate_attachment_metadata() depends on it.
     require_once( ABSPATH . 'wp-admin/includes/image.php' );
 
-    //$this->customdir = $this->get_subfolder_path($folder_id);
-    //add_filter( 'upload_dir', array($this,'mgmlp_upload_dir'));
-       
     // Generate the metadata for the attachment, and update the database record.
     $attach_data = wp_generate_attachment_metadata( $attach_id, $filename );
         
@@ -417,8 +405,6 @@ class MaxGalleriaMediaLib {
         update_post_meta( $attach_id, '_wp_attached_file', $uploads_location );
     }
 
-    //remove_filter( 'upload_dir', array($this,'mgmlp_upload_dir'));
-    
     $this->add_new_folder_parent($attach_id, $folder_id );
     add_action( 'add_attachment', array($this,'add_attachment_to_folder'));
     
@@ -440,14 +426,13 @@ class MaxGalleriaMediaLib {
     $uploads_path = wp_upload_dir();
     
     if(!$uploads_path['error']) {
-      //write_log('no error');
             
       //find the uploads folder
       $base_url = $uploads_path['baseurl'];
       $last_slash = strrpos($base_url, '/');
       $uploads_dir = substr($base_url, $last_slash+1);
-      
-      //write_log("uploads_dir $uploads_dir");
+			$this->uploads_folder_name = $uploads_dir;
+			$this->uploads_folder_name_length = strlen($uploads_dir);
       
       update_option(MAXGALLERIA_MEDIA_LIBRARY_UPLOAD_FOLDER_NAME, $uploads_dir);
                               
@@ -455,71 +440,56 @@ class MaxGalleriaMediaLib {
       $uploads_parent_id = $this->add_media_folder($uploads_dir, 0, $base_url);
       update_option(MAXGALLERIA_MEDIA_LIBRARY_UPLOAD_FOLDER_ID, $uploads_parent_id);
       
-      //write_log("options updated");
-          
       $sql = "select ID, guid from $wpdb->prefix" . "posts where post_type = 'attachment' order by guid";
-      //echo $sql;
-      //write_log($sql);
 
       $rows = $wpdb->get_results($sql);
       
       $current_folder = "";
             
       $parent_id = $uploads_parent_id;
-      //$loop_count = 0;
+     
       if($rows) {
         foreach($rows as $row) {
-          //$loop_count++;
-          // skip rows with query strings
-          //if(!strpos($row->guid, $uploads_dir)) {
-          //if(!strpos($row->guid, '?') && !strpos($row->guid, '\\') || strpos($row->guid, '.')  ) {
-          //if(strpos($row->guid, '.')) {
-          if(strpos($row->guid, $uploads_dir)) {
-          //write_log("current guid: " . $row->guid );
-            $sub_folders = $this->get_folders($row->guid);          
+					
+					$image_location = $this->check_for_attachment_id($row->guid, $row->ID);
+					          
+          if(strpos($image_location, $uploads_dir)) {
+										                    
+            $sub_folders = $this->get_folders($image_location); //$row->guid
             $attachment_file = array_pop($sub_folders);  
 
             $uploads_length = strlen($uploads_dir);
-            $new_folder_pos = strpos($row->guid, $uploads_dir );
-            $folder_path = substr($row->guid, 0, $new_folder_pos+$uploads_length );
+            $new_folder_pos = strpos($image_location, $uploads_dir ); //$row->guid
+            $folder_path = substr($image_location, 0, $new_folder_pos+$uploads_length ); //$row->guid
 
             foreach($sub_folders as $sub_folder) {
-              //write_log("checking sub folder: $sub_folder");
               
               // check for URL path in database
               $folder_path = $folder_path . '/' . $sub_folder;
               
-              //write_log( "folder_path: $folder_path"); 
-
               $new_parent_id = $this->folder_exist($folder_path);
               if($new_parent_id === false) {
-                //write_log("folder exists: $folder_path");
                 if($this->is_new_top_level_folder($uploads_dir, $sub_folder, $folder_path)) {
-                  //write_log("checking sub folder: $folder_path");
                   $parent_id = $this->add_media_folder($sub_folder, $uploads_parent_id, $folder_path); 
-                  //write_log("adding new folder (1): $parent_id - $sub_folder");
                 }  
                 else {
                   $parent_id = $this->add_media_folder($sub_folder, $parent_id, $folder_path); 
-                  //write_log("adding new folder (1): $parent_id - $sub_folder");
                 }  
               }  
               else
                 $parent_id = $new_parent_id;
             }  
-            //write_log("adding new folder: $row->ID");
+						
             $this->add_new_folder_parent($row->ID, $parent_id );
+					 
           } //test for ?
           
-          //if($loop_count > 100)
-          //  return;
         } //foreach         
         
       } //rows  
             
     }
         
-    //write_log("scanning finished");
   }
      
   private function is_new_top_level_folder($uploads_dir, $folder_name, $folder_path) {
@@ -532,12 +502,11 @@ class MaxGalleriaMediaLib {
   }
 
   private function get_folders($path) {
-    //write_log("path $path");
     $sub_folders = explode('/', $path);
-    while( $sub_folders[0] !== 'uploads' )
+    while( $sub_folders[0] !== $this->uploads_folder_name )
       array_shift($sub_folders);
     
-    if($sub_folders[0] === 'uploads') 
+    if($sub_folders[0] === $this->uploads_folder_name) 
       array_shift($sub_folders);
       
     return $sub_folders;
@@ -546,16 +515,10 @@ class MaxGalleriaMediaLib {
   private function folder_exist($folder_path) {
     
     global $wpdb;    
-    
-//    if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
-//      $folder_path = str_replace('\\', '/', $folder_path);
-//    }
-            
+                
     $sql = "select ID from " . $wpdb->prefix . "posts where post_type = '" . MAXGALLERIA_MEDIA_LIBRARY_POST_TYPE . "' and guid =  '$folder_path'";
-    //echo $sql;
     
-    $row = $wpdb->get_row($sql);
-            
+    $row = $wpdb->get_row($sql);            
     if($row === null)
       return false;
     else
@@ -626,7 +589,7 @@ class MaxGalleriaMediaLib {
 				if (!get_user_meta($current_user->ID, MAXGALLERIA_MEDIA_LIBRARY_IGNORE_NOTICE)) {
 					echo '<div class="error">';
 					echo '	<p>';
-					printf(__('MaxGalleria is not installed/activated; therefore, the MaxGalleria Media Library addon will not function properly until it is. | <a href="%1$s">Hide Notice</a>', 'maxgalleria'), '?maxgalleria-media-library-ignore-notice=1');
+					printf(__('MaxGalleria is not installed/activated; therefore, the Media Library addon will not function properly until it is. | <a href="%1$s">Hide Notice</a>', 'maxgalleria'), '?maxgalleria-media-library-ignore-notice=1');
 					echo '	</p>';
 					echo '</div>';
 				}
@@ -657,12 +620,18 @@ class MaxGalleriaMediaLib {
       if(!is_numeric($current_folder_id)) {
         $current_folder = get_option(MAXGALLERIA_MEDIA_LIBRARY_UPLOAD_FOLDER_NAME, "uploads");      
         $current_folder_id = get_option(MAXGALLERIA_MEDIA_LIBRARY_UPLOAD_FOLDER_ID );        
+	      $this->uploads_folder_name = $current_folder;
+	      $this->uploads_folder_name_length = strlen($current_folder);
+	      $this->uploads_folder_ID = $current_folder_id;				
       }
       else
         $current_folder = $this->get_folder_name($current_folder_id);
     } else {             
       $current_folder = get_option(MAXGALLERIA_MEDIA_LIBRARY_UPLOAD_FOLDER_NAME, "uploads");      
       $current_folder_id = get_option(MAXGALLERIA_MEDIA_LIBRARY_UPLOAD_FOLDER_ID );
+			$this->uploads_folder_name = $current_folder;
+			$this->uploads_folder_name_length = strlen($current_folder);
+			$this->uploads_folder_ID = $current_folder_id;				
     }  
             
     ?>
@@ -674,7 +643,7 @@ class MaxGalleriaMediaLib {
         <div class="media-plus-toolbar"><div class="media-toolbar-secondary">  
             
         <div id='mgmlp-title-area'>
-          <h2 class='mgmlp-title'><?php _e('Maxgalleria Media Library Plus', 'maxgalleria-media-library' ); ?> </h2>    
+          <h2 class='mgmlp-title'><?php _e('Media Library Plus', 'maxgalleria-media-library' ); ?> </h2>    
           <div class="mgmlp-title" id='mg-prono-top'>
             <div><?php _e('Brought to you by', 'maxgalleria-media-library' ); ?> <a target="_blank" href="http://maxfoundry.com"> <img alt="Max Foundry" src="<?php echo MAXGALLERIA_MEDIA_LIBRARY_PLUGIN_URL ?>/images/max-foundry-new.png"></a> <?php _e('makers of', 'maxgalleria-media-library' ); ?> <a target="_blank" href="http://maxbuttons.com/?ref=mbpro">MaxButtons</a> <?php _e('and', 'maxgalleria-media-library' ); ?> <a target="_blank" href="http://maxinbound.com/?ref=mbpro">MaxInbound</a></div>
             <!--<div class="fb-like" data-href="https://www.facebook.com/maxfoundry" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>-->              
@@ -715,14 +684,15 @@ class MaxGalleriaMediaLib {
             
             if($rows) {
               foreach ($rows as $row) {
-                if($current_folder_string !== $row->guid)
-                  $folder_list .='<option value="' . $row->ID . '">' . $row->guid . '</option>' . PHP_EOL;
+																
+					      $image_location = $this->check_for_attachment_id($row->guid, $row->ID);
+								
+                if($current_folder_string !== $image_location)
+                  $folder_list .='<option value="' . $row->ID . '">' . $image_location . '</option>' . PHP_EOL;
               }
             }
             
             echo "<h3 id='mgmlp-breadcrumbs'>" . __('Location:','maxgalleria') . " $folders_path</h3>";
-            
-            //echo "$current_folder_string<br>";
             
             echo '<div id="mgmlp-toolbar">' . PHP_EOL;
             
@@ -734,7 +704,7 @@ class MaxGalleriaMediaLib {
             
             echo '  <a id="copy-files" help="' . __('Copy selected files to another folder.','maxgalleria') . '" class="gray-blue-link" href="javascript:slideonlyone(\'copy-area\');">' .  __('Copy','maxgalleria') . '</a>' . PHP_EOL;
             
-            echo '  <a id="move-files" help="' . __('Move selected files to a different folder','maxgalleria') . '" class="gray-blue-link" href="javascript:slideonlyone(\'move-area\');">' .  __('Move','maxgalleria') . '</a>' . PHP_EOL;
+            echo '  <a id="move-files" help="' . __('Move selected files to a different folder. <span class=\'mlp-warning\'>Images already in existing pages or blog posts will not display if they are moved from their current location unless you deleted and reinsert them after they have been moved.</span>','maxgalleria-media-library') . '" class="gray-blue-link" href="javascript:slideonlyone(\'move-area\');">' .  __('Move','maxgalleria') . '</a>' . PHP_EOL;
             
             echo '  <a id="add-images-to-gallery" help="' . __('Add image files to a Maxgalleria image gallery. Folders can not be added to a gallery. Images already in the gallery will not be added. ','maxgalleria') . '" class="gray-blue-link" href="javascript:slideonlyone(\'gallery-area\');">' .  __('Add to Gallery','maxgalleria') . '</a>' . PHP_EOL;
                         
@@ -781,8 +751,6 @@ class MaxGalleriaMediaLib {
             echo        $folder_list;
             echo '    </select>' . PHP_EOL;
             echo '<div class="btn-wrap"><a id="copy-media" class="gray-blue-link" >'. __('Copy files','maxgalleria') .'</a></div><br>' . PHP_EOL;
-            //echo __('Enter a new file name: ','maxgalleria') . PHP_EOL;
-            //echo '<input type="text" value="" id="new-file_name" />' . PHP_EOL;
             echo '  </div>' . PHP_EOL;
             echo '</div>' . PHP_EOL;
             echo '<div class="clearfix"></div>' . PHP_EOL;
@@ -846,9 +814,7 @@ order by post_name";
 
               var folder = jQuery(this).attr('folder');
 
-              //var pathname = window.location.pathname;
               var home_url = "<?php echo site_url(); ?>"; 
-              //console.log(folder);
 
               window.location.href = home_url + '/wp-admin/admin.php?page=media-library&' + 'media-folder=' + folder;
 
@@ -867,7 +833,6 @@ order by post_name";
               }  
             })    
             
-
             </script>  
 
           </div>  
@@ -934,8 +899,7 @@ order by post_name";
           
         </div>
           <div class="clearfix"></div>  
-      </div>
-          
+      </div>          
     <?php
   }
   
@@ -967,7 +931,6 @@ LEFT JOIN $folder_table ON($wpdb->prefix" . "posts.ID = $folder_table.post_id)
 where post_type = '" . MAXGALLERIA_MEDIA_LIBRARY_POST_TYPE ."' 
 and folder_id = $current_folder_id 
 order by $order_by";
-            //echo $sql;
 
             $rows = $wpdb->get_results($sql);
             
@@ -975,8 +938,6 @@ order by $order_by";
             if($rows) {
               $folders_found = true;
               foreach($rows as $row) {
-                
-                //write_log("folder guid: " . $row->guid);
                 
                 $checkbox = sprintf("<input type='checkbox' class='mgmlp-folder' id='%s' value='%s' />", $row->ID, $row->ID );
                 
@@ -996,7 +957,7 @@ LEFT JOIN $folder_table ON($wpdb->prefix" . "posts.ID = $folder_table.post_id)
 where post_type = 'attachment' 
 and folder_id = '$current_folder_id' 
 order by $order_by";
-            //echo $sql;
+
             $rows = $wpdb->get_results($sql);
             
             if($rows) {
@@ -1007,9 +968,6 @@ order by $order_by";
                   $thumbnail = MAXGALLERIA_MEDIA_LIBRARY_PLUGIN_URL . "/images/file.jpg";
                 }  
                                 
-                //write_log("image guid: " . $row->guid);
-                //write_log("thumbnail $thumbnail");
-                                
                 $checkbox = sprintf("<input type='checkbox' class='mgmlp-media' id='%s' value='%s' />", $row->ID, $row->ID );
                 $class = "media-attachment"; 
                 
@@ -1018,7 +976,9 @@ order by $order_by";
                 else
                   $media_edit_link = "/wp-admin/upload.php?item=" . $row->ID;
                 
-                $filename = pathinfo($row->guid, PATHINFO_BASENAME);
+					      $image_location = $this->check_for_attachment_id($row->guid, $row->ID);
+								                
+                $filename = pathinfo($image_location, PATHINFO_BASENAME);
                                 
                 echo "<li>" . PHP_EOL;
                 echo "   <a class='$class' href='" . site_url() . $media_edit_link . "'><img alt='' src='$thumbnail' /></a>" . PHP_EOL;
@@ -1038,7 +998,10 @@ order by $order_by";
     global $wpdb;    
     $sql = "select guid from $wpdb->prefix" . "posts where ID = $folder_id";    
     $row = $wpdb->get_row($sql);
-    $absolute_path = $this->get_absolute_path($row->guid);
+		
+		$image_location = $this->check_for_attachment_id($row->guid, $folder_id);
+				
+    $absolute_path = $this->get_absolute_path($image_location);
     return $absolute_path;
       
   }
@@ -1048,13 +1011,15 @@ order by $order_by";
     global $wpdb;    
     $sql = "select guid from $wpdb->prefix" . "posts where ID = $folder_id";    
     $row = $wpdb->get_row($sql);
-    $postion = strpos($row->guid, 'uploads');
-    $path = substr($row->guid, $postion+7 );
+		
+		$image_location = $this->check_for_attachment_id($row->guid, $folder_id);
+				
+    $postion = strpos($image_location, $this->uploads_folder_name);
+    $path = substr($image_location, $postion+$this->uploads_folder_name_length );
     return $path;
       
   }
   
-
   private function get_folder_name($folder_id) {
     global $wpdb;    
     $sql = "select post_title from $wpdb->prefix" . "posts where ID = $folder_id";    
@@ -1075,7 +1040,6 @@ order by $order_by";
 from $wpdb->prefix" . "posts 
 LEFT JOIN $folder_table ON($wpdb->prefix" . "posts.ID = $folder_table.post_id)
 where ID = $folder_id";    
-      //echo $sql;
       
       $row = $wpdb->get_row($sql);
       
@@ -1105,7 +1069,6 @@ LEFT JOIN $folder_table ON($wpdb->prefix" . "posts.ID = $folder_table.post_id)
 from $wpdb->prefix" . "posts 
 where ID = $folder_id";    
 
-    //echo $sql;
     
     $row = $wpdb->get_row($sql);
         
@@ -1132,8 +1095,10 @@ where ID = $folder_id";
     
     $row = $wpdb->get_row($sql);
         
-    $absolute_path = $this->get_absolute_path($row->guid);
-        
+		$image_location = $this->check_for_attachment_id($row->guid, $parent_folder_id);
+		        
+    $absolute_path = $this->get_absolute_path($image_location);
+                
     $new_folder_path = $absolute_path . DIRECTORY_SEPARATOR . $new_folder_name ;
     
     $new_folder_url = $this->get_file_url_for_copy($new_folder_path);
@@ -1154,7 +1119,6 @@ where ID = $folder_id";
     die();
   }
 
-  
   public function get_absolute_path($url) {
     $file_path = str_replace( $this->upload_dir['baseurl'], $this->upload_dir['basedir'], $url ); 
     
@@ -1197,11 +1161,6 @@ where ID = $folder_id";
       $base_upload_dir1 = $this->upload_dir['basedir'];
       $base_upload_dir2 = str_replace('/','\\', $base_upload_dir1);      
       $file_url = str_replace( $base_upload_dir2, $base_url, $path ); 
-//      write_log("base_upload_dir1 $base_upload_dir1");
-//      write_log("base_upload_dir2 $base_upload_dir2");
-//      write_log("baseurl $base_url");
-//      write_log("path $path");
-//      write_log("file_url $file_url");
       $file_url = str_replace('\\',   '/', $file_url);      
       
     }
@@ -1235,7 +1194,9 @@ where ID = $folder_id";
       
       $row = $wpdb->get_row($sql);
 
-      $folder_path = $this->get_absolute_path($row->guid);
+		  $image_location = $this->check_for_attachment_id($row->guid, $delete_id);
+			
+      $folder_path = $this->get_absolute_path($image_location);
       $table = $wpdb->prefix . MAXGALLERIA_MEDIA_LIBRARY_FOLDER_TABLE;
       $del_post = array('post_id' => $delete_id);                        
 
@@ -1262,11 +1223,6 @@ where ID = $folder_id";
       else {
         if( wp_delete_attachment( $delete_id, true ) !== false ) {
           $wpdb->delete( $table, $del_post );
-          
-          //$folder_path = str_replace('.', '*.', $folder_path );
-          //foreach (glob($folder_path) as $source_path) {
-          //  unlink($source_path);
-          //}                    
         }  
       } 
     }
@@ -1316,28 +1272,20 @@ where ID = $folder_id";
             
     if($destination !== "" || $folder_id !== 0 ) {
       
-      $output = print_r($serial_copy_ids, true);
-      //write_log("serial_copy_ids $output");
-      
-      foreach( $serial_copy_ids as $copy_id) {
-        
-        //write_log("$copy_id $copy_id");
+			foreach( $serial_copy_ids as $copy_id) {
         
         $sql = "select guid from $wpdb->prefix" . "posts where ID = $copy_id";    
 
         $row = $wpdb->get_row($sql);
         
-        $image_path = $this->get_absolute_path($row->guid);
+		    $image_location = $this->check_for_attachment_id($row->guid, $copy_id);
+				        
+        $image_path = $this->get_absolute_path($image_location);
 
         $destination_path = $this->get_absolute_path($destination);
                 
         $destination_name = $destination_path . DIRECTORY_SEPARATOR . pathinfo($image_path, PATHINFO_BASENAME);
-        //$destination_name = $destination_path . DIRECTORY_SEPARATOR . pathinfo($image_path, PATHINFO_FILENAME) . '-2' . '.' . pathinfo($image_path, PATHINFO_EXTENSION);
-                
-        //$sql = "SELECT COUNT(*) FROM $wpdb->prefix" . "post where post_title like %$copy_file_name%";
-        //$row_count = $wpdb->get_var($sql);        
-        //$destination_name = $destination_path . DIRECTORY_SEPARATOR . pathinfo($image_path, PATHINFO_FILENAME) . '-2' . '.' . pathinfo($image_path, PATHINFO_EXTENSION);
-                
+				
         $copy_status = true;
                                 
         if(file_exists($image_path)) {
@@ -1345,9 +1293,6 @@ where ID = $folder_id";
             if(file_exists($destination_path)) {
               if(is_dir($destination_path)) {
                 
-                //write_log("destination_path $destination_path");
-                //write_log($image_path);        
-                                
                 if($copy) {                  
                   if(copy($image_path, $destination_name )) {                                          
                          
@@ -1613,7 +1558,6 @@ where ID = $folder_id";
     $sql = $wpdb->prepare("select ID, post_title, post_name, guid from " . $wpdb->prefix . "posts 
       LEFT JOIN $wpdb->prefix" . "mgmlp_folders ON($wpdb->prefix" . "posts.ID = $wpdb->prefix" . "mgmlp_folders.post_id) 
       where post_type= 'attachment' and post_title like '%%%s%%'", $search_value);
-    //echo $sql;
     
     $rows = $wpdb->get_results($sql);
     
@@ -1623,8 +1567,11 @@ where ID = $folder_id";
           if($thumbnail !== false)
             $ext = pathinfo($thumbnail, PATHINFO_EXTENSION);
           else {
-            $ext_pos = strrpos($row->guid, '.');
-            $ext = substr($row->guid, $ext_pos+1);
+						
+		        $image_location = $this->check_for_attachment_id($row->guid, $row->ID);
+												
+            $ext_pos = strrpos($image_location, '.');
+            $ext = substr($image_location, $ext_pos+1);
             $thumbnail = MAXGALLERIA_MEDIA_LIBRARY_PLUGIN_URL . "/images/file.jpg";
           }
 
@@ -1653,7 +1600,7 @@ where ID = $folder_id";
 //    echo '  <div class="media-plus-toolbar wp-filter"><div class="media-toolbar-secondary">' . PHP_EOL;
     echo '  <div class="media-plus-toolbar wp-filter">' . PHP_EOL;
     echo '<div id="mgmlp-title-area">' . PHP_EOL;
-    echo '  <h2 class="mgmlp-title">Maxgalleria Media Library Plus Search Results</h2>' . PHP_EOL;
+    echo '  <h2 class="mgmlp-title">Media Library Plus Search Results</h2>' . PHP_EOL;
     echo '  <div id="back-wraper"><a href="' . site_url() . '/wp-admin/admin.php?page=media-library">Back to Media Library Plus Folders</a></div>' . PHP_EOL;
     echo '  <div id="search-wrap"><input type="search" placeholder="Search" id="mgmlp-media-search-input" class="search"></div>' . PHP_EOL;            
     echo '</div>' . PHP_EOL;
@@ -1661,7 +1608,6 @@ where ID = $folder_id";
     if ((isset($_GET['s'])) && (strlen(trim($_GET['s'])) > 0)) {
       $search_string = trim(stripslashes(strip_tags($_GET['s'])));
       echo "<h4>Search results for: $search_string</h4>" . PHP_EOL;
-      ////
       
       echo '<ul class="mg-media-list">' . PHP_EOL;
             
@@ -1670,7 +1616,6 @@ where ID = $folder_id";
         from $wpdb->prefix" . "posts
         LEFT JOIN $folder_table ON($wpdb->prefix" . "posts.ID = $folder_table.post_id)
         where post_type = '" . MAXGALLERIA_MEDIA_LIBRARY_POST_TYPE ."' and post_title like '%%%s%%'", $search_string);
-      //echo $sql;
 
       $rows = $wpdb->get_results($sql);
 
@@ -1683,33 +1628,28 @@ where ID = $folder_id";
           echo "   <div class='attachment-name'>$row->post_title</div>" . PHP_EOL;
           echo "</li>" . PHP_EOL;              
           
-
-//          echo "<li>" . PHP_EOL;
-//          echo "  <a class='media-folder media-link' folder='$row->ID'></a>" . PHP_EOL;
-//          echo "  <div class='attachment-name'><span class='image_select'>$checkbox</span><a class='media-link' folder='$row->ID'>$row->post_title</a></div>" . PHP_EOL;
-//          echo "</li>" . PHP_EOL;        
         }
       }
 
-
-      //////
             
       $sql = $wpdb->prepare("select ID, post_title, guid, folder_id from " . $wpdb->prefix . "posts 
         LEFT JOIN $wpdb->prefix" . "mgmlp_folders ON($wpdb->prefix" . "posts.ID = $wpdb->prefix" . "mgmlp_folders.post_id) 
         where post_type= 'attachment' and post_title like '%%%s%%'", $search_string);
-      //echo $sql;
 
       $rows = $wpdb->get_results($sql);
 
       $class = "media-attachment"; 
       if($rows) {
         foreach($rows as $row) {
+					
+		      $image_location = $this->check_for_attachment_id($row->guid, $row->ID);
+					
           $thumbnail = wp_get_attachment_thumb_url($row->ID);
           if($thumbnail !== false)
             $ext = pathinfo($thumbnail, PATHINFO_EXTENSION);
           else {
-            $ext_pos = strrpos($row->guid, '.');
-            $ext = substr($row->guid, $ext_pos+1);
+            $ext_pos = strrpos($image_location, '.');
+            $ext = substr($image_location, $ext_pos+1);
             $thumbnail = MAXGALLERIA_MEDIA_LIBRARY_PLUGIN_URL . "/images/file.jpg";
           }
           
@@ -1748,7 +1688,7 @@ where ID = $folder_id";
     <?php
   }
   
-  public function rename_image() {
+  public function maxgalleria_rename_image() {
     
     global $wpdb;
     
@@ -1765,8 +1705,6 @@ where ID = $folder_id";
       $new_file_name = trim(stripslashes(strip_tags($_POST['new_file_name'])));
     else
       $new_file_name = "";
-    
-    //echo "file name: $new_file_name<br>";
     
     if($new_file_name === '') {
       echo "Invalid file name.";
@@ -1788,18 +1726,15 @@ where ID = $folder_id";
     $row = $wpdb->get_row($sql);
     if($row) {
       
-      $full_new_file_name = $new_file_name . '.' . pathinfo($row->guid, PATHINFO_EXTENSION);
-      $destination_path = $this->get_absolute_path(pathinfo($row->guid, PATHINFO_DIRNAME));
-      //write_log("destination_path $destination_path");
-      //write_log("full_new_file_name $full_new_file_name");
+		  $image_location = $this->check_for_attachment_id($row->guid, $file_id);
+			      
+      $full_new_file_name = $new_file_name . '.' . pathinfo($image_location, PATHINFO_EXTENSION);
+      $destination_path = $this->get_absolute_path(pathinfo($image_location, PATHINFO_DIRNAME));
       $new_file_name = wp_unique_filename( $destination_path, $full_new_file_name, null );
-      //write_log("new_filename $new_file_name");
       
-      $old_file_path = $this->get_absolute_path($row->guid);
-      $new_file_url = pathinfo($row->guid, PATHINFO_DIRNAME) . DIRECTORY_SEPARATOR . $new_file_name;
+      $old_file_path = $this->get_absolute_path($image_location);
+      $new_file_url = pathinfo($image_location, PATHINFO_DIRNAME) . DIRECTORY_SEPARATOR . $new_file_name;
       $new_file_path = $this->get_absolute_path($new_file_url);
-      //write_log("old_file_path $old_file_path");
-      //write_log("new_file_path $new_file_path");
                   
       if($this->is_windows()) {
         $old_file_path = str_replace('\\', '/', $old_file_path);      
@@ -1886,9 +1821,6 @@ where ID = $folder_id";
   
   public function admin_check_for_new_folders($noecho = null) {
     
-    //if (function_exists('write_log')) 
-    //  write_log("check_for_new_folders running...");
-    
     $uploads_path = wp_upload_dir();
     
     if(!$uploads_path['error']) {
@@ -1919,14 +1851,11 @@ where ID = $folder_id";
               $url = str_replace('\\', '/', $url);      
             }
             
-            //write_log("checking for $url");
-            
             if($this->folder_exist($url) === false) {
               $folder_found = true;
               if(!$noecho)
                 echo __('Adding','maxgalleria') . " $url<br>";
               $parent_id = $this->find_parent_id($url);
-              //write_log("Adding folder $dir_name <br>");
               $this->add_media_folder($dir_name, $parent_id, $url);              
             }
           }  
@@ -1993,8 +1922,17 @@ where ID = $folder_id";
     //write_log("added folder: $post_title");
     
     return $wpdb->insert_id;  
-  }  
-    
+  }
+	
+  public function check_for_attachment_id($guid, $post_id) {	
+		
+		$attach_id_found = strpos($guid, 'attachment_id=');
+		if($attach_id_found !== false) 
+			return wp_get_attachment_url($post_id);
+		else
+			return $guid;
+	}
+	    
 }
 
 //$maxgalleria_media_library = new MaxGalleriaMediaLib();

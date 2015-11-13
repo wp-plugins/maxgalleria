@@ -3,11 +3,11 @@ Contributors: maxfoundry, arcware, johnbhartley, AlanP57
 Tags: albums, gallery, image, images, media, flash, foto, fotoalbum, photo, photos, photo albums, picture, pictures, responsive wordpress gallery, thumbmail, thumbnails, wordpress gallery, wordpress gallery plugin, responsive wordpress gallery plugins, responsive, slideshows, image slider, nivo, image slide plugin, photo slider, responsive slideshow, responsive slider plugin, slideshow plugin, wordpress picture slider, wordpress responsive slider, wordpress slider, website gallery, youtube, youtube video, youtube videos, youtube gallery, youtube video galleries, nextgen, nextgen gallery, media library, media uploader, images, image folders, responsive lightbox, swipebox, prettyphoto, fancybox, nivo lightbox, image lightbox
 Requires at least: 3.9
 Tested up to: 4.3
-Stable tag: 4.18
+Stable tag: 4.19
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Responsive Gallery plugin with built in Slider and Lightbox
+Responsive WordPress Gallery plugin with built in Slider and Lightbox
 
 == Description ==
 
@@ -58,7 +58,7 @@ Many people will find the core MaxGalleria plugin all they will ever need; howev
 * [Instagram](http://maxgalleria.com/shop/maxgalleria-instagram/?utm_source=wordpress&utm_medium=instagram&utm_content=instagram&utm_campaign=mgrepo) - Add Instagram images to your galleries
 * [Vimeo](http://maxgalleria.com/shop/maxgalleria-vimeo/?utm_source=wordpress&utm_medium=vimeo&utm_content=vimeo&utm_campaign=mgrepo) - Add Vimeo videos to your galleries
 * [Flickr](http://maxgalleria.com/shop/maxgalleria-flickr/?utm_source=wordpress&utm_medium=flickr&utm_content=flickr&utm_campaign=mgrepo) - Pull in images from your Flickr stream
-* [Slick for WordPress](http://maxgalleria.com/shop/maxgalleria-slick-for-wordpress/?utm_source=wordpress&utm_medium=slick&utm_content=slick&utm_campaign=mgrepo) - The Last Carousel You'll ever need!
+* [Slick Carousel for WordPress](http://maxgalleria.com/shop/maxgalleria-slick-for-wordpress/?utm_source=wordpress&utm_medium=slick&utm_content=slick&utm_campaign=mgrepo) - The Last Carousel You'll ever need!
 
 
 = Media Library Extended =
@@ -153,6 +153,10 @@ The details about using the Maxgalleria Media Library Plus can be found [here](
 
 
 == Changelog ==
+
+= 4.19 =
+* Add support for user defined uploads folder
+* Added code to handle attachment_id in attachement URLs
 
 = 4.18 =
 * Renamed the 'settings' class on the Maxgalleria Settings page (in admin/setting.php) to 'mg-settings' to avoid CSS conflict with another plugin 

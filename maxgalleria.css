@@ -1566,7 +1566,7 @@ Media Manager Styles and Overrides
   margin-left: 30px;
 
   display: block;
-  margin: -33px 0 0 210px;
+  margin: -5px 0 0 210px;
   max-width: 500px;
 }
 
@@ -1692,6 +1692,10 @@ div.mg-promo div.promo-section p.section-title span {
   margin: 0 auto;
   position: relative;
   width: 92px;
+}
+
+.fb-like {
+  text-align: center;
 }
 
 @media (max-width: 850px) {

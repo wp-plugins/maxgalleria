@@ -453,6 +453,10 @@ select#copy-select {
   width: auto;
 }
 
+.mlp-warning {
+  color: red;
+}
+
 @media (max-width: 1160px) {
     #mgmlp-toolbar {
       line-height: 40px;
